@@ -1,0 +1,54 @@
+
+
+% Upgreek letters
+\makeatletter
+\newcommand\mathgr[1]{\tokcycle
+  {\addcytoks{##1}}
+  {\processtoks{##1}}
+  {\ifcsname up\expandafter\@gobble\string##1\endcsname
+   \addcytoks[1]{\csname up\expandafter\@gobble\string##1\endcsname}%
+    \else\addcytoks{##1}\fi}
+  {\addcytoks{##1}}{#1}%
+  \expandafter\mathrm\expandafter{\the\cytoks}%
+}
+\makeatother
+
+
+
+% Create a new macro proofof
+% taking as input a label of a theorem
+% and creating a proof with a reference to that
+% label
+\NewDocumentEnvironment{proofof}{ m }{
+    % if the command \#1 exists, then 
+    % call \#1* to restate the theorem
+    \ifcsname #1\endcsname
+        \def\isInsideRestatedTheorem{1}
+        \csname #1\endcsname*
+    \fi
+    \begin{proof}[Proof of {\cref{#1}} page {\pageref{#1}}]
+        \phantomsection
+        \label{#1:proof}
+}{
+        
+        % Some link to go back to the theorem
+        \noindent\hyperref[#1]{$\triangleright$ Go back to \cref{#1} on page \pageref{#1}}
+    \end{proof}
+}
+
+% Create a new macro proofref
+% that takes as input a label of a theorem
+% and creates a reference to its proof
+\NewDocumentCommand{\proofref}{ m }{
+    % checks if the label #1:proof exists, if yes
+    % it creates a link to it, otherwise it writes nothing
+    \IfRefUndefinedExpandable{#1:proof}{}{
+        % Checks if we are inside a restated theorem
+        % if yes, we do not print anything
+        \ifdefined\isInsideRestatedTheorem
+        \else
+        \hfill\hyperref[#1:proof]{\textsf{(Go to proof p.\pageref{#1:proof})}}
+        \fi
+    }
+}
+

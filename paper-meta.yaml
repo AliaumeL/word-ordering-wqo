@@ -1,0 +1,25 @@
+title: "Well-quasi-orderings on word languages"
+license: "CC-BY-SA 4.0"
+author:
+  - name: "Roland Guttenberg" 
+    affiliation: "Technical University of Munich, Germany"
+    email: "guttenbe@in.tum.de"
+  - name: "Nathan Lhote" 
+    affiliation: "Aix-Marseille University"
+    email: nathan.lhote@lis-lab.fr
+  - name: "Aliaume Lopez"
+    orcid: "0000-0002-1825-0097"
+    affiliation: "University of Warsaw"
+    email: ad.lopez@uw.edu.pl
+  - name: "Corto Mascle"
+    affiliation: "LaBRI, University of Bordeaux"
+    email: corto.mascle@labri.fr
+  - name: "Vincent Michielini"
+    affiliation: "University of Warsaw"
+    email: michielini@mimuw.edu.pl
+  - name: "Lia Schütze"
+    affiliation: "MPI-SWS, Germany"
+    email: lschuetze@mpi-sws.org
+  - name: "Omid Yaghoubi"
+    affiliation: "University of Warsaw" 
+    email: o.yaghoubi@uw.edu.pl

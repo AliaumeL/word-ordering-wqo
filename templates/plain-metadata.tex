@@ -1,0 +1,22 @@
+% Description: Metadata for the plain template
+%
+% Warning: this file is generated automatically
+% from the paper-meta.yaml file. If you really want to edit
+% this file, please mirror the changes to paper-meta.yaml.
+
+\title{$title$}
+\author{%
+    $for(author)$
+    $author.name$$sep$ \and
+    $endfor$
+}
+
+$if(date)$
+\date{$date$}
+$endif$
+
+$if(abstract)$
+\begin{abstract}
+    $abstract$
+\end{abstract}
+$endif$
