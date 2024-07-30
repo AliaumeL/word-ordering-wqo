@@ -1,0 +1,37 @@
+% lang: en-US
+
+\section{Infixes}
+\label{infixes:sec}
+
+
+In this section, we study the well-quasi-ordering of languages under the infix
+relation.
+
+\subsection{Lower bound}
+
+Approximative theorem.
+\begin{theorem}
+    Let $(X, \preceq)$ be a quasi-ordered set.
+    Then the following are equivalent
+    \begin{itemize}
+        \item $X$ embeds into $(\Sigma^*, \preceq_{\text{infix}})$
+        \item $X$ is countable, and for every $x \in X$,
+            $\{y \in X \mid y \preceq x\}$ is finite.
+    \end{itemize}
+
+    Furthermore, if $X$ is recursively enumerable and $\preceq$ decidable,
+    then
+    the embedding is effective.
+\end{theorem}
+
+
+\subsection{Upper bound}
+
+This section will use so-called \emph{amalgamation systems}.
+
+\begin{itemize}
+    \item Define amalgamation systems
+    \item Pumping argument
+    \item Characterization
+    \item Decision procedure
+\end{itemize}

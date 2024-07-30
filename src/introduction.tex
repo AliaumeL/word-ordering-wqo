@@ -1,5 +1,42 @@
 \section{Introduction}
 \label{introduction:sec}
 
-\subparagraph{Motivation}
+A \intro{well-quasi-ordered} set is a set $X$ equipped with a quasi-order
+$\preceq$ such that every infinite sequence $x_0 \preceq x_1 \preceq x_2
+\preceq \ldots$ contains a pair $x_i \preceq x_j$ with $i < j$.
+Well-quasi-orderings serve as a core combinatorial tool powering many
+termination arguments, and in particular applies to the verification of
+infinite state transition systems \cite{ABDU96,ABDU98}.
 
+One of the appealing properties of well-quasi-orderings is that they are closed
+under many operations, such as taking products, finite unions, and finite
+powersets \cite{SCSC12}. More surprisingly, the class of well-quasi-ordered
+sets is also stable under the operation of taking finite words and finite trees
+labelled by elements of a well-quasi-ordered set \cite{HIG52,KRU72}. 
+
+Note that in these latter cases, the precise choice of ordering on words and
+trees is crucial to ensure that the resulting structure is well-quasi-ordered.
+A celebrated result of Higman implies that the set of finite words over a
+finite alphabet is well-quasi-ordered by the so-called \kl{subword relation}
+\cite{HIG52}. The subword relation for words over $(X, \preceq)$ is defined as
+follows: a word $u$ is a \intro{subword} of a word $v$ if there exists an
+increasing function $f \colon \{1, \ldots, |u|\} \to \{1, \ldots, |v|\}$ such
+that $u_i \preceq v_{f(i)}$ for all $i \in \{1, \ldots, |u|\}$.
+
+There are many other natural orderings on words that could be considered in the
+context of well-quasi-orderings. For instance, one could consider the
+\kl{prefix relation}, \kl{suffix relation} or the \kl{infix relation}, all of
+which are not well-quasi-ordered as soon as the alphabet contains two distinct
+letters. Let us remark that these other word orderings are however
+well-founded, and therefore the (only) obstruction to being well-quasi-ordered
+is not due to the existence of infinite sets of incomparable elements.
+
+
+\subparagraph{Contribution} In this paper, we characterize for which languages
+$L \subseteq \Sigma^*$ the other natural orderins on word are
+well-quasi-ordered. When languages are decided by simple enough machines (e.g.,
+finite automata or pushdown automata), we will also provide \emph{decision
+procedures} to check whether the language is well-quasi-ordered by the
+considered relation. 
+
+\subparagraph{Outline}
