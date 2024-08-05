@@ -52,3 +52,28 @@
     }
 }
 
+
+
+% Automate the creation of new orderings
+% based on a given symbol.
+% For instance,
+% \NewDocumentOrdering{\pref}{\preceq}{\prec}
+% will create the following commands:
+% \prefleq and \preflt
+% that will respectively expand to
+% \mathrel{\kl[\pref]{\preceq}} and \mathrel{\kl[\pref]{\prec}}
+\NewDocumentCommand{\NewDocumentOrdering}{ m m m }{
+    \expandafter\newcommand\csname #1leq\endcsname{
+        \mathrel{\kl[#1]{#2}}
+    }
+    \expandafter\newcommand\csname #1lt\endcsname{
+        \mathrel{\kl[#1]{#3}}
+    }
+    \knowledge{#1}{notion}
+}
+
+% Little math macros
+\NewDocumentCommand{\set}{ m }{\{ #1 \}}
+\NewDocumentCommand{\setof}{ m m }{\{ #1 \mid #2 \}}
+\NewDocumentCommand{\card}{ m }{\left| #1 \right|}
+\NewDocumentCommand{\Nat}{ }{\mathbb{N}}
