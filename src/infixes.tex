@@ -5,17 +5,13 @@
 
 
 In this section, we study the well-quasi-ordering of languages under the infix
-relation.
+relation. As opposed to the prefix and suffix relations, the infix relation can
+yield to very complicated well-quasi-ordered languages. As a matter of fact,
+the following theorem shows that \emph{any} countable quasi-ordering with
+finite initial segments can be embedded into the infix relation of a language.
 
-\begin{enumerate}
-    \item examples $a^nb$, $a b^n a$
-    \item no tree of infixes is available
-\end{enumerate}
-
-\subsection{Lower bound}
-
-Approximative theorem.
 \begin{theorem}
+    \label{thm:infix-embedding}
     Let $(X, \preceq)$ be a quasi-ordered set.
     Then the following are equivalent
     \begin{itemize}
@@ -29,8 +25,24 @@ Approximative theorem.
     the embedding is effective.
 \end{theorem}
 
+As a consequence of \cref{thm:infix-embedding}, we cannot replay proofs of
+\cref{prefixes-suffixes:sec}, and will actually need to leverage some
+regularity of the languages to obtain a characterization of well-quasi-ordered
+languages under the infix relation. Let us first play this game for languages
+that are recognized by finite automata.
 
-\subsection{Upper bound}
+\begin{theorem}
+    \label{thm:infix-finite-automata}
+    Let $L \subseteq \Sigma^*$ be a language recognized by a finite automaton.
+    Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
+    a finite union of chains for the \kl{infix relation}.
+\end{theorem}
+
+\begin{corollary}
+    Decidability?
+\end{corollary}
+
+\subsection{Amalgamation systems}
 
 This section will use so-called \emph{amalgamation systems}.
 
