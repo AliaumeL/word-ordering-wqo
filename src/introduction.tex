@@ -1,12 +1,19 @@
+% LTeX: language=en-GB 
 \section{Introduction}
 \label{introduction:sec}
 
 A \intro{well-quasi-ordered} set is a set $X$ equipped with a quasi-order
-$\preceq$ such that every infinite sequence $x_0 \preceq x_1 \preceq x_2
-\preceq \ldots$ contains a pair $x_i \preceq x_j$ with $i < j$.
-Well-quasi-orderings serve as a core combinatorial tool powering many
-termination arguments, and in particular applies to the verification of
-infinite state transition systems \cite{ABDU96,ABDU98}.
+$\preceq$ such that every infinite sequence $x_0, x_1, x_2 , \ldots$ contains a
+pair $x_i \preceq x_j$ with $i < j$. Well-quasi-orderings serve as a core
+combinatorial tool powering many termination arguments, and in particular
+applies to the verification of infinite state transition systems
+\cite{ABDU96,ABDU98}. 
+In this paper, we will use an equivalent definition of
+well-quasi-orderings based on the non-existence of infinite \intro{antichains}
+-- sets of pairwise incomparable elements -- as well as the non-existence of
+infinite \intro{decreasing sequences} -- sequences of elements $x_0, x_1, x_2,
+\ldots$ such that $x_{i+1} \prec x_{i}$ --. 
+
 
 One of the appealing properties of well-quasi-orderings is that they are closed
 under many operations, such as taking products, finite unions, and finite
@@ -33,10 +40,13 @@ is not due to the existence of infinite sets of incomparable elements.
 
 
 \subparagraph{Contribution} In this paper, we characterize for which languages
-$L \subseteq \Sigma^*$ the other natural orderins on word are
+$L \subseteq \Sigma^*$ the other natural orderings on word are
 well-quasi-ordered. When languages are decided by simple enough machines (e.g.,
 finite automata or pushdown automata), we will also provide \emph{decision
 procedures} to check whether the language is well-quasi-ordered by the
-considered relation. 
+considered relation. Quite surprisingly, for the \kl{prefix relation} and the
+\kl{suffix relation}, the only languages that are \kl{well-quasi-ordered} are
+the \emph{finite} unions of \kl{chains}, that is, the simplest possible
+well-quasi-ordered sets. 
 
 \subparagraph{Outline}
