@@ -1,15 +1,57 @@
-% lang: en-US
+% LTeX: language=en-GB 
 \section{Prefixes and Suffixes}
 \label{prefixes-suffixes:sec}
 
 In this section, we study the well-quasi-ordering of languages under the prefix
-relation. Let us first remark that the case of the suffix relation is
-completely symmetric, and therefore that all our results will apply to the
-suffix relation as well.
+relation. A word $u$ is a \intro{prefix} of a word $w$ if there exists a word
+$v$ such that $w = uv$. We denote this relation by $u \intro*\prefleq w$.
+Similarly, a word $u$ is a \intro{suffix} of a word $w$ if there exists a word
+$v$ such that $w = vu$. We denote this relation by $u \intro*\suffleq w$.
 
+Let us immediately remark that the map $u \mapsto u^R$ that reverses a word is
+an order-bijection between $(X^*, \prefleq)$ and $(X^*, \suffleq)$. Therefore,
+we will focus on the prefix relation in the following.
 
-\begin{itemize}
-    \item examples: $a^n$, $ab^n$, $b^na$. 
-    \item the tree of prefixes and existence antichains
-    \item decision procedure for regular languages
-\end{itemize}
+As mentioned in the introduction, the prefix relation is not a well-quasi-order
+on words over a two-letter alphabet, as witnessed by the infinite
+\kl{antichain} $\setof{a^nb}{n \in \Nat}$. 
+
+Let us order the words in $\Sigma^*$ by the \kl{prefix relation} to build an
+infinite tree $T$. The root of the tree is the empty word $\varepsilon$, and
+the children of a word $w$ are the words $wa$ for all $a \in \Sigma$. This tree
+is finitely branching. Let $L \subseteq \Sigma^*$ be a language. Assume that
+$L$ contains an infinite \kl{antichain} $A$ for the \kl{prefix relation}. In
+particular, no two word of $A$ belong to the same branch of the tree $T$. Let
+us prove the following: there exists an infinite branch $B$ of $T$ such that from
+every point of the branch, one can reach a word of $A$ that is not in the
+branch. 
+
+\begin{definition}
+    An \intro{antichain branch} for a language $L$ is an infinite 
+    branch $B$ of the tree $T$ such that from every point of the branch, 
+    one can reach a word of $A$ that is not in the branch.
+\end{definition}
+
+\begin{lemma}
+    Let $L \subseteq \Sigma^*$ be a language. Then, $L$ contains an infinite
+    \kl{antichain} if and only if there exists an \kl{antichain branch} for $L$.
+\end{lemma}
+
+\begin{corollary}
+    If $L$ is regular, then the existence of an infinite antichain is decidable.
+\end{corollary}
+
+\begin{theorem}
+    A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the
+    \kl{prefix relation} if and only if $L$ is a union of \kl{chains}.
+\end{theorem}
+
+\begin{corollary}
+    Let $L \subseteq \Sigma^*$ be a language that is \kl{well-quasi-ordered} by
+    the \kl{prefix relation}. Then, there exists a finite $k \in \Nat$ such that
+    the
+    \kl{maximal order type} of $L$ is $k \cdot \omega$,
+    the \kl{ordinal height} of $L$ is $\omega$, and its
+    \kl{ordinal width} is $k$.
+\end{corollary}
+
