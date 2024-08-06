@@ -3,50 +3,109 @@
 \label{introduction:sec}
 
 A \intro{well-quasi-ordered} set is a set $X$ equipped with a quasi-order
-$\preceq$ such that every infinite sequence $x_0, x_1, x_2 , \ldots$ contains a
-pair $x_i \preceq x_j$ with $i < j$. Well-quasi-orderings serve as a core
-combinatorial tool powering many termination arguments, and in particular
-applies to the verification of infinite state transition systems
-\cite{ABDU96,ABDU98}. 
-In this paper, we will use an equivalent definition of
-well-quasi-orderings based on the non-existence of infinite \intro{antichains}
--- sets of pairwise incomparable elements -- as well as the non-existence of
-infinite \intro{decreasing sequences} -- sequences of elements $x_0, x_1, x_2,
-\ldots$ such that $x_{i+1} \prec x_{i}$ --. 
+$\preceq$ such that every infinite sequence $\seqof{x_n}$ of elements taken in
+$X$ contains a pair $x_i \preceq x_j$ with $i < j$. Well-quasi-orderings serve
+as a core combinatorial tool powering many termination arguments, and was
+successfully applied to the verification of infinite state transition systems
+\cite{ABDU96,ABDU98}. One of the appealing properties of well-quasi-orderings
+is that they are closed under many operations, such as taking products, finite
+unions, and finite powersets \cite{SCSC12}. More surprisingly, the class of
+well-quasi-ordered sets is also stable under the operation of taking finite
+words and finite trees labelled by elements of a well-quasi-ordered set
+\cite{HIG52,KRU72}.
+
+Note that in the case of finite words and finite trees, the precise choice of
+ordering on words and trees is crucial to ensure that the resulting structure
+is \kl{well-quasi-ordered}. The celebrated result of Higman states that the set
+of finite words over an ordered alphabet $(X, \preceq)$ is
+\kl{well-quasi-ordered} by the so-called \kl{subword embedding relation}
+\cite{HIG52}. Let us recall that the \kl{subword relation} for words over $(X,
+\preceq)$ is defined as follows: a word $u$ is a \intro{subword} of a word $v$
+if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
+\ldots, |v|\}$ such that $u_i \preceq v_{f(i)}$ for all $i \in \{1, \ldots,
+|u|\}$.
+
+However, there are many other natural orderings on words that could be
+considered in the context of \kl{well-quasi-orderings}. The three alternatives
+we consider are the \kl{prefix relation}, the \kl{suffix relation}, and the
+\kl{infix relation}. Unfortunately, it is an easy check that all of these
+constructions are not well-quasi-ordered as soon as the alphabet contains two
+non-equivalent letters. This is not the end of the road, because some
+\emph{subsets} of $\Sigma^*$ might still be \kl{well-quasi-ordered} by these
+relations, the simplest example being the case of finite sets of (finite) words
+which are all \kl{well-quasi-ordered} regardless of the ordering considered.
+This raises the question of characterizing the subsets $L \subseteq \Sigma^*$
+that are \kl{well-quasi-ordered} with respect to the \kl{prefix relation}
+(respectively, the \kl{suffix relation} or the \kl{infix relation}), and
+providing suitable decision procedures.
 
 
-One of the appealing properties of well-quasi-orderings is that they are closed
-under many operations, such as taking products, finite unions, and finite
-powersets \cite{SCSC12}. More surprisingly, the class of well-quasi-ordered
-sets is also stable under the operation of taking finite words and finite trees
-labelled by elements of a well-quasi-ordered set \cite{HIG52,KRU72}. 
+\subparagraph{Contribution} In this paper, we focus on words over a finite
+alphabet $\Sigma$, and characterize subsets $L \subseteq \Sigma^*$ that are
+\kl{well-quasi-ordered} by the \kl{prefix relation}, the \kl{suffix relation},
+and the \kl{infix relation}. Let us remark that these word orderings are all
+\intro{well-founded}, i.e., they do not contain infinite \intro{decreasing
+sequences} $\seqof{x_n}$ such that $x_{n+1} \prec x_n$ for all $n \in \Nat$.
+Let us recall that the key difference between \kl{well-quasi-orderings} and the
+more usual notion of well-founded orderings is that the latter allows the
+existence of infinite \intro{antichains}, that is, sets of pairwise
+incomparable elements. In fact, a set $X$ is \kl{well-quasi-ordered} if and
+only if it is \kl{well-founded} and does not contain an infinite \kl{antichain}
+\cite{KRU72}.  As a consequence, our study focuses on detecting infinite
+\kl{antichains} in languages $L \subseteq \Sigma^*$.
 
-Note that in these latter cases, the precise choice of ordering on words and
-trees is crucial to ensure that the resulting structure is well-quasi-ordered.
-A celebrated result of Higman implies that the set of finite words over a
-finite alphabet is well-quasi-ordered by the so-called \kl{subword relation}
-\cite{HIG52}. The subword relation for words over $(X, \preceq)$ is defined as
-follows: a word $u$ is a \intro{subword} of a word $v$ if there exists an
-increasing function $f \colon \{1, \ldots, |u|\} \to \{1, \ldots, |v|\}$ such
-that $u_i \preceq v_{f(i)}$ for all $i \in \{1, \ldots, |u|\}$.
+In the case of the \kl{prefix relation}, we provide a complete characterization
+of languages $L \subseteq \Sigma^*$ that are \kl{well-quasi-ordered}, which are
+the simplest possible languages: they are precisely the \emph{finite} unions of
+\intro{chains}, that is, sets of words that are all comparable for the
+\kl{prefix relation}. Note that \kl{chains} are the simplest possible
+\kl{well-quasi-ordered} sets (they are totally ordered and well-founded) and it
+is known that finite unions of \kl{well-quasi-ordered} sets are
+\kl{well-quasi-ordered}. As a consequence, the above characterization states
+that only the simplest possible \kl{well-quasi-ordered} sets are
+\kl{well-quasi-ordered} by the \kl{prefix relation}. Let us furthermore
+highlight that this characterization holds without any restriction on the
+decidability of the language $L$ itself, but heavily relies on the assumption
+that $\Sigma$ is finite. By symmetry, we obtain an analogue statement for the
+\kl{suffix relation}.
 
-There are many other natural orderings on words that could be considered in the
-context of well-quasi-orderings. For instance, one could consider the
-\kl{prefix relation}, \kl{suffix relation} or the \kl{infix relation}, all of
-which are not well-quasi-ordered as soon as the alphabet contains two distinct
-letters. Let us remark that these other word orderings are however
-well-founded, and therefore the (only) obstruction to being well-quasi-ordered
-is not due to the existence of infinite sets of incomparable elements.
+In the case of the \kl{infix relation}, the situation is more complex, and we
+show that \emph{any} countable quasi-ordering with finite initial segments can
+be embedded into the \kl{infix relation} of a language over a binary alphabet
+$\Sigma \defined \set{a,b}$. As an example, on can embed $(\Sigma^*, \higleq)$
+into $(\Sigma^*, \infleq)$ where $\higleq$ is the \kl{subword relation} and
+$\infleq$ is the \kl{infix relation}. This strongly contrasts with the
+\kl{prefix relation}, and suggests that a meaningful characterization of
+\kl{well-quasi-ordered} languages under the \kl{infix relation} is unlikely to
+be found. 
 
+We circumvent this issue by adding some regularity assumptions on the languages
+$L \subseteq \Sigma^*$ that we consider. This can be done by assuming that $L$
+is recognized by a finite automaton, or more generally that $L$ is the language
+of an \kl{amalgamation system}. Under these relatively mild assumptions, we
+also prove that \kl{well-quasi-ordered} languages under the \kl{infix relation}
+are precisely the finite unions of \kl{chains}.
 
-\subparagraph{Contribution} In this paper, we characterize for which languages
-$L \subseteq \Sigma^*$ the other natural orderings on word are
-well-quasi-ordered. When languages are decided by simple enough machines (e.g.,
-finite automata or pushdown automata), we will also provide \emph{decision
-procedures} to check whether the language is well-quasi-ordered by the
-considered relation. Quite surprisingly, for the \kl{prefix relation} and the
-\kl{suffix relation}, the only languages that are \kl{well-quasi-ordered} are
-the \emph{finite} unions of \kl{chains}, that is, the simplest possible
-well-quasi-ordered sets. 
+\subparagraph{Related work} The study of alternative \kl{well-quasi-ordered}
+relations over finite words is far from new. For instance, orders obtained by
+so-called \emph{derivation relations} where already analysed by Bucher,
+Ehrenfeucht, and Haussler \cite{BUEUD85}. These results were later extended by
+D'Alessandro and Varricchio \cite{ALVA03,ALVA06}. However, in all those cases
+the orderings are \emph{multiplicative}, that is, if $u_1 \preceq v_1$ and $u_2
+\preceq v_2$ then $u_1u_2 \preceq v_1v_2$. This assumption does not hold for
+the \kl{prefix}, \kl{suffix}, and \kl{infix} relations.
 
-\subparagraph{Outline}
+\subparagraph{Outline} In \cref{prefixes:sec}, which is relatively
+self-contained, we study the \kl{prefix relation} prove in \cref{prefixes:thm}
+the characterization of \kl{well-quasi-ordered} languages by the \kl{prefix
+relation}. In \cref{infixes:sec}, we prove that any countable quasi-ordering
+with finite initial segments can be embedded into the \kl{infix relation} of a
+language (\cref{count-embed-infix:thm}), we obtain the analogue of
+\cref{prefixes:thm} for languages recognized by finite automata
+(\cref{infix-finite-automata:thm}). Finally, in \cref{amalgamation:sec}, we
+introduce \kl{amalgamation systems} and generalize
+\cref{infix-finite-automata:thm} to this setting
+(\cref{infix-amalgamation:thm}).
+
+\subparagraph{Acknowledgements} We would like to thank participants of the 2024
+edition of Autobóz for their helpful comments and discussions.

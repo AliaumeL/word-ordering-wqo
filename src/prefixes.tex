@@ -6,31 +6,45 @@ In this section, we study the well-quasi-ordering of languages under the prefix
 relation. A word $u$ is a \intro{prefix} of a word $w$ if there exists a word
 $v$ such that $w = uv$. We denote this relation by $u \intro*\prefleq w$.
 Similarly, a word $u$ is a \intro{suffix} of a word $w$ if there exists a word
-$v$ such that $w = vu$. We denote this relation by $u \intro*\suffleq w$.
+$v$ such that $w = vu$. We denote this relation by $u \intro*\suffleq w$. Let
+us immediately remark that the map $u \mapsto u^R$ that reverses a word is an
+order-bijection between $(X^*, \prefleq)$ and $(X^*, \suffleq)$. Therefore, we
+will focus on the prefix relation in the rest of this section.
 
-Let us immediately remark that the map $u \mapsto u^R$ that reverses a word is
-an order-bijection between $(X^*, \prefleq)$ and $(X^*, \suffleq)$. Therefore,
-we will focus on the prefix relation in the following.
 
-As mentioned in the introduction, the prefix relation is not a well-quasi-order
-on words over a two-letter alphabet, as witnessed by the infinite
-\kl{antichain} $\setof{a^nb}{n \in \Nat}$. 
+Let us briefly restate the fact that some (even regular) languages 
+are not well-quasi-ordered by the prefix relation.
 
-Let us order the words in $\Sigma^*$ by the \kl{prefix relation} to build an
-infinite tree $T$. The root of the tree is the empty word $\varepsilon$, and
-the children of a word $w$ are the words $wa$ for all $a \in \Sigma$. This tree
-is finitely branching. Let $L \subseteq \Sigma^*$ be a language. Assume that
-$L$ contains an infinite \kl{antichain} $A$ for the \kl{prefix relation}. In
-particular, no two word of $A$ belong to the same branch of the tree $T$. Let
-us prove the following: there exists an infinite branch $B$ of $T$ such that from
-every point of the branch, one can reach a word of $A$ that is not in the
-branch. 
+\begin{example}
+    The set $L = \setof{a^nb}{n \in \Nat}$ is an infinite antichain for the
+    prefix relation.
+\end{example}
+
+In order to characterize the existence of infinite antichains for the prefix
+relation, we will introduce the following tree construction that
+will be useful in the rest of this section.
+
+\begin{definition}
+    The \intro{tree of prefixes} over a finite alphabet $\Sigma$
+    is the infinite tree $T$ whose nodes are the words of $\Sigma^*$, and
+    such that the children of a word $w$ are the words $wa$ for all $a \in
+    \Sigma$. 
+\end{definition}
+
+Notice that the tree of prefixes is finitely branching. Let us now
+observe how antichains in the prefix relation can be witnessed
+by infinite branches in the tree of prefixes.
 
 \begin{definition}
     An \intro{antichain branch} for a language $L$ is an infinite 
     branch $B$ of the tree $T$ such that from every point of the branch, 
     one can reach a word of $A$ that is not in the branch.
 \end{definition}
+
+It is clear that an \kl{antichain branch} for a language $L$ yields an infinite
+antichain, and the converse is quite easy to prove. Because the notion of
+antichain branch is \kl{$\MSO$-definable} whenever $L$ is regular, we
+immediately obtain decidability as a corollary of this lemma.
 
 \begin{lemma}
     Let $L \subseteq \Sigma^*$ be a language. Then, $L$ contains an infinite
@@ -41,12 +55,25 @@ branch.
     If $L$ is regular, then the existence of an infinite antichain is decidable.
 \end{corollary}
 
+Let us now go further and fully characterize languages $L$ such that the
+prefix relation is well-quasi-ordered, even without any restriction on the
+decidability of $L$ itself. Let us remark that finite unions of \kl{chains} are
+always \kl{well-quasi-ordered} by the \kl{prefix relation} because they lack
+infinite \kl{antichains} by definition. The following theorem states that this
+is the only possible reason for a language $L$ to be \kl{well-quasi-ordered} by
+the \kl{prefix relation}.
+
 \begin{theorem}
     A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the
     \kl{prefix relation} if and only if $L$ is a union of \kl{chains}.
 \end{theorem}
 
+As an immediate consequence, we have a very fine-grained understanding of the
+\kl{ordinal invariants} of such \kl{well-quasi-ordered} languages, which can be
+leveraged in bounding the complexity of algorithms working on such languages.
+
 \begin{corollary}
+    \textbf{false: some chains can be finite}
     Let $L \subseteq \Sigma^*$ be a language that is \kl{well-quasi-ordered} by
     the \kl{prefix relation}. Then, there exists a finite $k \in \Nat$ such that
     the
@@ -55,3 +82,11 @@ branch.
     \kl{ordinal width} is $k$.
 \end{corollary}
 
+
+Let us conclude by noting that it is unsurprisingly not possible to decide
+whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
+relation}.
+
+\begin{lemma}
+    todo.
+\end{lemma}

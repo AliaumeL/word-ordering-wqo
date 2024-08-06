@@ -1,7 +1,51 @@
-% Knowledges
-
+% classical knowldeges
 \knowledge{notion}
+ | well-quasi-ordered
  | well-quasi-ordering
  | well-quasi-orderings
  | wqo
  | wqos
+ 
+\knowledge{notion}
+ | decreasing sequence
+ | decreasing sequences
+
+\knowledge{notion}
+ | antichain
+ | antichains
+
+\knowledge{notion}
+ | chains
+ | chain
+
+\knowledge{notion}
+ | subword relation
+ | scattered subword
+ | subword
+ | Higman’s subword relation
+ | subword embedding
+
+\knowledge{notion}
+ | infix relation
+ | infix
+
+\knowledge{notion}
+ | prefix relation
+ | prefix 
+
+\knowledge{notion}
+ | suffix relation
+ | suffix 
+
+
+\knowledge{notion}
+ | ordinal height
+\knowledge{notion}
+ | maximal order type
+\knowledge{notion}
+ | ordinal width
+
+
+% custom commands
+\knowledge{notion}
+ | antichain branch
