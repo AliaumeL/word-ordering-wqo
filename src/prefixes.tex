@@ -16,8 +16,8 @@ Let us briefly restate the fact that some (even regular) languages
 are not well-quasi-ordered by the prefix relation.
 
 \begin{example}
-    The set $L = \setof{a^nb}{n \in \Nat}$ is an infinite antichain for the
-    prefix relation.
+    The set $L = \setof{a^nb}{n \in \Nat} \subseteq \set{a,b}^*$ is an infinite \kl{antichain} for the
+    \kl{prefix relation}.
 \end{example}
 
 In order to characterize the existence of infinite antichains for the prefix
@@ -31,14 +31,21 @@ will be useful in the rest of this section.
     \Sigma$. 
 \end{definition}
 
+\begin{figure}
+    \centering
+    \caption{The tree of prefixes over the alphabet $\set{a,b}$,
+        with an \kl{antichain} in red, and
+        an \kl{antichain branch} in blue.}
+\end{figure}
+
 Notice that the tree of prefixes is finitely branching. Let us now
 observe how antichains in the prefix relation can be witnessed
 by infinite branches in the tree of prefixes.
 
 \begin{definition}
     An \intro{antichain branch} for a language $L$ is an infinite 
-    branch $B$ of the tree $T$ such that from every point of the branch, 
-    one can reach a word of $A$ that is not in the branch.
+    branch $B$ of the \kl{tree of prefixes} such that from every point of the branch, 
+    one can reach a word of $L$ that is not in the branch.
 \end{definition}
 
 It is clear that an \kl{antichain branch} for a language $L$ yields an infinite
@@ -50,10 +57,45 @@ immediately obtain decidability as a corollary of this lemma.
     Let $L \subseteq \Sigma^*$ be a language. Then, $L$ contains an infinite
     \kl{antichain} if and only if there exists an \kl{antichain branch} for $L$.
 \end{lemma}
+\begin{proof}
+    Assume that $L$ contains an \kl{antichain branch}. Let us construct an
+    infinite \kl{antichain} as follows. We start with a set $A_0 \defined
+    \emptyset$ and a node $v_0$ at the root of the tree. At step $i$, we
+    consider a word $w_i$ such that $v_i$ is a \kl{prefix} of $w_i$, and $w_i
+    \in L \setminus B$, which exists by definition of \kl{antichain branches}.
+    We then set $A_{i+1} \defined A_i \cup \set{w_i}$. To compute $v_{i+1}$, we
+    consider the largest prefix of $w_i$ that belongs to $B$, and set $v_{i+1}$
+    to be the successor of this prefix in $B$. By an immediate induction, we
+    conclude that for all $i \in \Nat$, $A_i$ is an \kl{antichain}, and that
+    $v_i$ is a node in the \kl{antichain branch} $B$ such that $v_i$ is not a
+    prefix of any word in $A_i$. 
+
+    Conversely, assume that $L$ contains an infinite \kl{antichain} $A$. Let us
+    construct an \kl{antichain branch}. Let us consider the subtree of the
+    \kl{tree of prefixes} that consists in words that are \kl{prefixes} of
+    words in $A$. This subtree is infinite, and by König's lemma, it contains
+    an infinite branch. By definition this is an \kl{antichain branch}.
+\end{proof}
 
 \begin{corollary}
     If $L$ is regular, then the existence of an infinite antichain is decidable.
 \end{corollary}
+\begin{proof}
+    If $L$ is regular, then it is \kl{$\MSO$-definable}, and there 
+    exists a formula $\varphi(x)$ in \kl{$\MSO$} that selects nodes 
+    of the \kl{tree of prefixes} that belong to $L$. Now, to decide whether there
+    exists an \kl{antichain branch} for $L$, we can simply check whether
+    the following formula is satisfied:
+    \begin{equation*}
+        \exists B. 
+        B \text{ is a branch } \land
+        \forall x \in B, \exists y. y \text{ is a child of } x \land \varphi(y) \land y \not\in B
+        \quad .
+    \end{equation*}
+    Because the above formula is an $\MSO$-formula over the infinite
+    binary tree, whether it is satisfied is decidable.
+    \textbf{TODO: cite}.
+\end{proof}
 
 Let us now go further and fully characterize languages $L$ such that the
 prefix relation is well-quasi-ordered, even without any restriction on the
@@ -67,6 +109,16 @@ the \kl{prefix relation}.
     A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the
     \kl{prefix relation} if and only if $L$ is a union of \kl{chains}.
 \end{theorem}
+\begin{proof}
+    Assume that $L$ is a finite union of \kl{chains}.
+    Because the \kl{prefix relation} is \kl{well-founded},
+    and that finite unions of \kl{chains} have finite \kl{antichains},
+    we conclude that $L$ is \kl{well-quasi-ordered}.
+
+    Conversely, assume that $L$ is not a finite union of \kl{chains}. Then
+    there exists an infinite \kl{antichain branch} $B$ for $L$. Indeed
+    \textbf{todo}. In particular, $L$ is not \kl{well-quasi-ordered}.
+\end{proof}
 
 As an immediate consequence, we have a very fine-grained understanding of the
 \kl{ordinal invariants} of such \kl{well-quasi-ordered} languages, which can be
