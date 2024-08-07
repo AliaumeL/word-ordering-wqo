@@ -1,5 +1,20 @@
 title: "Well-quasi-orderings on word languages"
 license: "CC-BY-SA 4.0"
+abstract: |
+  The set of finite words over a well-quasi-ordered set
+  is itself well-quasi-ordered. This seminal result by
+  Higman is a cornerstone of the theory of well-quasi-orderings
+  and has found numerous applications in computer science. However,
+  this result is based on a specific choice of ordering on words,
+  the (scattered) subword ordering. In this paper, to what 
+  extent other natural orderings (prefix, suffix, infix)
+  on words can be used to derive Higman-like theorems. 
+  More specifically, we are interested in characterizing
+  *languages* of words that are well-quasi-ordered under
+  these orderings. We show that a simple characterization
+  is possible for the prefix and suffix orderings,
+  and that under extra regularity assumptions, this also
+  lifts to the infix ordering.
 author:
   - name: "Roland Guttenberg" 
     affiliation: "Technical University of Munich, Germany"

@@ -15,8 +15,12 @@ $if(date)$
 \date{$date$}
 $endif$
 
-$if(abstract)$
+\newcommand{\makeabstract}{
 \begin{abstract}
+$if(abstract)$
     $abstract$
-\end{abstract}
+$else$
+    Please write an abstract in the \texttt{paper-meta.yaml} file.
 $endif$
+\end{abstract}
+}

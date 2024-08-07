@@ -1,6 +1,6 @@
 % LTeX: language=en-GB 
 \section{Prefixes and Suffixes}
-\label{prefixes-suffixes:sec}
+\label{prefixes:sec}
 
 In this section, we study the well-quasi-ordering of languages under the prefix
 relation. A word $u$ is a \intro{prefix} of a word $w$ if there exists a word
@@ -38,9 +38,10 @@ will be useful in the rest of this section.
         an \kl{antichain branch} in blue.}
 \end{figure}
 
-Notice that the tree of prefixes is finitely branching. Let us now
-observe how antichains in the prefix relation can be witnessed
-by infinite branches in the tree of prefixes.
+Because the alphabet $\Sigma$ is assumed to be finite, the \kl{tree of
+prefixes} is finitely branching. Let us now observe how \kl{antichains} in the
+prefix relation can be witnessed by infinite branches in the \kl{tree of
+prefixes}.
 
 \begin{definition}
     An \intro{antichain branch} for a language $L$ is an infinite 
@@ -106,6 +107,7 @@ is the only possible reason for a language $L$ to be \kl{well-quasi-ordered} by
 the \kl{prefix relation}.
 
 \begin{theorem}
+    \label{prefixes:thm}
     A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the
     \kl{prefix relation} if and only if $L$ is a union of \kl{chains}.
 \end{theorem}
@@ -115,9 +117,26 @@ the \kl{prefix relation}.
     and that finite unions of \kl{chains} have finite \kl{antichains},
     we conclude that $L$ is \kl{well-quasi-ordered}.
 
-    Conversely, assume that $L$ is not a finite union of \kl{chains}. Then
-    there exists an infinite \kl{antichain branch} $B$ for $L$. Indeed
-    \textbf{todo}. In particular, $L$ is not \kl{well-quasi-ordered}.
+    Conversely, assume that $L$ is \kl{well-quasi-ordered} by the \kl{prefix
+    relation}. Let us define $S$ the set of words $w$ such that there exists
+    two words $wu$ and $wv$ both in $L$ that are not comparable for the
+    \kl{prefix relation}. Assume by contradiction that $S$ is infinite.
+    Then, $S$ equipped with the \kl{prefix relation} is an infinite
+    tree with finite branching, and therefore contains an infinite
+    branch, which is by definition an \kl{antichain branch} for $L$.
+    This contradicts the assumption that $L$ is \kl{well-quasi-ordered}.
+    Now, consider $w$ be a maximal element for the \kl{prefix ordering}
+    in $S$. By definition, all words in $L$ that contain $w$ as a prefix
+    must be comparable for the \kl{prefix relation}. Therefore
+    $\upset[\prefleq]{w} \cap L$ is a \kl{chain} for the \kl{prefix relation}.
+    In particular, letting $S_{\max}$ be the set of all maximal elements
+    of $S$,
+    we conclude that 
+    \begin{equation*}
+        L \subseteq S \cup \bigcup_{w \in S_{\max}} \upset[\prefleq]{w} \cap L
+        \quad .
+    \end{equation*}
+    Hence, that $L$ is finite union of \kl{chains}.
 \end{proof}
 
 As an immediate consequence, we have a very fine-grained understanding of the
@@ -125,15 +144,16 @@ As an immediate consequence, we have a very fine-grained understanding of the
 leveraged in bounding the complexity of algorithms working on such languages.
 
 \begin{corollary}
-    \textbf{false: some chains can be finite}
-    Let $L \subseteq \Sigma^*$ be a language that is \kl{well-quasi-ordered} by
-    the \kl{prefix relation}. Then, there exists a finite $k \in \Nat$ such that
+    Let $L \subseteq \Sigma^*$ be an infinite language that is \kl{well-quasi-ordered} by
+    the \kl{prefix relation}. Then, there exists finite numbers $k,\ell \in \Nat$ such that
     the
     \kl{maximal order type} of $L$ is $k \cdot \omega$,
     the \kl{ordinal height} of $L$ is $\omega$, and its
-    \kl{ordinal width} is $k$.
+    \kl{ordinal width} is $\ell$.
 \end{corollary}
-
+\begin{proof}
+    \textbf{todo.}
+\end{proof}
 
 Let us conclude by noting that it is unsurprisingly not possible to decide
 whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix

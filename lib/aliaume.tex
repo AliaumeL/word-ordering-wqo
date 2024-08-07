@@ -80,3 +80,7 @@
 \NewDocumentCommand{\MSO}{ }{\mathsf{MSO}}
 \NewDocumentCommand{\seqof}{ m O{n \in \Nat} }{\left( #1 \right)_{#2}}
 \NewDocumentCommand{\defined}{ }{\triangleq}
+
+% Order macros
+\NewDocumentCommand{\upset}{ O{} m }{{\uparrow_{#1} #2}}
+\NewDocumentCommand{\dwset}{ O{} m }{{\downarrow_{#1} #2}}

@@ -1,7 +1,6 @@
-% lang: en-US
-
-\section{Infixes}
-\label{infixes:sec}
+% LTeX: language=en-GB 
+\section{Infixes and Regular Languages}
+\label{infixes-regular:sec}
 
 
 In this section, we study the well-quasi-ordering of languages under the
@@ -11,41 +10,182 @@ languages. Formally, the following theorem shows that \emph{any} countable
 quasi-ordering with finite initial segments can be embedded into the infix
 relation of a language.
 
-\begin{theorem}
-    \label{thm:infix-embedding}
-    Let $(X, \preceq)$ be a quasi-ordered set.
-    Then the following are equivalent
-    \begin{itemize}
-        \item $X$ embeds into $(\Sigma^*, \preceq_{\text{infix}})$
-        \item $X$ is countable, and for every $x \in X$,
-            $\{y \in X \mid y \preceq x\}$ is finite.
-    \end{itemize}
+Let us recall that an \intro{order embedding} from a quasi-ordered set $(X,
+\preceq)$ into a quasi-ordered set $(Y, \preceq')$ is a function $f \colon X
+\to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
+\preceq' f(y)$. When such an embedding exists, we say that $X$ \reintro{embeds
+into} $Y$.
 
+We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial ordering}
+whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
+\preceq x$ implies $x = y$. 
+
+\begin{theorem}
+    \label{infix-embedding:thm}
+    Let $(X, \preceq)$ be a \kl{partially ordered} set,
+    and $\Sigma \defined \set{a,b,c}$.
+    Then the following are equivalent:
+    \begin{enumerate}
+        \item \label{infix-embedding-embeds:item} 
+            $X$ \kl{embeds into} $(\Sigma^*, \infleq)$,
+        \item \label{infix-embedding-count:item}
+            $X$ is countable, and for every $x \in X$,
+        $\setof{y \in X}{y \preceq x}$ is finite.
+    \end{enumerate}
     Furthermore, if $X$ is recursively enumerable and $\preceq$ decidable,
     then
-    the embedding is effective.
+    the \kl{embedding} is computable.
 \end{theorem}
+\begin{proof}
+    Let us first prove that \cref{infix-embedding-embeds:item} implies
+    \cref{infix-embedding-count:item}. Let $f \colon X \to \Sigma^*$ be an
+    \kl{embedding}. Note that $f$ is injective, because $X$ and $\Sigma^*$
+    are \kl{partially
+    ordered}. In particular, because $\dwset[\infleq]{w}$ is finite
+    for every $w \in \Sigma^*$, then so is $\setof{y \in X}{y \preceq x}$
+    for every $x \in X$. Similarly, $X$ must be countable
+    because $\Sigma^*$ is.
 
-As a consequence of \cref{thm:infix-embedding}, we cannot replay proofs of
-\cref{prefixes-suffixes:sec}, and will actually need to leverage some
+    Conversely, let us prove that \cref{infix-embedding-count:item} implies
+    \cref{infix-embedding-embeds:item}. To that end, let us first define
+    inductively a sequence $\seqof{X_n}$ of subsets of $X$ as follows: $X_0$ is
+    the set of minimal elements of $X$, and $X_{n+1}$ is the set of minimal
+    elements of $X \setminus \bigcup_{i \leq n} X_i$. Because initial segments
+    of $X$ are finite, it is clear that $X = \bigcup_{n \in \Nat} X_n$. To
+    simplify notations, we will also use $Y_n \defined \bigcup_{i \leq n} X_i$.
+    We also let $L_0 \defined a b^* a$, and 
+    $L_{n+1} \defined L_n \cup c^{n+1} a^{n+1} b^* a^{n+1} c^{n+1} (L_n c^{n+1})^*$.
+    Now, let us inductively define \kl{embeddings} $f_n \colon Y_n \to
+    L_n$.
+
+    For the base case, let $\seqof{x_i}[i \in \Nat]$ be an enumeration of
+    $X_0$, which is possible because $X$ is countable. We define $f_0 \colon
+    X_0 \to \Sigma^*$ as follows: $f_0(x_i) \defined a b^i a$. It is immediate
+    that $f_0$ is an \kl{embedding}. For the inductive step, let $\seqof{x_i}[i
+    \in \Nat]$ be an enumeration of $X_{n+1}$, and assume that $f_n$ is an
+    \kl{embedding} from $Y_n$ to $\Sigma^*$.
+    Let us define $D_i \defined \setof{ y \in Y_n }{ y \preceq x_i }$
+    for $i \in \Nat$, all of which are finite by assumption.
+    We then let for all $i \in \Nat$:
+    \begin{equation*}
+        f_{n+1}(x_i) \defined 
+        \underbrace{c^{n+1} a^{n+1} b^i a^{n+1} c^{n+1} \prod_{y \in D_i} \overbrace{f_n(y)}^{\in L_n} c^{n+1}}_{\in L_{n+1}}
+        \quad .
+    \end{equation*}
+    And let $f_{n+1}(y) \defined f_n(y)$ for all $y \in Y_n$.
+
+    To check that $f_{n+1}$ is an \kl{embedding}, let us first notice that
+    words $f_{n+1}(x_i)$ and $f_{n+1}(x_j)$ are incomparable for the \kl{infix
+    relation} when $i \neq j$, because the only factor of the form $c^{n+1}
+    a^{n+1} b^t a^{n+1} c^{n+1}$ appears at the beginning of these words, and
+    precisely encode $i$ (resp. $j$) in the value of $t$. Now, let us consider
+    $y \in Y_n$ and $x_i \in X_{n+1}$ such that $y \preceq x_i$. Because $y \in
+    D_i$, we have $f_n(y) \infleq f_{n+1}(x_i)$ by construction, and since
+    $f_n(y) = f_{n+1}(y)$, we conclude that $f_{n+1}(y) \infleq f_{n+1}(x_i)$. 
+    Conversely, assume that
+    $f_{n+1}(y) \infleq f_{n+1}(x_i)$. Again, this means
+    that $f_n(y) \infleq f_{n+1}(x_i)$. Now, the encoding
+    is robust enough so that we can conclude
+    $f_{n}(y) \infleq f_{n}(z)$ for some $z \in D_i$.
+    By induction hypothesis, $y \preceq z$, hence, $y \preceq x_i$.
+
+    We conclude by noticing that $\bigcup_{n \in \Nat} f_n$ is an \kl{embedding}
+    of $X$ into $\Sigma^*$.
+\end{proof}
+
+As a consequence of \cref{infix-embedding:thm}, we cannot replay proofs of
+\cref{prefixes:sec}, and will actually need to leverage some
 regularity of the languages to obtain a characterization of well-quasi-ordered
 languages under the infix relation. Let us first play this game for languages
 that are recognized by finite automata.
 
+\textbf{TODO: introduce finite automata and refer to the book.}.
+
+
 \begin{theorem}
-    \label{thm:infix-finite-automata}
+    \label{infix-finite-automata:thm}
     Let $L \subseteq \Sigma^*$ be a language recognized by a finite automaton.
     Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
     a finite union of chains for the \kl{infix relation}.
 \end{theorem}
 
+In order to prove \cref{infix-finite-automata:thm}, we will perform
+some preliminary analysis on the structure of an automaton recognizing a
+well-quasi-ordered language under the infix relation.
+
+\begin{lemma}
+    Let $A = (Q, \Sigma, \delta, q_0, F)$ be a finite automaton recognizing a
+    language $L \subseteq \Sigma^*$. Assume furthermore that
+    $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}.
+    Then, for all words $u,w,v \in \Sigma^*$, and states
+    $q, q_f \in Q \times F$ such that
+    $q_0 \xrightarrow{u} q \xrightarrow{w} q \xrightarrow{v} q_f$,
+    one of the following holds:
+    \begin{itemize}
+        \item There exists $k \in \Nat$
+            such that $u$ is a \kl{suffix} of $w^k$,
+        \item There exists $k \in \Nat$
+            such that $v$ is a \kl{prefix} of $w^k$.
+    \end{itemize}
+\end{lemma}
+
+\begin{lemma}
+    Let $A = (Q, \Sigma, \delta, q_0, F)$ be a finite automaton recognizing a
+    language $L \subseteq \Sigma^*$. Assume furthermore that
+    $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}.
+    Then, for all words $w_1, w_2 \in \Sigma^*$, and states
+    $q, q_f \in Q \times F$ such that
+    $q_0 \rightarrow^* q \xrightarrow{w} q \rightarrow^* q_f$
+    and 
+    $q_0 \rightarrow^* q \xrightarrow{w_2} q \rightarrow^* q_f$,
+    there exists a word $w \in \Sigma^*$
+    such that $w_1$ and $w_2$ are powers of $w$.
+\end{lemma}
+
+\begin{lemma}
+    Let $A = (Q, \Sigma, \delta, q_0, F)$ be a finite automaton recognizing a
+    language $L \subseteq \Sigma^*$. Assume furthermore that
+    $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}.
+    Then, for all words $u, w_1, w_2 \in \Sigma^*$, and states
+    $q_1, q_2, q_f \in Q^2 \times F$,
+    such that
+    $q_0 \rightarrow^* q_1 \xrightarrow{w_1} q_1 \xrightarrow{u} q_2 \xrightarrow{w_2} q_2
+    \rightarrow^* q_f$,
+    there exists a $w \in \Sigma^*$ such that $w_1$, $w_2$, and $u$ are powers of $w$.
+\end{lemma}
+
+We are now ready to prove the main result.
+
+\begin{proofof}{infix-finite-automata:thm}
+    Let $w \in L$. Consider a run of the automaton on $w$. If $w$ is too long,
+    then there exists a loop, and we can prove that $w = u x^p v$ for some
+    short period $x$. By repeating the process for $u$ and $v$, we conclude
+    that $w$ has the form $w = u_0 x_0^{p_0} u_1 x_1^{p_1} \cdots u_k x_k^{p_k}
+    v_k$. Now, applying the loop merging lemma, we conclude that $x_0 = x_1 =
+    \cdots = x_k$. Hence, $w = u_0 x^{p} v_k$. Finally, we know that either
+    $u_0$ is a prefix of $x^{p}$ or that $v_k$ is a suffix of $x^{p}$. We
+    conclude in particular that $\dwset[\infleq]{ \setof{ u x^p v }{ p \in \Nat
+    }}$ is a finite union of \kl{chains}. Because $u,v,x$ are of bounded
+    length, we conclude that $L$ itself included in a finite union of
+    \kl{chains}, hence is a finite union of \kl{chains}.
+\end{proofof}
+
 \begin{corollary}
     Decidability?
 \end{corollary}
 
-\subsection{Amalgamation systems}
+\section{Infixes and Amalgamation systems}
+\label{infixes-amalgamation:sec}
 
 This section will use so-called \emph{amalgamation systems}.
+
+\begin{theorem}
+    \label{infix-amalgamation:thm}
+    Let $L \subseteq \Sigma^*$ be a language recognized by an 
+    \kl{amalgamation system}.
+    Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
+    a finite union of chains for the \kl{infix relation}.
+\end{theorem}
 
 \begin{itemize}
     \item Define amalgamation systems
@@ -53,13 +193,3 @@ This section will use so-called \emph{amalgamation systems}.
     \item Characterization
     \item Decision procedure
 \end{itemize}
-
-\subsection{Monoid equations?}
-
-\begin{itemize}
-    \item What are the finite monoids $(M, \cdot)$ such that
-    every language recognized by $M$ is well-quasi-ordered by the infix relation?
-    \item What are the equations on $M$ and $P \subseteq M$ characterizing 
-    the well-quasi-ordering of $L(M, P)$?
-\end{itemize}
-

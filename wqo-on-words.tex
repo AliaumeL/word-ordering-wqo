@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 
 \input{lib/packages}     % packages needed for this paper
-\input{lib/aliaume}      % aliaume’s custom macrosh
+\input{lib/aliaume}      % aliaume’s custom macros
 
 \input{lib/maths}        % custom math commands specific to this paper
 \input{knowledges.kl}    % textual knowledges
@@ -11,13 +11,19 @@
 
 \begin{document}
 \maketitle
+\makeabstract
 
+% main content
 \input{src/introduction}
 \input{src/prefixes}
 \input{src/infixes}
+\input{src/conclusion}
 
-
+% bibliographies
 \bibliographystyle{plainurl}
 \bibliography{papers.bib}
+
+% appendices
+\appendix
 
 \end{document}
