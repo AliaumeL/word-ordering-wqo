@@ -185,6 +185,28 @@ $\intro*\InfPeriodChain{x}$ for the set of
     \qedhere
 \end{proof}
 
+
+\begin{corollary}
+    \label{inf-period-union-chains:lem}
+    Let $x,u,y \in \Sigma^*$ be words.  The following 
+    are finite unions of \kl{chains} for the infix relation:
+    $\InfPeriodChain{x}u$, $u \InfPeriodChain{x}$,
+    and $\InfPeriodChain{x} u \InfPeriodChain{y}$.
+\end{corollary}
+\begin{proof}
+    Because $\InfPeriodChain{x}$ is a finite union of \kl{chains} for the \kl{suffix}
+    relation (using \cref{inf-period-chain:lem}), we conclude that $\InfPeriodChain{x}u$ is one too for
+    the \kl{infix} relation. This holds similarly for $u \InfPeriodChain{x}$.
+    In the case of $\InfPeriodChain{x} u \InfPeriodChain{y}$,
+    we remark that $\InfPeriodChain{x} u$ is a finite union of chains
+    for the \kl{suffix relation},
+    and that $\InfPeriodChain{y}$ is one for the \kl{prefix relation}
+    (using again \cref{inf-period-chain:lem}).
+    As a consequence,
+    $\InfPeriodChain{x}u \InfPeriodChain{y}$ is a finite union 
+    of \kl{chains} for the \kl{infix} relation.
+\end{proof}
+
 The following combinatorial lemma connects the property of being
 \kl{well-quasi-ordered} to a property of the \kl{periodic lengths} of words in
 a language, based on the assumption that some factors can be iterated.
@@ -196,46 +218,73 @@ a language, based on the assumption that some factors can be iterated.
     Let $k \in \Nat$, $u_1, \cdots, u_{k+1} \in \Sigma^*$,
     and $v_1, \cdots, v_{k} \in \Sigma^+$
     be such that
-    $w[\vec{X}] \defined (\prod_{i = 1}^k u_k v_k^{X_k}) u_{k+1}$
+    $w[\vec{n}] \defined (\prod_{i = 1}^k u_i v_i^{n_i}) u_{k+1}$
     belongs to $L$
-    for arbitrarily large values of $\vec{X} \in \Nat^k$.
+    for arbitrarily large values of $\vec{n} \in \Nat^k$.
     Then, 
     there exists $x,y \in \Sigma^+$ of size 
     at most $\max \setof{\card{v_i}}{1 \leq i \leq k}$
     such that 
     one of the following holds for all
-    $\vec{X} \in \Nat^{k}$:
+    $\vec{n} \in \Nat^{k}$:
     \begin{enumerate}
-        \item $w[\vec{X}] \in u_1 \InfPeriodChain{x}$,
-        \item $w[\vec{X}] \in \InfPeriodChain{x} u_{k+1}$,
-        \item $w[\vec{X}] \in \InfPeriodChain{x} u_i \InfPeriodChain{y}$
+        \item $w[\vec{n}] \in u_1 \InfPeriodChain{x}$,
+        \item $w[\vec{n}] \in \InfPeriodChain{x} u_{k+1}$,
+        \item $w[\vec{n}] \in \InfPeriodChain{x} u_i \InfPeriodChain{y}$
             for some $1 \leq i \leq k + 1$.
 
     \end{enumerate}
 \end{lemma}
 \begin{proof}
+    Note that the result is obvious if $k = 0$, and therefore
+    we assume $k \geq 1$ in the following proof.
+
     Let us construct a sequence of words $\seqof{w_i}[i \in \Nat]$, where $w_i
-    = w[n_i, m_i]$ for some well-chosen indices $n_i, m_i \in \Nat$. The idea
+    \defined w[\vec{n_i}]$ for some well-chosen indices $\vec{n_i} \in \Nat^k$. The goal
     being that 
-    if $w[n_i, m_i]$ is an \kl{infix} of $w[n_{j}, m_{j}]$,
-    then one of $u_1$ or $u_3$ must be left untouched by the embedding,
-    and the overlapping parts must be long enough to apply 
+    if $w[\vec{n_i}]$ is an \kl{infix} of $w[\vec{n_j}]$,
+    then it can intersect at most \emph{two} iterated words,
+    with an intersection that is long enough to successfully apply
     \cref{periodic-infixes:lem}.
     In order to achieve this,
-    we define
-    $n_0$ and $m_0$ to be numbers greater than $\factorial[p]{\card{v_1} \times
-    \card{v_2}}$ and such that $w[n_0, m_0]$ belongs to $L$. 
-    Then, we define 
-    $n_{i+1}$ and $m_{i+1}$ to be the smallest numbers greater than 
-    $2 \times \card{w[n_i,m_i]}$ such that $w[n_{i+1}, m_{i+1}]$ belongs to $L$.
+    let us first define $s$ as the maximal size of a word $v_i$
+    ($1 \leq i \leq k$) and $u_j$ ($1 \leq j \leq k+1$).
+    Then,
+    we consider $\vec{n_0} \in \Nat^k$ such that $\vec{n_0}$ has all 
+    its components greater than $\factorial{s}$ and such that
+    $w[\vec{n_0}]$ belongs to $L$. 
+    Then, we inductively define 
+    $\vec{n_{i+1}}$  as the smallest vector of numbers greater than $\vec{n_i}$,
+    such that $w[\vec{n_{i+1}}]$ belongs to $L$, 
+    and with $\vec{n_i}$ having all components greater than
+    $2\card{w[\vec{n_i}]}$.
 
 
+    Let us assume that $k \geq 2$ in the following proof for symmetry purposes,
+    and argue later on that when $k = 1$ the same argument goes through.
     Because $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}, there
-    exists $i < j$ such that $w[n_i, m_i]$ is an \kl{infix} of $w[n_j, m_j]$.
-    \textbf{TODO:} assume that we have a large intersection of $v_1$ and $v_2$,
-    then we are in the latter cases. Otherwise, we are in the first case.
+    exists $i < j$ such that $w[\vec{n_i}]$ is an \kl{infix} of $w[\vec{n_j}]$.
+    Now, because of the values of $\vec{n_j}$, there exists $1 \leq \ell \leq
+    k-1$ such that $w[\vec{n_i}]$ is actually an \kl{infix} of $u_{\ell}
+    v_{\ell}^{n_{j,\ell}} u_{\ell+1} v_{\ell+1}^{n_{j,\ell+1}} u_{\ell+2}$.
+    Even more,
+    one of the three following equations holds:
+    \begin{itemize}
+        \item $w[\vec{n_i}] \infleq v_{\ell}^{n_{j,\ell}} u_{\ell+1} v_{\ell+1}^{n_{j,\ell+1}}$,
+        \item $w[\vec{n_i}] \infleq u_{\ell}
+            v_{\ell}^{n_{j,\ell}}$,
+        \item $w[\vec{n_i}] \infleq
+            v_{\ell+1}^{n_{j,\ell+1}} u_{\ell+2}$.
+    \end{itemize}
+    In all those cases, we conclude using \cref{periodic-infixes:lem}.
+    
+    When $k = 1$, the situation is a bit more specific since we only have two
+    cases: either $w_i \infleq u_1 v_1^{n_j}$ or $w_i \infleq v_1^{n_j} u_2$,
+    and we conclude with an identical reasoning.
 \end{proof}
 
+
+We are now ready to restate and proof our main theorem.
 
 \begin{proofof}{infix-finite-automata:thm}[main]
     Let $w \in L$, because $Q$ is finite, there exists
@@ -268,7 +317,7 @@ a language, based on the assumption that some factors can be iterated.
         \quad .
     \end{equation}
 
-    Now, thanks to \cref{inf-period-chain:lem}
+    Now, thanks to \cref{inf-period-union-chains:lem},
     this happens to be a finite union of \kl{chains}
     for the \kl{infix relation}.
 \end{proofof}

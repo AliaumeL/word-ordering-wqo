@@ -57,6 +57,8 @@
 
 
 \knowledge{notion}
+ | ordinal invariants
+\knowledge{notion}
  | ordinal height
 \knowledge{notion}
  | maximal order type
@@ -72,9 +74,19 @@
  | periodic length
  | periodic lengths
 
+\knowledge{notion}
+ | $\MSO $-definable
+\knowledge{notion}
+ | $\MSO $
 
 % custom commands
 \knowledge{notion}
  | antichain branch
  | antichain branches
 
+\knowledge{notion}
+ | amalgamation system
+ | amalgamation systems
+
+\knowledge{notion}
+ | tree of prefixes
