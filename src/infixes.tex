@@ -347,17 +347,42 @@ amalgamation systems and collecting the necessary pumping argument they enjoy.
 Using this meta-proof, we will generalize \cref{infix-finite-automata:thm} to
 context-free grammars, languages recognized by VASS, and more.
 
-\begin{theorem}
-    \label{infix-amalgamation:thm}
+\begin{theorem}[label=infix-amalgamation:thm,restate=infix-amalgamation:thm]
     Let $L \subseteq \Sigma^*$ be a language recognized by an 
     \kl{amalgamation system}.
     Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
     a finite union of chains for the \kl{infix relation}.
 \end{theorem}
 
-\begin{itemize}
-    \item Define amalgamation systems
-    \item Pumping argument
-    \item Characterization
-    \item Decision procedure
-\end{itemize}
+\begin{definition}
+    \textbf{TODO}. An \intro{amalgamation system}
+    is a triple such that.
+\end{definition}
+
+Let us recall some examples of \kl{amalgamation systems}
+arising in the literature. 
+
+\begin{example}
+    Regular languages, context-free languages, and languages recognized by
+    VASS are all recognized by amalgamation systems.
+\end{example}
+
+
+\begin{lemma}
+    Let $L$ be a language recognized by an \kl{amalgamation system}
+    and assume that $L$ is \kl{well-quasi-ordered}
+    by the \kl{infix relation}. Then,
+    for every minimal run $\rho$,
+    the \kl{gap languages} of $\rho$
+    are \kl{subsemigroup languages}.
+\end{lemma}
+
+\begin{proofof}{infix-amalgamation:thm}
+    TODO.
+\end{proofof}
+
+\begin{lemma}
+    Let $L$ be given by an \kl{effective amalgamation system},
+    then it is decidable whether $L$ 
+    is \kl{well-quasi-ordered} by the \kl{infix relation}.
+\end{lemma}

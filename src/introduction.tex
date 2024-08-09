@@ -20,24 +20,30 @@ is \kl{well-quasi-ordered}. The celebrated result of Higman states that the set
 of finite words over an ordered alphabet $(X, \preceq)$ is
 \kl{well-quasi-ordered} by the so-called \kl{subword embedding relation}
 \cite{HIG52}. Let us recall that the \kl{subword relation} for words over $(X,
-\preceq)$ is defined as follows: a word $u$ is a \intro{subword} of a word $v$
+\preceq)$ is defined as follows: a word $u$ is a \intro{subword} of a word $v$,
+written $u \intro*\higleq v$,
 if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
 \ldots, |v|\}$ such that $u_i \preceq v_{f(i)}$ for all $i \in \{1, \ldots,
 |u|\}$.
 
 However, there are many other natural orderings on words that could be
-considered in the context of \kl{well-quasi-orderings}. The three alternatives
-we consider are the \kl{prefix relation}, the \kl{suffix relation}, and the
-\kl{infix relation}. Unfortunately, it is an easy check that all of these
-constructions are not well-quasi-ordered as soon as the alphabet contains two
-non-equivalent letters. This is not the end of the road, because some
-\emph{subsets} of $\Sigma^*$ might still be \kl{well-quasi-ordered} by these
-relations, the simplest example being the case of finite sets of (finite) words
-which are all \kl{well-quasi-ordered} regardless of the ordering considered.
-This raises the question of characterizing the subsets $L \subseteq \Sigma^*$
-that are \kl{well-quasi-ordered} with respect to the \kl{prefix relation}
-(respectively, the \kl{suffix relation} or the \kl{infix relation}), and
-providing suitable decision procedures.
+considered in the context of \kl{well-quasi-orderings}. In our, case we
+consider alphabets $\Sigma$ that are finite and equipped with the equality
+relation. In this setting, the three alternatives we consider are the
+\intro{prefix relation} --- $u \intro*\prefleq v$ if there exists $w$ with $uw
+= v$ ---, the \intro{suffix relation} --- $u \intro*\suffleq v$ if there exists
+$w$ such that $wu = v$ ---, and the \intro{infix relation} --- $u
+\intro*\infleq v$ if there exists $w_1,w_2$ such that $w_1 u w_2 = v$ ---.
+Unfortunately, it is an easy check that all of these constructions are not
+well-quasi-ordered as soon as the alphabet contains two non-equivalent letters.
+This is not the end of the road, because some \emph{subsets} of $\Sigma^*$
+might still be \kl{well-quasi-ordered} by these relations, the simplest example
+being the case of finite sets of (finite) words which are all
+\kl{well-quasi-ordered} regardless of the ordering considered. This raises the
+question of characterizing the subsets $L \subseteq \Sigma^*$ that are
+\kl{well-quasi-ordered} with respect to the \kl{prefix relation} (respectively,
+the \kl{suffix relation} or the \kl{infix relation}), and providing suitable
+decision procedures.
 
 
 \subparagraph{Contribution} In this paper, we focus on words over a finite

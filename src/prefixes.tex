@@ -3,17 +3,12 @@
 \label{prefixes:sec}
 
 In this section, we study the well-quasi-ordering of languages under the prefix
-relation. A word $u$ is a \intro{prefix} of a word $w$ if there exists a word
-$v$ such that $w = uv$. We denote this relation by $u \intro*\prefleq w$.
-Similarly, a word $u$ is a \intro{suffix} of a word $w$ if there exists a word
-$v$ such that $w = vu$. We denote this relation by $u \intro*\suffleq w$. Let
-us immediately remark that the map $u \mapsto u^R$ that reverses a word is an
-order-bijection between $(X^*, \prefleq)$ and $(X^*, \suffleq)$. Therefore, we
-will focus on the prefix relation in the rest of this section.
+relation. Let us immediately remark that the map $u \mapsto u^R$ that reverses
+a word is an order-bijection between $(X^*, \prefleq)$ and $(X^*, \suffleq)$.
+Therefore, we will focus on the prefix relation in the rest of this section.
 
-
-Let us briefly restate the fact that some (even regular) languages 
-are not well-quasi-ordered by the prefix relation.
+Let us briefly restate the fact that some (even regular) languages are not
+well-quasi-ordered by the prefix relation.
 
 \begin{example}
     The set $L = \setof{a^nb}{n \in \Nat} \subseteq \set{a,b}^*$ is an infinite \kl{antichain} for the
@@ -79,6 +74,7 @@ immediately obtain decidability as a corollary of this lemma.
 \end{proof}
 
 \begin{corollary}
+    \label{prefix-wqo-reg-decidable:cor}
     If $L$ is regular, then the existence of an infinite antichain is decidable.
 \end{corollary}
 \begin{proof}
@@ -151,14 +147,24 @@ leveraged in bounding the complexity of algorithms working on such languages.
     the \kl{ordinal height} of $L$ is $\omega$, and its
     \kl{ordinal width} is $\ell$.
 \end{corollary}
-\begin{proof}
-    \textbf{todo.}
-\end{proof}
 
 Let us conclude by noting that it is unsurprisingly not possible to decide
 whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
-relation}.
+relation}. This is a very easy result whose sole purpose is to contrast with
+the decidability result of \cref{prefix-wqo-reg-decidable:cor}.
 
 \begin{lemma}
-    todo.
+    The following problem is undecidable: given a language $L$
+    decided by a Turing machine, answer whether 
+    $L$ is \kl{well-quasi-ordered} for the \kl{prefix relation}.
 \end{lemma}
+\begin{proof}
+    We reduce the halting problem on the empty string $\varepsilon$.
+    Let $M$ be a Turing Machine, we write the languages $L$ of finite runs
+    of $M$ starting on the empty string,
+    that we surround by special markers. This language is decidable,
+    and 
+    is
+    \kl{well-quasi-ordered} if and only if it is finite
+    if and only if $M$ terminates on $\varepsilon$.
+\end{proof}

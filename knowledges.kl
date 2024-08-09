@@ -5,6 +5,8 @@
  | well-quasi-orderings
  | wqo
  | wqos
+ | well-quasi-order
+ | well-quasi-orders
 \knowledge{notion}
  | partial ordering
  | partially ordered
