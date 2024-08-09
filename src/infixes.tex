@@ -54,7 +54,7 @@ whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
     of $X$ are finite, it is clear that $X = \bigcup_{n \in \Nat} X_n$. To
     simplify notations, we will also use $Y_n \defined \bigcup_{i \leq n} X_i$.
     We also let $L_0 \defined a b^* a$, and 
-    $L_{n+1} \defined L_n \cup c^{n+1} a^{n+1} b^* a^{n+1} c^{n+1} (L_n c^{n+1})^*$.
+    $L_{n+1} \defined L_n \cup c^{n+1} b^* c^{n+1} (L_n c^{n+1})^*$.
     Now, let us inductively define \kl{embeddings} $f_n \colon Y_n \to
     L_n$.
 
@@ -69,7 +69,7 @@ whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
     We then let for all $i \in \Nat$:
     \begin{equation*}
         f_{n+1}(x_i) \defined 
-        \underbrace{c^{n+1} a^{n+1} b^i a^{n+1} c^{n+1} \prod_{y \in D_i} \overbrace{f_n(y)}^{\in L_n} c^{n+1}}_{\in L_{n+1}}
+        \underbrace{c^{n+1} b^i c^{n+1} \prod_{y \in D_i} \overbrace{f_n(y)}^{\in L_n} c^{n+1}}_{\in L_{n+1}}
         \quad .
     \end{equation*}
     And let $f_{n+1}(y) \defined f_n(y)$ for all $y \in Y_n$.
@@ -81,103 +81,222 @@ whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
     precisely encode $i$ (resp. $j$) in the value of $t$. Now, let us consider
     $y \in Y_n$ and $x_i \in X_{n+1}$ such that $y \preceq x_i$. Because $y \in
     D_i$, we have $f_n(y) \infleq f_{n+1}(x_i)$ by construction, and since
-    $f_n(y) = f_{n+1}(y)$, we conclude that $f_{n+1}(y) \infleq f_{n+1}(x_i)$. 
-    Conversely, assume that
-    $f_{n+1}(y) \infleq f_{n+1}(x_i)$. Again, this means
-    that $f_n(y) \infleq f_{n+1}(x_i)$. Now, the encoding
-    is robust enough so that we can conclude
-    $f_{n}(y) \infleq f_{n}(z)$ for some $z \in D_i$.
-    By induction hypothesis, $y \preceq z$, hence, $y \preceq x_i$.
+    $f_n(y) = f_{n+1}(y)$, we conclude that $f_{n+1}(y) \infleq f_{n+1}(x_i)$.
+    Conversely, assume that $f_{n+1}(y) \infleq f_{n+1}(x_i)$. Again, this
+    means that $f_n(y) \infleq f_{n+1}(x_i)$. Now, the encoding is robust
+    enough so that we can conclude $f_{n}(y) \infleq f_{n}(z)$ for some $z \in
+    D_i$ By induction hypothesis, $y \preceq z$, hence, $y \preceq x_i$.
 
     We conclude by noticing that $\bigcup_{n \in \Nat} f_n$ is an \kl{embedding}
     of $X$ into $\Sigma^*$.
 \end{proof}
 
 As a consequence of \cref{infix-embedding:thm}, we cannot replay proofs of
-\cref{prefixes:sec}, and will actually need to leverage some
-regularity of the languages to obtain a characterization of well-quasi-ordered
-languages under the infix relation. Let us first play this game for languages
-that are recognized by finite automata.
+\cref{prefixes:sec}, and will actually need to leverage some regularity of the
+languages to obtain a characterization of \kl{well-quasi-ordered} languages
+under the \kl{infix relation}. Let us first play this game for languages that
+are recognized by finite automata. We assume that the reader is familiar with
+the notions of deterministic finite automaton and regular languages, and refer
+to the book of Thomas for a comprehensive introduction to the subject
+\cite{THOM97}. The main goal of the remainder of this section is to prove the
+following \cref{infix-finite-automata:thm}.
 
-\textbf{TODO: introduce finite automata and refer to the book.}.
-
-
-\begin{theorem}
-    \label{infix-finite-automata:thm}
+\begin{theorem}[restate=infix-finite-automata:thm,label=infix-finite-automata:thm]
     Let $L \subseteq \Sigma^*$ be a language recognized by a finite automaton.
     Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
     a finite union of chains for the \kl{infix relation}.
 \end{theorem}
 
-In order to prove \cref{infix-finite-automata:thm}, we will perform
-some preliminary analysis on the structure of an automaton recognizing a
-well-quasi-ordered language under the infix relation.
+\AP In order to prove \cref{infix-finite-automata:thm}, we will perform some
+preliminary analysis on the structure of an automaton recognizing a
+well-quasi-ordered language under the infix relation, which will be powered by
+folklore results on \emph{periodic} words. Let us recall that a non-empty word
+$w \in \Sigma^+$ is \intro(word){periodic} with period $x \in \Sigma^*$ if
+there exists a $p \in \Nat$ such that $w \infleq x^p$. The \intro{periodic
+length} of a word $u$ is the minimal length of a word $x$ such that $u$ is an
+\kl{infix} of $x^p$ for some $p \in \Nat$ and $x \in \Sigma^+$. We will
+essentially rely on the following result on periodic words.
 
 \begin{lemma}
-    Let $A = (Q, \Sigma, \delta, q_0, F)$ be a finite automaton recognizing a
-    language $L \subseteq \Sigma^*$. Assume furthermore that
-    $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}.
-    Then, for all words $u,w,v \in \Sigma^*$, and states
-    $q, q_f \in Q \times F$ such that
-    $q_0 \xrightarrow{u} q \xrightarrow{w} q \xrightarrow{v} q_f$,
-    one of the following holds:
-    \begin{itemize}
-        \item There exists $k \in \Nat$
-            such that $u$ is a \kl{suffix} of $w^k$,
-        \item There exists $k \in \Nat$
-            such that $v$ is a \kl{prefix} of $w^k$.
-    \end{itemize}
+    \label{periodic-infixes:lem}
+    Let $u,v \in \Sigma^*$ be two (non-empty) \kl{periodic words}
+    having \kl{periodic lengths} $p$ and $q$ respectively.
+    Then, if $u \infleq v$ and $\card{u} \geq \factorial[p]{p \times q}$,
+    then $u$ and $v$ share the same \kl{periodic length}
+    $p = q$.
 \end{lemma}
+\begin{proof}
+    The fact that $u$ and $v$ are \kl{periodic length}
+    respectively $p$ and $q$ translates into the fact that $u_{i+p} = u_i$ and
+    $v_{i+q} = v_i$ for all indices $i \in \Nat$ such that those letters are
+    well-defined.
+
+    Now, assume that $u$ is an \kl{infix} of $v$, this provides the existence
+    of a $k \in \Nat$ such that $u = v_{k} \cdots v_{k + \card{u} - 1}$. In
+    particular, $v_{k+i+p} = v_{k+i}$ for all $i \in \Nat$ such that $k+i+p < k
+    + \card{u}$. Since we also have $v_{k+i+q} = v_{k+i}$ for all $1 \leq i
+    \leq \card{v} - k - q$. We conclude that both $u$ and $v$ are of
+    \kl{periodic length} the greatest common divisor of $p$ and $q$, and by
+    minimality of $q$ this must be equal to $q$ and to $p$.
+\end{proof}
+
+The reason why \kl{periodic words} built using a given period $x \in \Sigma^+$
+are interesting for the \kl{infix relation} is that they naturally create
+\kl{chains}. Indeed, if $x \in \Sigma^+$ is a finite word, then $\setof{x^p}{p
+\in \Nat}$ is a \kl{chain} for the \kl{infix relation}. Note that in general,
+the downwards closure of a chain is \emph{not} a chain. However, for the chains
+generated using periodic words, the downwards closure
+$\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is a \emph{finite union} of
+\kl{chains}. Because this set will appear in bigger equations,
+we introduce the shorter notation 
+$\intro*\InfPeriodChain{x}$ for the set of 
+\kl{infixes} of words of the form $x^p$, where $p$ ranges over $\Nat$.
 
 \begin{lemma}
-    Let $A = (Q, \Sigma, \delta, q_0, F)$ be a finite automaton recognizing a
-    language $L \subseteq \Sigma^*$. Assume furthermore that
-    $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}.
-    Then, for all words $w_1, w_2 \in \Sigma^*$, and states
-    $q, q_f \in Q \times F$ such that
-    $q_0 \rightarrow^* q \xrightarrow{w} q \rightarrow^* q_f$
-    and 
-    $q_0 \rightarrow^* q \xrightarrow{w_2} q \rightarrow^* q_f$,
-    there exists a word $w \in \Sigma^*$
-    such that $w_1$ and $w_2$ are powers of $w$.
+    \label{inf-period-chain:lem}
+    Let $x \in \Sigma^+$ be a word, and
+    Then $\InfPeriodChain{x}$ is a finite union of \kl{chains}
+    for the \kl{infix}, \kl{prefix} and \kl{suffix} relations 
+    simultaneously.
 \end{lemma}
+\begin{proof}
+    Let $x \in \Sigma^+$ be a word, and let $P_x$ be the (finite) set 
+    of all \kl{prefixes} of $x$, and $S_x$ be the (finite)
+    set of all \kl{suffixes} of $x$.
+    Assume that $w \in \InfPeriodChain{x}$, then $w = u x^p v$ for some
+    $u \in S_x$, $v \in P_x$, and $p \in \Nat$.
+    We have proven that
+    \begin{equation*}
+        \InfPeriodChain{x} \subseteq \bigcup_{u \in P_x} \bigcup_{v \in S_x} u x^* v
+        \quad .
+    \end{equation*}
+
+    Let us now demonstrate that for all $(u,v) \in S_x \times P_x$, the
+    language $u x^* v$ is a \kl{chain} for the \kl{infix}, \kl{suffix} and \kl{prefix} relations.
+    To that end,
+    let $(u,v) \in S_x \times P_x$ and $\ell, k \in \Nat$ be such that $\ell <
+    k$, let us prove that $u x^\ell v \infleq u x^k  v$. Because $v \prefleq
+    x$, we know that there exists $w$ such that $vw = x$. In particular,
+    $ux^\ell vw = u x^{\ell + 1}$, and because $\ell < k$, we conclude that $u
+    x^{\ell + 1} \prefleq u x^k v$. By transitivity, $u x^\ell v \prefleq u x^k
+    v$, and \emph{a fortiori}, $u x^\ell v \infleq u x^k v$. 
+    Similarly, because $u \suffleq x$,  there exists $w$ such that $wu  = x$, 
+    and we conclude that $u x^{\ell} v \suffleq w u x^\ell v = x^{\ell + 1} v \suffleq u x^k v$.
+    \qedhere
+\end{proof}
+
+The following combinatorial lemma connects the property of being
+\kl{well-quasi-ordered} to a property of the \kl{periodic lengths} of words in
+a language, based on the assumption that some factors can be iterated.
 
 \begin{lemma}
-    Let $A = (Q, \Sigma, \delta, q_0, F)$ be a finite automaton recognizing a
-    language $L \subseteq \Sigma^*$. Assume furthermore that
-    $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}.
-    Then, for all words $u, w_1, w_2 \in \Sigma^*$, and states
-    $q_1, q_2, q_f \in Q^2 \times F$,
-    such that
-    $q_0 \rightarrow^* q_1 \xrightarrow{w_1} q_1 \xrightarrow{u} q_2 \xrightarrow{w_2} q_2
-    \rightarrow^* q_f$,
-    there exists a $w \in \Sigma^*$ such that $w_1$, $w_2$, and $u$ are powers of $w$.
+    \label{pumping-periods:lem}
+    Let $L \subseteq \Sigma^*$ be a language
+    that is \kl{well-quasi-ordered} by the \kl{infix relation}.
+    Let $k \in \Nat$, $u_1, \cdots, u_{k+1} \in \Sigma^*$,
+    and $v_1, \cdots, v_{k} \in \Sigma^+$
+    be such that
+    $w[\vec{X}] \defined (\prod_{i = 1}^k u_k v_k^{X_k}) u_{k+1}$
+    belongs to $L$
+    for arbitrarily large values of $\vec{X} \in \Nat^k$.
+    Then, 
+    there exists $x,y \in \Sigma^+$ of size 
+    at most $\max \setof{\card{v_i}}{1 \leq i \leq k}$
+    such that 
+    one of the following holds for all
+    $\vec{X} \in \Nat^{k}$:
+    \begin{enumerate}
+        \item $w[\vec{X}] \in u_1 \InfPeriodChain{x}$,
+        \item $w[\vec{X}] \in \InfPeriodChain{x} u_{k+1}$,
+        \item $w[\vec{X}] \in \InfPeriodChain{x} u_i \InfPeriodChain{y}$
+            for some $1 \leq i \leq k + 1$.
+
+    \end{enumerate}
 \end{lemma}
+\begin{proof}
+    Let us construct a sequence of words $\seqof{w_i}[i \in \Nat]$, where $w_i
+    = w[n_i, m_i]$ for some well-chosen indices $n_i, m_i \in \Nat$. The idea
+    being that 
+    if $w[n_i, m_i]$ is an \kl{infix} of $w[n_{j}, m_{j}]$,
+    then one of $u_1$ or $u_3$ must be left untouched by the embedding,
+    and the overlapping parts must be long enough to apply 
+    \cref{periodic-infixes:lem}.
+    In order to achieve this,
+    we define
+    $n_0$ and $m_0$ to be numbers greater than $\factorial[p]{\card{v_1} \times
+    \card{v_2}}$ and such that $w[n_0, m_0]$ belongs to $L$. 
+    Then, we define 
+    $n_{i+1}$ and $m_{i+1}$ to be the smallest numbers greater than 
+    $2 \times \card{w[n_i,m_i]}$ such that $w[n_{i+1}, m_{i+1}]$ belongs to $L$.
 
-We are now ready to prove the main result.
 
-\begin{proofof}{infix-finite-automata:thm}
-    Let $w \in L$. Consider a run of the automaton on $w$. If $w$ is too long,
-    then there exists a loop, and we can prove that $w = u x^p v$ for some
-    short period $x$. By repeating the process for $u$ and $v$, we conclude
-    that $w$ has the form $w = u_0 x_0^{p_0} u_1 x_1^{p_1} \cdots u_k x_k^{p_k}
-    v_k$. Now, applying the loop merging lemma, we conclude that $x_0 = x_1 =
-    \cdots = x_k$. Hence, $w = u_0 x^{p} v_k$. Finally, we know that either
-    $u_0$ is a prefix of $x^{p}$ or that $v_k$ is a suffix of $x^{p}$. We
-    conclude in particular that $\dwset[\infleq]{ \setof{ u x^p v }{ p \in \Nat
-    }}$ is a finite union of \kl{chains}. Because $u,v,x$ are of bounded
-    length, we conclude that $L$ itself included in a finite union of
-    \kl{chains}, hence is a finite union of \kl{chains}.
+    Because $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}, there
+    exists $i < j$ such that $w[n_i, m_i]$ is an \kl{infix} of $w[n_j, m_j]$.
+    \textbf{TODO:} assume that we have a large intersection of $v_1$ and $v_2$,
+    then we are in the latter cases. Otherwise, we are in the first case.
+\end{proof}
+
+
+\begin{proofof}{infix-finite-automata:thm}[main]
+    Let $w \in L$, because $Q$ is finite, there exists
+    a factorization of $w$
+    into words $(\prod_{i = 1}^k u_i v_i) u_{k+1}$
+    such that 
+    for all $1 \leq i \leq k+1$, $\card{u_i} \leq \card{Q}$,
+    for all $1 \leq i \leq k$, $1 \leq \card{v_i} \leq \card{Q}$,
+    and satisfying 
+    that $w[\vec{X}] \defined 
+    (\prod_{i = 1}^k u_i v_i^{X_i}) u_{k+1}$
+    belongs to $L$ for all choices of values $\vec{X} \in \Nat^k$.
+
+    Applying \cref{pumping-periods:lem}, we conclude that 
+    there exists $x,y \in \Sigma^+$ of size at most $\card{Q}$
+    such that 
+    $w \in u_1 \InfPeriodChain{x} \cup \InfPeriodChain{y} u_{k+1}
+    \cup \bigcup_{1 \leq i \leq k+1} \InfPeriodChain{x} u_i \InfPeriodChain{y}$.
+    In particular, we conclude that
+    \begin{equation}
+        \label{infix-automata:eq}
+        L
+        \subseteq
+        \bigcup_{x,y,u\in \Sigma^{\leq \card{Q}}}
+        u \InfPeriodChain{x}
+        \cup 
+        \InfPeriodChain{x} u
+        \cup
+        \InfPeriodChain{x} u \InfPeriodChain{y}
+        \quad .
+    \end{equation}
+
+    Now, thanks to \cref{inf-period-chain:lem}
+    this happens to be a finite union of \kl{chains}
+    for the \kl{infix relation}.
 \end{proofof}
 
+
+
 \begin{corollary}
-    Decidability?
+    Given a regular language $L$, it is decidable whether
+    $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
 \end{corollary}
+\begin{proof}
+    It suffices to decide whether the equation 
+    \cref{infix-automata:eq} holds for the language $L$.
+    This is an inclusion of regular languages, which is decidable.
+\end{proof}
 
 \section{Infixes and Amalgamation systems}
 \label{infixes-amalgamation:sec}
 
-This section will use so-called \emph{amalgamation systems}.
+When proving \cref{infix-finite-automata:thm}, we have leveraged a powerful
+combinatorial argument from \cref{pumping-periods:lem}, which made the proof
+almost trivial. It turns out that there is a rather large family of systems for
+which pumping arguments based on so-called \emph{minimal runs} exist: they are
+called \emph{amalgamation systems}. Having done the heavy lifting on finite
+automata, the rest of this section is mostly devoted to the introduction of
+amalgamation systems and collecting the necessary pumping argument they enjoy.
+Using this meta-proof, we will generalize \cref{infix-finite-automata:thm} to
+context-free grammars, languages recognized by VASS, and more.
 
 \begin{theorem}
     \label{infix-amalgamation:thm}

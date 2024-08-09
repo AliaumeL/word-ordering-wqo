@@ -2,3 +2,9 @@
 \NewDocumentOrdering{suff}{\sqsubseteq_{\mathsf{suff}}}{\sqsubset_{\mathsf{suff}}}
 \NewDocumentOrdering{inf}{\sqsubseteq_{\mathsf{infix}}}{\sqsubset_{\mathsf{infix}}}
 \NewDocumentOrdering{hig}{\leq^*}{<^*}
+
+\NewDocumentCommand{\InfPeriodChain}{ m }{
+    \mathop{\kl[\InfPeriodChain]{\downarrow\!\!\!\!\mathsf{P}}}
+    ( #1 )
+}
+\knowledge{\InfPeriodChain}{notion}

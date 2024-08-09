@@ -5,7 +5,12 @@
  | well-quasi-orderings
  | wqo
  | wqos
- 
+\knowledge{notion}
+ | partial ordering
+ | partially ordered
+\knowledge{notion}
+ | well-founded
+
 \knowledge{notion}
  | decreasing sequence
  | decreasing sequences
@@ -19,23 +24,36 @@
  | chain
 
 \knowledge{notion}
+ | order embedding
+ | embeds into
+ | embedding
+ | embeddings
+
+\knowledge{notion}
  | subword relation
  | scattered subword
  | subword
  | Higman’s subword relation
  | subword embedding
+ | subword embedding relation
 
 \knowledge{notion}
  | infix relation
+ | infix ordering
  | infix
+ | infixes 
 
 \knowledge{notion}
  | prefix relation
+ | prefix ordering
  | prefix 
+ | prefixes
 
 \knowledge{notion}
  | suffix relation
+ | suffix ordering 
  | suffix 
+ | suffixes
 
 
 \knowledge{notion}
@@ -46,6 +64,17 @@
  | ordinal width
 
 
+\knowledge{notion}
+ | periodic word
+ | periodic words
+ | periodic@word
+\knowledge{notion}
+ | periodic length
+ | periodic lengths
+
+
 % custom commands
 \knowledge{notion}
  | antichain branch
+ | antichain branches
+

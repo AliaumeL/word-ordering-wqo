@@ -19,7 +19,7 @@
 % taking as input a label of a theorem
 % and creating a proof with a reference to that
 % label
-\NewDocumentEnvironment{proofof}{ m }{
+\NewDocumentEnvironment{proofof}{ m O{appendix} }{
     % if the command \#1 exists, then 
     % call \#1* to restate the theorem
     \ifcsname #1\endcsname
@@ -30,9 +30,14 @@
         \phantomsection
         \label{#1:proof}
 }{
-        
+        % if the optional argument is "appendix" 
+        % then printout a "backlink"
+        % and otherwise do nothing
+        \ifthenelse{\equal{#2}{appendix}}{
+
         % Some link to go back to the theorem
         \noindent\hyperref[#1]{$\triangleright$ Go back to \cref{#1} on page \pageref{#1}}
+        }{}
     \end{proof}
 }
 
@@ -84,3 +89,12 @@
 % Order macros
 \NewDocumentCommand{\upset}{ O{} m }{{\uparrow_{#1} #2}}
 \NewDocumentCommand{\dwset}{ O{} m }{{\downarrow_{#1} #2}}
+
+% Number theory
+\NewDocumentCommand{\factorial}{ O{} m }{
+    \if\relax\detokenize{#1}\relax
+        #2!
+    \else
+        (#2)!
+    \fi
+}
