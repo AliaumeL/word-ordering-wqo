@@ -2,21 +2,24 @@
 \section{Prefixes and Suffixes}
 \label{prefixes:sec}
 
-In this section, we study the well-quasi-ordering of languages under the prefix
-relation. Let us immediately remark that the map $u \mapsto u^R$ that reverses
-a word is an order-bijection between $(X^*, \prefleq)$ and $(X^*, \suffleq)$.
-Therefore, we will focus on the prefix relation in the rest of this section.
+In this section, we study the well-quasi-ordering of languages under the
+\kl{prefix relation}. Let us immediately remark that the map $u \mapsto u^R$
+that reverses a word is an order-bijection between $(X^*, \prefleq)$ and $(X^*,
+\suffleq)$, that is, $u \prefleq v$ if and only if $u^R \suffleq v^R$.
+Therefore, we will focus on the prefix relation in the rest of this section, as
+$(L, \prefleq)$ is \kl{well-quasi-ordered} if and only if $(L^R, \suffleq)$ is.
 
-Let us briefly restate the fact that some (even regular) languages are not
-well-quasi-ordered by the prefix relation.
+The next remark that we make is that $\Sigma^*$ is not \kl{well-quasi-ordered}
+by the \kl{prefix relation} as soon as $\Sigma$ contains two distinct letters
+$a$ and $b$. As an example of infinite \kl{antichain}, we can consider the set
+of words $a^n b$ for $n \in \Nat$. As mentioned in the introduction, there are
+some languages however that are \kl{well-quasi-ordered} by the \kl{prefix
+relation}. A simple example being the (regular) language $a^* \subseteq
+\set{a,b}^*$, which is order-isomorphic to natural numbers with their usual
+orderings $(\Nat, \leq)$.
 
-\begin{example}
-    The set $L = \setof{a^nb}{n \in \Nat} \subseteq \set{a,b}^*$ is an infinite \kl{antichain} for the
-    \kl{prefix relation}.
-\end{example}
-
-In order to characterize the existence of infinite antichains for the prefix
-relation, we will introduce the following tree construction that
+In order to characterize the existence of infinite \kl{antichains} for the
+\kl{prefix relation}, we will introduce the following tree construction that
 will be useful in the rest of this section.
 
 \begin{definition}
@@ -33,10 +36,10 @@ will be useful in the rest of this section.
         an \kl{antichain branch} in blue.}
 \end{figure}
 
-Because the alphabet $\Sigma$ is assumed to be finite, the \kl{tree of
-prefixes} is finitely branching. Let us now observe how \kl{antichains} in the
-prefix relation can be witnessed by infinite branches in the \kl{tree of
-prefixes}.
+We will use this \kl{tree of prefixes} to find simple witnesses
+of the existence of infinite \kl{antichains} in the \kl{prefix relation}
+for a given language $L$, namely by introducing \kl{antichain branches}.
+
 
 \begin{definition}
     An \intro{antichain branch} for a language $L$ is an infinite 
@@ -44,12 +47,18 @@ prefixes}.
     one can reach a word of $L$ that is not in the branch.
 \end{definition}
 
-It is clear that an \kl{antichain branch} for a language $L$ yields an infinite
-antichain, and the converse is quite easy to prove. Because the notion of
-antichain branch is \kl{$\MSO$-definable} whenever $L$ is regular, we
-immediately obtain decidability as a corollary of this lemma.
+Let us illustrate the notion of \kl{antichain branch} over the alphabet $\Sigma
+= \set{a,b}$, and the language $L = a^* b$. In this case, the set $a^*$ (which
+is a branch of the \kl{tree of prefixes}) is an \kl{antichain branch} for $L$.
+This holds because for any $a^k$ in the branch, $a \prefleq a^kb$ which is in
+$L$ and not in the branch. In general, the existence of an \kl{antichain
+branch} for a language $L$ implies that $L$ contains an infinite
+\kl{antichain}, and because the alphabet $\Sigma$ is assumed to be finite, one
+can leverage the fact that the \kl{tree of prefixes} is finitely branching to
+prove that the converse holds as well.
 
 \begin{lemma}
+    \label{antichain-branches-prefix:lem}
     Let $L \subseteq \Sigma^*$ be a language. Then, $L$ contains an infinite
     \kl{antichain} if and only if there exists an \kl{antichain branch} for $L$.
 \end{lemma}
@@ -73,6 +82,11 @@ immediately obtain decidability as a corollary of this lemma.
     an infinite branch. By definition this is an \kl{antichain branch}.
 \end{proof}
 
+One immediate application of \cref{antichain-branches-prefix:lem} is that
+\kl{antichain branches} can be described inside the \kl{tree of prefixes} by a
+monadic second order formula (\kl{$\MSO$-formula}), allowing us to leverage the
+decidability of $\MSO$ over infinite binary trees \cite[Theorem 1.1]{RAB69}.
+
 \begin{corollary}
     \label{prefix-wqo-reg-decidable:cor}
     If $L$ is regular, then the existence of an infinite antichain is decidable.
@@ -90,8 +104,10 @@ immediately obtain decidability as a corollary of this lemma.
         \quad .
     \end{equation*}
     Because the above formula is an $\MSO$-formula over the infinite
-    binary tree, whether it is satisfied is decidable.
-    \textbf{TODO: cite}.
+    $\Sigma$-branching tree, whether it is satisfied is decidable
+    as an easy consequence of the decidability of $\MSO$ over infinite binary
+    trees
+    \cite[Theorem 1.1]{RAB69}.
 \end{proof}
 
 Let us now go further and fully characterize languages $L$ such that the
@@ -101,6 +117,17 @@ always \kl{well-quasi-ordered} by the \kl{prefix relation} because they lack
 infinite \kl{antichains} by definition. The following theorem states that this
 is the only possible reason for a language $L$ to be \kl{well-quasi-ordered} by
 the \kl{prefix relation}.
+
+For the proof of the following theorem, we will use special notations to
+describe the \intro{upwards closure} of a set $S$ for a relation $\preceq$,
+which is defined as $\upset[\preceq]{S} \defined \setof{y \in \Sigma^*}{
+\exists x \in S. x \preceq y}$. Anticipating the use of the symmetric notion of
+\intro{downwards closure}, let us introduce its notation 
+straight away as follows: $\dwset[\preceq]{S} \defined \setof{y
+\in \Sigma^*}{ \exists x \in S. y \preceq x}$. Abusing notations, we will
+write $\upset{w}$ and $\dwset{w}$ for the upwards and downwards closure of a
+single element $w$, and omit the ordering relation when it is clear from the
+context.
 
 \begin{theorem}
     \label{prefixes:thm}
@@ -123,13 +150,13 @@ the \kl{prefix relation}.
     This contradicts the assumption that $L$ is \kl{well-quasi-ordered}.
     Now, consider $w$ be a maximal element for the \kl{prefix ordering}
     in $S$. By definition, all words in $L$ that contain $w$ as a prefix
-    must be comparable for the \kl{prefix relation}. Therefore
-    $\upset[\prefleq]{w} \cap L$ is a \kl{chain} for the \kl{prefix relation}.
+    must be comparable for the \kl{prefix relation}. Therefore,
+    $(\upset[\prefleq]{w}) \cap L$ is a \kl{chain} for the \kl{prefix relation}.
     In particular, letting $S_{\max}$ be the set of all maximal elements
     of $S$,
     we conclude that 
     \begin{equation*}
-        L \subseteq S \cup \bigcup_{w \in S_{\max}} \upset[\prefleq]{w} \cap L
+        L \subseteq S \cup \bigcup_{w \in S_{\max}} (\upset[\prefleq]{w}) \cap L
         \quad .
     \end{equation*}
     Hence, that $L$ is finite union of \kl{chains}.

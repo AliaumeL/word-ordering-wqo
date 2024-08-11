@@ -6,16 +6,16 @@
 In this section, we study the well-quasi-ordering of languages under the
 \kl{infix relation}. As opposed to the \kl{prefix} and \kl{suffix} relations,
 the \kl{infix relation} can yield to very complicated \kl{well-quasi-ordered}
-languages. Formally, the following theorem shows that \emph{any} countable
+languages. Formally, the upcoming \cref{infix-embedding:thm} shows that \emph{any} countable
 quasi-ordering with finite initial segments can be embedded into the infix
 relation of a language.
 
+\AP
 Let us recall that an \intro{order embedding} from a quasi-ordered set $(X,
 \preceq)$ into a quasi-ordered set $(Y, \preceq')$ is a function $f \colon X
 \to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
 \preceq' f(y)$. When such an embedding exists, we say that $X$ \reintro{embeds
 into} $Y$.
-
 We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial ordering}
 whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
 \preceq x$ implies $x = y$. 
@@ -30,11 +30,9 @@ whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
             $X$ \kl{embeds into} $(\Sigma^*, \infleq)$,
         \item \label{infix-embedding-count:item}
             $X$ is countable, and for every $x \in X$,
-        $\setof{y \in X}{y \preceq x}$ is finite.
+            its \kl{downwards closure}
+            $\dwset[\preceq]{x}$ is finite.
     \end{enumerate}
-    Furthermore, if $X$ is recursively enumerable and $\preceq$ decidable,
-    then
-    the \kl{embedding} is computable.
 \end{theorem}
 \begin{proof}
     Let us first prove that \cref{infix-embedding-embeds:item} implies
@@ -42,7 +40,7 @@ whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
     \kl{embedding}. Note that $f$ is injective, because $X$ and $\Sigma^*$
     are \kl{partially
     ordered}. In particular, because $\dwset[\infleq]{w}$ is finite
-    for every $w \in \Sigma^*$, then so is $\setof{y \in X}{y \preceq x}$
+    for every $w \in \Sigma^*$, then so is $\dwset[\preceq]{x}$
     for every $x \in X$. Similarly, $X$ must be countable
     because $\Sigma^*$ is.
 
@@ -144,8 +142,8 @@ The reason why \kl{periodic words} built using a given period $x \in \Sigma^+$
 are interesting for the \kl{infix relation} is that they naturally create
 \kl{chains}. Indeed, if $x \in \Sigma^+$ is a finite word, then $\setof{x^p}{p
 \in \Nat}$ is a \kl{chain} for the \kl{infix relation}. Note that in general,
-the downwards closure of a chain is \emph{not} a chain. However, for the chains
-generated using periodic words, the downwards closure
+the \kl{downwards closure} of a chain is \emph{not} a chain. However, for the chains
+generated using periodic words, the \kl{downwards closure}
 $\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is a \emph{finite union} of
 \kl{chains}. Because this set will appear in bigger equations,
 we introduce the shorter notation 
@@ -334,18 +332,21 @@ We are now ready to restate and proof our main theorem.
     This is an inclusion of regular languages, which is decidable.
 \end{proof}
 
-\section{Infixes and Amalgamation systems}
+\section{Infixes and Amalgamation Systems}
 \label{infixes-amalgamation:sec}
 
 When proving \cref{infix-finite-automata:thm}, we have leveraged a powerful
-combinatorial argument from \cref{pumping-periods:lem}, which made the proof
-almost trivial. It turns out that there is a rather large family of systems for
-which pumping arguments based on so-called \emph{minimal runs} exist: they are
-called \emph{amalgamation systems}. Having done the heavy lifting on finite
-automata, the rest of this section is mostly devoted to the introduction of
-amalgamation systems and collecting the necessary pumping argument they enjoy.
-Using this meta-proof, we will generalize \cref{infix-finite-automata:thm} to
-context-free grammars, languages recognized by VASS, and more.
+combinatorial argument from \cref{pumping-periods:lem}. It turns out that there
+is a rather large family of systems for which pumping arguments based on
+so-called \emph{minimal runs} exist: they are called \emph{amalgamation
+systems} and were recently introduced by Anad, Schmitz, Sch\"{u}tze, and
+Zetzsche \cite{ASZZ24}. Having done the heavy lifting on finite automata, the
+rest of this section is mostly devoted to the introduction of \kl{amalgamation
+systems} and collecting the necessary pumping argument they enjoy. Using this
+meta-proof, we will generalize \cref{infix-finite-automata:thm} to context-free
+grammars, languages recognized by vector addition systems with state (VASS),
+and more. The goal of this section is not to introduce all of these systems, or
+justify their usefulness, but to state and prove the following theorem.
 
 \begin{theorem}[label=infix-amalgamation:thm,restate=infix-amalgamation:thm]
     Let $L \subseteq \Sigma^*$ be a language recognized by an 
@@ -359,14 +360,10 @@ context-free grammars, languages recognized by VASS, and more.
     is a triple such that.
 \end{definition}
 
-Let us recall some examples of \kl{amalgamation systems}
-arising in the literature. 
-
-\begin{example}
-    Regular languages, context-free languages, and languages recognized by
-    VASS are all recognized by amalgamation systems.
-\end{example}
-
+Let us recall some examples of \kl{amalgamation systems} given by the authors
+of the original paper: regular languages \cite[Theorem 5.3]{ASZZ24}, VASS as a
+consequence of \cite[Theorem 5.5]{ASZZ24}, context-free languages as a
+consequence of \cite[Theorem 5.10]{ASZZ24}.
 
 \begin{lemma}
     Let $L$ be a language recognized by an \kl{amalgamation system}
