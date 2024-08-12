@@ -4,13 +4,16 @@
 \NewDocumentOrdering{hig}{\leq^*}{<^*}
 
 \NewDocumentCommand{\InfPeriodChain}{ m }{
-    \mathop{\kl[\InfPeriodChain]{\downarrow\!\!\!\!\mathsf{P}}}
+    \mathop{\kl[\InfPeriodChain]{\mathsf{PI}\!\!\!\!\downarrow}}
     ( #1 )
 }
 \knowledge{\InfPeriodChain}{notion}
 
 \NewDocumentCommand{\canrun}{O{can}}{
     \mathop{\mathsf{#1}}
+}
+\NewDocumentCommand{\yieldrun}{}{
+    \mathop{\mathsf{yield}}
 }
 
 \NewDocumentCommand{\HigEmb}{}{

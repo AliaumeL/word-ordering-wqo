@@ -136,17 +136,28 @@ essentially rely on the following result on periodic words.
     minimality of $q$ this must be equal to $q$ and to $p$.
 \end{proof}
 
+\begin{corollary}
+    \label{powers-infixes:cor}
+    Let $u,v \in \Sigma^*$ and $k, \ell \in \Nat$
+    such that $k \geq \factorial[p]{\card{u} \times \card{v}}$,
+    $\ell \geq \factorial[p]{\card{v} \times \card{u}}$,
+    and $u^k \infleq v^\ell$.
+    Then, there exists $w \in \Sigma^*$ of size at most
+    $\min \set{\card{u}, \card{v}}$ and a $p \in \Nat$
+    such that
+    $u^k \infleq v^\ell \infleq w^p$.
+\end{corollary}
+
 The reason why \kl{periodic words} built using a given period $x \in \Sigma^+$
 are interesting for the \kl{infix relation} is that they naturally create
 \kl{chains}. Indeed, if $x \in \Sigma^+$ is a finite word, then $\setof{x^p}{p
 \in \Nat}$ is a \kl{chain} for the \kl{infix relation}. Note that in general,
-the \kl{downwards closure} of a chain is \emph{not} a chain. However, for the chains
-generated using periodic words, the \kl{downwards closure}
+the \kl{downwards closure} of a chain is \emph{not} a chain. However, for the
+chains generated using periodic words, the \kl{downwards closure}
 $\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is a \emph{finite union} of
-\kl{chains}. Because this set will appear in bigger equations,
-we introduce the shorter notation 
-$\intro*\InfPeriodChain{x}$ for the set of 
-\kl{infixes} of words of the form $x^p$, where $p$ ranges over $\Nat$.
+\kl{chains}. Because this set will appear in bigger equations, we introduce the
+shorter notation $\intro*\InfPeriodChain{x}$ for the set of \kl{infixes} of
+words of the form $x^p$, where $p$ ranges over $\Nat$.
 
 \begin{lemma}
     \label{inf-period-chain:lem}
@@ -191,7 +202,7 @@ $\intro*\InfPeriodChain{x}$ for the set of
 \end{corollary}
 \begin{proof}
     Because $\InfPeriodChain{x}$ is a finite union of \kl{chains} for the \kl{suffix}
-    relation (using \cref{inf-period-chain:lem}), we conclude that $\InfPeriodChain{x}u$ is one too for
+    relation (rsing \cref{inf-period-chain:lem}), we conclude that $\InfPeriodChain{x}u$ is one too for
     the \kl{infix} relation. This holds similarly for $u \InfPeriodChain{x}$.
     In the case of $\InfPeriodChain{x} u \InfPeriodChain{y}$,
     we remark that $\InfPeriodChain{x} u$ is a finite union of chains
@@ -272,7 +283,15 @@ a language, based on the assumption that some factors can be iterated.
         \item $w[\vec{n_i}] \infleq
             v_{\ell+1}^{n_{j,\ell+1}} u_{\ell+2}$.
     \end{itemize}
-    In all those cases, we conclude using \cref{periodic-infixes:lem}.
+    In all those cases, we conclude using \cref{powers-infixes:cor}
+    that there exists $x,y \in \Sigma^+$ of size at most $s$, and 
+    a number $1 \leq t \leq k$ such that
+    $v_i^{n_i} \in \InfPeriodChain{x}$ for all $1 \leq i \leq t$,
+    and
+    $v_i^{n_i} \in \InfPeriodChain{y}$ for all $t < i \leq k$.
+    In particular,
+    $w[\vec{n_i}] \in \InfPeriodChain{x} u_{t} \InfPeriodChain{y}$.
+
     
     When $k = 1$, the situation is a bit more specific since we only have two
     cases: either $w_i \infleq u_1 v_1^{n_j}$ or $w_i \infleq v_1^{n_j} u_2$,
@@ -280,7 +299,7 @@ a language, based on the assumption that some factors can be iterated.
 \end{proof}
 
 
-We are now ready to restate and proof our main theorem.
+We are now ready to restate and prove our main theorem.
 
 \begin{proofof}{infix-finite-automata:thm}[main]
     Let $w \in L$, because $Q$ is finite, there exists
@@ -353,25 +372,32 @@ justify their usefulness, but to state and prove the following theorem.
     a finite union of chains for the \kl{infix relation}.
 \end{theorem}
 
-\AP Let us now formally introduce the notion of \kl{amalgamation systems}, and
+Let us now formally introduce the notion of \kl{amalgamation systems}, and
 recall some results from \cite{ASZZ24} that will be useful for the proof of
-\cref{infix-amalgamation:thm}. Let us recall that over an alphabet $(\Sigma,
-=)$ a \kl{subword embedding} between two words $u \in \Sigma^*$ and $v \in
-\Sigma^*$ is a function $\rho \colon \range{\card{u}} \to \range{\card{v}}$
-such that $u_i = v_{\rho(i)}$ for all $i \in \range{\card{u}}$. We write
-$\intro*\HigEmb(u,v)$ the set of all \kl{subword embeddings} between $u$ and
-$v$. It may be useful to notice that the set of finite words over $\Sigma$
-forms a category when we consider \kl{subword embeddings} as morphisms.
+\cref{infix-amalgamation:thm}. The notion of \kl{amalgamation system} is
+tailored to produce \emph{pumping arguments}, which is exactly what our
+\cref{pumping-periods:lem} talks about. At the core of a pumping argument,
+there is a notion of \emph{run}, which could for instance be a sequence of
+transitions taken in a finite state automaton. Continuing on the analogy with
+finite automata, there is a natural ordering between runs, i.e., a run is
+smaller than another one if one can ``unroll loops" of the first run to obtain
+the second one. Typical pumping arguments then rely on the fact that
+\emph{minimal} runs are of finite size, and that all other runs are
+obtained by ``gluing" minimal runs together. This is exactly what
+\kl{amalgamation systems} are about.
 
-\AP Given a \kl{subword embedding} $f \colon u \to v$ between two words $u$ and
-$v$, there exists a unique decomposition $v = \GapWord{f}{0} u_1 \GapWord{f}{1}
-\cdots \GapWord{f}{k-1} u_k \GapWord{f}{k}$ where $\GapWord{f}{i} =
-v[f(i)+1:f(i+1)-1]$ for all $1 \leq i \leq k-1$, $\GapWord{f}{k} =
-v[f(k)+1:\card{v}]$, and $\GapWord{f}{0}   = v[1: f(1)-1]$.  We say that
-$\intro*\GapWord{f}{i}$ is the $i$-th \intro{gap word} of $f$. Given a run $r
-\in R$, and $i \in \range[0]{\card{\canrun(r)}}$, we define the \intro{gap
-language} of $r$ at position $i$ $\GapLanguage{r}{i} \defined
-\setof{\GapWord{f}{i}}{\exists s \in R. \exists f \in E(r,s) }$.
+\AP Let us recall that over an alphabet $(\Sigma, =)$ a \kl{subword embedding}
+between two words $u \in \Sigma^*$ and $v \in \Sigma^*$ is a function $\rho
+\colon \range{\card{u}} \to \range{\card{v}}$ such that $u_i = v_{\rho(i)}$ for
+all $i \in \range{\card{u}}$. We write $\intro*\HigEmb(u,v)$ the set of all
+\kl{subword embeddings} between $u$ and $v$. It may be useful to notice that
+the set of finite words over $\Sigma$ forms a category when we consider
+\kl{subword embeddings} as morphisms. Given a \kl{subword embedding} $f \colon
+u \to v$ between two words $u$ and $v$, there exists a unique decomposition $v
+= \GapWord{f}{0} u_1 \GapWord{f}{1} \cdots \GapWord{f}{k-1} u_k \GapWord{f}{k}$
+where $\GapWord{f}{i} = v[f(i)+1:f(i+1)-1]$ for all $1 \leq i \leq k-1$,
+$\GapWord{f}{k} = v[f(k)+1:\card{v}]$, and $\GapWord{f}{0}   = v[1: f(1)-1]$.
+We say that $\intro*\GapWord{f}{i}$ is the $i$-th \intro{gap word} of $f$.
 
 
 \begin{definition}
@@ -380,14 +406,34 @@ language} of $r$ at position $i$ $\GapLanguage{r}{i} \defined
     $\Sigma$ is a finite alphabet,
     $R$ is a set of so-called \emph{runs},
     and 
-    $E$ is a set of so-called \emph{run embeddings}.
-    \begin{itemize}
+    $E$ is a set of so-called \emph{run embeddings},
+    and $\canrun \colon R \to (\Sigma \cup \set{\varepsilon})^*$ is a 
+    function computing a \emph{canonical decompostion} of a run.
+    Given a run $r \in R$, and $i \in \range[0]{\card{\canrun(r)}}$, we define
+    the \intro{gap language} of $r$ at position $i$ as $\GapLanguage{r}{i} \defined
+    \setof{\GapWord{f}{i}}{\exists s \in R. \exists f \in E(r,s) }$.
+    An \kl{amalgamation system} furthermore satisfies the following 
+    properties:
+    \begin{enumerate}
         \item For all $r, s \in R$,
             $E(r,s) \subseteq \HigEmb(\canrun(r), \canrun(s))$.
         \item $(R, E)$ forms a category.
         \item $(R, \leq_E)$ is a well-quasi-ordered set.
-        \item concatenative amalagamation
-    \end{itemize}
+        \item For all $r, s, t \in R$,
+            for all $f \in E(r,s)$,
+            for all $g \in E(r,t)$,
+            and for all $0 \leq i_0 \leq \card{\canrun(r)}$,
+            there exists a run $z \in R$ and morphisms
+            $h \in E(s,z)$ and $k \in E(t,z)$
+            satisfying
+            $h \circ f = k \circ g$,
+            $\GapLanguage{h \circ f}{i} = \GapLanguage{f}{i} \GapLanguage{g}{i}$
+            or 
+            $\GapLanguage{h \circ f}{i} = \GapLanguage{g}{i} \GapLanguage{f}{i}$
+            for every $0 \leq j \leq n$,
+            and
+            $\GapLanguage{h \circ f}{i_0} = \GapLanguage{f}{i_0} \GapLanguage{g}{i_0}$.
+    \end{enumerate}
 
     The \intro{amalgamation language} of such a system
     is the set of all words $w \in \Sigma^*$ such that
@@ -396,10 +442,9 @@ language} of $r$ at position $i$ $\GapLanguage{r}{i} \defined
     $\canrun(r)$ equals $w$.
 \end{definition}
 
-The notion of \kl{amalgamation system} is tailored to produce \emph{pumping
-arguments}, which is exactly what our \cref{pumping-periods:lem} talks about.
-Because the notion is quite abstract, it may be useful to replicate some
-intuitions developed by the authors of \cite{ASZZ24}.
+Intuitively, the definition of an amalgamation system allows the comparison of
+runs, and the proper ``gluing" of runs together to obtain new runs.
+
 
 
 Let us recall some examples of languages that can be recognized by
@@ -427,12 +472,38 @@ languages \cite[Theorem 5.3]{ASZZ24}, VASS as a consequence of \cite[Theorem
         \quad .
     \end{equation*}
 
-    Let us first argue that languages $\GapLanguage{r}{i}$ are all \kl{chains}
-    for the \kl{prefix ordering}. According to \cite[Lemma 4.1]{ASZZ24}, either
-    $\GapLanguage{r}{i}$ is a \kl{chain} for the \kl{prefix relation}, or it is
-    an \kl{unbounded language}. Note that \kl{unbounded languages}
-    are \kl{antichains} for the \kl{infix relation}, and therefore
-    \textbf{unclear}.
+    Let $u$ and $v$ be two words in the \kl{gap language}
+    $\GapLanguage{r}{\ell}$ for some $r \in M$ and $0 \leq \ell \leq
+    \card{\canrun(r)}$. We have corresponding runs $s_1, s_2 \in R$ and
+    embeddings $f_1 \in E(r,s_1)$ and $f_2 \in E(r,s_2)$ such that
+    $\GapWord{f_1}{\ell} = u$ and $\GapWord{f_2}{\ell} = v$. Using the
+    amalgamation property, we can inductively construct runs $r_k \in R$ and
+    embeddings $f_k \in E(r,s_k)$ such that $\GapWord{f_k}{\ell} = u v^k u$,
+    and $\GapWord{f_k}{i}$ is obtained by concatenating in some order two
+    occurrences of $\GapWord{f_1}{i}$ and $k$ occurrences of
+    $\GapWord{f_2}{i}$. Because $L$ is \kl{well-quasi-ordered} for the
+    \kl{infix relation}, there exists $i < j$ such that $\yieldrun(r_i) \infleq
+    \yieldrun(r_j)$. Assuming that $\card{\canrun(r)}$ is greater than $2$, and
+    that we have extracted an increasing sequence of indices so that
+    $\alpha(i+1) > \factorial{\card{\yieldrun(r_i)}}$, we conclude that $u
+    v^{\alpha(i)} u$ is an \kl{infix} of $\yieldrun(r_j)$.
+    Because of the number of repetitions, a \emph{large} infix of $v^{\alpha(i)}$ must be
+    an infix of some $\GapWord{f_2}{p}^{\alpha(j)}$.
+    We conclude that $\Gapword{f_2}{p}^{\alpha(j)}$ and $v$
+    have a common period. Refining the analysis, we also conclude
+    that $uv^{q}$ and $\GapWord{f_2}{p}^{\alpha(j)}$ have the same period,
+    which proves that $uv^{q}u$ belongs to some $\InfPeriodChain{x}$
+    \textbf{todo}.
+
+    \begin{quote}
+        Idea: when pumping like this, we can always find
+        large blocks of $\GapWord{f_2}{p}$, so this looks like
+        something suitable for \cref{pumping-periods:lem}.
+        This should allow us to conclude that every pair of words
+        $u,v$ in a given gap language
+        are infixes of \emph{the same} periodic word repeated.
+    \end{quote}
+
 
     Then, we can leverage \cref{pumping-periods:lem}
     to conclude that $L$ is a finite union of \kl{chains}

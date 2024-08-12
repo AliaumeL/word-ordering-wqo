@@ -44,6 +44,7 @@
  | Higman’s subword relation
  | subword embedding
  | subword embedding relation
+ | subword embeddings
 
 \knowledge{notion}
  | infix relation
@@ -86,6 +87,11 @@
  | $\MSO $-definable
 \knowledge{notion}
  | $\MSO $
+ | $\MSO $-formula
+
+\knowledge{notion}
+ | unbounded language
+ | unbounded languages
 
 % custom commands
 \knowledge{notion}
@@ -95,6 +101,16 @@
 \knowledge{notion}
  | amalgamation system
  | amalgamation systems
+\knowledge{notion}
+ | effective amalgamation system
+ | effective amalgamation systems
+\knowledge{notion}
+ | amalgamation language
+ | language@amalgamation
 
 \knowledge{notion}
  | tree of prefixes
+
+\knowledge{notion}
+ | gap word
+ | gap language
