@@ -10,15 +10,13 @@ languages. Formally, the upcoming \cref{infix-embedding:thm} shows that \emph{an
 quasi-ordering with finite initial segments can be embedded into the infix
 relation of a language.
 
-\AP
-Let us recall that an \intro{order embedding} from a quasi-ordered set $(X,
+\AP Let us recall that an \intro{order embedding} from a quasi-ordered set $(X,
 \preceq)$ into a quasi-ordered set $(Y, \preceq')$ is a function $f \colon X
 \to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
 \preceq' f(y)$. When such an embedding exists, we say that $X$ \reintro{embeds
-into} $Y$.
-We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial ordering}
-whenever the relation $\preceq$ is antisymmetric, that is $x \preceq y$ and $y
-\preceq x$ implies $x = y$. 
+into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
+ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
+y$ and $y \preceq x$ implies $x = y$. 
 
 \begin{theorem}
     \label{infix-embedding:thm}
@@ -355,31 +353,94 @@ justify their usefulness, but to state and prove the following theorem.
     a finite union of chains for the \kl{infix relation}.
 \end{theorem}
 
+\AP Let us now formally introduce the notion of \kl{amalgamation systems}, and
+recall some results from \cite{ASZZ24} that will be useful for the proof of
+\cref{infix-amalgamation:thm}. Let us recall that over an alphabet $(\Sigma,
+=)$ a \kl{subword embedding} between two words $u \in \Sigma^*$ and $v \in
+\Sigma^*$ is a function $\rho \colon \range{\card{u}} \to \range{\card{v}}$
+such that $u_i = v_{\rho(i)}$ for all $i \in \range{\card{u}}$. We write
+$\intro*\HigEmb(u,v)$ the set of all \kl{subword embeddings} between $u$ and
+$v$. It may be useful to notice that the set of finite words over $\Sigma$
+forms a category when we consider \kl{subword embeddings} as morphisms.
+
+\AP Given a \kl{subword embedding} $f \colon u \to v$ between two words $u$ and
+$v$, there exists a unique decomposition $v = \GapWord{f}{0} u_1 \GapWord{f}{1}
+\cdots \GapWord{f}{k-1} u_k \GapWord{f}{k}$ where $\GapWord{f}{i} =
+v[f(i)+1:f(i+1)-1]$ for all $1 \leq i \leq k-1$, $\GapWord{f}{k} =
+v[f(k)+1:\card{v}]$, and $\GapWord{f}{0}   = v[1: f(1)-1]$.  We say that
+$\intro*\GapWord{f}{i}$ is the $i$-th \intro{gap word} of $f$. Given a run $r
+\in R$, and $i \in \range[0]{\card{\canrun(r)}}$, we define the \intro{gap
+language} of $r$ at position $i$ $\GapLanguage{r}{i} \defined
+\setof{\GapWord{f}{i}}{\exists s \in R. \exists f \in E(r,s) }$.
+
+
 \begin{definition}
-    \textbf{TODO}. An \intro{amalgamation system}
-    is a triple such that.
+    An \intro{amalgamation system}
+    is a triple $(\Sigma, R, E, \canrun)$ where
+    $\Sigma$ is a finite alphabet,
+    $R$ is a set of so-called \emph{runs},
+    and 
+    $E$ is a set of so-called \emph{run embeddings}.
+    \begin{itemize}
+        \item For all $r, s \in R$,
+            $E(r,s) \subseteq \HigEmb(\canrun(r), \canrun(s))$.
+        \item $(R, E)$ forms a category.
+        \item $(R, \leq_E)$ is a well-quasi-ordered set.
+        \item concatenative amalagamation
+    \end{itemize}
+
+    The \intro{amalgamation language} of such a system
+    is the set of all words $w \in \Sigma^*$ such that
+    there exists a run $r \in R$
+    such that the concatenation of the letters (and possibly the empty word) in
+    $\canrun(r)$ equals $w$.
 \end{definition}
 
-Let us recall some examples of \kl{amalgamation systems} given by the authors
-of the original paper: regular languages \cite[Theorem 5.3]{ASZZ24}, VASS as a
-consequence of \cite[Theorem 5.5]{ASZZ24}, context-free languages as a
-consequence of \cite[Theorem 5.10]{ASZZ24}.
+The notion of \kl{amalgamation system} is tailored to produce \emph{pumping
+arguments}, which is exactly what our \cref{pumping-periods:lem} talks about.
+Because the notion is quite abstract, it may be useful to replicate some
+intuitions developed by the authors of \cite{ASZZ24}.
 
-\begin{lemma}
-    Let $L$ be a language recognized by an \kl{amalgamation system}
-    and assume that $L$ is \kl{well-quasi-ordered}
-    by the \kl{infix relation}. Then,
-    for every minimal run $\rho$,
-    the \kl{gap languages} of $\rho$
-    are \kl{subsemigroup languages}.
-\end{lemma}
+
+Let us recall some examples of languages that can be recognized by
+\kl{amalgamation systems} given by the authors of the original paper: regular
+languages \cite[Theorem 5.3]{ASZZ24}, VASS as a consequence of \cite[Theorem
+5.5]{ASZZ24}, context-free languages as a consequence of \cite[Theorem
+5.10]{ASZZ24}.
 
 \begin{proofof}{infix-amalgamation:thm}
-    TODO.
+    Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
+    and obtained by an \kl{amalgamation system}
+    $(\Sigma, R, E, \canrun)$.
+
+    Let us consider the set $M$ of minimal runs for the relation $\leq_E$,
+    which is finite because the latter is a \kl{well-quasi-ordering}. By
+    definition, for every word $w \in L$, there exists $r \in M$, $s \in R$,
+    and $f \in E(r,s)$ such that $w = \canrun(s)$.
+    In particular, we conclude that
+    \begin{equation*}
+        L \subseteq \bigcup_{r \in M} 
+        \left(
+        \GapLanguage{r}{0}
+        \prod_{i = 1}^{\card{\canrun(r)}-1} \canrun(r)_i \GapLanguage{r}{i} 
+        \right)
+        \quad .
+    \end{equation*}
+
+    Let us first argue that languages $\GapLanguage{r}{i}$ are all \kl{chains}
+    for the \kl{prefix ordering}. According to \cite[Lemma 4.1]{ASZZ24}, either
+    $\GapLanguage{r}{i}$ is a \kl{chain} for the \kl{prefix relation}, or it is
+    an \kl{unbounded language}. Note that \kl{unbounded languages}
+    are \kl{antichains} for the \kl{infix relation}, and therefore
+    \textbf{unclear}.
+
+    Then, we can leverage \cref{pumping-periods:lem}
+    to conclude that $L$ is a finite union of \kl{chains}
+    for the \kl{infix relation}.
 \end{proofof}
 
-\begin{lemma}
+\begin{conjecture}
     Let $L$ be given by an \kl{effective amalgamation system},
     then it is decidable whether $L$ 
     is \kl{well-quasi-ordered} by the \kl{infix relation}.
-\end{lemma}
+\end{conjecture}

@@ -8,3 +8,22 @@
     ( #1 )
 }
 \knowledge{\InfPeriodChain}{notion}
+
+\NewDocumentCommand{\canrun}{O{can}}{
+    \mathop{\mathsf{#1}}
+}
+
+\NewDocumentCommand{\HigEmb}{}{
+    \mathop{\kl[\HigEmb]{\mathsf{Hom}^*}}
+}
+\knowledge{\HigEmb}{notion}
+
+\NewDocumentCommand{\GapWord}{ m m }{
+    \mathop{\kl[\GapWord]{\mathsf{G}}}_{#2}^{#1}
+}
+\knowledge{\GapWord}{notion}
+
+\NewDocumentCommand{\GapLanguage}{ m m }{
+    \mathop{\kl[\GapLanguage]{\mathsf{L}}}_{#2}^{#1}
+}
+\knowledge{\GapLanguage}{notion}
