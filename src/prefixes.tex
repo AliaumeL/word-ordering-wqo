@@ -9,11 +9,11 @@ that reverses a word is an order-bijection between $(X^*, \prefleq)$ and $(X^*,
 Therefore, we will focus on the prefix relation in the rest of this section, as
 $(L, \prefleq)$ is \kl{well-quasi-ordered} if and only if $(L^R, \suffleq)$ is.
 
-The next remark that we make is that $\Sigma^*$ is not \kl{well-quasi-ordered}
-by the \kl{prefix relation} as soon as $\Sigma$ contains two distinct letters
-$a$ and $b$. As an example of infinite \kl{antichain}, we can consider the set
-of words $a^n b$ for $n \in \Nat$. As mentioned in the introduction, there are
-some languages however that are \kl{well-quasi-ordered} by the \kl{prefix
+The next remark we make is that $\Sigma^*$ is not \kl{well-quasi-ordered} by
+the \kl{prefix relation} as soon as $\Sigma$ contains two distinct letters $a$
+and $b$. As an example of infinite \kl{antichain}, we can consider the set of
+words $a^n b$ for $n \in \Nat$. As mentioned in the introduction, there are
+however some languages  that are \kl{well-quasi-ordered} by the \kl{prefix
 relation}. A simple example being the (regular) language $a^* \subseteq
 \set{a,b}^*$, which is order-isomorphic to natural numbers with their usual
 orderings $(\Nat, \leq)$.
@@ -33,22 +33,21 @@ We will use this \kl{tree of prefixes} to find simple witnesses
 of the existence of infinite \kl{antichains} in the \kl{prefix relation}
 for a given language $L$, namely by introducing \kl{antichain branches}.
 
-
 \begin{definition}
     An \intro{antichain branch} for a language $L$ is an infinite 
     branch $B$ of the \kl{tree of prefixes} such that from every point of the branch, 
-    one can reach a word of $L$ that is not in the branch.
+    one can reach a word in $L \setminus B$.
 \end{definition}
 
 Let us illustrate the notion of \kl{antichain branch} over the alphabet $\Sigma
 = \set{a,b}$, and the language $L = a^* b$. In this case, the set $a^*$ (which
 is a branch of the \kl{tree of prefixes}) is an \kl{antichain branch} for $L$.
-This holds because for any $a^k$ in the branch, $a \prefleq a^kb$ which is in
-$L$ and not in the branch. In general, the existence of an \kl{antichain
-branch} for a language $L$ implies that $L$ contains an infinite
-\kl{antichain}, and because the alphabet $\Sigma$ is assumed to be finite, one
-can leverage the fact that the \kl{tree of prefixes} is finitely branching to
-prove that the converse holds as well.
+This holds because for any $a^k$, the word $a \prefleq a^kb$ belongs to $L
+\setminus a^*$. In general, the existence of an \kl{antichain branch} for a
+language $L$ implies that $L$ contains an infinite \kl{antichain}, and because
+the alphabet $\Sigma$ is assumed to be finite, one can leverage the fact that
+the \kl{tree of prefixes} is finitely branching to prove that the converse
+holds as well.
 
 \begin{lemma}
     \label{antichain-branches-prefix:lem}
@@ -115,11 +114,10 @@ For the proof of the following theorem, we will use special notations to
 describe the \intro{upwards closure} of a set $S$ for a relation $\preceq$,
 which is defined as $\upset[\preceq]{S} \defined \setof{y \in \Sigma^*}{
 \exists x \in S. x \preceq y}$. Anticipating the use of the symmetric notion of
-\intro{downwards closure}, let us introduce its notation 
-straight away as follows: $\dwset[\preceq]{S} \defined \setof{y
+\intro{downwards closure}, let us introduce it as follows: $\dwset[\preceq]{S} \defined \setof{y
 \in \Sigma^*}{ \exists x \in S. y \preceq x}$. Abusing notations, we will
 write $\upset{w}$ and $\dwset{w}$ for the upwards and downwards closure of a
-single element $w$, and omit the ordering relation when it is clear from the
+single element $w$, omitting the ordering relation when it is clear from the
 context.
 
 \begin{theorem}
@@ -156,7 +154,7 @@ context.
 \end{proof}
 
 As an immediate consequence, we have a very fine-grained understanding of the
-\kl{ordinal invariants} of such \kl{well-quasi-ordered} languages, which can be
+\kl{ordinal invariants} of such \kl{well-quasi-ordered} languages, which could be
 leveraged in bounding the complexity of algorithms working on such languages.
 
 \begin{corollary}

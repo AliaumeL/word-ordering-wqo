@@ -6,7 +6,7 @@ abstract: |
   Higman is a cornerstone of the theory of well-quasi-orderings
   and has found numerous applications in computer science. However,
   this result is based on a specific choice of ordering on words,
-  the (scattered) subword ordering. In this paper, to what 
+  the (scattered) subword ordering. In this paper, we describe to what 
   extent other natural orderings (prefix, suffix, infix)
   on words can be used to derive Higman-like theorems. 
   More specifically, we are interested in characterizing
@@ -23,7 +23,7 @@ author:
     affiliation: "Aix-Marseille University"
     email: nathan.lhote@lis-lab.fr
   - name: "Aliaume Lopez"
-    orcid: "0000-0002-1825-0097"
+    orcid: "0000-0002-4205-327X"
     affiliation: "University of Warsaw"
     email: ad.lopez@uw.edu.pl
   - name: "Corto Mascle"
