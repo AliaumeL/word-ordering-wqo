@@ -467,12 +467,12 @@ words) can be combined.
             $h \in E(s,z)$ and $k \in E(t,z)$
             satisfying
             $h \circ f = k \circ g$,
-            $\GapLanguage{h \circ f}{i} = \GapLanguage{f}{i} \GapLanguage{g}{i}$
+            $\GapWord{h \circ f}{i} = \GapWord{f}{i} \GapWord{g}{i}$
             or 
-            $\GapLanguage{h \circ f}{i} = \GapLanguage{g}{i} \GapLanguage{f}{i}$
+            $\GapWord{h \circ f}{i} = \GapWord{g}{i} \GapWord{f}{i}$
             for every $0 \leq j \leq n$,
             and
-            $\GapLanguage{h \circ f}{i_0} = \GapLanguage{f}{i_0} \GapLanguage{g}{i_0}$.
+            $\GapWord{h \circ f}{i_0} = \GapWord{f}{i_0} \GapWord{g}{i_0}$.
     \end{enumerate}
 
     The \intro{amalgamation language} of such a system
@@ -493,7 +493,7 @@ systems} given by the authors of the original paper: regular languages
 runs of a finite state automaton can be understood as an \kl{amalgamation
 system}.
 
-\begin{example}
+\begin{example}[{\cite[Section 3.2]{ASZZ24}}]
     Let $A = (Q, \delta, q_0, F)$ be a finite state automaton over a finite
     alphabet $\Sigma$. Let $\Delta$ be the set of transitions $(q_1, a, q_2)
     \in Q \times \Sigma \times Q$,
@@ -501,21 +501,46 @@ system}.
     words over transitions that start with the initial state $q_0$,
     end in a final state $q_f \in F$, and such that the end state of a
     letter is the start state of the following one.
-
     The canonical decomposition $\canrun \colon R \to \Sigma^*$
     is defined as a morphism from $\Delta^*$ to $\Sigma^*$
     that maps $(q,a,p)$ to $a$.
-
     Finally, given two runs $r$ and $s$ of the automaton,
-    let $E(r,s) = \HigEmb(\canrun(r), \canrun(s))$, that is, we do not
-    remove morphisms.
+    we say that an embedding $f \in \HigEmb(\canrun(r), \canrun(s))$
+    belongs to $E(r,s)$ when
+    $f$ is also defining an embedding from $r$ to $s$ as words in $\Delta^*$,
+    where $\Delta$ is equipped with the equality relation.
 
     The system $(\Sigma, R, E, \canrun)$ is an \kl{amalgamation system},
     whose language is precisely the language of words recognized
     by the automaton $A$.
 \end{example}
 \begin{proof}
-    TODO.
+    By definition, elements of $E(r,s)$ are defined as elements
+    of $\HigEmb(\canrun(r), \canrun(s))$, and they compose properly.
+    Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
+    a \kl{well-quasi-ordering} when equipped with the equality relation, and 
+    we conclude that $\Delta^*$ with $\higleq$ is a \kl{well-quasi-order}
+    according to Higman’s Lemma \cite{HIG52}.
+    
+    Let us now move to proving that the system satisfies the amalgamation
+    property. Given three runs $r,s,t \in R$, and two embeddings $f \in E(r,s)$
+    and $g \in E(r,t)$, we want to construct an amalgamated run $s \vee t$.
+    Because letters in the run $r$ respect the transitions of the automaton
+    (i.e., if the letter $i$ ends in state $q$, then the letter $i+1$ starts in
+    state $q$), then the \kl{gap word} at position $i$ starts in state $q$ and
+    ends in state $q$ too. This means that for both embeddings
+    $f$ and $g$, the \kl{gap words} are read by the automaton by looping
+    on a state. In particular, these loops can be taken in any order
+    and continue to represent a valid run. That is, we can even select
+    the order of concatenation in the amalgamation for \emph{all} 
+    $0 \leq i \leq \card{\canrun(r)}$ and not just for one separately.
+
+    Let us now remark that 
+    the language of this amalgamation system is
+    the set of $\yieldrun(r)$ when $r$ ranges over $R$,
+    and because $R$ is the set of valid runs of the automaton,
+    and $\yieldrun(r)$ is the word read along this run,
+    we immediately conclude.
 \end{proof}
 
 \begin{proofof}{infix-amalgamation:thm}
@@ -530,7 +555,7 @@ system}.
     In particular, we conclude that
     \begin{equation*}
         L \subseteq \bigcup_{r \in M} 
-        \yieldrun \left(
+        \left(
         \GapLanguage{r}{0}
         \prod_{i = 1}^{\card{\canrun(r)}-1} \canrun(r)_i \GapLanguage{r}{i} 
         \right)
