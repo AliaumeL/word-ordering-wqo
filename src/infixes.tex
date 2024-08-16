@@ -563,7 +563,7 @@ system}.
     \end{equation*}
 
     Let $u$ and $v$ be two words in the \kl{gap language}
-    $\GapLanguage{r}{\ell}$ for some $r \in M$ and $0 \leq \ell \leq
+    $\GapLanguage{r}{\ell}$ for some $r \in M$ and $0 < \ell <
     \card{\canrun(r)}$. We have corresponding runs $s_1, s_2 \in R$ and
     embeddings $f_1 \in E(r,s_1)$ and $f_2 \in E(r,s_2)$ such that
     $\GapWord{f_1}{\ell} = u$ and $\GapWord{f_2}{\ell} = v$. Using the
@@ -571,34 +571,38 @@ system}.
     embeddings $f_k \in E(r,s_k)$ such that $\GapWord{f_k}{\ell} = u v^k u$,
     and $\GapWord{f_k}{i}$ is obtained by concatenating in some order two
     occurrences of $\GapWord{f_1}{i}$ and $k$ occurrences of
-    $\GapWord{f_2}{i}$. Because $L$ is \kl{well-quasi-ordered} for the
-    \kl{infix relation}, there exists $i < j$ such that $\yieldrun(r_i) \infleq
-    \yieldrun(r_j)$. Assuming that $\card{\canrun(r)}$ is greater than $2$, and
-    that we have extracted an increasing sequence of indices so that
-    $\alpha(i+1) > \factorial{\card{\yieldrun(r_i)}}$, we conclude that $u
-    v^{\alpha(i)} u$ is an \kl{infix} of $\yieldrun(r_j)$.
-    Because of the number of repetitions, a \emph{large} infix of $v^{\alpha(i)}$ must be
-    an infix of some $(\GapWord{f_2}{p})^{\alpha(j)}$.
-    We conclude that $(\GapWord{f_2}{p})^{\alpha(j)}$ and $v$
-    have a common period. Refining the analysis, we also conclude
-    that $uv^{q}$ and $(\GapWord{f_2}{p})^{\alpha(j)}$ have the same period,
-    which proves that $uv^{q}u$ belongs to some $\InfPeriodChain{x}$
-    \textbf{todo}.
+    $\GapWord{f_2}{i}$. 
+    This means that $\canrun(r_i)$ has the shape
+    \begin{equation*}
+        v_0^{x_1} u_0 v_0^{x_2} u_0 v_0^{x_3} \canrun(r_i)_1 
+        v_1^{x_4} u_1 v_1^{x_5} u_1 v_1^{x_6} \canrun(r_i)_2 
+        \cdots
+        v_{\ell}^{x_k} u_{\ell}
+        v_{\ell}^{x_{k+1}}  u_{\ell}
+        v_{\ell}^{x_{k+2}}
+        \canrun(r_i)_{\ell}
+        u v^i u
+        \canrun(r_i)_{\ell+1}
+        \cdots
+        \quad .
+    \end{equation*}
 
-    \begin{quote}
-        Idea: when pumping like this, we can always find
-        large blocks of $\GapWord{f_2}{p}$, so this looks like
-        something suitable for \cref{pumping-periods:lem}.
-        This should allow us to conclude that every pair of words
-        $u,v$ in a given gap language
-        are infixes of \emph{the same} periodic word repeated.
-    \end{quote}
+    Now, leveraging \cref{pumping-periods:lem}, we get that $u v^k u$ is an
+    infix of some $x^p$ where $x$ has size smaller or equal than $u$ and $v$.
+    This proves  that $u$ and $v$ are comparable for the prefix, infix, and
+    suffix relations. In particular, we have proven that $\GapLanguage{r}{i}$
+    is bounded, because of \cite[Lemma 4.1]{ASZZ24}, when $0 < i <
+    \card{\canrun(r)}$.
 
-
-    Then, we can leverage \cref{pumping-periods:lem}
-    to conclude that $L$ is a finite union of \kl{chains}
-    for the \kl{infix relation}.
+    For the edge cases, we do a very similar construction. For $i = 0$, we let
+    $\canrun(r_i) = v^k u \canrun(r_1) \dots$, we conclude similarly. For $i =
+    \card{\canrun(r)}$, we let $\canrun(r_i) = \dots
+    \canrun(r)_{\card{\canrun(r) - 1}} u v^k$.
 \end{proofof}
+
+The abstract definition of \kl{amalgamation system} can be enriched by
+effectiveness assumptions, as explained in \cite[Section 3.1.4]{ASZZ24}. In
+this setting, we conjecture that the following decidability result holds.
 
 \begin{conjecture}
     Let $L$ be given by an \kl{effective amalgamation system},
