@@ -15,17 +15,31 @@ RUN tlmgr update --self
 RUN tlmgr install     \
           knowledge   \
           currfile    \
-          tikz-cd     
+          tikz-cd     \
+          stmaryrd    \
+          amsthm      \
+          amsfonts    \
+          amsmath     \
+          thmtools    \
+          upgreek     \
+          standalone  \
+          booktabs    \
+          varwidth    \
+          xparse      \
+          tokcycle    \
+          hyperref    \
+          cleveref    \
+          ifthen      \
+          tikz        \
+          microtype 
 RUN tlmgr update biber biblatex
 
 # we add to pandoc/latex
 # the following binary packages
 # - make
-# - inkscape
 # - git
 # - zip
 # - tar (gnutar)
-
 RUN apk add --no-cache \
     make               \
     git                \
