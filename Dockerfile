@@ -28,6 +28,8 @@ RUN tlmgr install     \
           hyperref    \
           cleveref    \
           was         \
+          svn-prov    \
+          gincltex    \
           l3packages  \
           microtype
 RUN tlmgr update biber biblatex
