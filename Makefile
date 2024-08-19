@@ -39,7 +39,7 @@ $(PAPER).arxiv.pdf: $(PAPER).arxiv.tar.gz
                     latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" $(PAPER).arxiv.tex
 
 # If someone really wants to generate the metadata file
-src/metadata.tex: paper-meta.yaml
+src/metadata.tex: paper-meta.yaml templates/plain-metadata.tex
 	echo "" | pandoc -t latex \
 		   --template=templates/plain-metadata.tex \
 		   -o src/metadata.tex \
