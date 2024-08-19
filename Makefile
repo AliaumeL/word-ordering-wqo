@@ -1,10 +1,11 @@
 .PHONY: clean
 
 PAPER=wqo-on-words
-SRC=src/*.tex        \
-	lib/*.tex        \
-	papers.bib       \
-	knowledges.kl    \
+SRC=src/*.tex             \
+	lib/*.tex             \
+	papers.bib            \
+	knowledges.kl         \
+	ensps-colorscheme.sty \
 	wqo-on-words.tex
 
 
@@ -24,6 +25,7 @@ $(PAPER).arxiv.tex: $(PAPER).pdf
 $(PAPER).arxiv.tar.gz: $(PAPER).arxiv.tex
 	tar -czf $(PAPER).arxiv.tar.gz \
              $(PAPER).arxiv.tex \
+			 ensps-colorscheme.sty \
              LICENSE
 
 # Use a docker container to compile the arXiv version
@@ -32,11 +34,12 @@ $(PAPER).arxiv.pdf: $(PAPER).arxiv.tar.gz
 	mkdir -p /tmp/$(PAPER).arxiv
 	# extract archive
 	tar -xzf $(PAPER).arxiv.tar.gz -C /tmp/$(PAPER).arxiv
-	# compile in a docker container
-	docker run --rm -v /tmp/$(PAPER).arxiv:/workdir \
-                    -w /workdir \
-                    texlive/texlive \
-                    latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" $(PAPER).arxiv.tex
+	# compile in the temporary directory
+	cd  /tmp/$(PAPER).arxiv && latexmk -pdf $(PAPER).arxiv.tex
+	# extract the pdf 
+	cp /tmp/$(PAPER).arxiv/$(PAPER).arxiv.pdf ./
+	# delete the temporary directory
+	rm -rf /tmp/$(PAPER).arxiv/
 
 # If someone really wants to generate the metadata file
 src/metadata.tex: paper-meta.yaml templates/plain-metadata.tex
