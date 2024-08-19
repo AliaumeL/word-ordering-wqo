@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Builds the latest pdf
         run: |
-          git config --global --add safe.directory /__w/${{ github.actor}/${{ github.repository }}
+          git config --global --add safe.directory /__w/${{ github.actor}}/${{ github.repository }}
           make src/metadata.tex
           make wqo-on-words.pdf
       - name: Builds the zip archive
