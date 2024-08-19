@@ -57,3 +57,16 @@ RUN apk add --no-cache \
     git                \
     zip                \
     tar
+
+RUN apk add --no-cache \
+    pip3 \
+    python3 \
+
+# we install the python packages
+# pytest
+# matplotlib
+
+RUN pip3 install --break-system-packages \
+    pytest \
+    matplotlib \
+    pytest-cov

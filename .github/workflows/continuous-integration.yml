@@ -10,6 +10,21 @@ permissions:
   contents: read
 
 jobs:
+  test-code:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/aliaumel/word-ordering-wqo:main
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Run tests
+        run: |
+          make test
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-results
+          path: junit/test-results.xml
   build-pdfs:
     runs-on: ubuntu-latest
     container:

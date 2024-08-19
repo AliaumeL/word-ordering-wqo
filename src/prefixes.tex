@@ -22,6 +22,17 @@ In order to characterize the existence of infinite \kl{antichains} for the
 \kl{prefix relation}, we will introduce the following tree construction that
 will be useful in the rest of this section.
 
+\begin{figure}
+    \centering
+    \includestandalone{src/antichain-branch-standalone}
+    \caption{An \kl{antichain branch} for the language $a^* b$,
+        represented in the \kl{tree of prefixes} over the alphabet $\set{a,b}$.
+        The branch is represented with dashed lines in turquoise, and the
+        \kl{antichain} is represented in dotted lines in blood-red.
+    }
+    \label{antichain-branch:fig}
+\end{figure}
+
 \begin{definition}
     The \intro{tree of prefixes} over a finite alphabet $\Sigma$
     is the infinite tree $T$ whose nodes are the words of $\Sigma^*$, and
@@ -119,6 +130,17 @@ which is defined as $\upset[\preceq]{S} \defined \setof{y \in \Sigma^*}{
 write $\upset{w}$ and $\dwset{w}$ for the upwards and downwards closure of a
 single element $w$, omitting the ordering relation when it is clear from the
 context.
+
+\begin{figure}
+    \centering
+    TODO.
+    \caption{Illustrating the construction of 
+        \cref{prefixes:thm} consisting in taking the words
+        that lead to prefix-incomparable elements in $S$,
+        and then the upwards closure of the maximal such elements.
+    }
+    \label{prefixes-theorem:fig}
+\end{figure}
 
 \begin{theorem}
     \label{prefixes:thm}

@@ -27,6 +27,21 @@ if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
 \ldots, |v|\}$ such that $u_i \preceq v_{f(i)}$ for all $i \in \{1, \ldots,
 |u|\}$.
 
+\begin{figure}
+    \centering
+    \includestandalone{src/prefix-embedding-standalone}
+
+    \includestandalone{src/infix-embedding-standalone}
+
+    \includestandalone{src/subword-embedding-standalone}
+    \caption{A simple representation of the \kl{subword relation},
+        \kl{prefix relation},
+        and \kl{infix relation},
+        on the alphabet $\set{a,b}$ for words of
+        length at most $3$.}
+    \label{word-embeddings:fig}
+\end{figure}
+
 \AP However, there are many other natural orderings on words that could be
 considered in the context of \kl{well-quasi-orderings}. Let us restrict
 ourselves to a simplified case where the alphabet is finite and equipped with
@@ -48,9 +63,7 @@ that are \kl{well-quasi-ordered} with respect to the \kl{prefix relation}
 providing suitable decision procedures.
 
 
-\subparagraph{Contribution} 
-\AP
-In this paper, we focus on words over a finite
+\subparagraph{Contribution} \AP In this paper, we focus on words over a finite
 alphabet $\Sigma$, and characterize subsets $L \subseteq \Sigma^*$ that are
 \kl{well-quasi-ordered} by the \kl{prefix relation}, the \kl{suffix relation},
 and the \kl{infix relation}. Let us remark that these word orderings are all
@@ -62,7 +75,10 @@ existence of infinite \intro{antichains}, that is, sets of pairwise
 incomparable elements. In fact, a set $X$ is \kl{well-quasi-ordered} if and
 only if it is \kl{well-founded} and does not contain infinite \kl{antichains}
 \cite{KRU72}.  As a consequence, our study focuses on detecting infinite
-\kl{antichains} in languages $L \subseteq \Sigma^*$.
+\kl{antichains} in languages $L \subseteq \Sigma^*$. Remark that for the
+relations we consider (including the \kl{subword relation}), the set of all
+words of a fixed size $k$ is always an \kl{antichain}, and there are therefore
+no bound on the maximal length of an antichain. 
 
 In the case of the \kl{prefix relation}, we provide a complete characterization
 of languages $L \subseteq \Sigma^*$ that are \kl{well-quasi-ordered}, which are
