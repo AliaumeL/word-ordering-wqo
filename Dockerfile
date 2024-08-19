@@ -12,6 +12,7 @@ FROM pandoc/latex
 # using the same version as the
 # biblatex package in the texlive distribution
 RUN tlmgr update --self
+RUN tlmgr update --all
 RUN tlmgr install     \
           knowledge   \
           currfile    \
@@ -26,6 +27,11 @@ RUN tlmgr install     \
           tokcycle    \
           hyperref    \
           cleveref    \
+          upgreek     \
+          tikz        \
+          xparse      \
+          amsthm      \
+          ifthen      \
           microtype
 RUN tlmgr update biber biblatex
 
