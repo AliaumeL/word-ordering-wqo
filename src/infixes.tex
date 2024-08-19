@@ -97,6 +97,7 @@ to the book of Thomas for a comprehensive introduction to the subject
 following \cref{infix-finite-automata:thm}.
 
 \begin{theorem}[restate=infix-finite-automata:thm,label=infix-finite-automata:thm]
+    \proofref{infix-finite-automata:thm}
     Let $L \subseteq \Sigma^*$ be a language recognized by a finite automaton.
     Then $L$ is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if $L$ is
     a finite union of \kl{chains} for the \kl{infix relation}.
@@ -308,7 +309,7 @@ We are now ready to restate and prove our main theorem, proven by combining
 \cref{pumping-periods:lem} together with classical pumping arguments on finite
 state automata.
 
-\begin{proofof}{infix-finite-automata:thm}[main]
+\begin{proofof}{infix-finite-automata:thm}
     Let $w \in L$, because $Q$ is finite, there exists
     a factorization of $w$
     into words $(\prod_{i = 1}^k u_i v_i) u_{k+1}$
@@ -392,6 +393,7 @@ and more. The goal of this section is not to introduce all of these systems, or
 justify their usefulness, but to state and prove the following theorem.
 
 \begin{theorem}[label=infix-amalgamation:thm,restate=infix-amalgamation:thm]
+    \proofref{infix-amalgamation:thm}
     Let $L \subseteq \Sigma^*$ be a language recognized by an 
     \kl{amalgamation system}.
     Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
@@ -543,7 +545,111 @@ system}.
     we immediately conclude.
 \end{proof}
 
-\begin{proofof}{infix-amalgamation:thm}
+
+Let us now introduce a combinatorial lemma that explains how \kl{gap languages}
+can be pumped. Note that a single \kl{gap language} is always stable under
+concatenation, and our concern will be on a potential description of
+\emph{simultaneously} pumping different \kl{gap languages} to produce valid
+runs.
+
+\begin{lemma}
+    \label{pumping-gap-languages:lem}
+    Let $(\Sigma, R, E, \canrun)$ be an \kl{amalgamation system}, let $r \in R$
+    be a run of size $n \in \Nat$, and let $s, t \in R$ be two runs
+    with embeddings $f \in E(r,s)$ and $g \in E(r,t)$.
+    Let $\seqof{u_i}[0 \leq i \leq n]$ be the sequence of \kl{gap words}
+    for $f$, that is, $u_i =
+    \GapWord{f}{i}$ for all $0 \leq i \leq n$. Similarly, let
+    $\seqof{v_i}[0 \leq i \leq n]$ be the sequence of \kl{gap words} for $g$.
+
+    Then, for all $k \in \Nat$, and $0 < \ell < n$, the following words belong to 
+    the language of the \kl{amalgamation system}.
+    \begin{enumerate}
+        \item $(\prod_{i = 0}^{\ell - 1} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}) 
+               v_\ell u_\ell^k v_\ell
+               (\prod_{i = \ell+1}^{n} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i})$,
+        \item $(\prod_{i = 0}^{n - 1} u_i^{x_i} v_i u_i^{y_i}) 
+               v_n u_n^k$,
+        \item $u_0^k v_0 
+            (\prod_{i = 1}^{n} u_i^{x_i} v_i u_i^{y_i})$.
+    \end{enumerate}
+    Where, for all $0 \leq i \leq n$, $x_i + y_i + z_i = k$, with $z_i = 0$
+    in the two last items.
+\end{lemma}
+\begin{proof}
+    The result immediately follows from the embedding property
+    applied inductively on runs obtained by gluing 
+    $k$ times $s$ with one or two times $t$ (depending on the item number).
+\end{proof}
+
+In the upcoming proof of \cref{infix-amalgamation:thm}, we will use the notion
+of \intro{bounded language} for languages $L \subseteq \Sigma^*$ such that
+there exists words $w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots
+w_n^*$. This will be useful for us to derive the inclusion of a language $L$
+into a union of \kl{chains}. Note that we isolate this intermediate result in a
+separate theorem that could be applied beyond \kl{amalgamation systems}.
+
+\begin{theorem}
+    \label{bounded-language:thm}
+    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
+    $L$ is a \kl{well-quasi-order} when endowed with the 
+    \kl{infix relation} if and only if it is a finite union of \kl{chains}.
+\end{theorem}
+\begin{proof}
+    Let $w_1, \dots, w_n$ be such that
+    $L \subseteq w_1^* \cdots w_n^*$.
+    Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
+
+    Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
+    to $\Sigma^*$. We are interested in the intersection of the image of $w$
+    with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
+    there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
+    Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
+    $x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
+    $w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
+    \InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
+    \cup \InfPeriodChain{x} \InfPeriodChain{y}$.
+
+    Now, it may be the case that one cannot simultaneously assume that two
+    component of the vector $\vec{k}$ are unbounded. In general, given a set $S
+    \subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
+    there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
+    exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
+    $\vec{b}$ on the $S$ components, and the other components are below the
+    bound $N_0$. The language of an admissible set $S$ is the set of words
+    obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
+    ($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
+    Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
+
+    Now, admissible languages are ready to be pumped according to
+    \cref{pumping-periods:lem}. For every admissible language,
+    the size of a word that is not iterated is at most
+    $N_0 \times m$ by definition, and we conclude that:
+    \begin{equation*}
+        L \subseteq 
+        \bigcup_{x,y \in \Sigma^{\leq n}}
+        \bigcup_{u \in \Sigma^{\leq m \times N_0}}
+        \InfPeriodChain{x} u \InfPeriodChain{y}
+        \cup
+        \InfPeriodChain{x} u
+        \cup
+        u \InfPeriodChain{x}
+        \quad .
+    \end{equation*}
+\end{proof}
+
+To conclude this section and prove our main \cref{infix-amalgamation:thm}, it
+suffices to demonstrate that languages recognized by \kl{amalgamation systems}
+that are \kl{well-quasi-ordered} for the \kl{infix relation} are \kl{bounded
+languages}.
+
+\begin{lemma}
+    \label{infix-amalgamation-bounded:lem}
+    Let $L \subseteq \Sigma^*$ be a language recognized
+    by an \kl{amalgamation system} that is \kl{well-quasi-ordered}
+    for the \kl{infix relation}. Then $L$ is a \kl{bounded language}.
+\end{lemma}
+\begin{proof}
     Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
     and obtained by an \kl{amalgamation system}
     $(\Sigma, R, E, \canrun)$.
@@ -564,40 +670,40 @@ system}.
 
     Let $u$ and $v$ be two words in the \kl{gap language}
     $\GapLanguage{r}{\ell}$ for some $r \in M$ and $0 < \ell <
-    \card{\canrun(r)}$. We have corresponding runs $s_1, s_2 \in R$ and
-    embeddings $f_1 \in E(r,s_1)$ and $f_2 \in E(r,s_2)$ such that
-    $\GapWord{f_1}{\ell} = u$ and $\GapWord{f_2}{\ell} = v$. Using the
-    amalgamation property, we can inductively construct runs $r_k \in R$ and
-    embeddings $f_k \in E(r,s_k)$ such that $\GapWord{f_k}{\ell} = u v^k u$,
-    and $\GapWord{f_k}{i}$ is obtained by concatenating in some order two
-    occurrences of $\GapWord{f_1}{i}$ and $k$ occurrences of
-    $\GapWord{f_2}{i}$. 
-    This means that $\canrun(r_i)$ has the shape
+    \card{\canrun(r)} \defined n$. One can apply \cref{pumping-gap-languages:lem}
+    to conclude that  for all $k \geq 1$,
     \begin{equation*}
-        v_0^{x_1} u_0 v_0^{x_2} u_0 v_0^{x_3} \canrun(r_i)_1 
-        v_1^{x_4} u_1 v_1^{x_5} u_1 v_1^{x_6} \canrun(r_i)_2 
-        \cdots
-        v_{\ell}^{x_k} u_{\ell}
-        v_{\ell}^{x_{k+1}}  u_{\ell}
-        v_{\ell}^{x_{k+2}}
-        \canrun(r_i)_{\ell}
-        u v^i u
-        \canrun(r_i)_{\ell+1}
-        \cdots
-        \quad .
+       \left(\prod_{i = 0}^{\ell - 1} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}\right) 
+       v u^k v
+       \left(\prod_{i = \ell+1}^{n} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}\right)
+       \in 
+       L
     \end{equation*}
+    Where $x_i + y_i + z_i = k$ for all $0 \leq i \leq n$
+    Let us assume without loss of generality that the sequence
+    $\seqof{(x_i, y_i, n_i)}[i \geq 1]$ is pointwise increasing,
+    and even increasing coordinate wise. This is possible because
+    at least one of the coordinates tends to $+\infty$ and in the case
+    of a variable that is bounded, one can extract the sequence to
+    simply not use this variable.
 
-    Now, leveraging \cref{pumping-periods:lem}, we get that $u v^k u$ is an
-    infix of some $x^p$ where $x$ has size smaller or equal than $u$ and $v$.
-    This proves  that $u$ and $v$ are comparable for the prefix, infix, and
-    suffix relations. In particular, we have proven that $\GapLanguage{r}{i}$
-    is bounded, because of \cite[Lemma 4.1]{ASZZ24}, when $0 < i <
-    \card{\canrun(r)}$.
+    Now, leveraging \cref{pumping-periods:lem}, we get that for infinitely many
+    $k \geq 1$, $u v^k u$ is an infix of some $x^p$ where $x$ has size smaller
+    or equal than $u$ and $v$. This proves  that $u$ and $v$ are comparable for
+    the prefix, infix, and suffix relations. In particular, we have can
+    conclude that $\GapLanguage{r}{i}$ is a \kl{bounded language}, because of
+    \cite[Lemma 4.1]{ASZZ24}, when $0 < i < \card{\canrun(r)}$. The proof goes
+    on similarly for proving that $\GapLanguage{r}{0}$ and $\GapLanguage{r}{n}$
+    are \kl{bounded languages}, using the other items of
+    \cref{pumping-gap-languages:lem}.
 
-    For the edge cases, we do a very similar construction. For $i = 0$, we let
-    $\canrun(r_i) = v^k u \canrun(r_1) \dots$, we conclude similarly. For $i =
-    \card{\canrun(r)}$, we let $\canrun(r_i) = \dots
-    \canrun(r)_{\card{\canrun(r) - 1}} u v^k$.
+    Because \kl{bounded languages} are stable under concatenation and finite
+    unions, we conclude that $L$ itself must be a \kl{bounded language}.
+\end{proof}
+
+\begin{proofof}{infix-amalgamation:thm}
+    We first apply \cref{infix-amalgamation-bounded:lem},
+    and conclude with \cref{bounded-language:thm}.
 \end{proofof}
 
 The abstract definition of \kl{amalgamation system} can be enriched by
