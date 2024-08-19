@@ -27,11 +27,8 @@ RUN tlmgr install     \
           tokcycle    \
           hyperref    \
           cleveref    \
-          upgreek     \
-          tikz        \
-          xparse      \
-          amsthm      \
-          ifthen      \
+          was         \
+          l3packages  \
           microtype
 RUN tlmgr update biber biblatex
 
