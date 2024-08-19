@@ -6,6 +6,7 @@ SRC=src/*.tex             \
 	papers.bib            \
 	knowledges.kl         \
 	ensps-colorscheme.sty \
+	plainurl.bst		  \
 	wqo-on-words.tex
 
 
@@ -24,7 +25,8 @@ $(PAPER).arxiv.tex: $(PAPER).pdf
 # Create an archive with the single file tex document and the license
 $(PAPER).arxiv.tar.gz: $(PAPER).arxiv.tex
 	tar -czf $(PAPER).arxiv.tar.gz \
-             $(PAPER).arxiv.tex \
+             $(PAPER).arxiv.tex    \
+			 plainurl.bst          \
 			 ensps-colorscheme.sty \
              LICENSE
 
