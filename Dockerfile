@@ -17,21 +17,16 @@ RUN tlmgr install     \
           currfile    \
           tikz-cd     \
           stmaryrd    \
-          amsthm      \
           amsfonts    \
           amsmath     \
           thmtools    \
-          upgreek     \
           standalone  \
           booktabs    \
           varwidth    \
-          xparse      \
           tokcycle    \
           hyperref    \
           cleveref    \
-          ifthen      \
-          tikz        \
-          microtype 
+          microtype
 RUN tlmgr update biber biblatex
 
 # we add to pandoc/latex
