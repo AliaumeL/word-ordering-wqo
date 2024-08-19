@@ -42,6 +42,7 @@ $(PAPER).arxiv.pdf: $(PAPER).arxiv.tar.gz
 src/metadata.tex: paper-meta.yaml templates/plain-metadata.tex
 	echo "" | pandoc -t latex \
 		   --template=templates/plain-metadata.tex \
+		   --lua-filter=templates/git-meta.lua \
 		   -o src/metadata.tex \
 		   --metadata-file=paper-meta.yaml
 

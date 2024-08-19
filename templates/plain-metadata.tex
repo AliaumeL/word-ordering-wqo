@@ -13,7 +13,11 @@
 }
 
 $if(date)$
-\date{$date$}
+\date{$date$$if(git-meta)$ --- $git-meta.commit$$endif$}
+$else$
+$if(git-meta)$
+\date{$git-meta.date$ -- $git-meta.commit$ ($git-meta.branch$) at $git-meta.origin$}
+$endif$
 $endif$
 
 \newcommand{\makeabstract}{
