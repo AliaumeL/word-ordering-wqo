@@ -40,6 +40,7 @@
  | embeds into
  | embedding
  | embeddings
+ | embedded
 
 \knowledge{notion}
  | subword relation
@@ -117,4 +118,11 @@
 
 \knowledge{notion}
  | gap word
+ | gap words
+\knowledge{notion}
  | gap language
+ | gap languages
+
+\knowledge{notion}
+ | bounded language
+ | bounded languages
