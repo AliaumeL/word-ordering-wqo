@@ -15,6 +15,8 @@ RUN tlmgr update --self
 RUN tlmgr update --all
 RUN tlmgr install     \
           knowledge   \
+          geometry    \
+          xpatch      \
           currfile    \
           tikz-cd     \
           stmaryrd    \
