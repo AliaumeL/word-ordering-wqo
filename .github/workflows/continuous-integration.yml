@@ -13,7 +13,7 @@ jobs:
   build-pdfs:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/${{ github.actor }}/${{ github.repository }}:main
+      image: ghcr.io/aliaumel/word-ordering-wqo:main
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
