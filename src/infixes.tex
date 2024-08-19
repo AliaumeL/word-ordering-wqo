@@ -715,3 +715,41 @@ this setting, we conjecture that the following decidability result holds.
     then it is decidable whether $L$ 
     is \kl{well-quasi-ordered} by the \kl{infix relation}.
 \end{conjecture}
+
+
+Let us conclude this section by fully characterizing what are
+actually the chains for the \kl{infix} relation, without any 
+regularity assumption.
+
+\begin{lemma}
+    \label{chains-infix:lem}
+    Let $L$ be a \kl{chain} for the \kl{infix relation}. Then, there exists
+    a \kl{chain} $P$ for the \kl{prefix relation} and a \kl{chain}
+    $S$ for the \kl{suffix relation} such that $L \subseteq SP$.
+\end{lemma}
+\begin{proof}
+    Because $L$ is a chain,
+    we have an enumeration $L = \seqof{w_n}$,
+    where $s_n \defined \card{w_n}$ is increasing, 
+    and functions
+    $f_{i,j} \colon \set{1, \dots, s_i} \to \set{1, \dots s_{j}}$
+    satisfying
+    that $f_{j,k} \circ f_{i, j} = f_{i, k}$,
+    $f_{i,i} = \mathrm{id}$, and
+    $w_i = w_j[f_{i,j}(1):f_{i,j}(s_i)]$ for all $i \leq j$.
+    Now, we can build the infinite word $w_\infty$ indexed by $\Zel$, and
+    embeddings $f_{i, \infty} \colon \set{1, \dots, s_i} \to \Rel$ such that
+    $w_i = w_\infty[f_{i, \infty}(1):f_{i, \infty}(s_i)]$, and $f_{i, \infty}
+    \circ f_{j, i} = f_{j, \infty}$ for all $i \leq j$.
+
+    Let us define $w_l$ as the (infinite) word $w_\infty[-\infty: f_{0,
+    \infty}(s_0)]$ and $w_r$ as the (infinite) word $w_\infty[f_{0,
+    \infty}(s_0): +\infty]$. It is now clear that every word $w_i$ can be
+    written as $w_i = w_{i,l} w_{i,r}$, where $w_{i,l}$ is a prefix of $w_r$
+    and $w_{i,r}$ is a suffix of $w_l$. Furthermore, the functions $f_{i,
+    \infty}$ can be used to notice that $\seqof{w_{i,r}}$ is a \kl{chain} for
+    the \kl{prefix relation}, and $\seqof{w_{i,l}}$ is a \kl{chain} for the
+    \kl{suffix relation}, which allows us to conclude.
+\end{proof}
+
+
