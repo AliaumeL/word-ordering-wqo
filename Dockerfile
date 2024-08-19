@@ -41,10 +41,14 @@ RUN tlmgr install     \
           l3packages  \
           microtype
 RUN tlmgr update biber biblatex
+
+RUN fc-cache -fv
+RUN updmap --sys --force
+RUN luaotfload-tool -u -v
+
 # Because latex does not update fonts apparently?
 # https://www.tug.org/texlive/doc/updmap.html
 # https://tex.stackexchange.com/questions/10706/pdftex-error-font-expansion-auto-expansion-is-only-possible-with-scalable
-RUN updmap -sys
 
 # we add to pandoc/latex
 # the following binary packages
