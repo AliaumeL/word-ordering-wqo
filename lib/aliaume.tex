@@ -26,7 +26,7 @@
         \def\isInsideRestatedTheorem{1}
         \csname #1\endcsname*
     \fi
-    \begin{proof}[Proof of {\cref{#1}} page {\pageref{#1}}]
+    \begin{proof}[Proof of {\cref{#1}} as stated on page {\pageref{#1}}]
         \phantomsection
         \label{#1:proof}
 }{
@@ -34,9 +34,8 @@
         % then printout a "backlink"
         % and otherwise do nothing
         \ifthenelse{\equal{#2}{appendix}}{
-
         % Some link to go back to the theorem
-        \noindent\hyperref[#1]{$\triangleright$ Go back to \cref{#1} on page \pageref{#1}}
+        \marginpar{\vspace{-2em}\texttt{\small{\hyperref[#1]{$\triangleright$ Back to p.\pageref{#1}}}}}
         }{}
     \end{proof}
 }
@@ -52,7 +51,7 @@
         % if yes, we do not print anything
         \ifdefined\isInsideRestatedTheorem
         \else
-        \hfill\hyperref[#1:proof]{\textsf{(Go to proof p.\pageref{#1:proof})}}
+            \marginpar{\vspace{0.6em}\texttt{\small{\hyperref[#1:proof]{$\triangleright$ Proven p.\pageref{#1:proof}}}}}
         \fi
     }
 }
