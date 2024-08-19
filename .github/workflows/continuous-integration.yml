@@ -1,5 +1,9 @@
 name: Continuous Integration
 on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
   workflow_call:
 
 permissions:
