@@ -30,6 +30,7 @@ RUN tlmgr install     \
           hyperref    \
           cleveref    \
           was         \
+          tikzmark    \
           svn-prov    \
           gincltex    \
           l3packages  \
