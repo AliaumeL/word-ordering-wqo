@@ -2,6 +2,11 @@
 # it is an alpine distribution too
 FROM pandoc/latex
 
+# because texlive is *broken*
+# we have to install everything 
+RUN apk add --no-cache \
+    texlive-full
+
 # Install the texlive packages needed
 # for the build
 # - knowledge
