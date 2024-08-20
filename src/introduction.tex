@@ -29,16 +29,28 @@ if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
 
 \begin{figure}
     \centering
-    \includestandalone{src/prefix-embedding-standalone}
-
-    \includestandalone{src/infix-embedding-standalone}
-
-    \includestandalone{src/subword-embedding-standalone}
+    \begin{tabular}{p{3cm}p{8cm}}
+    Prefix Relation
+    &
+    \includestandalone[width=\linewidth]{fig/prefix-embedding-standalone}
+    \\
+    Infix relation
+    &
+    \includestandalone[width=\linewidth]{fig/infix-embedding-standalone}
+    \\
+    Subword relation
+    &
+    \includestandalone[width=\linewidth]{fig/subword-embedding-standalone}
+    \end{tabular}
     \caption{A simple representation of the \kl{subword relation},
         \kl{prefix relation},
         and \kl{infix relation},
         on the alphabet $\set{a,b}$ for words of
-        length at most $3$.}
+        length at most $3$. The figures are Hasse Diagrams,
+        representing the successor relation of the order.
+        Furthermore, we highlight in red relations that are added
+        when moving from the prefix relation to the infix one,
+        and to the infix relation to the subword one.}
     \label{word-embeddings:fig}
 \end{figure}
 

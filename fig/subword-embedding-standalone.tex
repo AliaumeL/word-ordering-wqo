@@ -6,6 +6,7 @@
 %  using the `standalone` class/package.
 \documentclass[tikz]{standalone}
 \usepackage{tikz}
+\usepackage{ensps-colorscheme}
 \begin{document}
 \begin{tikzpicture}[
         isWord/.style={rectangle,inner sep=0mm},
@@ -14,6 +15,10 @@
         antichain/.style={A2},
         branchEdge/.style={A5,dashed},
         outEdge/.style={dotted,B2},
+        isInfixEnc/.style={},
+        isRealWord/.style={A4,opacity=0.2},
+        isRealEmbedding/.style={A4,opacity=0.2},
+        isNewEdge/.style={B2},
         ]
 
         
@@ -42,7 +47,7 @@
 \draw[isEmbedding] (b) -- (bb);
 \draw[isEmbedding] (aa) -- (aaa);
 \draw[isEmbedding] (aa) -- (aab);
-\draw[isEmbedding] (aa) -- (aba);
+\draw[isEmbedding,isNewEdge] (aa) -- (aba);
 \draw[isEmbedding] (aa) -- (baa);
 \draw[isEmbedding] (ab) -- (aab);
 \draw[isEmbedding] (ab) -- (aba);
@@ -53,7 +58,7 @@
 \draw[isEmbedding] (ba) -- (bab);
 \draw[isEmbedding] (ba) -- (bba);
 \draw[isEmbedding] (bb) -- (abb);
-\draw[isEmbedding] (bb) -- (bab);
+\draw[isEmbedding,isNewEdge] (bb) -- (bab);
 \draw[isEmbedding] (bb) -- (bba);
 \draw[isEmbedding] (bb) -- (bbb);
 

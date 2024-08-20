@@ -9,39 +9,59 @@ SRC=src/*.tex             \
 	plainurl.bst		  \
 	wqo-on-words.tex
 
-FIGURES=src/subword-embedding-standalone.tex \
-		src/infix-embedding-standalone.tex   \
-		src/prefix-embedding-standalone.tex  \
-		src/antichain-branch-standalone.tex  \
+FIGURES=fig/subword-embedding-standalone.tex \
+		fig/infix-embedding-standalone.tex   \
+		fig/prefix-embedding-standalone.tex  \
+		fig/antichain-branch-standalone.tex  \
+		fig/infix-encoding-standalone.tex
+
 
 # Default target: create the pdf file
 $(PAPER).pdf: $(SRC) $(FIGURES)
 	latexmk -pdf -pdflatex="pdflatex -interaction=nonstopmode" $(PAPER).tex
 
-src/antichain-branch-standalone.tex: src/word-embeddings-figure.py
+
+# How to create standalone versions of the pictures
+fig/%.pdf: fig/%.tex
+	cp $^ $(notdir $^)
+	pdflatex $(notdir $^)
+	mv $(notdir $@) $@
+
+
+# Specific parameters of the python program yield
+# various standalone tikz figures
+fig/antichain-branch-standalone.tex: src/word-embeddings-figure.py
 	python3 src/word-embeddings-figure.py \
 			--output=standalone \
 			--antichain=true    \
 			--size=4 > $@
 
-src/subword-embedding-standalone.tex: src/word-embeddings-figure.py
+fig/subword-embedding-standalone.tex: src/word-embeddings-figure.py
 	python3 src/word-embeddings-figure.py \
 			--output=standalone \
+			--compare-with=infix \
 			--size=4 \
 			--relation=subword > $@
 
-src/infix-embedding-standalone.tex: src/word-embeddings-figure.py
+fig/infix-embedding-standalone.tex: src/word-embeddings-figure.py
 	python3 src/word-embeddings-figure.py \
 			--output=standalone \
+			--compare-with=prefix \
 			--size=4 \
 			--relation=infix > $@
 
-src/prefix-embedding-standalone.tex: src/word-embeddings-figure.py
+fig/prefix-embedding-standalone.tex: src/word-embeddings-figure.py
 	python3 src/word-embeddings-figure.py \
 			--output=standalone \
 			--size=4 \
 			--relation=prefix > $@
 
+fig/infix-encoding-standalone.tex: src/word-embeddings-figure.py
+	python3 src/word-embeddings-figure.py \
+			--output=standalone \
+			--size=3 \
+			--relation=subword \
+			--infix-enc=true > $@
 
 
 # Create a single file tex document for arXiv

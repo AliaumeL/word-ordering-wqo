@@ -64,7 +64,7 @@ RUN apk add --no-cache \
 
 RUN apk add --no-cache \
     pip3 \
-    python3 \
+    python3
 
 # we install the python packages
 # pytest
