@@ -484,22 +484,28 @@ $v$, there exists a unique decomposition $v = \GapWord{f}{0} u_1 \GapWord{f}{1}
 \cdots \GapWord{f}{k-1} u_k \GapWord{f}{k}$ where $\GapWord{f}{i} =
 v[f(i)+1:f(i+1)-1]$ for all $1 \leq i \leq k-1$, $\GapWord{f}{k} =
 v[f(k)+1:\card{v}]$, and $\GapWord{f}{0}   = v[1: f(1)-1]$. We say that
-$\intro*\GapWord{f}{i}$ is the $i$-th \intro{gap word} of $f$. These \kl{gap
-words} will be useful to describe how and where runs of a system (described by
-words) can be combined.
+$\intro*\GapWord{f}{i}$ is the $i$-th \intro{gap word} of $f$. We encourage the
+reader to look at \cref{gap-word-embedding:fig} to see an example of the
+\kl{gap words} resulting from a \kl{subword embedding} between two words. These
+\kl{gap words} will be useful to describe how and where runs of a system
+(described by words) can be combined.
 
 \begin{figure}
     \centering
-    TODO
-    \caption{The gap words of an embedding between two 
-    finite words}
+    \includestandalone[width=\linewidth]{fig/gap-word-embedding-standalone}
+    \caption{The \kl{gap words} resulting from a \kl{subword embedding} between two 
+    finite words.}
     \label{gap-word-embedding:fig}
 \end{figure}
 
 \begin{figure}
     \centering
-    TODO.
-    \caption{Amalgamation of two runs on a picture}
+    \includestandalone[width=\linewidth]{fig/run-amalgamation-standalone}
+    \caption{We illustrate how 
+        embeddings $f$ and $g$ between runs of an
+        \kl{amalgamation system} can be glued
+        together, seen on their \kl{canonical decomposition}.
+    }
     \label{amalgamation-runs:fig}
 \end{figure}
 

@@ -1,0 +1,127 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{../ensps-colorscheme}
+\input{../lib/packages}
+\input{../lib/aliaume}
+\input{../lib/maths}
+
+
+\begin{document}
+\begin{tikzpicture}[
+        embedding/.style={
+            thick, ->, >=stealth,
+            A2
+        },
+        gapWord/.style={
+            fill=B5bg,
+        },
+        startWord/.style={
+            fill=D4bg,
+        },
+        embF/.style={
+            A1
+        },
+        embG/.style={
+            A2
+        },
+        gapF/.style={
+            fill=A1bg,
+        },
+        gapG/.style={
+            fill=A2bg,
+        },
+        ]
+
+    % The word "u"
+    \node (u) at (2,-0.5) {$u$};
+    \draw[startWord] (0,-0.1) rectangle (4,-0.2);
+    \draw (0,0) rectangle (4,1);
+    \foreach[count=\xi] \x in {0,1,2,3} {
+        \pgfmathsetmacro{\xp}{int(\x + 1)}
+        \draw[startWord] (\x,0) rectangle (\xp,1);
+        \node (u\xi) at (\x+0.5,0.5) {$u_{\xi}$};
+    }
+
+    \begin{scope}[yshift=6cm,xshift=-15cm]
+        % The word "v"
+        \draw (0,0) rectangle (15,1);
+        \foreach[count=\xi] \x in {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14} {
+            \pgfmathsetmacro{\xp}{int(\x + 1)}
+            \draw (\x,0) rectangle (\xp,1);
+            \node (v\xi) at (\x+0.5,0.5) {$v_{\xi}$};
+        }
+        \foreach \xi/\yi in {1/3,2/6,3/9,4/13} {
+            \draw[startWord] (\yi,0) rectangle ({\yi - 1},1);
+            \node (uv\xi) at ({\yi - 0.5},0.5) {$u_{\xi}$};
+            \draw[embedding,embF] (u\xi) to[in=-90,out=90] (v\yi);
+        }
+        \foreach[count=\count] \xi/\size in {1/2,4/2,7/2,10/3,14/2} {
+            \draw[gapWord,gapF] ({\xi - 1 + \size},-0.1) rectangle ({\xi - 1},-0.2);
+            \node (G\xi) at ({\xi - 1 + 0.5*\size},-0.5) {$\GapWord{f}{\count}$};
+        }
+
+        \node (v) at (-0.5,0.5) {$v$};
+
+    \end{scope}
+
+    \node[embedding,embF] (f) at (0,1.5) {$f$};
+    \node[embedding,embG] (g) at (4,1.5) {$g$};
+    \node[embedding,embG] (h) at (18,10) {$h$};
+    \node[embedding,embF] (k) at (-13,10) {$k$};
+
+    \begin{scope}[yshift=6cm,xshift=5cm]
+        % The word "w"
+        \draw (0,0) rectangle (15,1);
+        \foreach[count=\xi] \x in {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14} {
+            \pgfmathsetmacro{\xp}{int(\x + 1)}
+            \draw (\x,0) rectangle (\xp,1);
+            \node (w\xi) at (\x+0.5,0.5) {$w_{\xi}$};
+        }
+        \foreach \xi/\yi in {1/3,2/6,3/9,4/13} {
+            \draw[startWord] (\yi,0) rectangle ({\yi - 1},1);
+            \node (uw\xi) at ({\yi - 0.5},0.5) {$u_{\xi}$};
+            \draw[embedding,embG] (u\xi) to[in=-90,out=90] (w\yi);
+        }
+        \foreach[count=\count] \xi/\size in {1/2,4/2,7/2,10/3,14/2} {
+            \draw[gapWord,gapG] ({\xi - 1 + \size},-0.1) rectangle ({\xi - 1},-0.2);
+            \node (G\xi) at ({\xi - 1 + 0.5*\size},-0.5) {$\GapWord{g}{\count}$};
+        }
+        \node (w) at (15.5,0.5) {$w$};
+    \end{scope}
+
+    \begin{scope}[yshift=13cm,xshift=5cm]
+        \draw (-15,0) rectangle (11,1);
+        \foreach[count=\xi] \x in {-15,...,10} {
+            \pgfmathsetmacro{\xp}{int(\x + 1)}
+            \draw (\x,0) rectangle (\xp,1);
+            \node (z\xi) at (\x+0.5,0.5) {$z_{\xi}$};
+        }
+        \foreach[count=\count] \xi in {5,10,15,22} {
+            \draw[startWord] ({\xi - 15},1) rectangle ({\xi - 16},0);
+            \node (vwz\xi) at ({\xi - 15.5},0.5) {$u_{\count}$};
+        }
+        \foreach[count=\count] \xi/\size in {3/2,6/2,11/2,19/3,23/2} {
+            \draw[gapWord,gapG] ({\xi - 16 + \size},1.1) rectangle ({\xi - 16},1.2);
+            \node (G\xi) at ({\xi - 16 + 0.5*\size},1.5) {$\GapWord{g}{\count}$};
+        }
+        \foreach[count=\count] \xi/\size in {1/2,8/2,13/2,16/3,25/2} {
+            \draw[gapWord,gapF] ({\xi - 16 + \size},1.1) rectangle ({\xi - 16},1.2);
+            \node (G\xi) at ({\xi - 16 + 0.5*\size},1.5) {$\GapWord{f}{\count}$};
+        }
+    \end{scope}
+
+    \foreach \xi/\yi in 
+    {1/1,2/2,3/5,4/8,5/9,6/10,7/13,8/14,9/15,10/16,11/17,12/18,13/22,14/25,15/26} {
+        \draw[embedding,embF] (v\xi) to[in=-90,out=90] (z\yi);
+    }
+    \foreach \xi/\yi in 
+    {1/3,2/4,3/5,4/6,5/7,6/10,7/11,8/12,9/15,10/19,11/20,12/21,13/22,14/23,15/24} {
+        \draw[embedding,embG] (w\xi) to[in=-90,out=90] (z\yi);
+    }
+
+
+
+
+\end{tikzpicture}
+\end{document}
+        
