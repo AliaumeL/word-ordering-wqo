@@ -17,9 +17,6 @@ into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
 
-\marginpar{TODO: change the encoding to take the maximal elements of the
-downwards closure.}
-
 \begin{theorem}
     \label{infix-embedding:thm}
     Let $(X, \preceq)$ be a \kl{partially ordered} set,
@@ -504,7 +501,7 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
     \caption{We illustrate how 
         embeddings $f$ and $g$ between runs of an
         \kl{amalgamation system} can be glued
-        together, seen on their \kl{canonical decomposition}.
+        together, seen on their canonical decomposition.
     }
     \label{amalgamation-runs:fig}
 \end{figure}
@@ -550,6 +547,8 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
             for every $0 \leq j \leq n$,
             and
             $\GapWord{h \circ f}{i_0} = \GapWord{f}{i_0} \GapWord{g}{i_0}$.
+            We refer to \cref{amalgamation-runs:fig} for an illustration 
+            of this property.
     \end{enumerate}
 
     The \intro{amalgamation language} of such a system

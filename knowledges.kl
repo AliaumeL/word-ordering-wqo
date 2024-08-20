@@ -13,6 +13,7 @@
  | well-quasi-orders
 \knowledge{notion}
  | partial ordering
+ | partial order
  | partially ordered
 \knowledge{notion}
  | well-founded
