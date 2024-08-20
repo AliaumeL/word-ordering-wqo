@@ -360,7 +360,7 @@ def test_compress_word():
     assert compress_word("caabbc") == "c{a^2}{b^2}c"
 
 def test_infix_encoding():
-    nodes, edges = generate_figure(4, subword)
+    nodes, edges = generate_figure(6, subword)
     nodes, edges = encode_in_infix(nodes, edges)
 
     for n in nodes.values():

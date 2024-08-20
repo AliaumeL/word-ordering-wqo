@@ -17,6 +17,9 @@ into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
 
+\marginpar{TODO: change the encoding to take the maximal elements of the
+downwards closure.}
+
 \begin{theorem}
     \label{infix-embedding:thm}
     Let $(X, \preceq)$ be a \kl{partially ordered} set,
@@ -92,9 +95,50 @@ y$ and $y \preceq x$ implies $x = y$.
     \caption{Representation of the \kl{subword relation} for $\set{a,b}^*$
         inside the \kl{infix relation} for $\set{a,b,c}^*$
         using the encoding of \cref{infix-embedding:thm}, restricted to words
-        of length at most $3$.}
+        of length at most $3$. To obtain smaller words,
+        we replaced $D_i$ by $\max D_i$ in this construction.
+    }
     \label{infix-embedding:fig}
 \end{figure}
+
+
+The encoding using three distinct letters is clearer to use and to
+illustrate, but it is not surprising that one can encode a three
+letter alphabet into a two letter one, immediately
+leading to the following \cref{infix-embedding-binary:cor}.
+
+\begin{corollary}
+    \label{infix-embedding-binary:cor}
+    Let $(X, \preceq)$ be a \kl{partially ordered} set,
+    and $\Sigma \defined \set{a,b}$.
+    Then the following are equivalent:
+    \begin{enumerate}
+        \item \label{infix-embedding-embeds:item} 
+            $X$ \kl{embeds into} $(\Sigma^*, \infleq)$,
+        \item \label{infix-embedding-count:item}
+            $X$ is countable, and for every $x \in X$,
+            its \kl{downwards closure}
+            $\dwset[\preceq]{x}$ is finite.
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    Let us construct an \kl{order embedding} from 
+    $(\set{a,b,c}^*, \infleq)$ to $(\set{0,1}, \infleq)$.
+    To that end, consider
+    the morphism $\mu$ that maps $a$ to $101$, $b$ to $1001$
+    and $c$ to $10001$.
+    Assume that $u \infleq v$ in $\set{a,b,c}^*$,
+    then $\mu(u) \infleq \mu(v)$ because $\mu$ is a morphism.
+    Conversely, assume that $\mu(u) \infleq \mu(v)$.
+    That, is, there exists an \kl{infix} $w$ of $\mu(v)$
+    such that $\mu(u) = w$.
+    Because $\mu(u)$ starts with $10$ and ends with $01$, so does
+    $w$. In particular, the word $w$ is compatible with $\mu$
+    in the sense that $w = \mu(s)$ for some $s \infleq v$.
+    Because the map $\mu$ is injective,
+    we conclude that $\mu(s) = \mu(u)$ implies $s = u$
+    and $u \infleq v$ as expected.
+\end{proof}
 
 As a consequence of \cref{infix-embedding:thm}, we cannot replay proofs of
 \cref{prefixes:sec}, and will actually need to leverage some regularity of the

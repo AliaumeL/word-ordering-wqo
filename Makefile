@@ -13,6 +13,7 @@ FIGURES=fig/subword-embedding-standalone.tex \
 		fig/infix-embedding-standalone.tex   \
 		fig/prefix-embedding-standalone.tex  \
 		fig/antichain-branch-standalone.tex  \
+		fig/prefix-core-and-branches-standalone.tex \
 		fig/infix-encoding-standalone.tex
 
 
@@ -23,9 +24,10 @@ $(PAPER).pdf: $(SRC) $(FIGURES)
 
 # How to create standalone versions of the pictures
 fig/%.pdf: fig/%.tex
-	cp $^ $(notdir $^)
+	@cp $^ $(notdir $^)
 	pdflatex $(notdir $^)
-	mv $(notdir $@) $@
+	@mv $(notdir $@) $@
+	@rm $(notdir $^)
 
 
 # Specific parameters of the python program yield
@@ -82,15 +84,15 @@ $(PAPER).arxiv.tar.gz: $(PAPER).arxiv.tex
 # Use a docker container to compile the arXiv version
 $(PAPER).arxiv.pdf: $(PAPER).arxiv.tar.gz
 	# create temporary directory
-	mkdir -p /tmp/$(PAPER).arxiv
+	@mkdir -p /tmp/$(PAPER).arxiv
 	# extract archive
-	tar -xzf $(PAPER).arxiv.tar.gz -C /tmp/$(PAPER).arxiv
+	@tar -xzf $(PAPER).arxiv.tar.gz -C /tmp/$(PAPER).arxiv
 	# compile in the temporary directory
 	cd  /tmp/$(PAPER).arxiv && latexmk -pdf $(PAPER).arxiv.tex
 	# extract the pdf 
-	cp /tmp/$(PAPER).arxiv/$(PAPER).arxiv.pdf ./
+	@cp /tmp/$(PAPER).arxiv/$(PAPER).arxiv.pdf ./
 	# delete the temporary directory
-	rm -rf /tmp/$(PAPER).arxiv/
+	@rm -rf /tmp/$(PAPER).arxiv/
 
 # If someone really wants to generate the metadata file
 src/metadata.tex: paper-meta.yaml templates/plain-metadata.tex
