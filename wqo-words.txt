@@ -1,0 +1,27 @@
+
+
+p1: and was successfully->which has been successfully
+p3: on can
+p4: relation prove
+p5: we can be a bit more precise for the definition of antichain branch: \forall w\in B, \exists v such that wv\in L\setminus B
+p5: the word a -> the word a^k
+p6: consider w to be a maximal element
+p6: to be defined: max order type, height, width
+p7: yield o -> yield
+p10: maybe a non-example of Cor 17, where the downet of a chain is not wqo
+
+Questions/remarks:
+	1) Does Cor17 hold for amalgamation systems
+	2) What about languages which are downward closed and wqos (for the infix)? are they necessarily of the shape of Cor 14?
+	3) It is cool, but i think not an easy sell !
+
+
+rdv 29/08;
+
+	a*b* is not a chain !
+
+	1): Yes! even for bounded languages
+	2): ???
+	3): 2 possible directions:
+talk about graph embeddings + representing orders by languages(/w infix order)
+	4) what about lex order ?
