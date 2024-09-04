@@ -25,3 +25,20 @@ rdv 29/08;
 	3): 2 possible directions:
 talk about graph embeddings + representing orders by languages(/w infix order)
 	4) what about lex order ?
+
+
+work aliaume:
+
+    2) Let $F \defined \setof{ a b^n a, b a^n b }{n \in \Nat}$. Then $L =
+    \Sigma^* \setminus \upset{F}$ is a wqo for the infix order. In fact $L =
+    \setof{ \varepsilon, a^n, b^n, a^n b^k, b^n a^k }{n,k \in \Nat}$. However,
+    the language $L$ is not defined by finitely many forbidden infixes. This is
+    a counterexample to the conjecture that every wqo language for the infix
+    order is defined by finitely many forbidden infixes. However, this language
+    remains *regular*, and is also of the correct form (Corollary 14).
+    
+    4) It looks like a language L over {a,b} is wqo for lex-order iff it is included in the
+       language a^{<= k_1} b* a^{<= k_2} b* ... 
+       where (k_i) is a sequence of positive integers.
+
+
