@@ -42,3 +42,8 @@ work aliaume:
        where (k_i) is a sequence of positive integers.
 
 
+meeting 05/09
+	2) remark: downclosed + bounded => regular. Even stronger than that: finite union of languages of the shape u_0*a_1u_1*...a_nu_n* (lets call this a Σ1 language)
+	then: bounded <=> included in a Σ1 language <=> downclosure is Σ1
+	  Question: does downclosed + wqo => bounded ?
+	
