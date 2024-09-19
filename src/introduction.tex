@@ -29,20 +29,24 @@ if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
 
 \begin{figure}
     \centering
-    \begin{tabular}{p{3cm}p{8cm}}
-    Prefix Relation
-    &
-    \includestandalone[width=\linewidth]{fig/prefix-embedding-standalone}
-    \\
-    Infix relation
-    &
-    \includestandalone[width=\linewidth]{fig/infix-embedding-standalone}
-    \\
-    Subword relation
-    &
-    \includestandalone[width=\linewidth]{fig/subword-embedding-standalone}
-    \end{tabular}
-    \caption{A simple representation of the \kl{subword relation},
+    \begin{subfigure}[t]{0.48\textwidth}
+    	\centering
+    	\includestandalone[width=\linewidth]{fig/prefix-embedding-standalone}
+    	\caption{Prefix Relation}
+   	\end{subfigure}%
+   	\hfill%
+   	\begin{subfigure}[t]{0.48\textwidth}
+   		\centering
+   		\includestandalone[width=\linewidth]{fig/infix-embedding-standalone}
+   		\caption{Infix Relation}
+   	\end{subfigure}
+   	\begin{subfigure}[t]{0.48\textwidth}
+   		\centering
+   		\includestandalone[width=\linewidth]{fig/subword-embedding-standalone}
+   		\caption{Subword Relation}
+   	\end{subfigure}
+   	
+   	\caption{A simple representation of the \kl{subword relation},
         \kl{prefix relation},
         and \kl{infix relation},
         on the alphabet $\set{a,b}$ for words of
