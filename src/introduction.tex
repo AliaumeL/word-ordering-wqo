@@ -58,45 +58,40 @@ if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
 considered in the context of \kl{well-quasi-orderings}. Let us restrict
 ourselves to a simplified case where the alphabet is finite and equipped with
 the equality relation. In this setting, the three alternatives we consider are
-the \intro{prefix relation} --- $u \intro*\prefleq v$ if there exists $w$ with
-$uw = v$ ---, the \intro{suffix relation} --- $u \intro*\suffleq v$ if there
-exists $w$ such that $wu = v$ ---, and the \intro{infix relation} --- $u
-\intro*\infleq v$ if there exists $w_1,w_2$ such that $w_1 u w_2 = v$ ---. Note
+the \intro{prefix relation} ($u \intro*\prefleq v$ if there exists $w$ with
+$uw = v$), the \intro{suffix relation} ($u \intro*\suffleq v$ if there
+exists $w$ such that $wu = v$), and the \intro{infix relation} ($u
+\intro*\infleq v$ if there exists $w_1,w_2$ such that $w_1 u w_2 = v$). Note
 that these three relations straightforwardly generalize to infinite
-quasi-ordered alphabets. Unfortunately, it is an easy check that all of these
+quasi-ordered alphabets. Unfortunately, it is easy to see that all of these
 constructions are not well-quasi-ordered as soon as the alphabet contains two
-non-equivalent letters. This is not the end of the road, because some
-\emph{subsets} of $\Sigma^*$ might still be \kl{well-quasi-ordered} by these
-relations, the simplest example being the case of finite sets of (finite) words
+non-equivalent letters. 
+
+\AP While this dooms \kl[well-quasi-ordered]{well-quasi-orderedness} of these relations in the general case, there may be
+\emph{subsets} of $\Sigma^*$ which are \kl{well-quasi-ordered} by these
+relations. As a simple example, take the case of finite sets of (finite) words
 which are all \kl{well-quasi-ordered} regardless of the ordering considered.
-This raises the question of characterizing the subsets $L \subseteq \Sigma^*$
-that are \kl{well-quasi-ordered} with respect to the \kl{prefix relation}
+This raises the question of characterizing exactly which subsets $L \subseteq \Sigma^*$
+are \kl{well-quasi-ordered} with respect to the \kl{prefix relation}
 (respectively, the \kl{suffix relation} or the \kl{infix relation}), and
 providing suitable decision procedures.
 
 
-\subparagraph{Contribution} \AP In this paper, we focus on words over a finite
+
+\subparagraph{Contribution} In this paper, we focus on words over a finite
 alphabet $\Sigma$, and characterize subsets $L \subseteq \Sigma^*$ that are
 \kl{well-quasi-ordered} by the \kl{prefix relation}, the \kl{suffix relation},
-and the \kl{infix relation}. Let us remark that these word orderings are all
-\intro{well-founded}, i.e., they do not contain infinite \intro{decreasing
-sequences} $\seqof{x_n}$ such that $x_{n+1} \prec x_n$ for all $n \in \Nat$.
-Let us recall that the key difference between \kl{well-quasi-orderings} and the
-maybe more usual notion of well-founded orderings is that the latter allows the
-existence of infinite \intro{antichains}, that is, sets of pairwise
-incomparable elements. In fact, a set $X$ is \kl{well-quasi-ordered} if and
-only if it is \kl{well-founded} and does not contain infinite \kl{antichains}
-\cite{KRU72}.  As a consequence, our study focuses on detecting infinite
-\kl{antichains} in languages $L \subseteq \Sigma^*$. Remark that for the
-relations we consider (including the \kl{subword relation}), the set of all
-words of a fixed size $k$ is always an \kl{antichain}, and there are therefore
-no bound on the maximal length of an antichain. 
+and the \kl{infix relation}. Specifically, for the \kl{prefix relation} and the \kl{suffix relation}, we are able to show the following decomposition into \intro{chains}, that is, totally ordered ascending sequences.
 
-In the case of the \kl{prefix relation}, we provide a complete characterization
-of languages $L \subseteq \Sigma^*$ that are \kl{well-quasi-ordered}, which are
-the simplest possible languages: they are precisely the \emph{finite} unions of
-\intro{chains}, that is, sets of words that are all comparable for the
-\kl{prefix relation}. Note that \kl{chains} are the simplest possible
+{
+\renewcommand{\labelenumi}{R\arabic{enumi}}
+\begin{enumerate}
+	\item A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the \kl{prefix relation} if and only if it is a finite union of \kl{chains} of the \kl{prefix relation}.
+	\item A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the \kl{suffix relation} if and only if it is a finite union of \kl{chains} of the \kl{suffix relation}.
+\end{enumerate}
+}
+
+Note that \kl{chains} are the simplest possible
 \kl{well-quasi-ordered} sets (they are totally ordered and well-founded) and it
 is known that finite unions of \kl{well-quasi-ordered} sets are
 \kl{well-quasi-ordered}. As a consequence, the above characterization states
@@ -104,29 +99,32 @@ that only the simplest possible \kl{well-quasi-ordered} sets are
 \kl{well-quasi-ordered} by the \kl{prefix relation}. Let us furthermore
 highlight that this characterization holds without any restriction on the
 decidability of the language $L$ itself, but heavily relies on the assumption
-that $\Sigma$ is finite. By symmetry, we obtain an analogue statement for the
-\kl{suffix relation}.
+that $\Sigma$ is finite. 
 
-In the case of the \kl{infix relation}, the situation is more complex, and we
-show that \emph{any} countable quasi-ordering with finite initial segments can
-be \kl{embedded} into the \kl{infix relation} of a language over a binary
-alphabet $\Sigma \defined \set{a,b}$. As an example, on can identify
-$(\Sigma^*, \higleq)$ with a subset of $(\Sigma^*, \infleq)$ where $\higleq$ is
-the \kl{subword relation} and $\infleq$ is the \kl{infix relation}. This
-strongly contrasts with the \kl{prefix relation}, and suggests that a
-meaningful characterization of \kl{well-quasi-ordered} languages under the
-\kl{infix relation} is unlikely to be found. 
+Such a straightforward characterization will however remain elusive for the \kl{infix relation}. For example, Kuske~\cite{DBLP:journals/ita/Kuske06} has shown that any countable partial order with finite downward closures can be embedded into it. Therefore, the structure of the \kl{infix relation} must be as least as complex as the \kl{subword relation}. However, not all is lost: we show that with some mild restrictions we can recover much of the simple structure of the \kl[prefix relation]{prefix} and \kl{suffix relation}:
 
-We circumvent this issue by adding some regularity assumptions on the languages
-$L \subseteq \Sigma^*$ that we consider. This can be done by assuming that $L$
-is recognized by a finite automaton, or more generally that $L$ is the language
-of an \kl{amalgamation system}, a recently introduced notion that abstracts the
-notion of systems whose runs can be suitably ``pumped'' \cite{ASZZ24}. As
-examples \kl{amalgamation systems} covers the case of regular languages,
-context free languages, or even languages recognized by ``vector addition
-systems with state" \cite{ASZZ24}. Under this relatively mild assumption, we
-also prove that \kl{well-quasi-ordered} languages under the \kl{infix relation}
-are precisely the finite unions of \kl{chains}.
+{
+\renewcommand{\labelenumi}{R\arabic{enumi}}
+\begin{enumerate}
+	\setcounter{enumi}{2}
+	\item A language $L \subseteq \Sigma^*$ recognized by an \kl{amalgamation system} is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if it is a finite union of languages $S_i \cdot P_i$, where each $S_i$ is \kl{well-quasi-ordered} by the \kl{suffix relation} and each $P_i$ is \kl{well-quasi-ordered} by the \kl{prefix relation}.
+\end{enumerate}
+}
+
+This is not an overly onerous restriction: \kl[amalgamation system]{Amalgamation systems} are a recently introduced notion that 
+abstracts the notion of systems whose runs can be suitably ``pumped'' and include common language classes such as regular languages,
+context free languages, and even languages recognized by petri nets \cite{ASZZ24}. 
+
+Finally, there has been recent interest in deciding whether a given order is a well-quasi-order. These questions have been investigated for example in the context of the verification of counter machines~\cite{DBLP:conf/fsttcs/FinkelG19} and in the context of logic~\cite{DBLP:journals/pacmpl/BergstrasserGLZ24}. We conclude our results with a contribution in this continuity.
+
+\todo{verify this result :)}
+{
+\renewcommand{\labelenumi}{R\arabic{enumi}}
+\begin{enumerate}
+	\setcounter{enumi}{3}
+	\item For languages of amalgamation systems, it is decidable whether they are \kl{well-quasi-ordered} by the \kl[prefix relation]{prefix}, \kl[suffix relation]{suffix}, or \kl{infix relation}.
+\end{enumerate}
+}
 
 \subparagraph{Related work} The study of alternative \kl{well-quasi-ordered}
 relations over finite words is far from new. For instance, orders obtained by
@@ -138,15 +136,12 @@ the orderings are \emph{multiplicative}, that is, if $u_1 \preceq v_1$ and $u_2
 the \kl{prefix}, \kl{suffix}, and \kl{infix} relations.
 
 \subparagraph{Outline} In \cref{prefixes:sec}, which is relatively
-self-contained, we study the \kl{prefix relation} prove in \cref{prefixes:thm}
+self-contained, we study the \kl{prefix relation} and prove in \cref{prefixes:thm}
 the characterization of \kl{well-quasi-ordered} languages by the \kl{prefix
-relation}. In \cref{infixes-regular:sec}, we prove that any countable quasi-ordering
-with finite initial segments can be embedded into the \kl{infix relation} of a
-language (\cref{infix-embedding:thm}), we obtain the analogue of
-\cref{prefixes:thm} for languages recognized by finite automata
-(\cref{infix-finite-automata:thm}). Finally, in \cref{infixes-amalgamation:sec}, we
-introduce \kl{amalgamation systems} and generalize
-\cref{infix-finite-automata:thm} to this setting
+relation}. In \cref{infixes-regular:sec}, we obtain the \kl[infix relation]{infix} analogue of
+\cref{prefixes:thm} specifically for regular languages
+(\cref{infix-finite-automata:thm}). Finally, we generalize this result to all 
+\kl{amalgamation systems} in \cref{infixes-amalgamation:sec} in 
 (\cref{infix-amalgamation:thm}).
 
 \subparagraph{Acknowledgements} We would like to thank participants of the 2024
