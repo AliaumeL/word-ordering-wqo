@@ -21,14 +21,14 @@
         isNewEdge/.style={B2},
         ]
 
-        
-\node[isWord,isInfixEnc] (Iepsilon) at (-4.7, 0.3) {\strut $aba$};
-\node[isWord,isInfixEnc] (Ia) at (-7.2, 1.3) {\strut $cbcabac$};
-\node[isWord,isInfixEnc] (Ib) at (-2.2, 1.3) {\strut $c{b^2}cabac$};
-\node[isWord,isInfixEnc] (Iaa) at (-12.2, 2.3) {\strut ${c^2}b{c^3}bcaba{c^3}$};
-\node[isWord,isInfixEnc] (Iab) at (-7.2, 2.3) {\strut ${c^2}{b^2}{c^3}bcaba{c^4}{b^2}caba{c^3}$};
-\node[isWord,isInfixEnc] (Iba) at (-2.2, 2.3) {\strut ${c^2}{b^3}{c^3}bcaba{c^4}{b^2}caba{c^3}$};
-\node[isWord,isInfixEnc] (Ibb) at (2.8, 2.3) {\strut ${c^2}{b^4}{c^3}{b^2}caba{c^3}$};
+\newcommand{\sep}[1]{\textcolor{gray}{\#^{#1}}}
+\node[isWord,isInfixEnc] (Iepsilon) at (-4.7, 0.3) {\strut $\#$};
+\node[isWord,isInfixEnc] (Ia) at (-7.2, 1.3) {\strut $a\#\textcolor{A2}{\#}$};
+\node[isWord,isInfixEnc] (Ib) at (-2.2, 1.3) {\strut $b\#\textcolor{A2}{\#}$};
+\node[isWord,isInfixEnc] (Iaa) at (-12.2, 2.3) {\strut $aa\#\textcolor{A2}{a\#\#}$};
+\node[isWord,isInfixEnc] (Iab) at (-7.2, 2.3) {\strut $ab\#\textcolor{A2}{a\#\#}\textcolor{A4}{b\#\#}$};
+\node[isWord,isInfixEnc] (Iba) at (-2.2, 2.3) {\strut $ba\#\textcolor{A2}{a\#\#}\textcolor{A4}{b\#\#}$};
+\node[isWord,isInfixEnc] (Ibb) at (2.8, 2.3) {\strut $bb\#\textcolor{A4}{b\#\#}$};
 \draw[isEmbedding] (Iepsilon) -- (Ia);
 \draw[isEmbedding] (Iepsilon) -- (Ib);
 \draw[isEmbedding] (Ia) -- (Iaa);
