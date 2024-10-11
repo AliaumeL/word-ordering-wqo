@@ -309,3 +309,4 @@ wqo-on-words.pdf
 *.arxiv.tex
 *.arxiv.tar.gz
 *.arxiv.zip
+fig/*.pdf
