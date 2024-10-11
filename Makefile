@@ -13,8 +13,8 @@ FIGURES=fig/subword-embedding-standalone.tex \
 		fig/infix-embedding-standalone.tex   \
 		fig/prefix-embedding-standalone.tex  \
 		fig/antichain-branch-standalone.tex  \
-		fig/prefix-core-and-branches-standalone.tex \
-		fig/infix-encoding-standalone.tex
+		fig/prefix-core-and-branches-standalone.tex
+#		fig/infix-encoding-standalone.tex
 
 
 # Default target: create the pdf file
