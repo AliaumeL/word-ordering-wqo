@@ -107,22 +107,33 @@ decidability of the language $L$ itself, but heavily relies on the assumption
 that $\Sigma$ is finite. 
 
 \AP One way to measure the complexity of a \kl{well-quasi-ordered} set is to
-consider its so-called \intro{ordinal invariants}. For instance, the
-\intro{order type} of a \kl{well-quasi-ordered} set is the smallest ordinal
-that cannot be embedded into it. For the \kl{prefix relation} and the \kl{infix
-relation}, we conclude that the order type of a \kl{well-quasi-ordered} set is
-at most $k \times \omega$, and its width is finite.\todo{check this + cite}.
+consider its so-called \intro{ordinal invariants}. Several of these ordinal
+measures have been developed for well-quasi-orders. The \intro{maximal order
+type} (or m.o.t.) was originally defined by \cite{dejongh77} as the order type
+of the maximal linearization of a well-quasi-ordered set. Then,
+\cite{schmidt81} introduced the \intro{ordinal height} as the order type of a
+maximal chain of a well-quasi-ordered set. Finally, \cite{kriz90b} crafted the
+notion of \intro{ordinal width}, standardized the definitions of these three
+\kl{ordinal invariants}, and proved numerical relationships between them. For
+the \kl{prefix relation}, the \kl{suffix relation}, and the \kl{infix
+relation}, the \kl{ordinal height} is always bounded by $\omega$, and the key
+parameter to describe its complexity will be the \kl{ordinal width}, i.e.,
+``how large the antichains are.''
 
-\AP The straightforward generalization of the results for the \kl{prefix
-relation} and the \kl{suffix relation} to the \kl{infix relation} is not
-possible. For example, Kuske has shown that any countable partial order with
-finite downward closures can be embedded into
-it~\cite{DBLP:journals/ita/Kuske06}. In particular, this means that the
-\kl{subword relation} can be embedded into the \kl{infix relation}. The former
-being a \kl{well-quasi-ordered} with \kl{order type} $\omega^\omega$
-\todo{cite}. However, not all is lost: we show that with some mild restrictions
-we can recover much of the simple structure of the \kl[prefix relation]{prefix}
-and \kl{suffix relation}:
+\todo{rephrase}
+\AP In the case of the \kl{prefix relation} and the \kl{suffix relation}, we
+conclude from our characterization that the \kl{ordinal width} of a language
+$L$ is either finite or $L$ is not \kl{well-quasi-ordered}. The straightforward
+generalization of the results for the \kl{prefix relation} and the \kl{suffix
+relation} to the \kl{infix relation} is not possible. For example, Kuske has
+shown that any countable partial order with finite downward closures can be
+embedded into it~\cite{DBLP:journals/ita/Kuske06}. In particular, this means
+that the \kl{subword relation} can be embedded into the \kl{infix relation}.
+The former being a \kl{well-quasi-ordered} with a very large \kl{ordinal width}
+(see for example https://arxiv.org/pdf/2312.14587), this implies that such
+"easy characterizations" will not be possible in general. However, not all is
+lost: we show that with some mild restrictions we can recover much of the
+simple structure of the \kl[prefix relation]{prefix} and \kl{suffix relation}:
 
 {
 \renewcommand{\labelenumi}{R\arabic{enumi}}
@@ -135,9 +146,7 @@ and \kl{suffix relation}:
 We illustrate how this result can be used to study languages recognized by
 finite automata, context-free grammars, petri nets, and other systems. This is
 possible by leveraging the recently introduced notion of \kl{amalgamation
-systems} \cite{ASZZ24}, which abstracts the notion of systems whose runs can be
-suitably ``pumped'' and include common language classes such as regular
-languages, context-free languages, and even languages recognized by petri nets.
+systems} \cite{ASZZ24}.
 
 {
 \renewcommand{\labelenumi}{R\arabic{enumi}}
