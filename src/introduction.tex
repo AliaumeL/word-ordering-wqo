@@ -14,18 +14,16 @@ class of well-quasi-ordered sets is also stable under the operation of taking
 finite words and finite trees labelled by elements of a well-quasi-ordered set
 \cite{HIG52,KRU72}.
 
-\AP
-Note that in the case of finite words and finite trees, the precise choice of
-ordering on words and trees is crucial to ensure that the resulting structure
-is \kl{well-quasi-ordered}. The celebrated result of Higman states that the set
-of finite words over an ordered alphabet $(X, \preceq)$ is
-\kl{well-quasi-ordered} by the so-called \kl{subword embedding relation}
-\cite{HIG52}. Let us recall that the \kl{subword relation} for words over $(X,
-\preceq)$ is defined as follows: a word $u$ is a \intro{subword} of a word $v$,
-written $u \intro*\higleq v$,
-if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
-\ldots, |v|\}$ such that $u_i \preceq v_{f(i)}$ for all $i \in \{1, \ldots,
-|u|\}$.
+\AP Note that in the case of finite words and finite trees, the precise choice
+of ordering is crucial to ensure that the resulting structure is
+\kl{well-quasi-ordered}. The celebrated result of Higman states that the set of
+finite words over an ordered alphabet $(X, \preceq)$ is \kl{well-quasi-ordered}
+by the so-called \kl{subword embedding relation} \cite{HIG52}. Let us recall
+that the \kl{subword relation} for words over $(X, \preceq)$ is defined as
+follows: a word $u$ is a \intro{subword} of a word $v$, written $u
+\intro*\higleq v$, if there exists an increasing function $f \colon \{1,
+\ldots, |u|\} \to \{1, \ldots, |v|\}$ such that $u_i \preceq v_{f(i)}$ for all
+$i \in \{1, \ldots, |u|\}$.
 
 \begin{figure}
     \centering
@@ -62,14 +60,17 @@ if there exists an increasing function $f \colon \{1, \ldots, |u|\} \to \{1,
 considered in the context of \kl{well-quasi-orderings}. Let us restrict
 ourselves to a simplified case where the alphabet is finite and equipped with
 the equality relation. In this setting, the three alternatives we consider are
-the \intro{prefix relation} ($u \intro*\prefleq v$ if there exists $w$ with
-$uw = v$), the \intro{suffix relation} ($u \intro*\suffleq v$ if there
-exists $w$ such that $wu = v$), and the \intro{infix relation} ($u
-\intro*\infleq v$ if there exists $w_1,w_2$ such that $w_1 u w_2 = v$). Note
-that these three relations straightforwardly generalize to infinite
-quasi-ordered alphabets. Unfortunately, it is easy to see that all of these
-constructions are not well-quasi-ordered as soon as the alphabet contains two
-non-equivalent letters. 
+the \intro{prefix relation} ($u \intro*\prefleq v$ if there exists $w$ with $uw
+= v$), the \intro{suffix relation} ($u \intro*\suffleq v$ if there exists $w$
+such that $wu = v$), and the \intro{infix relation} ($u \intro*\infleq v$ if
+there exists $w_1,w_2$ such that $w_1 u w_2 = v$). Note that these three
+relations straightforwardly generalize to infinite quasi-ordered alphabets.
+Unfortunately, it is easy to see that all of these constructions are not
+well-quasi-ordered as soon as the alphabet contains two non-equivalent letters:
+for instance, the infinite sequence $a^n b^n a^n$ is \kl{well-quasi-ordered} by
+the \kl{subword relation} but by neither the \kl{prefix relation}, nor the
+\kl{suffix relation}, nor the \kl{infix relation}.
+
 
 \AP While this dooms \kl[well-quasi-ordered]{well-quasi-orderedness} of these relations in the general case, there may be
 \emph{subsets} of $\Sigma^*$ which are \kl{well-quasi-ordered} by these
@@ -105,7 +106,38 @@ highlight that this characterization holds without any restriction on the
 decidability of the language $L$ itself, but heavily relies on the assumption
 that $\Sigma$ is finite. 
 
-Such a straightforward characterization will however remain elusive for the \kl{infix relation}. For example, Kuske~\cite{DBLP:journals/ita/Kuske06} has shown that any countable partial order with finite downward closures can be embedded into it. Therefore, the structure of the \kl{infix relation} must be as least as complex as the \kl{subword relation}. However, not all is lost: we show that with some mild restrictions we can recover much of the simple structure of the \kl[prefix relation]{prefix} and \kl{suffix relation}:
+\AP One way to measure the complexity of a \kl{well-quasi-ordered} set is to
+consider its so-called \intro{ordinal invariants}. For instance, the
+\intro{order type} of a \kl{well-quasi-ordered} set is the smallest ordinal
+that cannot be embedded into it. For the \kl{prefix relation} and the \kl{infix
+relation}, we conclude that the order type of a \kl{well-quasi-ordered} set is
+at most $k \times \omega$, and its width is finite.\todo{check this + cite}.
+
+\AP The straightforward generalization of the results for the \kl{prefix
+relation} and the \kl{suffix relation} to the \kl{infix relation} is not
+possible. For example, Kuske has shown that any countable partial order with
+finite downward closures can be embedded into
+it~\cite{DBLP:journals/ita/Kuske06}. In particular, this means that the
+\kl{subword relation} can be embedded into the \kl{infix relation}. The former
+being a \kl{well-quasi-ordered} with \kl{order type} $\omega^\omega$
+\todo{cite}. However, not all is lost: we show that with some mild restrictions
+we can recover much of the simple structure of the \kl[prefix relation]{prefix}
+and \kl{suffix relation}:
+
+{
+\renewcommand{\labelenumi}{R\arabic{enumi}}
+\begin{enumerate}
+	\setcounter{enumi}{2}
+    \item A \emph{bounded} language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if it is a finite union of languages $S_i \cdot P_i$, where each $S_i$ is \kl{well-quasi-ordered} by the \kl{suffix relation} and each $P_i$ is \kl{well-quasi-ordered} by the \kl{prefix relation}.
+\end{enumerate}
+}
+
+We illustrate how this result can be used to study languages recognized by
+finite automata, context-free grammars, petri nets, and other systems. This is
+possible by leveraging the recently introduced notion of \kl{amalgamation
+systems} \cite{ASZZ24}, which abstracts the notion of systems whose runs can be
+suitably ``pumped'' and include common language classes such as regular
+languages, context-free languages, and even languages recognized by petri nets.
 
 {
 \renewcommand{\labelenumi}{R\arabic{enumi}}
@@ -115,11 +147,13 @@ Such a straightforward characterization will however remain elusive for the \kl{
 \end{enumerate}
 }
 
-This is not an overly onerous restriction: \kl[amalgamation system]{Amalgamation systems} are a recently introduced notion that 
-abstracts the notion of systems whose runs can be suitably ``pumped'' and include common language classes such as regular languages,
-context free languages, and even languages recognized by petri nets \cite{ASZZ24}. 
 
-Finally, there has been recent interest in deciding whether a given order is a well-quasi-order. These questions have been investigated for example in the context of the verification of counter machines~\cite{DBLP:conf/fsttcs/FinkelG19} and in the context of logic~\cite{DBLP:journals/pacmpl/BergstrasserGLZ24}. We conclude our results with a contribution in this continuity.
+Finally, there has been recent interest in deciding whether a given order is a
+well-quasi-order. These questions have been investigated for example in the
+context of the verification of counter
+machines~\cite{DBLP:conf/fsttcs/FinkelG19} and in the context of
+logic~\cite{DBLP:journals/pacmpl/BergstrasserGLZ24}. We conclude our results
+with a contribution in this continuity.
 
 \todo{verify this result :)}
 {
@@ -139,13 +173,17 @@ the orderings are \emph{multiplicative}, that is, if $u_1 \preceq v_1$ and $u_2
 \preceq v_2$ then $u_1u_2 \preceq v_1v_2$. This assumption does not hold for
 the \kl{prefix}, \kl{suffix}, and \kl{infix} relations.
 
-\subparagraph{Outline} In \cref{prefixes:sec}, which is relatively
-self-contained, we study the \kl{prefix relation} and prove in \cref{prefixes:thm}
-the characterization of \kl{well-quasi-ordered} languages by the \kl{prefix
-relation}. In \cref{infixes-regular:sec}, we obtain the \kl[infix relation]{infix} analogue of
-\cref{prefixes:thm} specifically for regular languages
-(\cref{infix-finite-automata:thm}). Finally, we generalize this result to all 
-\kl{amalgamation systems} in \cref{infixes-amalgamation:sec} in 
+\subparagraph{Outline} In
+\cref{prefixes:sec}, which is relatively
+self-contained, we study the \kl{prefix relation} and prove in
+\cref{prefixes:thm} the characterization of \kl{well-quasi-ordered}
+languages by the \kl{prefix relation}. In
+\cref{infixes-regular:sec}, we
+obtain the \kl[infix relation]{infix} analogue of \cref{prefixes:thm}
+specifically for regular languages
+(\cref{infix-finite-automata:thm}). Finally, we generalize this result to all
+\kl{amalgamation systems} in \cref{infixes-amalgamation:sec}
+in
 (\cref{infix-amalgamation:thm}).
 
 \subparagraph{Acknowledgements} We would like to thank participants of the 2024

@@ -2,6 +2,14 @@
 \section{Infixes and Regular Languages}
 \label{infixes-regular:sec}
 
+\todo{Delete this section: the \cref{infix-embedding:thm} is already
+    known, we should just restate it. The
+    \cref{infix-finite-automata:thm} is a direct consequence of
+    \cref{infix-amalgamation:thm} and \cref{bounded-language:thm}.
+    I don't know if we should keep it for clarity, but it does not 
+    seems to be necessary to me.
+}
+
 \AP
 In this section, we study languages equipped with the \kl{infix relation}. As
 opposed to the \kl{prefix} and \kl{suffix} relations, the \kl{infix relation}
@@ -251,7 +259,7 @@ words of the form $x^p$, where $p$ ranges over $\Nat$.
 \begin{corollary}
     \label{inf-period-union-chains:lem}
     Let $x,u,y \in \Sigma^*$ be words.  The following 
-    are finite unions of \kl{chains} for the infix relation:
+    are finite unions of \kl{grids} for the infix relation:
     $\InfPeriodChain{x}u$, $u \InfPeriodChain{x}$,
     and $\InfPeriodChain{x} u \InfPeriodChain{y}$.
 \end{corollary}
@@ -433,7 +441,7 @@ this particular example cannot be realized by a regular language $A$.
 \label{infixes-amalgamation:sec}
 
 When proving \cref{infix-finite-automata:thm}, we have leveraged a powerful
-combinatorial argument on regular langugaes stated in
+combinatorial argument on regular langugages stated in
 \cref{pumping-periods:lem}. Our first remark is that this idea can
 be generalized to the larger class of \intro{bounded languages}, i.e.,
 languages $L \subseteq \Sigma^*$ such that there exists words $w_1, \dots, w_n$
@@ -443,7 +451,7 @@ satisfying $L \subseteq w_1^* \cdots w_n^*$.
     \label{bounded-language:thm}
     Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
     $L$ is a \kl{well-quasi-order} when endowed with the 
-    \kl{infix relation} if and only if it is a finite union of \kl{chains}.
+    \kl{infix relation} if and only if it is a finite union of \kl{grids}.
 \end{theorem}
 \begin{proof}
     Let $w_1, \dots, w_n$ be such that
@@ -488,8 +496,101 @@ satisfying $L \subseteq w_1^* \cdots w_n^*$.
     \end{equation*}
 \end{proof}
 
+Note that this immediately generalizes \cref{reg-wqo-iff-dwclosed-wqo:cor}
+to all \kl{bounded languages}.
 
-\subsection{Amalgameation Systems}
+\begin{corollary}
+    \label{bounded-wqo-dwclosed:cor}
+    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
+    $L$ is a \kl{well-quasi-order} when endowed with the
+    \kl{infix relation} if and only if $\dwset[\infleq]{L}$ is.
+\end{corollary}
+
+
+In the light of \cref{reg-wqo-iff-dwclosed-wqo:cor,bounded-wqo-dwclosed:cor}
+one may wonder whether the \kl{downwards closed}
+languages for the \kl{infix relation} satisfy a similar characterization in
+terms of union of \kl{grids} as stated in
+\cref{infix-finite-automata:thm,bounded-language:thm}. Let us
+first remark that from our previous results we obtain the following lemma that
+illustrates how all the previous characterizations of \kl{well-quasi-ordered}
+languages for the \kl{infix relation} are collapsing in the case of
+\kl{downwards closed} languages.
+
+\begin{lemma}
+    \label{dwclosed-infixes-wqo:lem}
+    Let $L \subseteq \Sigma^*$ be a \kl{downwards closed} language for the
+    \kl{infix relation} that is \kl{well-quasi-ordered}. Then, the following
+    are equivalent:
+    \begin{enumerate}
+        \item $L$ is \kl{bounded},
+        \item $L$ is \kl{regular},
+        \item $L$ is a finite union of \kl{chains} and \kl{grids}.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO.
+\end{proof}
+
+One may think that all \kl{downwards closed} languages for the \kl{infix
+relation} that are \kl{well-quasi-ordered} are \kl{regular}. Note that this is
+what happens in the case of the \kl{subword embedding}, where any \kl{downwards
+closed} language for this relation is characterized by finitely many excluded
+patterns, hence \kl{regular}. However, this is not the case for the \kl{infix
+relation}, as we will now illustrate with the following two examples.
+
+\begin{example}
+    \label{dwclosed-wqo-not-finite-excl:ex}
+    Let $L \defined a^* b^* \cup b^* a^*$. This language is \kl{downwards
+    closed} for the \kl{infix relation}, is \kl{well-quasi-ordered} for the
+    \kl{infix relation}, but is characterized by an \emph{infinite} number 
+    of excluded infixes, respectively of the form $ab^ka$ and $ba^kb$ where $k \geq 1$.
+\end{example}
+
+To strengthen \cref{dwclosed-wqo-not-finite-excl:ex}, we will
+leverage the \intro{Thue-Morse sequence} $\intro*\ThueMorse \in
+\set{0,1}^{\Nat}$, which we will use as a black-box for its two main
+characteristics: it is \kl{cube-free} and \kl{uniformly recurrent}. Being
+\intro{cube-free} means that no (finite) word of the form $uuu$ is an
+\kl{infix} of $\ThueMorse$, and being \intro{uniformly recurrent} means that
+for every word $u$ that is an \kl{infix} of $\ThueMorse$, there exists $k \geq
+1$ such that $u$ is an \kl{infix} of every word $v$ of size at least $k$. We
+refer the reader to a nice survey of Allouche and Shallit for more information
+on this sequence and its properties \cite{ALSHA99}.
+
+\begin{lemma}
+    \label{thue-morse:lemma}
+    There exists a language $L$ that is \kl{downwards closed} for the \kl{infix
+    relation}, \kl{well-quasi-ordered} for the \kl{infix relation}, but is not
+    \kl{regular}.
+\end{lemma}
+\begin{proof}
+    Let $\ThueMorse$ be the \kl{Thue-Morse sequence}
+    $L$ be the set of infixes of $w$. By construction $L$ is an \emph{infinite}
+    \kl{downwards closed} for the \kl{infix relation}. Let us argue that $L$ is
+    \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl{regular}.
+
+    Assume by contradiction that $L$ is \kl{bounded}. In this case, there exist
+    words $w_1, \dots, w_k \in \Sigma^*$ such that $L \subseteq w_1^* \cdots
+    w_k^*$. Since $L$ is infinite and \kl{downwards closed}, there exists a
+    word $u \in L$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is absurd
+    because $u \infleq \ThueMorse$, which is \kl{cube-free}.
+
+    Furthermore, $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
+    Indeed, consider a sequence $\seqof{u_i}$ of words in $L$. Without loss of
+    generality, we may consider a subsequence such that $\card{u_i} <
+    \card{u_{i+1}}$ for all $i \in \Nat$. Because $\ThueMorse$ is \kl{uniformly
+    recurrent}, there exists $k \geq 1$ such that $u_1$ is an \kl{infix} of
+    every word $v$ of size at least $k$. In particular, $u_1$ is an \kl{infix}
+    of $u_k$, hence the sequence $\seqof{u_i}$ is \kl(wqo){good}.
+
+    We conclude thanks to
+    \cref{dwclosed-infixes-wqo:lem}, that $L$ is not \kl{regular}.
+\end{proof}
+
+
+
+\subsection{Amalgamation Systems}
 \label{infixes-amalgamation:subsec}
 
 It turns out that there is a rather large family of systems for which pumping
@@ -652,7 +753,7 @@ system}.
     by the automaton $A$.
 \end{example}
 \begin{proof}
-    By definition, elements of $E(r,s)$ are defined as elements
+    By definition, the embeddings inside $E(r,s)$ are defined as elements
     of $\HigEmb(\canrun(r), \canrun(s))$, and they compose properly.
     Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
     a \kl{well-quasi-ordering} when equipped with the equality relation, and 
@@ -832,60 +933,5 @@ regularity assumption.
     \kl{suffix relation}, which allows us to conclude.
 \end{proof}
 
-
-\subsection{Downwards Closed Subsets}
-\label{infixes-downwards:subsec}
-
-In the light of \cref{reg-wqo-iff-dwclosed-wqo:cor} one may
-wonder whether the \kl{downwards closed} languages for the \kl{infix relation}
-satisfy a similar characterization in terms of union of \kl{chains} and
-\kl{grids} as stated in
-\cref{infix-finite-automata:thm,bounded-language:thm,infix-amalgamation:thm}.
-Let us first remark that from our previous results we obtain the following
-lemma that illustrates how all the previous characterizations of
-\kl{well-quasi-ordered} languages for the \kl{infix relation} are collapsing in
-the case of \kl{downwards closed} languages.
-
-\begin{lemma}
-    \label{dwclosed-infixes-wqo:lem}
-    Let $L \subseteq \Sigma^*$ be a \kl{downwards closed} language for the
-    \kl{infix relation} that is \kl{well-quasi-ordered}. Then, the following
-    are equivalent:
-    \begin{enumerate}
-        \item $L$ is \kl{bounded},
-        \item $L$ is \kl{regular},
-        \item $L$ is a finite union of \kl{chains} and \kl{grids}.
-    \end{enumerate}
-\end{lemma}
-\begin{proof}
-    TODO.
-\end{proof}
-
-One may think that all \kl{downwards closed} languages for the \kl{infix
-relation} that are \kl{well-quasi-ordered} are \kl{regular}. Note that this is
-what happens in the case of the \kl{subword embedding}, where any \kl{downwards
-closed} language for this relation is characterized by finitely many excluded
-patterns, hence \kl{regular} \textbf{TODO cite}.
-However, this is not the case for the \kl{infix relation}, as we will now
-illustrate with the following two examples.
-
-\begin{example}
-    Let $L \defined a^* b^* \cup b^* a^*$. This language is \kl{downwards
-    closed} for the \kl{infix relation}, is \kl{well-quasi-ordered} for the
-    \kl{infix relation}, but is characterized by an \emph{infinite} number 
-    of excluded infixes of the form $ab^ka$ and $ba^kb$ where $k \geq 1$.
-\end{example}
-
-Let $w$ be the Thue-Morse word \textbf{CITE}, and $L$ be the set of infixes of
-$w$. By construction $L$ is an \emph{infinite} \kl{downwards closed} for the
-\kl{infix relation}. Let us argue that $L$ is \kl{well-quasi-ordered} for the
-\kl{infix relation}, but is not \kl{regular}. First, $L$ cannot be \kl{bounded}
-because $w$ is \emph{cube free}, that is, no infix of $w$ can be written $uuu$
-for some word $u$ \textbf{CITE}. Furthermore, $w$ is a \intro{uniformly
-recurrent word} \textbf{CITE}, that is, for every infix $u$ of $w$, there
-exists $k \geq 1$ such that $u$ occurs in every infix $v$ of $w$ of size at
-least $k$. This implies that $L$ is \kl{well-quasi-ordered} for the \kl{infix
-relation}. We conclude thanks to \cref{dwclosed-infixes-wqo:lem},
-that $L$ is not \kl{regular}.
 
 
