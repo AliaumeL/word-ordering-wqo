@@ -399,6 +399,7 @@ state automata.
 
 
 \begin{corollary}
+    \label{reg-wqo-decidable:cor}
     Given a regular language $L$, it is decidable whether
     $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
 \end{corollary}
@@ -422,26 +423,86 @@ this particular example cannot be realized by a regular language $A$.
 
 
 \begin{corollary}
+    \label{reg-wqo-iff-dwclosed-wqo:cor}
     Given a regular language $L$, it is \kl{well-quasi-ordered} 
     for the \kl{infix relation} if and only if 
     $\dwset[\infleq] L$ is.
 \end{corollary}
 
-\section{Infixes and Amalgamation Systems}
+\section{Bounded Languages and Amalgamation Systems}
 \label{infixes-amalgamation:sec}
 
 When proving \cref{infix-finite-automata:thm}, we have leveraged a powerful
-combinatorial argument from \cref{pumping-periods:lem}. It turns out that there
-is a rather large family of systems for which pumping arguments based on
-so-called \emph{minimal runs} exist: they are called \emph{amalgamation
-systems} and were recently introduced by Anad, Schmitz, Sch\"{u}tze, and
-Zetzsche \cite{ASZZ24}. Having done the heavy lifting on finite automata, the
-rest of this section is mostly devoted to the introduction of \kl{amalgamation
-systems} and collecting the necessary pumping argument they enjoy. Using this
-meta-proof, we will generalize \cref{infix-finite-automata:thm} to context-free
-grammars, languages recognized by vector addition systems with state (VASS),
-and more. The goal of this section is not to introduce all of these systems, or
-justify their usefulness, but to state and prove the following theorem.
+combinatorial argument on regular langugaes stated in
+\cref{pumping-periods:lem}. Our first remark is that this idea can
+be generalized to the larger class of \intro{bounded languages}, i.e.,
+languages $L \subseteq \Sigma^*$ such that there exists words $w_1, \dots, w_n$
+satisfying $L \subseteq w_1^* \cdots w_n^*$.
+
+\begin{theorem}
+    \label{bounded-language:thm}
+    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
+    $L$ is a \kl{well-quasi-order} when endowed with the 
+    \kl{infix relation} if and only if it is a finite union of \kl{chains}.
+\end{theorem}
+\begin{proof}
+    Let $w_1, \dots, w_n$ be such that
+    $L \subseteq w_1^* \cdots w_n^*$.
+    Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
+
+    Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
+    to $\Sigma^*$. We are interested in the intersection of the image of $w$
+    with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
+    there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
+    Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
+    $x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
+    $w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
+    \InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
+    \cup \InfPeriodChain{x} \InfPeriodChain{y}$.
+
+    Now, it may be the case that one cannot simultaneously assume that two
+    component of the vector $\vec{k}$ are unbounded. In general, given a set $S
+    \subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
+    there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
+    exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
+    $\vec{b}$ on the $S$ components, and the other components are below the
+    bound $N_0$. The language of an admissible set $S$ is the set of words
+    obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
+    ($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
+    Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
+
+    Now, admissible languages are ready to be pumped according to
+    \cref{pumping-periods:lem}. For every admissible language,
+    the size of a word that is not iterated is at most
+    $N_0 \times m$ by definition, and we conclude that:
+    \begin{equation*}
+        L \subseteq 
+        \bigcup_{x,y \in \Sigma^{\leq n}}
+        \bigcup_{u \in \Sigma^{\leq m \times N_0}}
+        \InfPeriodChain{x} u \InfPeriodChain{y}
+        \cup
+        \InfPeriodChain{x} u
+        \cup
+        u \InfPeriodChain{x}
+        \quad .
+    \end{equation*}
+\end{proof}
+
+
+\subsection{Amalgameation Systems}
+\label{infixes-amalgamation:subsec}
+
+It turns out that there is a rather large family of systems for which pumping
+arguments based on so-called \emph{minimal runs} exist: they are called
+\emph{amalgamation systems} and were recently introduced by Anad, Schmitz,
+Sch\"{u}tze, and Zetzsche \cite{ASZZ24}. Having done the heavy lifting on
+\kl{bounded languages}, the rest of this section is mostly devoted to the
+introduction of \kl{amalgamation systems} and collecting the necessary pumping
+argument they enjoy. Using this meta-proof, we will generalize
+\cref{infix-finite-automata:thm} to context-free grammars, languages recognized
+by vector addition systems with state (VASS), and more. The goal of this
+section is not to introduce all of these systems, or justify their usefulness,
+but to state and prove the following theorem.
 
 \begin{theorem}[label=infix-amalgamation:thm,restate=infix-amalgamation:thm]
     \proofref{infix-amalgamation:thm}
@@ -656,61 +717,6 @@ runs.
     $k$ times $s$ with one or two times $t$ (depending on the item number).
 \end{proof}
 
-In the upcoming proof of \cref{infix-amalgamation:thm}, we will use the notion
-of \intro{bounded language} for languages $L \subseteq \Sigma^*$ such that
-there exists words $w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots
-w_n^*$. This will be useful for us to derive the inclusion of a language $L$
-into a union of \kl{chains}. Note that we isolate this intermediate result in a
-separate theorem that could be applied beyond \kl{amalgamation systems}.
-
-\begin{theorem}
-    \label{bounded-language:thm}
-    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
-    $L$ is a \kl{well-quasi-order} when endowed with the 
-    \kl{infix relation} if and only if it is a finite union of \kl{chains}.
-\end{theorem}
-\begin{proof}
-    Let $w_1, \dots, w_n$ be such that
-    $L \subseteq w_1^* \cdots w_n^*$.
-    Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
-
-    Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
-    to $\Sigma^*$. We are interested in the intersection of the image of $w$
-    with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
-    there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
-    Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
-    $x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
-    $w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
-    \InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
-    \cup \InfPeriodChain{x} \InfPeriodChain{y}$.
-
-    Now, it may be the case that one cannot simultaneously assume that two
-    component of the vector $\vec{k}$ are unbounded. In general, given a set $S
-    \subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
-    there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
-    exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
-    $\vec{b}$ on the $S$ components, and the other components are below the
-    bound $N_0$. The language of an admissible set $S$ is the set of words
-    obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
-    ($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
-    Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
-
-    Now, admissible languages are ready to be pumped according to
-    \cref{pumping-periods:lem}. For every admissible language,
-    the size of a word that is not iterated is at most
-    $N_0 \times m$ by definition, and we conclude that:
-    \begin{equation*}
-        L \subseteq 
-        \bigcup_{x,y \in \Sigma^{\leq n}}
-        \bigcup_{u \in \Sigma^{\leq m \times N_0}}
-        \InfPeriodChain{x} u \InfPeriodChain{y}
-        \cup
-        \InfPeriodChain{x} u
-        \cup
-        u \InfPeriodChain{x}
-        \quad .
-    \end{equation*}
-\end{proof}
 
 To conclude this section and prove our main \cref{infix-amalgamation:thm}, it
 suffices to demonstrate that languages recognized by \kl{amalgamation systems}
@@ -825,5 +831,61 @@ regularity assumption.
     the \kl{prefix relation}, and $\seqof{w_{i,l}}$ is a \kl{chain} for the
     \kl{suffix relation}, which allows us to conclude.
 \end{proof}
+
+
+\subsection{Downwards Closed Subsets}
+\label{infixes-downwards:subsec}
+
+In the light of \cref{reg-wqo-iff-dwclosed-wqo:cor} one may
+wonder whether the \kl{downwards closed} languages for the \kl{infix relation}
+satisfy a similar characterization in terms of union of \kl{chains} and
+\kl{grids} as stated in
+\cref{infix-finite-automata:thm,bounded-language:thm,infix-amalgamation:thm}.
+Let us first remark that from our previous results we obtain the following
+lemma that illustrates how all the previous characterizations of
+\kl{well-quasi-ordered} languages for the \kl{infix relation} are collapsing in
+the case of \kl{downwards closed} languages.
+
+\begin{lemma}
+    \label{dwclosed-infixes-wqo:lem}
+    Let $L \subseteq \Sigma^*$ be a \kl{downwards closed} language for the
+    \kl{infix relation} that is \kl{well-quasi-ordered}. Then, the following
+    are equivalent:
+    \begin{enumerate}
+        \item $L$ is \kl{bounded},
+        \item $L$ is \kl{regular},
+        \item $L$ is a finite union of \kl{chains} and \kl{grids}.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO.
+\end{proof}
+
+One may think that all \kl{downwards closed} languages for the \kl{infix
+relation} that are \kl{well-quasi-ordered} are \kl{regular}. Note that this is
+what happens in the case of the \kl{subword embedding}, where any \kl{downwards
+closed} language for this relation is characterized by finitely many excluded
+patterns, hence \kl{regular} \textbf{TODO cite}.
+However, this is not the case for the \kl{infix relation}, as we will now
+illustrate with the following two examples.
+
+\begin{example}
+    Let $L \defined a^* b^* \cup b^* a^*$. This language is \kl{downwards
+    closed} for the \kl{infix relation}, is \kl{well-quasi-ordered} for the
+    \kl{infix relation}, but is characterized by an \emph{infinite} number 
+    of excluded infixes of the form $ab^ka$ and $ba^kb$ where $k \geq 1$.
+\end{example}
+
+Let $w$ be the Thue-Morse word \textbf{CITE}, and $L$ be the set of infixes of
+$w$. By construction $L$ is an \emph{infinite} \kl{downwards closed} for the
+\kl{infix relation}. Let us argue that $L$ is \kl{well-quasi-ordered} for the
+\kl{infix relation}, but is not \kl{regular}. First, $L$ cannot be \kl{bounded}
+because $w$ is \emph{cube free}, that is, no infix of $w$ can be written $uuu$
+for some word $u$ \textbf{CITE}. Furthermore, $w$ is a \intro{uniformly
+recurrent word} \textbf{CITE}, that is, for every infix $u$ of $w$, there
+exists $k \geq 1$ such that $u$ occurs in every infix $v$ of $w$ of size at
+least $k$. This implies that $L$ is \kl{well-quasi-ordered} for the \kl{infix
+relation}. We conclude thanks to \cref{dwclosed-infixes-wqo:lem},
+that $L$ is not \kl{regular}.
 
 
