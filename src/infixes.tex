@@ -25,10 +25,12 @@ into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
 
-\begin{theorem}
+The following result due to Kuske shows the structural complexity of the \kl{infix relation}
+
+\begin{lemma}{\cite[Lemma 5.1]{DBLP:journals/ita/Kuske06}}
     \label{infix-embedding:thm}
     Let $(X, \preceq)$ be a \kl{partially ordered} set,
-    and $\Sigma \defined \set{a,b,c}$.
+    and $\Sigma$ be an alphabet with at least two letters.
     Then the following are equivalent:
     \begin{enumerate}
         \item \label{infix-embedding-embeds:item} 
@@ -38,112 +40,18 @@ y$ and $y \preceq x$ implies $x = y$.
             its \kl{downwards closure}
             $\dwset[\preceq]{x}$ is finite.
     \end{enumerate}
-\end{theorem}
-\begin{proof}
-    Let us first prove that \cref{infix-embedding-embeds:item} implies
-    \cref{infix-embedding-count:item}. Let $f \colon X \to \Sigma^*$ be an
-    \kl{embedding}. Note that $f$ is injective, because $X$ and $\Sigma^*$
-    are \kl{partially
-    ordered}. In particular, because $\dwset[\infleq]{w}$ is finite
-    for every $w \in \Sigma^*$, then so is $\dwset[\preceq]{x}$
-    for every $x \in X$. Similarly, $X$ must be countable
-    because $\Sigma^*$ is.
-
-    Conversely, let us prove that \cref{infix-embedding-count:item} implies
-    \cref{infix-embedding-embeds:item}. To that end, let us first define
-    inductively a sequence $\seqof{X_n}$ of subsets of $X$ as follows: $X_0$ is
-    the set of minimal elements of $X$, and $X_{n+1}$ is the set of minimal
-    elements of $X \setminus \bigcup_{i \leq n} X_i$. Because initial segments
-    of $X$ are finite, we know that $X = \bigcup_{n \in \Nat} X_n$. To
-    simplify notations, we will also use $Y_n \defined \bigcup_{i \leq n} X_i$.
-    We also let $L_0 \defined a b^* a$, and 
-    $L_{n+1} \defined L_n \cup c^{n+1} b^* c^{n+1} (L_n c^{n+1})^*$.
-    Now, let us inductively define \kl{embeddings} $f_n \colon (Y_n,\preceq) \to
-    (L_n, \infleq)$.
-
-    For the base case, let $\seqof{x_i}[i \in \Nat]$ be an enumeration of
-    $X_0$, which is possible because $X$ is countable. We define $f_0 \colon
-    X_0 \to \Sigma^*$ as follows: $f_0(x_i) \defined a b^i a$. It is immediate
-    that $f_0$ is an \kl{embedding}. For the inductive step, let $\seqof{x_i}[i
-    \in \Nat]$ be an enumeration of $X_{n+1}$, and assume that $f_n$ is an
-    \kl{embedding} from $Y_n$ to $\Sigma^*$.
-    Let us define $D_i \defined \setof{ y \in Y_n }{ y \preceq x_i }$
-    for $i \in \Nat$, all of which are finite by assumption.
-    We then let for all $i \in \Nat$:
-    \begin{equation*}
-        f_{n+1}(x_i) \defined 
-        \underbrace{c^{n+1} b^i c^{n+1} \prod_{y \in D_i} \overbrace{f_n(y)}^{\in L_n} c^{n+1}}_{\in L_{n+1}}
-        \quad .
-    \end{equation*}
-    And let $f_{n+1}(y) \defined f_n(y)$ for all $y \in Y_n$.
-
-    To check that $f_{n+1}$ is an \kl{embedding}, let us first notice that
-    words $f_{n+1}(x_i)$ and $f_{n+1}(x_j)$ are incomparable for the \kl{infix
-    relation} when $i \neq j$, because the only factor of the form $c^{n+1}
-    a^{n+1} b^t a^{n+1} c^{n+1}$ appears at the beginning of these words, and
-    precisely encode $i$ (resp. $j$) in the value of $t$. Now, let us consider
-    $y \in Y_n$ and $x_i \in X_{n+1}$ such that $y \preceq x_i$. Because $y \in
-    D_i$, we have $f_n(y) \infleq f_{n+1}(x_i)$ by construction, and since
-    $f_n(y) = f_{n+1}(y)$, we conclude that $f_{n+1}(y) \infleq f_{n+1}(x_i)$.
-    Conversely, assume that $f_{n+1}(y) \infleq f_{n+1}(x_i)$. Again, this
-    means that $f_n(y) \infleq f_{n+1}(x_i)$. Now, the encoding is robust
-    enough so that we can conclude $f_{n}(y) \infleq f_{n}(z)$ for some $z \in
-    D_i$ By induction hypothesis, $y \preceq z$, hence, $y \preceq x_i$.
-
-    We conclude by noticing that $\bigcup_{n \in \Nat} f_n$ is an \kl{embedding}
-    of $X$ into $\Sigma^*$.
-\end{proof}
-
+\end{lemma}
 \begin{figure}
     \centering
     \includestandalone[width=\linewidth]{fig/infix-encoding-standalone}
     \caption{Representation of the \kl{subword relation} for $\set{a,b}^*$
-        inside the \kl{infix relation} for $\set{a,b,c}^*$
+        inside the \kl{infix relation} for $\set{a,b,\#}^*$
         using the encoding of \cref{infix-embedding:thm}, restricted to words
         of length at most $3$. To obtain smaller words,
         we replaced $D_i$ by $\max D_i$ in this construction.
     }
     \label{infix-embedding:fig}
 \end{figure}
-
-
-The encoding using three distinct letters is clearer to use and to
-illustrate, but it is not surprising that one can encode a three
-letter alphabet into a two letter one, immediately
-leading to the following \cref{infix-embedding-binary:cor}.
-
-\begin{corollary}
-    \label{infix-embedding-binary:cor}
-    Let $(X, \preceq)$ be a \kl{partially ordered} set,
-    and $\Sigma \defined \set{a,b}$.
-    Then the following are equivalent:
-    \begin{enumerate}
-        \item \label{infix-embedding-embeds:item} 
-            $X$ \kl{embeds into} $(\Sigma^*, \infleq)$,
-        \item \label{infix-embedding-count:item}
-            $X$ is countable, and for every $x \in X$,
-            its \kl{downwards closure}
-            $\dwset[\preceq]{x}$ is finite.
-    \end{enumerate}
-\end{corollary}
-\begin{proof}
-    Let us construct an \kl{order embedding} from 
-    $(\set{a,b,c}^*, \infleq)$ to $(\set{0,1}, \infleq)$.
-    To that end, consider
-    the morphism $\mu$ that maps $a$ to $101$, $b$ to $1001$
-    and $c$ to $10001$.
-    Assume that $u \infleq v$ in $\set{a,b,c}^*$,
-    then $\mu(u) \infleq \mu(v)$ because $\mu$ is a morphism.
-    Conversely, assume that $\mu(u) \infleq \mu(v)$.
-    That, is, there exists an \kl{infix} $w$ of $\mu(v)$
-    such that $\mu(u) = w$.
-    Because $\mu(u)$ starts with $10$ and ends with $01$, so does
-    $w$. In particular, the word $w$ is compatible with $\mu$
-    in the sense that $w = \mu(s)$ for some $s \infleq v$.
-    Because the map $\mu$ is injective,
-    we conclude that $\mu(s) = \mu(u)$ implies $s = u$
-    and $u \infleq v$ as expected.
-\end{proof}
 
 As a consequence of \cref{infix-embedding:thm}, we cannot replay proofs of
 \cref{prefixes:sec}, and will actually need to leverage some regularity of the
@@ -818,6 +726,62 @@ runs.
     $k$ times $s$ with one or two times $t$ (depending on the item number).
 \end{proof}
 
+In the upcoming proof of \cref{infix-amalgamation:thm}, we will use the notion
+of \intro{bounded language} for languages $L \subseteq \Sigma^*$ such that
+there exists words $w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots
+w_n^*$. This will be useful for us to derive the inclusion of a language $L$
+into a union of \kl{chains}. Note that we isolate this intermediate result in a
+separate theorem that could be applied beyond \kl{amalgamation systems}.
+
+\begin{theorem}
+    \label{bounded-language:thm}
+    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
+    $L$ is a \kl{well-quasi-order} when endowed with the 
+    \kl{infix relation} if and only if it is a finite union of \kl{chains}.
+\end{theorem}
+\begin{proof}
+    Let $w_1, \dots, w_n$ be such that
+    $L \subseteq w_1^* \cdots w_n^*$.
+    Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
+
+    Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
+    to $\Sigma^*$. We are interested in the intersection of the image of $w$
+    with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
+    there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
+    Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
+    $x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
+    $w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
+    \InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
+    \cup \InfPeriodChain{x} \InfPeriodChain{y}$.
+
+    Now, it may be the case that one cannot simultaneously assume that two
+    component of the vector $\vec{k}$ are unbounded. In general, given a set $S
+    \subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
+    there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
+    exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
+    $\vec{b}$ on the $S$ components, and the other components are below the
+    bound $N_0$. The language of an admissible set $S$ is the set of words
+    obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
+    ($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
+    Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
+
+    Now, admissible languages are ready to be pumped according to
+    \cref{pumping-periods:lem}. For every admissible language,
+    the size of a word that is not iterated is at most
+    $N_0 \times m$ by definition, and we conclude that:
+    \begin{equation}
+    	\label{amalgamation-infix-wqo-inclusion:eqn}
+        L \subseteq 
+        \bigcup_{x,y \in \Sigma^{\leq n}}
+        \bigcup_{u \in \Sigma^{\leq m \times N_0}}
+        \InfPeriodChain{x} u \InfPeriodChain{y}
+        \cup
+        \InfPeriodChain{x} u
+        \cup
+        u \InfPeriodChain{x}
+        \quad .
+    \end{equation}
+\end{proof}
 
 To conclude this section and prove our main \cref{infix-amalgamation:thm}, it
 suffices to demonstrate that languages recognized by \kl{amalgamation systems}
@@ -887,16 +851,32 @@ languages}.
     and conclude with \cref{bounded-language:thm}.
 \end{proofof}
 
-The abstract definition of \kl{amalgamation system} can be enriched by
-effectiveness assumptions, as explained in \cite[Section 3.1.4]{ASZZ24}. In
-this setting, we conjecture that the following decidability result holds.
+For the next result, we impose a mild restriction by requiring the language class to be closed under rational transductions. This property holds for most common language classes, including all known \kl{amalgamation systems}.
 
-\begin{conjecture}
-    Let $L$ be given by an \kl{effective amalgamation system},
-    then it is decidable whether $L$ 
-    is \kl{well-quasi-ordered} by the \kl{infix relation}.
-\end{conjecture}
+\begin{theorem}
+	\label{infix-wqo-is-emptiness:thm}
+	Let $\mathcal{C}$ be a class of languages recognized by amalgamation systems and closed under rational transductions. Then the following are equivalent:
+	
+	\begin{enumerate}
+		\item\label{wqo-infix-decidable} \kl[well-quasi-order]{Well-quasi-orderedness} of the \kl{infix relation} is decidable.
+		\item\label{emptiness-decidable} Emptiness is decidable.
+	\end{enumerate}
+\end{theorem}
 
+\begin{proof}
+	\cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{amalgamation-infix-wqo-inclusion:eqn} effective. 
+	
+	Let $R = \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in \Sigma^{\leq m \times N_0}} \InfPeriodChain{x} u \InfPeriodChain{y} \cup \InfPeriodChain{x}u \cup u\InfPeriodChain{x}$. For any concrete values of the bounds $n$, $m$, and $N_0$, this language is regular. As $\mathcal{C}$ is closed under rational transductions, we can therefore reduce the inclusion to emptiness of $L \cap \overline{R}$. However, we need to find these bounds first.
+	
+	To determine values for $n$ and $m$, we first test if $L$ is bounded. As the algorithm in \cite[Section 4.2]{ASZZ24} is effective, this yields words $w_1, \ldots w_n$ such that $L \subseteq w_1^* \cdots w_n^*$ and therefore yields also the bounds in questions.
+	
+	To determine the value for $N_0$, we first computer maximal subsets $S \subseteq [n]$ such that $w_i$ for $i \in S$ are simultaneously unbounded. We do this by applying a transduction mapping $w_i$ to some fresh letter $a_i$ if $i \in S$ and $\varepsilon$ otherwise, and testing for simultaneous unboundedness \cite[Section 4.1]{ASZZ24}. Given a candidate bound $n_0$ for $N_0$, we construct the languages $L_{S,n_0} = w_1^{\circ_1}\cdots w_n^{\circ_n}$ where $\circ_i = *$ if $i \in S$ and $\circ_i = \leq n_0$ otherwise. We then test if $L \subseteq \bigcup_{S \text{ maximal}} L_{S,n_0}$. If yes, $n_0$ is our value for $N_0$, otherwise, we increase it and repeat the construction. As we chose maximal sets $S$, this procedure will eventually terminate.
+	
+	\cref{wqo-infix-decidable} $\Rightarrow$ \cref{emptiness-decidable}. We 
+	consider the transduction $\mathcal T = \Sigma^* \times \{a, b\}$. Then 
+	for any language $L \in \mathcal C$, $\mathcal TL$ is well-quasi-ordered 
+	by infix if and only if $L$ is empty.
+\end{proof}
 
 Let us conclude this section by fully characterizing what are
 actually the chains for the \kl{infix} relation, without any 
