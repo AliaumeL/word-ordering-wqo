@@ -24,6 +24,7 @@
 \knowledge{notion}
  | bad@sequence
  | bad sequences
+ | bad sequence
 \knowledge{notion}
  | downwards closure
 \knowledge{notion}
@@ -50,6 +51,7 @@
  | subword relation
  | scattered subword
  | subword
+ | subwords
  | Higman’s subword relation
  | subword embedding
  | subword embedding relation
@@ -85,6 +87,18 @@
 \knowledge{notion}
  | periodic length
  | periodic lengths
+
+\knowledge{notion}
+ | regular language
+ | regular languages
+\knowledge{notion}
+ | finite automaton
+ | finite automata
+\knowledge{notion}
+ | rational transduction
+ | rational transductions
+\knowledge{notion}
+ | closed under rational transductions
 
 \knowledge{notion}
  | $\MSO $-definable
@@ -123,8 +137,14 @@
  | gap language
  | gap languages
 \knowledge{notion}
+ | unbounded@language
  | unbounded language
  | unbounded languages
 \knowledge{notion}
  | bounded language
+ | bounded@language
  | bounded languages
+
+\knowledge{notion}
+ | recognized by amalgamation systems
+ | recognized by an amalgamation system
