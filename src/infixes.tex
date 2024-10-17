@@ -2,31 +2,19 @@
 \section{Infixes and Bounded Languages}
 \label{infixes-regular:sec}
 
-\todo{Delete this section: the \cref{infix-embedding:thm} is already
-    known, we should just restate it. The
-    \cref{infix-finite-automata:thm} is a direct consequence of
-    \cref{infix-amalgamation:thm} and \cref{bounded-language:thm}.
-    I don't know if we should keep it for clarity, but it does not 
-    seems to be necessary to me.
-}
-
-\AP
-In this section, we study languages equipped with the \kl{infix relation}. As
-opposed to the \kl{prefix} and \kl{suffix} relations, the \kl{infix relation}
-can yield to very complicated \kl{well-quasi-ordered} languages. Formally, the
-upcoming \cref{infix-embedding:thm} shows that \emph{any} countable
-partial-ordering with finite initial segments can be embedded into the infix
-relation of a language. To make the former statement precise,
-Let us recall that an \intro{order embedding} from a quasi-ordered set $(X,
-\preceq)$ into a quasi-ordered set $(Y, \preceq')$ is a function $f \colon X
-\to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
+\AP In this section, we study languages equipped with the \kl{infix relation}.
+As opposed to the \kl{prefix} and \kl{suffix} relations, the \kl{infix
+relation} can lead to very complicated \kl{well-quasi-ordered} languages.
+Formally, the upcoming \cref{infix-embedding:thm} shows that
+\emph{any} countable partial-ordering with finite initial segments can be
+embedded into the infix relation of a language. To make the former statement
+precise, let us recall that an \intro{order embedding} from a quasi-ordered set
+$(X, \preceq)$ into a quasi-ordered set $(Y, \preceq')$ is a function $f \colon
+X \to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
 \preceq' f(y)$. When such an embedding exists, we say that $X$ \reintro{embeds
 into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
-
-The following result due to Kuske shows the structural complexity of the \kl{infix relation}
-
 \begin{lemma}{\cite[Lemma 5.1]{DBLP:journals/ita/Kuske06}}
     \label{infix-embedding:thm}
     Let $(X, \preceq)$ be a \kl{partially ordered} set,
@@ -53,32 +41,39 @@ The following result due to Kuske shows the structural complexity of the \kl{inf
     \label{infix-embedding:fig}
 \end{figure}
 
-As a consequence of \cref{infix-embedding:thm}, we cannot replay proofs of
-\cref{prefixes:sec}, and will actually need to leverage some regularity of the
-languages to obtain a characterization of \kl{well-quasi-ordered} languages
-under the \kl{infix relation}. Let us first play this game for languages that
-are recognized by finite automata. We assume that the reader is familiar with
-the notions of deterministic finite automaton and regular languages, and refer
-to the book of Thomas for a comprehensive introduction to the subject
-\cite{THOM97}. The main goal of the remainder of this section is to prove the
-following \cref{infix-finite-automata:thm}.
+\AP As a consequence of \cref{infix-embedding:thm}, we cannot replay
+proofs of \cref{prefixes:sec}, and will
+actually need to leverage some regularity of the languages to obtain a
+characterization of \kl{well-quasi-ordered} languages under the \kl{infix
+relation}. This regularity will be imposed through the notion of \intro{bounded
+languages}, i.e., languages $L \subseteq \Sigma^*$ such that there exists words
+$w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots w_n^*$.
 
-\begin{theorem}[restate=infix-finite-automata:thm,label=infix-finite-automata:thm]
-    \proofref{infix-finite-automata:thm}
-    Let $L \subseteq \Sigma^*$ be a language recognized by a finite automaton.
-    Then $L$ is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if $L$ is
-    a finite union of \kl{chains} for the \kl{infix relation}.
+\begin{theorem}[restate=bounded-language:thm,label=bounded-language:thm]
+    %\label{bounded-language:thm}
+    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
+    $L$ is a \kl{well-quasi-order} when endowed with the 
+    \kl{infix relation} if and only if it included in a finite union of 
+    products $S_i \cdot P_i$ where 
+    $S_i$ is a \kl{chain} for the \kl{suffix relation}, and 
+    $P_i$ is a \kl{chain} for the \kl{prefix relation},
+    for all $1 \leq i \leq n$.
 \end{theorem}
 
-\AP In order to prove \cref{infix-finite-automata:thm}, we will perform some
-preliminary analysis on the structure of an automaton recognizing a
-well-quasi-ordered language under the infix relation, which will be powered by
-folklore results on \emph{periodic} words. Let us recall that a non-empty word
-$w \in \Sigma^+$ is \intro(word){periodic} with period $x \in \Sigma^*$ if
-there exists a $p \in \Nat$ such that $w \infleq x^p$. The \intro{periodic
-length} of a word $u$ is the minimal length of a word $x$ such that $u$ is an
-\kl{infix} of $x^p$ for some $p \in \Nat$ and $x \in \Sigma^+$. We will
-essentially rely on the following result on periodic words.
+Let us first remark that if $S$ is a \kl{chain} for the \kl{suffix relation}
+and $P$ is a \kl{chain} for the \kl{prefix relation}, then $SP$ is
+\kl{well-quasi-ordered} for the \kl{infix relation}. This proves the (easy)
+right-to-left implication of \cref{bounded-language:thm}. Furthermore, any
+language $L$ included in a finite union of products $S_i \cdot P_i$ where $S_i$
+is in fact a \kl{bounded language}.
+
+\AP In order to prove the (difficult) left-to-right implication of
+\cref{bounded-language:thm}, we will rely heavily on the
+combinatorics of periodic words. Let us recall that a non-empty word $w \in
+\Sigma^+$ is \intro(word){periodic} with period $x \in \Sigma^*$ if there
+exists a $p \in \Nat$ such that $w \infleq x^p$. The \intro{periodic length} of
+a word $u$ is the minimal length of a word $x$ such that $u$ is an \kl{infix}
+of $x^p$ for some $p \in \Nat$ and $x \in \Sigma^+$.
 
 \begin{lemma}
     \label{periodic-infixes:lem}
@@ -103,10 +98,6 @@ essentially rely on the following result on periodic words.
     minimality of $q$ this must be equal to $q$ and to $p$.
 \end{proof}
 
-The upcoming \cref{powers-infixes:cor} is based on the observation that if $S$
-is a \kl{chain} for the \kl{suffix relation} and $P$ is a \kl{chain} for the
-\kl{prefix relation}, then $SP$ is a \kl{chain} for the \kl{infix relation}.
-
 \begin{corollary}
     \label{powers-infixes:cor}
     Let $u,v \in \Sigma^*$ and $k, \ell \in \Nat$
@@ -121,14 +112,15 @@ is a \kl{chain} for the \kl{suffix relation} and $P$ is a \kl{chain} for the
 
 The reason why \kl{periodic words} built using a given period $x \in \Sigma^+$
 are interesting for the \kl{infix relation} is that they naturally create
-\kl{chains}. Indeed, if $x \in \Sigma^+$ is a finite word, then $\setof{x^p}{p
-\in \Nat}$ is a \kl{chain} for the \kl{infix relation}. Note that in general,
-the \kl{downwards closure} of a chain is \emph{not} a chain. However, for the
-chains generated using periodic words, the \kl{downwards closure}
-$\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is a \emph{finite union} of
-\kl{chains}. Because this set will appear in bigger equations, we introduce the
-shorter notation $\intro*\InfPeriodChain{x}$ for the set of \kl{infixes} of
-words of the form $x^p$, where $p$ ranges over $\Nat$.
+\kl{chains} for the \kl{prefix} and \kl{suffix} relations. Indeed, if $x \in
+\Sigma^+$ is a finite word, then $\setof{x^p}{p \in \Nat}$ is a \kl{chain} for
+the \kl{infix relation}. Note that in general, the \kl{downwards closure} of a
+chain is \emph{not} a chain. However, for the chains generated using periodic
+words, the \kl{downwards closure} $\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is
+a \emph{finite union} of \kl{chains}. Because this set will appear in bigger
+equations, we introduce the shorter notation $\intro*\InfPeriodChain{x}$ for
+the set of \kl{infixes} of words of the form $x^p$, where $p$ ranges over
+$\Nat$.
 
 \begin{lemma}
     \label{inf-period-chain:lem}
@@ -182,7 +174,7 @@ words of the form $x^p$, where $p$ ranges over $\Nat$.
     (using again \cref{inf-period-chain:lem}).
     As a consequence,
     $\InfPeriodChain{x}u \InfPeriodChain{y}$ is a finite union 
-    of \kl{chains} for the \kl{infix} relation.
+    of \kl{grids} for the \kl{infix} relation.
 \end{proof}
 
 The following combinatorial lemma connects the property of being
@@ -271,87 +263,7 @@ the core result that powers the analysis done in the upcoming
     and we conclude with an identical reasoning.
 \end{proof}
 
-
-We are now ready to restate and prove our main theorem, proven by combining
-\cref{pumping-periods:lem} together with classical pumping arguments on finite
-state automata.
-
-\begin{proofof}{infix-finite-automata:thm}
-    Let $w \in L$, because $Q$ is finite, there exists
-    a factorization of $w$
-    into words $(\prod_{i = 1}^k u_i v_i) u_{k+1}$
-    such that 
-    for all $1 \leq i \leq k+1$, $\card{u_i} \leq \card{Q}$,
-    for all $1 \leq i \leq k$, $1 \leq \card{v_i} \leq \card{Q}$,
-    and satisfying 
-    that $w[\vec{X}] \defined 
-    (\prod_{i = 1}^k u_i v_i^{X_i}) u_{k+1}$
-    belongs to $L$ for all choices of values $\vec{X} \in \Nat^k$.
-
-    Applying \cref{pumping-periods:lem}, we conclude that 
-    there exists $x,y \in \Sigma^+$ of size at most $\card{Q}$
-    such that 
-    $w \in u_1 \InfPeriodChain{x} \cup \InfPeriodChain{y} u_{k+1}
-    \cup \bigcup_{1 \leq i \leq k+1} \InfPeriodChain{x} u_i \InfPeriodChain{y}$.
-    In particular, we conclude that
-    \begin{equation}
-        \label{infix-automata:eq}
-        L
-        \subseteq
-        \bigcup_{x,y,u\in \Sigma^{\leq \card{Q}}}
-        u \InfPeriodChain{x}
-        \cup 
-        \InfPeriodChain{x} u
-        \cup
-        \InfPeriodChain{x} u \InfPeriodChain{y}
-        \quad .
-    \end{equation}
-
-    Now, thanks to \cref{inf-period-union-chains:lem},
-    this happens to be a finite union of \kl{chains}
-    for the \kl{infix relation}.
-\end{proofof}
-
-
-
-\begin{corollary}
-    \label{reg-wqo-decidable:cor}
-    Given a regular language $L$, it is decidable whether
-    $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
-\end{corollary}
-\begin{proof}
-    It suffices to decide whether 
-    \cref{infix-automata:eq} holds for the language $L$.
-    This is an inclusion of regular languages, which is decidable.
-\end{proof}
-
-
-Let $(X,\preceq)$ be a quasi-ordered set, and $L \subseteq X$ be such that $(L,
-\preceq)$ is \kl{well-quasi-ordered}. It is not true in general that
-$(\dwset{L}, \preceq)$ is \kl{well-quasi-ordered}. In the case of $(\Sigma^*,
-\infleq)$ a typical example is to start from an infinite \kl{antichain} $A$,
-together with an enumeration $\seqof{w_i}$ of $A$, and build the language $L
-\defined \setof{ \prod_{i = 0}^n w_i }{ i \in \Nat }$. By definition, $L$ is a
-\kl{chain} for the \kl{infix} ordering, hence \kl{well-quasi-ordered}. However,
-$\dwset[\infleq]{L}$ contains $A$, and is therefore not
-\kl{well-quasi-ordered}. As a fun corollary of our analysis, we conclude that
-this particular example cannot be realized by a regular language $A$.
-
-
-\begin{corollary}
-    \label{reg-wqo-iff-dwclosed-wqo:cor}
-    Given a regular language $L$, it is \kl{well-quasi-ordered} 
-    for the \kl{infix relation} if and only if 
-    $\dwset[\infleq] L$ is.
-\end{corollary}
-
-\begin{theorem}
-    \label{bounded-language:thm}
-    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
-    $L$ is a \kl{well-quasi-order} when endowed with the 
-    \kl{infix relation} if and only if it is a finite union of \kl{grids}.
-\end{theorem}
-\begin{proof}
+\begin{proofof}{bounded-language:thm}
     Let $w_1, \dots, w_n$ be such that
     $L \subseteq w_1^* \cdots w_n^*$.
     Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
@@ -381,7 +293,8 @@ this particular example cannot be realized by a regular language $A$.
     \cref{pumping-periods:lem}. For every admissible language,
     the size of a word that is not iterated is at most
     $N_0 \times m$ by definition, and we conclude that:
-    \begin{equation*}
+    \begin{equation}
+        \label{bounded-language:eq}
         L \subseteq 
         \bigcup_{x,y \in \Sigma^{\leq n}}
         \bigcup_{u \in \Sigma^{\leq m \times N_0}}
@@ -391,11 +304,14 @@ this particular example cannot be realized by a regular language $A$.
         \cup
         u \InfPeriodChain{x}
         \quad .
-    \end{equation*}
-\end{proof}
+    \end{equation}
+\end{proofof}
 
-Note that this immediately generalizes \cref{reg-wqo-iff-dwclosed-wqo:cor}
-to all \kl{bounded languages}.
+
+Let us now discuss the implications of this characterization in terms of
+\kl{downwards closures}: if $L$ is a \kl{bounded language}, then considering
+$L$ or its \kl{downwards closure} is equivalent with respect to being
+\kl{well-quasi-ordered} by the \kl{infix relation}.
 
 \begin{corollary}
     \label{bounded-wqo-dwclosed:cor}
@@ -403,39 +319,34 @@ to all \kl{bounded languages}.
     $L$ is a \kl{well-quasi-order} when endowed with the
     \kl{infix relation} if and only if $\dwset[\infleq]{L}$ is.
 \end{corollary}
-
-
-In the light of \cref{reg-wqo-iff-dwclosed-wqo:cor,bounded-wqo-dwclosed:cor}
-one may wonder whether the \kl{downwards closed}
-languages for the \kl{infix relation} satisfy a similar characterization in
-terms of union of \kl{grids} as stated in
-\cref{infix-finite-automata:thm,bounded-language:thm}. Let us
-first remark that from our previous results we obtain the following lemma that
-illustrates how all the previous characterizations of \kl{well-quasi-ordered}
-languages for the \kl{infix relation} are collapsing in the case of
-\kl{downwards closed} languages.
-
-\begin{lemma}
-    \label{dwclosed-infixes-wqo:lem}
-    Let $L \subseteq \Sigma^*$ be a \kl{downwards closed} language for the
-    \kl{infix relation} that is \kl{well-quasi-ordered}. Then, the following
-    are equivalent:
-    \begin{enumerate}
-        \item $L$ is \kl{bounded},
-        \item $L$ is \kl{regular},
-        \item $L$ is a finite union of \kl{chains} and \kl{grids}.
-    \end{enumerate}
-\end{lemma}
 \begin{proof}
-    TODO.
+    Because $L \subseteq \dwset[\infleq]{L}$, the right-to-left implication
+    is trivial.
+    For the left-to-right implication, let us assume that $L$ is a
+    \kl{well-quasi-ordered} language for the \kl{infix relation}.
+    Then $L$ is included in a finite union 
+    of products of \kl{chains}:
+    \begin{equation*}
+        L \subseteq \bigcup_{i = 1}^n S_i \cdot P_i \quad .
+    \end{equation*}
+    Remark that the \kl{downwards closure} of a product of two \kl{chains}
+    is a product of two chains.
+    As a consequence, we conclude that $\dwset[\infleq]{L}$ is itself included
+    in a finite union of products of \kl{chains}.
+    Note that this also proves that $\dwset[\infleq]{L}$ is a \kl{bounded language},
+    hence that it is \kl{well-quasi-ordered} by the \kl{infix relation} 
+    via
+    \cref{bounded-language:thm}.
 \end{proof}
 
+
 One may think that all \kl{downwards closed} languages for the \kl{infix
-relation} that are \kl{well-quasi-ordered} are \kl{regular}. Note that this is
-what happens in the case of the \kl{subword embedding}, where any \kl{downwards
-closed} language for this relation is characterized by finitely many excluded
-patterns, hence \kl{regular}. However, this is not the case for the \kl{infix
-relation}, as we will now illustrate with the following two examples.
+relation} that are \kl{well-quasi-ordered} are \kl(language){bounded}. Note
+that this is what happens in the case of the \kl{subword embedding}, where any
+\kl{downwards closed} language for this relation is characterized by finitely
+many excluded \kl{subwords}, hence provides a \kl{bounded language}. However, this
+is not the case for the \kl{infix relation}, as we will now illustrate with the
+following two examples.
 
 \begin{example}
     \label{dwclosed-wqo-not-finite-excl:ex}
@@ -460,13 +371,13 @@ on this sequence and its properties \cite{ALSHA99}.
     \label{thue-morse:lemma}
     There exists a language $L$ that is \kl{downwards closed} for the \kl{infix
     relation}, \kl{well-quasi-ordered} for the \kl{infix relation}, but is not
-    \kl{regular}.
+    \kl(language){bounded}.
 \end{lemma}
 \begin{proof}
     Let $\ThueMorse$ be the \kl{Thue-Morse sequence}
     $L$ be the set of infixes of $w$. By construction $L$ is an \emph{infinite}
     \kl{downwards closed} for the \kl{infix relation}. Let us argue that $L$ is
-    \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl{regular}.
+    \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl(language){bounded}.
 
     Assume by contradiction that $L$ is \kl{bounded}. In this case, there exist
     words $w_1, \dots, w_k \in \Sigma^*$ such that $L \subseteq w_1^* \cdots
@@ -481,8 +392,49 @@ on this sequence and its properties \cite{ALSHA99}.
     recurrent}, there exists $k \geq 1$ such that $u_1$ is an \kl{infix} of
     every word $v$ of size at least $k$. In particular, $u_1$ is an \kl{infix}
     of $u_k$, hence the sequence $\seqof{u_i}$ is \kl(sequence){good}.
-
-    We conclude thanks to
-    \cref{dwclosed-infixes-wqo:lem}, that $L$ is not \kl{regular}.
 \end{proof}
 
+One may refine our analysis of the \kl{Thue-Morse sequence} to obtain 
+precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
+
+\begin{lemma}
+    \label{thue-morse-ordinal:lemma}
+    Let $L$ be the language of \kl{infixes} of the \kl{Thue-Morse sequence}.
+    Then, the \kl{ordinal invariants} of $L$ are as follows:
+    the \kl{maximal order type} of $L$ is $\omega$,
+    the \kl{ordinal height} of $L$ is $\omega$,
+    the \kl{ordinal width} of $L$ is $\omega$.
+\end{lemma}
+\begin{proof}
+    Let us prove that these are upper bounds for the \kl{ordinal invariants} of
+    $L$. For the \kl{ordinal height}, it is true for any language $L$.
+    For the \kl{maximal order type}, we remark that
+    the maximal length of a \kl{bad sequence} is determined by its first element,
+    hence that it is at most $\omega$.
+    Finally, because the \kl{ordinal width} is at most the \kl{maximal order type},
+    we conclude that the \kl{ordinal width} is also at most $\omega$.
+
+    Now, let us prove that these bounds are tight. It is clear that
+    $\oHeight{L} = \omega$: given any number $n \in \Nat$, one can construct a
+    \kl{decreasing sequence} of words in $L$ of length $n$, for instance by
+    considering the first $n$ prefixes of the \kl{Thue-Morse sequence} by
+    decreasing size.
+    Let us now prove that $\oWidth{L} = \omega$. Assume by contradiction that
+    $\oWidth{L}$ is finite. Then, $L$ can be written as a finite union of
+    \kl{chains} for the \kl{infix relation}, and in particular, $L$ is
+    \kl{bounded}, which is absurd by \cref{thue-morse:lemma}.
+    Finally, because the \kl{ordinal width} is at most the \kl{maximal order
+    type}, we conclude that the \kl{maximal order type} of $L$ is also $\omega$.
+\end{proof}
+
+This suggests the following conjecture which states that for \kl{downwards
+closed} languages, the \kl{ordinal invariants} are relatively small.
+
+\begin{conjecture}
+    \label{small-ordinal-invariants:conj}
+    Let $L$ be a \kl{well-quasi-ordered} language for the \kl{infix relation}
+    that is \kl{downwards closed}.
+    Then, the \kl{maximal order type} of $L$ is at most $\omega^3$,
+    its \kl{ordinal height} is at most $\omega$,
+    and its \kl{ordinal width} is at most $\omega^2$.
+\end{conjecture}
