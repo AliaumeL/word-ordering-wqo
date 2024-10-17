@@ -103,13 +103,13 @@ relation}.
 \AP When considering an algorithm based on a \kl{well-quasi-ordering}, the
 runtime of the algorithm is deeply related to the ``complexity'' of the
 underlying quasi-order \todo{CITE???}. One way to measure this complexity is to
-consider its so-called \intro{ordinal invariants}: for instance, the
-\intro{maximal order type} (or m.o.t.), originally defined by De Jongh and
+consider its so-called \kl{ordinal invariants}: for instance, the
+\kl{maximal order type} (or m.o.t.), originally defined by De Jongh and
 Parikh \cite{dejongh77}, is the order type of the maximal linearization of a
 well-quasi-ordered set. In the case of a finite set, the m.o.t. is precisely
 the size of the set. Better runtime bounds were obtained by considering two
-other parameters\todo{cite sylvain width/ HDR?}: the \intro{ordinal height}
-introduced by Schmidt \cite{schmidt81}, and the \intro{ordinal width} of Kříž
+other parameters\todo{cite sylvain width/ HDR?}: the \kl{ordinal height}
+introduced by Schmidt \cite{schmidt81}, and the \kl{ordinal width} of Kříž
 and Thomas \cite{kriz90b}. Therefore, when characterizing
 \kl{well-quasi-ordered} languages, we will also be interested in computing
 bounds on their \kl{ordinal invariants}. We refer to the
@@ -218,7 +218,12 @@ finite automata, context-free grammars, and petri nets \cite{ASZZ24}.
 \renewcommand{\labelenumi}{R\arabic{enumi}}
 \begin{enumerate}
     \setcounter{enumi}{5}
-    \item There is a decision procedure for checking whether a language $L$ recognized by an \kl{amalgamation system} is \kl{well-quasi-ordered} by the \kl{prefix relation}, the \kl{suffix relation}, or the \kl{infix relation}. Furthermore, if it is \kl{well-quasi-ordered}, then $L$ is a \kl{bounded language}.
+    \item There is a decision procedure for checking whether a language $L$ 
+        recognized by an \kl{amalgamation system} is \kl{well-quasi-ordered}
+        by the \kl{prefix relation}, the \kl{suffix relation},
+        or the \kl{infix relation}. Furthermore, if it is \kl{well-quasi-ordered}, 
+        then $L$ is a \kl{bounded language}.
+        \hfill (\cref{infix-wqo-is-emptiness:thm} p.\pageref{infix-wqo-is-emptiness:thm})
 \end{enumerate}
 }
 Notice that the above result implies that the hypothesis of
