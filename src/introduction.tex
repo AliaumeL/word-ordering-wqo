@@ -134,7 +134,9 @@ Specifically, for the \kl{prefix relation} and the
 \renewcommand{\labelenumi}{R\arabic{enumi}}
 \begin{enumerate}
 	\item A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the \kl{prefix relation} if and only if it is a finite union of \kl{chains} of the \kl{prefix relation}.
+    \hfill (\cref{prefixes:thm} p.\pageref{prefixes:thm})
 	\item A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the \kl{suffix relation} if and only if it is a finite union of \kl{chains} of the \kl{suffix relation}.
+    \hfill (\cref{prefixes:thm} p.\pageref{prefixes:thm})
 \end{enumerate}
 }
 
@@ -152,7 +154,7 @@ first, these languages are extremely simple, which means that one could have
 hoped for using directly another well-quasi-ordered set without resorting to
 finite words; second, any time one encounters a \kl{well-quasi-ordered}
 language, it is going to provide relatively efficient algorithms.
-
+{
 \renewcommand{\labelenumi}{R\arabic{enumi}}
 \begin{enumerate}
     \setcounter{enumi}{2}
@@ -161,6 +163,7 @@ language, it is going to provide relatively efficient algorithms.
         (resp. \kl{suffix relation}) have an \kl{ordinal height} of at most $\omega$,
         a finite \kl{ordinal width}, and a \kl{maximal order type} strictly
         below $\omega^2$.
+        \hfill (\cref{prefixes-ordinal-invariants:cor} p.\pageref{prefixes-ordinal-invariants:cor})
 \end{enumerate}
 }
 
@@ -232,7 +235,9 @@ the orderings are \emph{multiplicative}, that is, if $u_1 \preceq v_1$ and $u_2
 \preceq v_2$ then $u_1u_2 \preceq v_1v_2$. This assumption does not hold for
 the \kl{prefix}, \kl{suffix}, and \kl{infix} relations.
 
-\subparagraph{Outline} In
+\subparagraph{Outline} We introduce in \cref{prelims:sec} the
+necessary background on \kl{well-quasi-orders} and \kl{ordinal invariants}.
+In
 \cref{prefixes:sec}, which is relatively
 self-contained, we study the \kl{prefix relation} and prove in
 \cref{prefixes:thm} the characterization of \kl{well-quasi-ordered}

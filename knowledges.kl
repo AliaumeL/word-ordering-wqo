@@ -17,32 +17,35 @@
  | partially ordered
 \knowledge{notion}
  | well-founded
-
+\knowledge{notion}
+ | good@sequence
+ | good@wqo
+ | good sequence
+\knowledge{notion}
+ | bad@sequence
+ | bad sequences
 \knowledge{notion}
  | downwards closure
 \knowledge{notion}
+ | downwards closed
+\knowledge{notion}
  | upwards closure
-
-
 \knowledge{notion}
  | decreasing sequence
  | decreasing sequences
-
 \knowledge{notion}
  | antichain
  | antichains
-
 \knowledge{notion}
  | chains
  | chain
-
 \knowledge{notion}
  | order embedding
  | embeds into
+ | embedding@order
  | embedding
  | embeddings
  | embedded
-
 \knowledge{notion}
  | subword relation
  | scattered subword
@@ -57,20 +60,16 @@
  | infix ordering
  | infix
  | infixes 
-
 \knowledge{notion}
  | prefix relation
  | prefix ordering
  | prefix 
  | prefixes
-
 \knowledge{notion}
  | suffix relation
  | suffix ordering 
  | suffix 
  | suffixes
-
-
 \knowledge{notion}
  | ordinal invariants
 \knowledge{notion}
@@ -79,8 +78,6 @@
  | maximal order type
 \knowledge{notion}
  | ordinal width
-
-
 \knowledge{notion}
  | periodic word
  | periodic words
@@ -94,10 +91,12 @@
 \knowledge{notion}
  | $\MSO $
  | $\MSO $-formula
-
 \knowledge{notion}
- | unbounded language
- | unbounded languages
+ | Thue-Morse sequence
+\knowledge{notion}
+ | cube-free
+\knowledge{notion}
+ | uniformly recurrent
 
 % custom commands
 \knowledge{notion}
@@ -123,7 +122,9 @@
 \knowledge{notion}
  | gap language
  | gap languages
-
+\knowledge{notion}
+ | unbounded language
+ | unbounded languages
 \knowledge{notion}
  | bounded language
  | bounded languages
