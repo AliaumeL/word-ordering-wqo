@@ -5,9 +5,10 @@
 denote finite alphabets, $\Sigma^*$ to denote the set of finite words over
 $\Sigma$, and $\varepsilon$ for the empty word in $\Sigma^*$. In order to give
 some intuition on the decision problems, we will sometimes use the notion of
-finite automata, regular languages, and Monadic Second Order ($\intro*\MSO$)
-logic on finite words, and assume is familiar with them. We refer to the
-textbook of \cite{THOM97} for a detailed introduction to this topic.
+\intro{finite automata}, \intro{regular languages}, and \intro{Monadic Second
+Order} ($\intro*\MSO$) logic on finite words, and assume is familiar with them.
+We refer to the textbook of \cite{THOM97} for a detailed introduction to this
+topic.
 
 \paragraph*{Well-quasi-orders.} Let us introduce some notations for
 \kl{well-quasi-orders}. A sequence $\seqof{x_i}$ in a set $X$ is
@@ -31,20 +32,21 @@ particular, for a language $L \subseteq \Sigma^*$ to be
 use $\alpha, \beta, \gamma$ to denote ordinals, and use $\omega$ to denote the
 first infinite ordinal, i.e., the set of natural numbers with the usual
 ordering. We assume superficial familiarity with ordinal arithmetic, and refer
-to \cite{KUNEN80} for a detailed introduction to this domain. Given a tree $T$
-whose branches are all finite we can define an ordinal $\alpha_T$ inductively
-as follows: if $T$ is a leaf then $\alpha_T = 0$, if $T$ has children
-$\seqof{T_i}$ then $\alpha_T = \sup \setof{\alpha_{T_i} + 1}{i \in \Nat}$. We
-say that $\alpha_T$ is the \emph{rank} of $T$. 
+to \cite{KUNEN80} for a detailed introduction to this domain.
+Given a tree $T$ whose branches are all finite we can define
+an ordinal $\alpha_T$ inductively as follows: if $T$ is a leaf then $\alpha_T =
+0$, if $T$ has children $\seqof{T_i}$ then $\alpha_T = \sup \setof{\alpha_{T_i}
++ 1}{i \in \Nat}$. We say that $\alpha_T$ is the \emph{rank} of $T$. 
 
 Let $(X, \leq)$ be a \kl{well-quasi-ordered} set. One can define three
 well-founded trees from $X$: the tree of \kl{bad sequences}, the tree of
 decreasing sequences, and the tree of \kl{antichains}. The rank of these
-respective trees are called respectively the \kl{maximal order type}
-\cite{dejongh77}, the \kl{ordinal height} \cite{schmidt81}, and the \kl{ordinal
-width} of $X$ \cite{kriz90b}. We refer to the survey of \cite{DZSCSC20} for a
-detail discussion on these concepts and their computation on specific classes
-of well-quasi-ordered sets.
+respective trees are called respectively the \intro{maximal order type} of $X$
+written $\intro*{\oType{X}}$ \cite{dejongh77}, the \intro{ordinal height} of
+$X$ written $\intro*{\oHeight{X}}$ \cite{schmidt81}, and the \intro{ordinal
+width} of $X$ written $\intro*{\oWidth{X}}$ \cite{kriz90b}. We refer to the
+survey of \cite{DZSCSC20} for a detail discussion on these concepts and their
+computation on specific classes of well-quasi-ordered sets.
 
 
 
