@@ -15,15 +15,17 @@ X \to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
 into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
+The embedding defined in \cref{infix-embedding:thm} is illustrated
+for the \kl{subword relation} in \cref{infix-embedding:fig}.
 \begin{lemma}{\cite[Lemma 5.1]{DBLP:journals/ita/Kuske06}}
     \label{infix-embedding:thm}
     Let $(X, \preceq)$ be a \kl{partially ordered} set,
     and $\Sigma$ be an alphabet with at least two letters.
     Then the following are equivalent:
     \begin{enumerate}
-        \item \label{infix-embedding-embeds:item} 
+        \item 
             $X$ \kl{embeds into} $(\Sigma^*, \infleq)$,
-        \item \label{infix-embedding-count:item}
+        \item 
             $X$ is countable, and for every $x \in X$,
             its \kl{downwards closure}
             $\dwset[\preceq]{x}$ is finite.
@@ -156,26 +158,6 @@ $\Nat$.
 \end{proof}
 
 
-\begin{corollary}
-    \label{inf-period-union-chains:lem}
-    Let $x,u,y \in \Sigma^*$ be words.  The following 
-    are finite unions of \kl{grids} for the infix relation:
-    $\InfPeriodChain{x}u$, $u \InfPeriodChain{x}$,
-    and $\InfPeriodChain{x} u \InfPeriodChain{y}$.
-\end{corollary}
-\begin{proof}
-    Because $\InfPeriodChain{x}$ is a finite union of \kl{chains} for the \kl{suffix}
-    relation (rsing \cref{inf-period-chain:lem}), we conclude that $\InfPeriodChain{x}u$ is one too for
-    the \kl{infix} relation. This holds similarly for $u \InfPeriodChain{x}$.
-    In the case of $\InfPeriodChain{x} u \InfPeriodChain{y}$,
-    we remark that $\InfPeriodChain{x} u$ is a finite union of chains
-    for the \kl{suffix relation},
-    and that $\InfPeriodChain{y}$ is one for the \kl{prefix relation}
-    (using again \cref{inf-period-chain:lem}).
-    As a consequence,
-    $\InfPeriodChain{x}u \InfPeriodChain{y}$ is a finite union 
-    of \kl{grids} for the \kl{infix} relation.
-\end{proof}
 
 The following combinatorial lemma connects the property of being
 \kl{well-quasi-ordered} to a property of the \kl{periodic lengths} of words in
@@ -379,7 +361,7 @@ on this sequence and its properties \cite{ALSHA99}.
     \kl{downwards closed} for the \kl{infix relation}. Let us argue that $L$ is
     \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl(language){bounded}.
 
-    Assume by contradiction that $L$ is \kl{bounded}. In this case, there exist
+    Assume by contradiction that $L$ is \kl(language){bounded}. In this case, there exist
     words $w_1, \dots, w_k \in \Sigma^*$ such that $L \subseteq w_1^* \cdots
     w_k^*$. Since $L$ is infinite and \kl{downwards closed}, there exists a
     word $u \in L$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is absurd
@@ -422,7 +404,7 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     Let us now prove that $\oWidth{L} = \omega$. Assume by contradiction that
     $\oWidth{L}$ is finite. Then, $L$ can be written as a finite union of
     \kl{chains} for the \kl{infix relation}, and in particular, $L$ is
-    \kl{bounded}, which is absurd by \cref{thue-morse:lemma}.
+    \kl(language){bounded}, which is absurd by \cref{thue-morse:lemma}.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order
     type}, we conclude that the \kl{maximal order type} of $L$ is also $\omega$.
 \end{proof}

@@ -30,15 +30,17 @@ but to state and prove the following two theorems.
     \proofref{infix-amalgamation:thm}
     Let $L \subseteq \Sigma^*$ be a language recognized by an 
     \kl{amalgamation system}.
-    Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
+    If $L$ is well-quasi-ordered by the infix relation then $L$ is
     \kl(language){bounded}.
 \end{theorem}
 
+\todo[inline]{There are missing effective restrictions in the statement of the theorem: we should
+have descriptions of the languages, (effective) stability under transductions etc.}
+
 \begin{theorem}[restated=infix-wqo-is-emptiness:thm,label=infix-wqo-is-emptiness:thm]
 % 	\label{infix-wqo-is-emptiness:thm}
-	Let $\mathcal{C}$ be a class of languages recognized by 
-    \kl{amalgamation systems}
-    and closed under
+	Let $\mathcal{C}$ be an \kl{effective amalgamative class} of languages
+    closed under
     \kl{rational transductions}. 
     Then the following are equivalent:
 	\begin{enumerate}
@@ -49,7 +51,7 @@ but to state and prove the following two theorems.
 \end{theorem}
 
 \subsection{Amalgamation Systems}
-\label{infixes-amalgamation:subsec}
+\label{amalgamation-systems:subsec}
 
 Let us now formally introduce the notion of \kl{amalgamation systems}, and
 recall some results from \cite{ASZZ24} that will be useful for the proof of
@@ -351,24 +353,29 @@ the \kl{infix relation}.
 \subsection{Effective Decision Procedures}
 \label{infixes-amalgamation-effective:subsec}
 
-For the next result, we impose a mild restriction by requiring the language
+\AP For the next result, we impose a mild restriction by requiring the language
 class to be closed under \kl{rational transductions}. This property holds for
-most common language classes, including all known \kl{amalgamation systems}.
+most common language classes, including all known \kl{amalgamation systems}. A
+\intro{rational transduction} is a function $f \colon \Sigma^* \to \Gamma^*$
+that can be defined by a finite automaton with output, or equivalently by a
+finite set of rules of the form $u \to v$ where $u \in \Sigma^*$ and $v \in
+\Gamma^*$. We write $f(L) = \setof{f(w)}{w \in L}$ for the image of a language
+$L$ by a rational transduction $f$. A class of languages $\mathcal{C}$ is
+\intro{closed under rational transductions} when, for every language $L \in
+\mathcal{C}$, and every rational transduction $f \colon \Sigma^* \to \Gamma^*$,
+the language $f(L)$ is in $\mathcal{C}$.\todo{check these definitions ... Do we allow
+the alphabet to vary?}
 
-\AP A class of languages $\mathcal{C}$ is \intro{recognized by amalgamation
-systems} when, for every language $L \in \mathcal{C}$, there exists an
+\AP A class $\mathcal{C}$ of languages is an \intro{effective amalgamative
+class} whenever there exists a finite presentation of the languages \dots\todo{
+define formally}. And for every $L \in \mathcal{C}$, there exists an
 \kl{amalgamation system} $(\Sigma, R, E, \canrun)$ such that $L$ is the
 language of this system.
 
-\AP A \intro{rational transduction} is a function $f \colon \Sigma^* \to
-\Gamma^*$ that can be defined by a finite automaton with output, or
-equivalently by a finite set of rules of the form $u \to v$ where $u \in
-\Sigma^*$ and $v \in \Gamma^*$. We write $f(L) = \setof{f(w)}{w \in L}$ for the
-image of a language $L$ by a rational transduction $f$. A class of languages
-$\mathcal{C}$ is \intro{closed under rational transductions} when, for every
-language $L \in \mathcal{C}$, and every rational transduction $f \colon
-\Sigma^* \to \Gamma^*$, the language $f(L)$ is in $\mathcal{C}$.\todo{check these definitions ...}
-
+\AP A class $\mathcal{C}$ of languages is \intro(amalg){strongly effective}
+whenever the emptiness problem for languages in $\mathcal{C}$ is decidable.
+Note that this implies boundedness and simultaneous boundedness of languages in
+$\mathcal{C}$ is decidable \cite{ASZZ24}. \todo{define formally}
 
 \begin{proofof}{infix-wqo-is-emptiness:thm}
 	\cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} effective. 
@@ -400,7 +407,7 @@ language $L \in \mathcal{C}$, and every rational transduction $f \colon
     sets $S$, this procedure will eventually terminate.
 
     \cref{wqo-infix-decidable} $\Rightarrow$ \cref{wqo-prefix-decidable}. We
-    just consider the transduction 
+    just consider the transduction \todo{fresh symbols? can we assume we have those??}
 	
     \cref{wqo-prefix-decidable} $\Rightarrow$
     \cref{emptiness-decidable}. We consider the transduction $\mathcal T

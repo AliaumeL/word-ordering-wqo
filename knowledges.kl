@@ -27,6 +27,7 @@
  | bad sequence
 \knowledge{notion}
  | downwards closure
+ | downwards closures
 \knowledge{notion}
  | downwards closed
 \knowledge{notion}
@@ -146,5 +147,11 @@
  | bounded languages
 
 \knowledge{notion}
- | recognized by amalgamation systems
- | recognized by an amalgamation system
+ | effective@amalg
+ | effective amalgamative class
+ | effective amalgamative classes
+
+\knowledge{notion}
+ | strongly effective@amalg
+ | strongly effective amalgamative class
+ | strongly effective amalgamative classes

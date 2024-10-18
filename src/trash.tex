@@ -44,9 +44,17 @@ goal of the remainder of this section is to prove the following
         \quad .
     \end{equation}
 
-    Now, thanks to \cref{inf-period-union-chains:lem},
-    this happens to be a finite union of \kl{chains}
-    for the \kl{infix relation}.
+    Because $\InfPeriodChain{x}$ is a finite union of \kl{chains} for the \kl{suffix}
+    relation (using \cref{inf-period-chain:lem}), we conclude that $\InfPeriodChain{x}u$ is one too for
+    the \kl{infix} relation. This holds similarly for $u \InfPeriodChain{x}$.
+    In the case of $\InfPeriodChain{x} u \InfPeriodChain{y}$,
+    we remark that $\InfPeriodChain{x} u$ is a finite union of chains
+    for the \kl{suffix relation},
+    and that $\InfPeriodChain{y}$ is one for the \kl{prefix relation}
+    (using again \cref{inf-period-chain:lem}).
+    As a consequence,
+    $\InfPeriodChain{x}u \cdot \InfPeriodChain{y}$ is a finite union 
+    of products of \kl{chains}, as desired.
 \end{proofof}
 
 \begin{corollary}

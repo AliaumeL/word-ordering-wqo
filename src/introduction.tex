@@ -102,21 +102,19 @@ relation}.
 
 \AP When considering an algorithm based on a \kl{well-quasi-ordering}, the
 runtime of the algorithm is deeply related to the ``complexity'' of the
-underlying quasi-order \todo{CITE???}. One way to measure this complexity is to
-consider its so-called \kl{ordinal invariants}: for instance, the
-\kl{maximal order type} (or m.o.t.), originally defined by De Jongh and
-Parikh \cite{dejongh77}, is the order type of the maximal linearization of a
+underlying quasi-order~\cite{SCHMITZ17}. One way to measure this complexity is
+to consider its so-called \kl{ordinal invariants}: for instance, the
+\kl{maximal order type} (or m.o.t.), originally defined by De Jongh and Parikh
+\cite{dejongh77}, is the order type of the maximal linearization of a
 well-quasi-ordered set. In the case of a finite set, the m.o.t. is precisely
 the size of the set. Better runtime bounds were obtained by considering two
-other parameters\todo{cite sylvain width/ HDR?}: the \kl{ordinal height}
-introduced by Schmidt \cite{schmidt81}, and the \kl{ordinal width} of Kříž
-and Thomas \cite{kriz90b}. Therefore, when characterizing
-\kl{well-quasi-ordered} languages, we will also be interested in computing
-bounds on their \kl{ordinal invariants}. We refer to the
-\cref{ordinal-invariants:subsec} for a more detailed introduction to these
-parameters and ordinal computations in general. For the moment, let us just
-remark that all languages $L \subseteq \Sigma^*$ have an \kl{ordinal height} of
-at most $\omega$.
+other parameters~\cite{SCHMITZ19}: the \kl{ordinal height} introduced by
+Schmidt \cite{schmidt81}, and the \kl{ordinal width} of Kříž and Thomas
+\cite{kriz90b}. Therefore, when characterizing \kl{well-quasi-ordered}
+languages, we will also be interested in computing bounds on their \kl{ordinal
+invariants}. We refer to \cref{ordinal-invariants:subsec}
+for a more detailed introduction to these
+parameters and ordinal computations in general.
 
 \subparagraph{Contribution} In this paper, we focus on words over a finite
 alphabet $\Sigma$, and characterize subsets $L \subseteq \Sigma^*$ that are
@@ -186,15 +184,20 @@ choice of words $w_1, \ldots, w_k$. We are able to show the following:
 \renewcommand{\labelenumi}{R\arabic{enumi}}
 \begin{enumerate}
 	\setcounter{enumi}{3}
-    \item A \kl{bounded language} $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if it is a finite union of languages $S_i \cdot P_i$, where each $S_i$ 
+    \item A \kl{bounded language} $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if it is (included in) a finite union of languages $S_i \cdot P_i$, where each $S_i$ 
         is a \kl{chain} for the \kl{suffix relation},
         and where
         each $P_i$ is a \kl{chain} for the \kl{prefix relation}.
+
+        \hfill
+        (\cref{bounded-language:thm} p.\pageref{bounded-language:thm})
 \end{enumerate}
 }
 
-This result directly translates into bounds on the possible \kl{ordinal invariants}
-of such languages similarly as for the \kl{prefix relation}.
+This result directly translates into upper bounds on the possible \kl{ordinal invariants}
+of such languages similarly as for the \kl{prefix relation}. Notice that these
+upper bounds are significantly smaller than \kl{ordinal invariants} of the \kl{subword
+relation}.
 {
 \renewcommand{\labelenumi}{R\arabic{enumi}}
 \begin{enumerate}
@@ -207,28 +210,46 @@ of such languages similarly as for the \kl{prefix relation}.
 \end{enumerate}
 }
 
-\AP
-Finally, we provide a decision procedure for checking whether a language is
-\kl{well-quasi-ordered}, which takes as inputs languages recognized
-by \kl{amalgamation systems} \cite{ASZZ24}. Such systems will be
-formally introduced in \cref{amalgamation-systems:subsec}, but for the moment
-let us just say that they include many classical computational models such as
-finite automata, context-free grammars, and petri nets \cite{ASZZ24}. 
+\AP Finally, we provide a decision procedure for checking whether a language is
+\kl{well-quasi-ordered}, which takes as inputs languages recognized by
+\kl{amalgamation systems} \cite{ASZZ24}. Such systems will be formally
+introduced in
+\cref{amalgamation-systems:subsec}, but
+for the moment let us just say that they include many classical computational
+models such as finite automata, context-free grammars, and Petri nets
+\cite{ASZZ24}. This provides us with a \emph{meta-algorithm} for deciding
+whether a given language is \kl{well-quasi-ordered} by the \kl{prefix
+relation}, the \kl{suffix relation}, or the \kl{infix relation} under mild
+effective restrictions on the computational model that we call an \kl{effective
+amalgamative class}, the formal statement of which we defer to
+\cref{infixes-amalgamation-effective:subsec}.
+
 {
 \renewcommand{\labelenumi}{R\arabic{enumi}}
 \begin{enumerate}
     \setcounter{enumi}{5}
-    \item There is a decision procedure for checking whether a language $L$ 
-        recognized by an \kl{amalgamation system} is \kl{well-quasi-ordered}
-        by the \kl{prefix relation}, the \kl{suffix relation},
-        or the \kl{infix relation}. Furthermore, if it is \kl{well-quasi-ordered}, 
+    \item 
+        Let $L$ be a language recognized by an \kl{amalgamation system}.
+        If $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
         then $L$ is a \kl{bounded language}.
+
+        \hfill (\cref{infix-amalgamation:thm} p.\pageref{infix-amalgamation:thm})
+    \item 
+        Let $\mathcal{C}$ be a \kl{strongly effective amalgamative class} of languages.
+        There is a decision procedure that takes as input a language $L \in \mathcal{C}$,
+        and decides whether $L$ is \kl{well-quasi-ordered} by the \kl{prefix relation},
+        the \kl{suffix relation}, or the \kl{infix relation}. 
         \hfill (\cref{infix-wqo-is-emptiness:thm} p.\pageref{infix-wqo-is-emptiness:thm})
 \end{enumerate}
 }
-Notice that the above result implies that the hypothesis of
+Let us point out that the above result implies that the hypothesis of
 \kl{bounded languages} on the theoretical side is not a restriction at all in
-practice.
+practice. As a practical and more easily understandable 
+consequence,
+our generic decision procedure applies 
+to the class $\mathcal{C}_\text{aut}$ of all languages recognized by finite automata,
+and to the class $\mathcal{C}_\text{cfg}$ of all languages recognized by context-free grammars,
+which are both \kl{effective amalgamative classes}.
 
 
 \subparagraph{Related work} The study of alternative \kl{well-quasi-ordered}
@@ -240,7 +261,8 @@ the orderings are \emph{multiplicative}, that is, if $u_1 \preceq v_1$ and $u_2
 \preceq v_2$ then $u_1u_2 \preceq v_1v_2$. This assumption does not hold for
 the \kl{prefix}, \kl{suffix}, and \kl{infix} relations.
 
-\subparagraph{Outline} We introduce in \cref{prelims:sec} the
+\subparagraph{Outline} 
+We introduce in \cref{prelims:sec} the
 necessary background on \kl{well-quasi-orders} and \kl{ordinal invariants}.
 In
 \cref{prefixes:sec}, which is relatively
@@ -249,11 +271,15 @@ self-contained, we study the \kl{prefix relation} and prove in
 languages by the \kl{prefix relation}. In
 \cref{infixes-regular:sec}, we
 obtain the \kl[infix relation]{infix} analogue of \cref{prefixes:thm}
-specifically for regular languages
-(\cref{infix-finite-automata:thm}). Finally, we generalize this result to all
+specifically for \kl{bounded languages}
+(\cref{bounded-language:thm}). Finally, 
+we generalize this result to all
 \kl{amalgamation systems} in \cref{infixes-amalgamation:sec}
 in
-(\cref{infix-amalgamation:thm}).
+(\cref{infix-amalgamation:thm}),
+and provide a decision procedure for checking whether a language is
+\kl{well-quasi-ordered} by the \kl{infix relation} in
+this context (\cref{infix-wqo-is-emptiness:thm}).
 
 \subparagraph{Acknowledgements} We would like to thank participants of the 2024
 edition of \kl{Autobóz} for their helpful comments and discussions.
