@@ -351,17 +351,17 @@ on this sequence and its properties \cite{ALSHA99}.
 
 \begin{lemma}
     \label{thue-morse:lemma}
-    There exists a language $L$ that is \kl{downwards closed} for the \kl{infix
+    The language $\intro*\LMorse$ of \kl{infixes} of the \kl{Thue-Morse sequence}
+    is \kl{downwards closed} for the \kl{infix
     relation}, \kl{well-quasi-ordered} for the \kl{infix relation}, but is not
     \kl(language){bounded}.
 \end{lemma}
 \begin{proof}
-    Let $\ThueMorse$ be the \kl{Thue-Morse sequence}
-    $L$ be the set of infixes of $w$. By construction $L$ is an \emph{infinite}
-    \kl{downwards closed} for the \kl{infix relation}. Let us argue that $L$ is
+    By construction $\LMorse$ is an \emph{infinite}
+    \kl{downwards closed} for the \kl{infix relation}. Let us argue that $\LMorse$ is
     \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl(language){bounded}.
 
-    Assume by contradiction that $L$ is \kl(language){bounded}. In this case, there exist
+    Assume by contradiction that $\LMorse$ is \kl(language){bounded}. In this case, there exist
     words $w_1, \dots, w_k \in \Sigma^*$ such that $L \subseteq w_1^* \cdots
     w_k^*$. Since $L$ is infinite and \kl{downwards closed}, there exists a
     word $u \in L$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is absurd
@@ -381,15 +381,13 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
 
 \begin{lemma}
     \label{thue-morse-ordinal:lemma}
-    Let $L$ be the language of \kl{infixes} of the \kl{Thue-Morse sequence}.
-    Then, the \kl{ordinal invariants} of $L$ are as follows:
-    the \kl{maximal order type} of $L$ is $\omega$,
-    the \kl{ordinal height} of $L$ is $\omega$,
-    the \kl{ordinal width} of $L$ is $\omega$.
+    The \kl{maximal order type} of $\LMorse$ is $\omega$,
+    the \kl{ordinal height} of $\LMorse$ is $\omega$,
+    the \kl{ordinal width} of $\LMorse$ is $\omega$.
 \end{lemma}
 \begin{proof}
     Let us prove that these are upper bounds for the \kl{ordinal invariants} of
-    $L$. For the \kl{ordinal height}, it is true for any language $L$.
+    $L$. For the \kl{ordinal height}, it is true for any language $\LMorse$.
     For the \kl{maximal order type}, we remark that
     the maximal length of a \kl{bad sequence} is determined by its first element,
     hence that it is at most $\omega$.
@@ -397,16 +395,16 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     we conclude that the \kl{ordinal width} is also at most $\omega$.
 
     Now, let us prove that these bounds are tight. It is clear that
-    $\oHeight{L} = \omega$: given any number $n \in \Nat$, one can construct a
+    $\oHeight{\LMorse} = \omega$: given any number $n \in \Nat$, one can construct a
     \kl{decreasing sequence} of words in $L$ of length $n$, for instance by
     considering the first $n$ prefixes of the \kl{Thue-Morse sequence} by
     decreasing size.
-    Let us now prove that $\oWidth{L} = \omega$. Assume by contradiction that
-    $\oWidth{L}$ is finite. Then, $L$ can be written as a finite union of
+    Let us now prove that $\oWidth{\LMorse} = \omega$. Assume by contradiction that
+    $\oWidth{\LMorse}$ is finite. Then, $L$ can be written as a finite union of
     \kl{chains} for the \kl{infix relation}, and in particular, $L$ is
     \kl(language){bounded}, which is absurd by \cref{thue-morse:lemma}.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order
-    type}, we conclude that the \kl{maximal order type} of $L$ is also $\omega$.
+    type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omega$.
 \end{proof}
 
 This suggests the following conjecture which states that for \kl{downwards
