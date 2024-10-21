@@ -1,41 +1,31 @@
 % LTeX: language=en-GB 
-\section{Infixes and Regular Languages}
+\section{Infixes and Bounded Languages}
 \label{infixes-regular:sec}
 
-\todo{Delete this section: the \cref{infix-embedding:thm} is already
-    known, we should just restate it. The
-    \cref{infix-finite-automata:thm} is a direct consequence of
-    \cref{infix-amalgamation:thm} and \cref{bounded-language:thm}.
-    I don't know if we should keep it for clarity, but it does not 
-    seems to be necessary to me.
-}
-
-\AP
-In this section, we study languages equipped with the \kl{infix relation}. As
-opposed to the \kl{prefix} and \kl{suffix} relations, the \kl{infix relation}
-can yield to very complicated \kl{well-quasi-ordered} languages. Formally, the
-upcoming \cref{infix-embedding:thm} shows that \emph{any} countable
-partial-ordering with finite initial segments can be embedded into the infix
-relation of a language. To make the former statement precise,
-Let us recall that an \intro{order embedding} from a quasi-ordered set $(X,
-\preceq)$ into a quasi-ordered set $(Y, \preceq')$ is a function $f \colon X
-\to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
+\AP In this section, we study languages equipped with the \kl{infix relation}.
+As opposed to the \kl{prefix} and \kl{suffix} relations, the \kl{infix
+relation} can lead to very complicated \kl{well-quasi-ordered} languages.
+Formally, the upcoming \cref{infix-embedding:thm} shows that
+\emph{any} countable partial-ordering with finite initial segments can be
+embedded into the infix relation of a language. To make the former statement
+precise, let us recall that an \intro{order embedding} from a quasi-ordered set
+$(X, \preceq)$ into a quasi-ordered set $(Y, \preceq')$ is a function $f \colon
+X \to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
 \preceq' f(y)$. When such an embedding exists, we say that $X$ \reintro{embeds
-into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
+into} $Y$. Recall that a quasi-ordered set $(X, \preceq)$ is a \kl{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
-
-The following result due to Kuske shows the structural complexity of the \kl{infix relation}
-
+A simplified version of the embedding defined in \cref{infix-embedding:thm} is illustrated
+for the \kl{subword relation} in \cref{infix-embedding:fig}.
 \begin{lemma}{\cite[Lemma 5.1]{DBLP:journals/ita/Kuske06}}
     \label{infix-embedding:thm}
     Let $(X, \preceq)$ be a \kl{partially ordered} set,
     and $\Sigma$ be an alphabet with at least two letters.
     Then the following are equivalent:
     \begin{enumerate}
-        \item \label{infix-embedding-embeds:item} 
+        \item 
             $X$ \kl{embeds into} $(\Sigma^*, \infleq)$,
-        \item \label{infix-embedding-count:item}
+        \item 
             $X$ is countable, and for every $x \in X$,
             its \kl{downwards closure}
             $\dwset[\preceq]{x}$ is finite.
@@ -46,39 +36,45 @@ The following result due to Kuske shows the structural complexity of the \kl{inf
     \includestandalone[width=\linewidth]{fig/infix-encoding-standalone}
     \caption{Representation of the \kl{subword relation} for $\set{a,b}^*$
         inside the \kl{infix relation} for $\set{a,b,\#}^*$
-        using the encoding of \cref{infix-embedding:thm}, restricted to words
-        of length at most $3$. To obtain smaller words,
-        we replaced $D_i$ by $\max D_i$ in this construction.
+        using a simplified version of \cref{infix-embedding:thm}, restricted to words
+        of length at most $3$. 
     }
     \label{infix-embedding:fig}
 \end{figure}
 
-As a consequence of \cref{infix-embedding:thm}, we cannot replay proofs of
-\cref{prefixes:sec}, and will actually need to leverage some regularity of the
-languages to obtain a characterization of \kl{well-quasi-ordered} languages
-under the \kl{infix relation}. Let us first play this game for languages that
-are recognized by finite automata. We assume that the reader is familiar with
-the notions of deterministic finite automaton and regular languages, and refer
-to the book of Thomas for a comprehensive introduction to the subject
-\cite{THOM97}. The main goal of the remainder of this section is to prove the
-following \cref{infix-finite-automata:thm}.
+\AP As a consequence of \cref{infix-embedding:thm}, we cannot replay
+proofs of \cref{prefixes:sec}, and will
+actually need to leverage some regularity of the languages to obtain a
+characterization of \kl{well-quasi-ordered} languages under the \kl{infix
+relation}. This regularity will be imposed through the notion of \intro{bounded
+languages}, i.e., languages $L \subseteq \Sigma^*$ such that there exists words
+$w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots w_n^*$.
 
-\begin{theorem}[restate=infix-finite-automata:thm,label=infix-finite-automata:thm]
-    \proofref{infix-finite-automata:thm}
-    Let $L \subseteq \Sigma^*$ be a language recognized by a finite automaton.
-    Then $L$ is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if $L$ is
-    a finite union of \kl{chains} for the \kl{infix relation}.
+\begin{theorem}[restate=bounded-language:thm,label=bounded-language:thm]
+    %\label{bounded-language:thm}
+    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
+    $L$ is a \kl{well-quasi-order} when endowed with the 
+    \kl{infix relation} if and only if it included in a finite union of 
+    products $S_i \cdot P_i$ where 
+    $S_i$ is a \kl{chain} for the \kl{suffix relation}, and 
+    $P_i$ is a \kl{chain} for the \kl{prefix relation},
+    for all $1 \leq i \leq n$.
 \end{theorem}
 
-\AP In order to prove \cref{infix-finite-automata:thm}, we will perform some
-preliminary analysis on the structure of an automaton recognizing a
-well-quasi-ordered language under the infix relation, which will be powered by
-folklore results on \emph{periodic} words. Let us recall that a non-empty word
-$w \in \Sigma^+$ is \intro(word){periodic} with period $x \in \Sigma^*$ if
-there exists a $p \in \Nat$ such that $w \infleq x^p$. The \intro{periodic
-length} of a word $u$ is the minimal length of a word $x$ such that $u$ is an
-\kl{infix} of $x^p$ for some $p \in \Nat$ and $x \in \Sigma^+$. We will
-essentially rely on the following result on periodic words.
+Let us first remark that if $S$ is a \kl{chain} for the \kl{suffix relation}
+and $P$ is a \kl{chain} for the \kl{prefix relation}, then $SP$ is
+\kl{well-quasi-ordered} for the \kl{infix relation}. This proves the (easy)
+right-to-left implication of \cref{bounded-language:thm}. Furthermore, any
+language $L$ included in a finite union of products $S_i \cdot P_i$ where $S_i$
+is in fact a \kl{bounded language}.
+
+\AP In order to prove the (difficult) left-to-right implication of
+\cref{bounded-language:thm}, we will rely heavily on the
+combinatorics of periodic words. Let us recall that a non-empty word $w \in
+\Sigma^+$ is \intro(word){periodic} with period $x \in \Sigma^*$ if there
+exists a $p \in \Nat$ such that $w \infleq x^p$. The \intro{periodic length} of
+a word $u$ is the minimal length of a word $x$ such that $u$ is an \kl{infix}
+of $x^p$ for some $p \in \Nat$ and $x \in \Sigma^+$.
 
 \begin{lemma}
     \label{periodic-infixes:lem}
@@ -103,10 +99,6 @@ essentially rely on the following result on periodic words.
     minimality of $q$ this must be equal to $q$ and to $p$.
 \end{proof}
 
-The upcoming \cref{powers-infixes:cor} is based on the observation that if $S$
-is a \kl{chain} for the \kl{suffix relation} and $P$ is a \kl{chain} for the
-\kl{prefix relation}, then $SP$ is a \kl{chain} for the \kl{infix relation}.
-
 \begin{corollary}
     \label{powers-infixes:cor}
     Let $u,v \in \Sigma^*$ and $k, \ell \in \Nat$
@@ -121,14 +113,29 @@ is a \kl{chain} for the \kl{suffix relation} and $P$ is a \kl{chain} for the
 
 The reason why \kl{periodic words} built using a given period $x \in \Sigma^+$
 are interesting for the \kl{infix relation} is that they naturally create
-\kl{chains}. Indeed, if $x \in \Sigma^+$ is a finite word, then $\setof{x^p}{p
-\in \Nat}$ is a \kl{chain} for the \kl{infix relation}. Note that in general,
-the \kl{downwards closure} of a chain is \emph{not} a chain. However, for the
-chains generated using periodic words, the \kl{downwards closure}
-$\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is a \emph{finite union} of
-\kl{chains}. Because this set will appear in bigger equations, we introduce the
-shorter notation $\intro*\InfPeriodChain{x}$ for the set of \kl{infixes} of
-words of the form $x^p$, where $p$ ranges over $\Nat$.
+\kl{chains} for the \kl{prefix} and \kl{suffix} relations. Indeed, if $x \in
+\Sigma^+$ is a finite word, then $\setof{x^p}{p \in \Nat}$ is a \kl{chain} for
+the \kl{infix relation}. Note that in general, the \kl{downwards closure} of a
+chain is \emph{not} a chain (see \cref{dw-closure-not-wqo:rem}). However, for the chains generated using periodic
+words, the \kl{downwards closure} $\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is
+a \emph{finite union} of \kl{chains}. Because this set will appear in bigger
+equations, we introduce the shorter notation $\intro*\InfPeriodChain{x}$ for
+the set of \kl{infixes} of words of the form $x^p$, where $p$ ranges over
+$\Nat$.
+
+
+\begin{remark}
+    \label{dw-closure-not-wqo:rem}
+    Let $(X,\preceq)$ be a quasi-ordered set, and $L \subseteq X$ be such that $(L,
+    \preceq)$ is \kl{well-quasi-ordered}. It is not true in general that
+    $(\dwset{L}, \preceq)$ is \kl{well-quasi-ordered}. In the case of $(\Sigma^*,
+    \infleq)$ a typical example is to start from an infinite \kl{antichain} $A$,
+    together with an enumeration $\seqof{w_i}$ of $A$, and build the language $L
+    \defined \setof{ \prod_{i = 0}^n w_i }{ i \in \Nat }$. By definition, $L$ is a
+    \kl{chain} for the \kl{infix} ordering, hence \kl{well-quasi-ordered}. However,
+    $\dwset[\infleq]{L}$ contains $A$, and is therefore not
+    \kl{well-quasi-ordered}. 
+\end{remark}
 
 \begin{lemma}
     \label{inf-period-chain:lem}
@@ -164,32 +171,12 @@ words of the form $x^p$, where $p$ ranges over $\Nat$.
 \end{proof}
 
 
-\begin{corollary}
-    \label{inf-period-union-chains:lem}
-    Let $x,u,y \in \Sigma^*$ be words.  The following 
-    are finite unions of \kl{grids} for the infix relation:
-    $\InfPeriodChain{x}u$, $u \InfPeriodChain{x}$,
-    and $\InfPeriodChain{x} u \InfPeriodChain{y}$.
-\end{corollary}
-\begin{proof}
-    Because $\InfPeriodChain{x}$ is a finite union of \kl{chains} for the \kl{suffix}
-    relation (rsing \cref{inf-period-chain:lem}), we conclude that $\InfPeriodChain{x}u$ is one too for
-    the \kl{infix} relation. This holds similarly for $u \InfPeriodChain{x}$.
-    In the case of $\InfPeriodChain{x} u \InfPeriodChain{y}$,
-    we remark that $\InfPeriodChain{x} u$ is a finite union of chains
-    for the \kl{suffix relation},
-    and that $\InfPeriodChain{y}$ is one for the \kl{prefix relation}
-    (using again \cref{inf-period-chain:lem}).
-    As a consequence,
-    $\InfPeriodChain{x}u \InfPeriodChain{y}$ is a finite union 
-    of \kl{chains} for the \kl{infix} relation.
-\end{proof}
 
 The following combinatorial lemma connects the property of being
 \kl{well-quasi-ordered} to a property of the \kl{periodic lengths} of words in
 a language, based on the assumption that some factors can be iterated. It is
 the core result that powers the analysis done in the upcoming
-\cref{infix-finite-automata:thm,infix-amalgamation:thm}.
+\cref{bounded-language:thm,infix-amalgamation:thm}.
 
 \begin{lemma}
     \label{pumping-periods:lem}
@@ -271,97 +258,7 @@ the core result that powers the analysis done in the upcoming
     and we conclude with an identical reasoning.
 \end{proof}
 
-
-We are now ready to restate and prove our main theorem, proven by combining
-\cref{pumping-periods:lem} together with classical pumping arguments on finite
-state automata.
-
-\begin{proofof}{infix-finite-automata:thm}
-    Let $w \in L$, because $Q$ is finite, there exists
-    a factorization of $w$
-    into words $(\prod_{i = 1}^k u_i v_i) u_{k+1}$
-    such that 
-    for all $1 \leq i \leq k+1$, $\card{u_i} \leq \card{Q}$,
-    for all $1 \leq i \leq k$, $1 \leq \card{v_i} \leq \card{Q}$,
-    and satisfying 
-    that $w[\vec{X}] \defined 
-    (\prod_{i = 1}^k u_i v_i^{X_i}) u_{k+1}$
-    belongs to $L$ for all choices of values $\vec{X} \in \Nat^k$.
-
-    Applying \cref{pumping-periods:lem}, we conclude that 
-    there exists $x,y \in \Sigma^+$ of size at most $\card{Q}$
-    such that 
-    $w \in u_1 \InfPeriodChain{x} \cup \InfPeriodChain{y} u_{k+1}
-    \cup \bigcup_{1 \leq i \leq k+1} \InfPeriodChain{x} u_i \InfPeriodChain{y}$.
-    In particular, we conclude that
-    \begin{equation}
-        \label{infix-automata:eq}
-        L
-        \subseteq
-        \bigcup_{x,y,u\in \Sigma^{\leq \card{Q}}}
-        u \InfPeriodChain{x}
-        \cup 
-        \InfPeriodChain{x} u
-        \cup
-        \InfPeriodChain{x} u \InfPeriodChain{y}
-        \quad .
-    \end{equation}
-
-    Now, thanks to \cref{inf-period-union-chains:lem},
-    this happens to be a finite union of \kl{chains}
-    for the \kl{infix relation}.
-\end{proofof}
-
-
-
-\begin{corollary}
-    \label{reg-wqo-decidable:cor}
-    Given a regular language $L$, it is decidable whether
-    $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
-\end{corollary}
-\begin{proof}
-    It suffices to decide whether 
-    \cref{infix-automata:eq} holds for the language $L$.
-    This is an inclusion of regular languages, which is decidable.
-\end{proof}
-
-
-Let $(X,\preceq)$ be a quasi-ordered set, and $L \subseteq X$ be such that $(L,
-\preceq)$ is \kl{well-quasi-ordered}. It is not true in general that
-$(\dwset{L}, \preceq)$ is \kl{well-quasi-ordered}. In the case of $(\Sigma^*,
-\infleq)$ a typical example is to start from an infinite \kl{antichain} $A$,
-together with an enumeration $\seqof{w_i}$ of $A$, and build the language $L
-\defined \setof{ \prod_{i = 0}^n w_i }{ i \in \Nat }$. By definition, $L$ is a
-\kl{chain} for the \kl{infix} ordering, hence \kl{well-quasi-ordered}. However,
-$\dwset[\infleq]{L}$ contains $A$, and is therefore not
-\kl{well-quasi-ordered}. As a fun corollary of our analysis, we conclude that
-this particular example cannot be realized by a regular language $A$.
-
-
-\begin{corollary}
-    \label{reg-wqo-iff-dwclosed-wqo:cor}
-    Given a regular language $L$, it is \kl{well-quasi-ordered} 
-    for the \kl{infix relation} if and only if 
-    $\dwset[\infleq] L$ is.
-\end{corollary}
-
-\section{Bounded Languages and Amalgamation Systems}
-\label{infixes-amalgamation:sec}
-
-When proving \cref{infix-finite-automata:thm}, we have leveraged a powerful
-combinatorial argument on regular langugages stated in
-\cref{pumping-periods:lem}. Our first remark is that this idea can
-be generalized to the larger class of \intro{bounded languages}, i.e.,
-languages $L \subseteq \Sigma^*$ such that there exists words $w_1, \dots, w_n$
-satisfying $L \subseteq w_1^* \cdots w_n^*$.
-
-\begin{theorem}
-    \label{bounded-language:thm}
-    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
-    $L$ is a \kl{well-quasi-order} when endowed with the 
-    \kl{infix relation} if and only if it is a finite union of \kl{grids}.
-\end{theorem}
-\begin{proof}
+\begin{proofof}{bounded-language:thm}
     Let $w_1, \dots, w_n$ be such that
     $L \subseteq w_1^* \cdots w_n^*$.
     Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
@@ -391,7 +288,8 @@ satisfying $L \subseteq w_1^* \cdots w_n^*$.
     \cref{pumping-periods:lem}. For every admissible language,
     the size of a word that is not iterated is at most
     $N_0 \times m$ by definition, and we conclude that:
-    \begin{equation*}
+    \begin{equation}
+        \label{bounded-language:eq}
         L \subseteq 
         \bigcup_{x,y \in \Sigma^{\leq n}}
         \bigcup_{u \in \Sigma^{\leq m \times N_0}}
@@ -401,11 +299,14 @@ satisfying $L \subseteq w_1^* \cdots w_n^*$.
         \cup
         u \InfPeriodChain{x}
         \quad .
-    \end{equation*}
-\end{proof}
+    \end{equation}
+\end{proofof}
 
-Note that this immediately generalizes \cref{reg-wqo-iff-dwclosed-wqo:cor}
-to all \kl{bounded languages}.
+
+Let us now discuss the implications of this characterization in terms of
+\kl{downwards closures}: if $L$ is a \kl{bounded language}, then considering
+$L$ or its \kl{downwards closure} is equivalent with respect to being
+\kl{well-quasi-ordered} by the \kl{infix relation}.
 
 \begin{corollary}
     \label{bounded-wqo-dwclosed:cor}
@@ -413,39 +314,34 @@ to all \kl{bounded languages}.
     $L$ is a \kl{well-quasi-order} when endowed with the
     \kl{infix relation} if and only if $\dwset[\infleq]{L}$ is.
 \end{corollary}
-
-
-In the light of \cref{reg-wqo-iff-dwclosed-wqo:cor,bounded-wqo-dwclosed:cor}
-one may wonder whether the \kl{downwards closed}
-languages for the \kl{infix relation} satisfy a similar characterization in
-terms of union of \kl{grids} as stated in
-\cref{infix-finite-automata:thm,bounded-language:thm}. Let us
-first remark that from our previous results we obtain the following lemma that
-illustrates how all the previous characterizations of \kl{well-quasi-ordered}
-languages for the \kl{infix relation} are collapsing in the case of
-\kl{downwards closed} languages.
-
-\begin{lemma}
-    \label{dwclosed-infixes-wqo:lem}
-    Let $L \subseteq \Sigma^*$ be a \kl{downwards closed} language for the
-    \kl{infix relation} that is \kl{well-quasi-ordered}. Then, the following
-    are equivalent:
-    \begin{enumerate}
-        \item $L$ is \kl{bounded},
-        \item $L$ is \kl{regular},
-        \item $L$ is a finite union of \kl{chains} and \kl{grids}.
-    \end{enumerate}
-\end{lemma}
 \begin{proof}
-    TODO.
+    Because $L \subseteq \dwset[\infleq]{L}$, the right-to-left implication
+    is trivial.
+    For the left-to-right implication, let us assume that $L$ is a
+    \kl{well-quasi-ordered} language for the \kl{infix relation}.
+    Then $L$ is included in a finite union 
+    of products of \kl{chains}:
+    \begin{equation*}
+        L \subseteq \bigcup_{i = 1}^n S_i \cdot P_i \quad .
+    \end{equation*}
+    Remark that the \kl{downwards closure} of a product of two \kl{chains}
+    is a product of two chains.
+    As a consequence, we conclude that $\dwset[\infleq]{L}$ is itself included
+    in a finite union of products of \kl{chains}.
+    Note that this also proves that $\dwset[\infleq]{L}$ is a \kl{bounded language},
+    hence that it is \kl{well-quasi-ordered} by the \kl{infix relation} 
+    via
+    \cref{bounded-language:thm}.
 \end{proof}
 
+
 One may think that all \kl{downwards closed} languages for the \kl{infix
-relation} that are \kl{well-quasi-ordered} are \kl{regular}. Note that this is
-what happens in the case of the \kl{subword embedding}, where any \kl{downwards
-closed} language for this relation is characterized by finitely many excluded
-patterns, hence \kl{regular}. However, this is not the case for the \kl{infix
-relation}, as we will now illustrate with the following two examples.
+relation} that are \kl{well-quasi-ordered} are \kl(language){bounded}. Note
+that this is what happens in the case of the \kl{subword embedding}, where any
+\kl{downwards closed} language for this relation is characterized by finitely
+many excluded \kl{subwords}, hence provides a \kl{bounded language}. However, this
+is not the case for the \kl{infix relation}, as we will now illustrate with the
+following two examples.
 
 \begin{example}
     \label{dwclosed-wqo-not-finite-excl:ex}
@@ -468,17 +364,17 @@ on this sequence and its properties \cite{ALSHA99}.
 
 \begin{lemma}
     \label{thue-morse:lemma}
-    There exists a language $L$ that is \kl{downwards closed} for the \kl{infix
+    The language $\intro*\LMorse$ of \kl{infixes} of the \kl{Thue-Morse sequence}
+    is \kl{downwards closed} for the \kl{infix
     relation}, \kl{well-quasi-ordered} for the \kl{infix relation}, but is not
-    \kl{regular}.
+    \kl(language){bounded}.
 \end{lemma}
 \begin{proof}
-    Let $\ThueMorse$ be the \kl{Thue-Morse sequence}
-    $L$ be the set of infixes of $w$. By construction $L$ is an \emph{infinite}
-    \kl{downwards closed} for the \kl{infix relation}. Let us argue that $L$ is
-    \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl{regular}.
+    By construction $\LMorse$ is an \emph{infinite}
+    \kl{downwards closed} for the \kl{infix relation}. Let us argue that $\LMorse$ is
+    \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl(language){bounded}.
 
-    Assume by contradiction that $L$ is \kl{bounded}. In this case, there exist
+    Assume by contradiction that $\LMorse$ is \kl(language){bounded}. In this case, there exist
     words $w_1, \dots, w_k \in \Sigma^*$ such that $L \subseteq w_1^* \cdots
     w_k^*$. Since $L$ is infinite and \kl{downwards closed}, there exists a
     word $u \in L$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is absurd
@@ -490,428 +386,48 @@ on this sequence and its properties \cite{ALSHA99}.
     \card{u_{i+1}}$ for all $i \in \Nat$. Because $\ThueMorse$ is \kl{uniformly
     recurrent}, there exists $k \geq 1$ such that $u_1$ is an \kl{infix} of
     every word $v$ of size at least $k$. In particular, $u_1$ is an \kl{infix}
-    of $u_k$, hence the sequence $\seqof{u_i}$ is \kl(wqo){good}.
-
-    We conclude thanks to
-    \cref{dwclosed-infixes-wqo:lem}, that $L$ is not \kl{regular}.
+    of $u_k$, hence the sequence $\seqof{u_i}$ is \kl(sequence){good}.
 \end{proof}
 
-
-
-\subsection{Amalgamation Systems}
-\label{infixes-amalgamation:subsec}
-
-It turns out that there is a rather large family of systems for which pumping
-arguments based on so-called \emph{minimal runs} exist: they are called
-\emph{amalgamation systems} and were recently introduced by Anad, Schmitz,
-Sch\"{u}tze, and Zetzsche \cite{ASZZ24}. Having done the heavy lifting on
-\kl{bounded languages}, the rest of this section is mostly devoted to the
-introduction of \kl{amalgamation systems} and collecting the necessary pumping
-argument they enjoy. Using this meta-proof, we will generalize
-\cref{infix-finite-automata:thm} to context-free grammars, languages recognized
-by vector addition systems with state (VASS), and more. The goal of this
-section is not to introduce all of these systems, or justify their usefulness,
-but to state and prove the following theorem.
-
-\begin{theorem}[label=infix-amalgamation:thm,restate=infix-amalgamation:thm]
-    \proofref{infix-amalgamation:thm}
-    Let $L \subseteq \Sigma^*$ be a language recognized by an 
-    \kl{amalgamation system}.
-    Then $L$ is well-quasi-ordered by the infix relation if and only if $L$ is
-    a finite union of chains for the \kl{infix relation}.
-\end{theorem}
-
-Let us now formally introduce the notion of \kl{amalgamation systems}, and
-recall some results from \cite{ASZZ24} that will be useful for the proof of
-\cref{infix-amalgamation:thm}. The notion of \kl{amalgamation system} is
-tailored to produce \emph{pumping arguments}, which is exactly what our
-\cref{pumping-periods:lem} talks about. At the core of a pumping argument,
-there is a notion of \emph{run}, which could for instance be a sequence of
-transitions taken in a finite state automaton. Continuing on the analogy with
-finite automata, there is a natural ordering between runs, i.e., a run is
-smaller than another one if one can ``unroll loops" of the first run to obtain
-the second one. Typical pumping arguments then rely on the fact that
-\emph{minimal} runs are of finite size, and that all other runs are
-obtained by ``gluing" minimal runs together. This is exactly what
-\kl{amalgamation systems} are about.
-
-\AP Let us recall that over an alphabet $(\Sigma, =)$ a \kl{subword embedding}
-between two words $u \in \Sigma^*$ and $v \in \Sigma^*$ is a function $\rho
-\colon \range{\card{u}} \to \range{\card{v}}$ such that $u_i = v_{\rho(i)}$ for
-all $i \in \range{\card{u}}$. We write $\intro*\HigEmb(u,v)$ the set of all
-\kl{subword embeddings} between $u$ and $v$. It may be useful to notice that
-the set of finite words over $\Sigma$ forms a category when we consider
-\kl{subword embeddings} as morphisms, which is a fancy way to state that
-$\mathrm{id} \in \HigEmb(u,u)$ and that $f \circ g \in \HigEmb(u,w)$ whenever
-$g \in \HigEmb(u,v)$ and $f \in \HigEmb(v,w)$, for any choice of words
-$u,v,w \in \Sigma^*$.
-
-\AP Given a \kl{subword embedding} $f \colon u \to v$ between two words $u$ and
-$v$, there exists a unique decomposition $v = \GapWord{f}{0} u_1 \GapWord{f}{1}
-\cdots \GapWord{f}{k-1} u_k \GapWord{f}{k}$ where $\GapWord{f}{i} =
-v[f(i)+1:f(i+1)-1]$ for all $1 \leq i \leq k-1$, $\GapWord{f}{k} =
-v[f(k)+1:\card{v}]$, and $\GapWord{f}{0}   = v[1: f(1)-1]$. We say that
-$\intro*\GapWord{f}{i}$ is the $i$-th \intro{gap word} of $f$. We encourage the
-reader to look at \cref{gap-word-embedding:fig} to see an example of the
-\kl{gap words} resulting from a \kl{subword embedding} between two words. These
-\kl{gap words} will be useful to describe how and where runs of a system
-(described by words) can be combined.
-
-\begin{figure}
-    \centering
-    \includestandalone[width=\linewidth]{fig/gap-word-embedding-standalone}
-    \caption{The \kl{gap words} resulting from a \kl{subword embedding} between two 
-    finite words.}
-    \label{gap-word-embedding:fig}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includestandalone[width=\linewidth]{fig/run-amalgamation-standalone}
-    \caption{We illustrate how 
-        embeddings $f$ and $g$ between runs of an
-        \kl{amalgamation system} can be glued
-        together, seen on their canonical decomposition.
-    }
-    \label{amalgamation-runs:fig}
-\end{figure}
-
-
-\begin{definition}
-    An \intro{amalgamation system}
-    is a triple $(\Sigma, R, E, \canrun)$ where
-    $\Sigma$ is a finite alphabet,
-    $R$ is a set of so-called \emph{runs},
-    and 
-    $E$ is a set of so-called \emph{run embeddings},
-    and $\canrun \colon R \to (\Sigma \uplus \set{\varepsilon})^*$ is a 
-    function computing a \emph{canonical decomposition} of a run.
-    Given a run $r \in R$, and $i \in \range[0]{\card{\canrun(r)}}$, 
-    the \intro{gap language} of $r$ at position $i$ is $\GapLanguage{r}{i} \defined
-    \setof{\GapWord{f}{i}}{\exists s \in R. \exists f \in E(r,s) }$.
-    An \kl{amalgamation system} furthermore satisfies the following 
-    properties:
-    \begin{enumerate}
-        \item \emph{Word Embeddings as Morphisms.} For all $r, s \in R$,
-            $E(r,s) \subseteq \HigEmb(\canrun(r), \canrun(s))$.
-        \item \emph{$(R, E)$ Forms a Category.}
-            For all $r,s,t \in R$,
-            $\mathrm{id} \in E(r,r)$,
-            and whenever $f \in E(r,s)$ and $g \in E(s,t)$,
-            then $g \circ f \in E(r,t)$.
-        \item \emph{Well-Quasi-Ordered System.}
-            $(R, \leq_E)$ is a well-quasi-ordered set,
-            where $r \leq_E s$ if and only if $E(r,s) \neq \emptyset$.
-        \item \emph{Controlled Amalgamation.}
-            For all $r, s, t \in R$,
-            for all $f \in E(r,s)$,
-            for all $g \in E(r,t)$,
-            and for all $0 \leq i_0 \leq \card{\canrun(r)}$,
-            there exists a run $z \in R$ and morphisms
-            $h \in E(s,z)$ and $k \in E(t,z)$
-            satisfying
-            $h \circ f = k \circ g$,
-            $\GapWord{h \circ f}{i} = \GapWord{f}{i} \GapWord{g}{i}$
-            or 
-            $\GapWord{h \circ f}{i} = \GapWord{g}{i} \GapWord{f}{i}$
-            for every $0 \leq j \leq n$,
-            and
-            $\GapWord{h \circ f}{i_0} = \GapWord{f}{i_0} \GapWord{g}{i_0}$.
-            We refer to \cref{amalgamation-runs:fig} for an illustration 
-            of this property.
-    \end{enumerate}
-
-    The \intro{amalgamation language} of such a system
-    is the set of all words $w \in \Sigma^*$ such that
-    there exists a run $r \in R$
-    such that the concatenation of the letters of its
-    canonical decomposition, written $\intro*\yieldrun(r)$,
-    equals $w$.
-\end{definition}
-
-Intuitively, the definition of an amalgamation system allows the comparison of
-runs, and the proper ``gluing" of runs together to obtain new runs. Let us
-recall some examples of languages that can be recognized by \kl{amalgamation
-systems} given by the authors of the original paper: regular languages
-\cite[Theorem 5.3]{ASZZ24}, VASS as a consequence of \cite[Theorem
-5.5]{ASZZ24}, context-free languages as a consequence of \cite[Theorem
-5.10]{ASZZ24}. For this paper to be self-contained, we will also recall how
-runs of a finite state automaton can be understood as an \kl{amalgamation
-system}.
-
-\begin{example}[{\cite[Section 3.2]{ASZZ24}}]
-    Let $A = (Q, \delta, q_0, F)$ be a finite state automaton over a finite
-    alphabet $\Sigma$. Let $\Delta$ be the set of transitions $(q_1, a, q_2)
-    \in Q \times \Sigma \times Q$,
-    and $R \subseteq \Delta^*$ be the set of 
-    words over transitions that start with the initial state $q_0$,
-    end in a final state $q_f \in F$, and such that the end state of a
-    letter is the start state of the following one.
-    The canonical decomposition $\canrun \colon R \to \Sigma^*$
-    is defined as a morphism from $\Delta^*$ to $\Sigma^*$
-    that maps $(q,a,p)$ to $a$.
-    Finally, given two runs $r$ and $s$ of the automaton,
-    we say that an embedding $f \in \HigEmb(\canrun(r), \canrun(s))$
-    belongs to $E(r,s)$ when
-    $f$ is also defining an embedding from $r$ to $s$ as words in $\Delta^*$,
-    where $\Delta$ is equipped with the equality relation.
-
-    The system $(\Sigma, R, E, \canrun)$ is an \kl{amalgamation system},
-    whose language is precisely the language of words recognized
-    by the automaton $A$.
-\end{example}
-\begin{proof}
-    By definition, the embeddings inside $E(r,s)$ are defined as elements
-    of $\HigEmb(\canrun(r), \canrun(s))$, and they compose properly.
-    Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
-    a \kl{well-quasi-ordering} when equipped with the equality relation, and 
-    we conclude that $\Delta^*$ with $\higleq$ is a \kl{well-quasi-order}
-    according to Higman’s Lemma \cite{HIG52}.
-    
-    Let us now move to proving that the system satisfies the amalgamation
-    property. Given three runs $r,s,t \in R$, and two embeddings $f \in E(r,s)$
-    and $g \in E(r,t)$, we want to construct an amalgamated run $s \vee t$.
-    Because letters in the run $r$ respect the transitions of the automaton
-    (i.e., if the letter $i$ ends in state $q$, then the letter $i+1$ starts in
-    state $q$), then the \kl{gap word} at position $i$ starts in state $q$ and
-    ends in state $q$ too. This means that for both embeddings
-    $f$ and $g$, the \kl{gap words} are read by the automaton by looping
-    on a state. In particular, these loops can be taken in any order
-    and continue to represent a valid run. That is, we can even select
-    the order of concatenation in the amalgamation for \emph{all} 
-    $0 \leq i \leq \card{\canrun(r)}$ and not just for one separately.
-
-    Let us now remark that 
-    the language of this amalgamation system is
-    the set of $\yieldrun(r)$ when $r$ ranges over $R$,
-    and because $R$ is the set of valid runs of the automaton,
-    and $\yieldrun(r)$ is the word read along this run,
-    we immediately conclude.
-\end{proof}
-
-
-Let us now introduce a combinatorial lemma that explains how \kl{gap languages}
-can be pumped. Note that a single \kl{gap language} is always stable under
-concatenation, and our concern will be on a potential description of
-\emph{simultaneously} pumping different \kl{gap languages} to produce valid
-runs.
+One may refine our analysis of the \kl{Thue-Morse sequence} to obtain 
+precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
 
 \begin{lemma}
-    \label{pumping-gap-languages:lem}
-    Let $(\Sigma, R, E, \canrun)$ be an \kl{amalgamation system}, let $r \in R$
-    be a run of size $n \in \Nat$, and let $s, t \in R$ be two runs
-    with embeddings $f \in E(r,s)$ and $g \in E(r,t)$.
-    Let $\seqof{u_i}[0 \leq i \leq n]$ be the sequence of \kl{gap words}
-    for $f$, that is, $u_i =
-    \GapWord{f}{i}$ for all $0 \leq i \leq n$. Similarly, let
-    $\seqof{v_i}[0 \leq i \leq n]$ be the sequence of \kl{gap words} for $g$.
-
-    Then, for all $k \in \Nat$, and $0 < \ell < n$, the following words belong to 
-    the language of the \kl{amalgamation system}.
-    \begin{enumerate}
-        \item $(\prod_{i = 0}^{\ell - 1} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}) 
-               v_\ell u_\ell^k v_\ell
-               (\prod_{i = \ell+1}^{n} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i})$,
-        \item $(\prod_{i = 0}^{n - 1} u_i^{x_i} v_i u_i^{y_i}) 
-               v_n u_n^k$,
-        \item $u_0^k v_0 
-            (\prod_{i = 1}^{n} u_i^{x_i} v_i u_i^{y_i})$.
-    \end{enumerate}
-    Where, for all $0 \leq i \leq n$, $x_i + y_i + z_i = k$, with $z_i = 0$
-    in the two last items.
+    \label{thue-morse-ordinal:lemma}
+    The \kl{maximal order type} of $\LMorse$ is $\omega$,
+    the \kl{ordinal height} of $\LMorse$ is $\omega$,
+    the \kl{ordinal width} of $\LMorse$ is $\omega$.
 \end{lemma}
 \begin{proof}
-    The result immediately follows from the embedding property
-    applied inductively on runs obtained by gluing 
-    $k$ times $s$ with one or two times $t$ (depending on the item number).
+    Let us prove that these are upper bounds for the \kl{ordinal invariants} of
+    $L$. For the \kl{ordinal height}, it is true for any language $\LMorse$.
+    For the \kl{maximal order type}, we remark that
+    the maximal length of a \kl{bad sequence} is determined by its first element,
+    hence that it is at most $\omega$.
+    Finally, because the \kl{ordinal width} is at most the \kl{maximal order type},
+    we conclude that the \kl{ordinal width} is also at most $\omega$.
+
+    Now, let us prove that these bounds are tight. It is clear that
+    $\oHeight{\LMorse} = \omega$: given any number $n \in \Nat$, one can construct a
+    \kl{decreasing sequence} of words in $L$ of length $n$, for instance by
+    considering the first $n$ prefixes of the \kl{Thue-Morse sequence} by
+    decreasing size.
+    Let us now prove that $\oWidth{\LMorse} = \omega$. Assume by contradiction that
+    $\oWidth{\LMorse}$ is finite. Then, $L$ can be written as a finite union of
+    \kl{chains} for the \kl{infix relation}, and in particular, $L$ is
+    \kl(language){bounded}, which is absurd by \cref{thue-morse:lemma}.
+    Finally, because the \kl{ordinal width} is at most the \kl{maximal order
+    type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omega$.
 \end{proof}
 
-In the upcoming proof of \cref{infix-amalgamation:thm}, we will use the notion
-of \intro{bounded language} for languages $L \subseteq \Sigma^*$ such that
-there exists words $w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots
-w_n^*$. This will be useful for us to derive the inclusion of a language $L$
-into a union of \kl{chains}. Note that we isolate this intermediate result in a
-separate theorem that could be applied beyond \kl{amalgamation systems}.
+This suggests the following conjecture which states that for \kl{downwards
+closed} languages, the \kl{ordinal invariants} are relatively small.
 
-\begin{theorem}
-    \label{bounded-language:thm}
-    Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
-    $L$ is a \kl{well-quasi-order} when endowed with the 
-    \kl{infix relation} if and only if it is a finite union of \kl{chains}.
-\end{theorem}
-\begin{proof}
-    Let $w_1, \dots, w_n$ be such that
-    $L \subseteq w_1^* \cdots w_n^*$.
-    Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
-
-    Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
-    to $\Sigma^*$. We are interested in the intersection of the image of $w$
-    with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
-    there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
-    Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
-    $x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
-    $w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
-    \InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
-    \cup \InfPeriodChain{x} \InfPeriodChain{y}$.
-
-    Now, it may be the case that one cannot simultaneously assume that two
-    component of the vector $\vec{k}$ are unbounded. In general, given a set $S
-    \subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
-    there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
-    exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
-    $\vec{b}$ on the $S$ components, and the other components are below the
-    bound $N_0$. The language of an admissible set $S$ is the set of words
-    obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
-    ($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
-    Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
-
-    Now, admissible languages are ready to be pumped according to
-    \cref{pumping-periods:lem}. For every admissible language,
-    the size of a word that is not iterated is at most
-    $N_0 \times m$ by definition, and we conclude that:
-    \begin{equation}
-    	\label{amalgamation-infix-wqo-inclusion:eqn}
-        L \subseteq 
-        \bigcup_{x,y \in \Sigma^{\leq n}}
-        \bigcup_{u \in \Sigma^{\leq m \times N_0}}
-        \InfPeriodChain{x} u \InfPeriodChain{y}
-        \cup
-        \InfPeriodChain{x} u
-        \cup
-        u \InfPeriodChain{x}
-        \quad .
-    \end{equation}
-\end{proof}
-
-To conclude this section and prove our main \cref{infix-amalgamation:thm}, it
-suffices to demonstrate that languages recognized by \kl{amalgamation systems}
-that are \kl{well-quasi-ordered} for the \kl{infix relation} are \kl{bounded
-languages}.
-
-\begin{lemma}
-    \label{infix-amalgamation-bounded:lem}
-    Let $L \subseteq \Sigma^*$ be a language recognized
-    by an \kl{amalgamation system} that is \kl{well-quasi-ordered}
-    for the \kl{infix relation}. Then $L$ is a \kl{bounded language}.
-\end{lemma}
-\begin{proof}
-    Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
-    and obtained by an \kl{amalgamation system}
-    $(\Sigma, R, E, \canrun)$.
-
-    Let us consider the set $M$ of minimal runs for the relation $\leq_E$,
-    which is finite because the latter is a \kl{well-quasi-ordering}. By
-    definition, for every word $w \in L$, there exists $r \in M$, $s \in R$,
-    and $f \in E(r,s)$ such that $w = \canrun(s)$.
-    In particular, we conclude that
-    \begin{equation*}
-        L \subseteq \bigcup_{r \in M} 
-        \left(
-        \GapLanguage{r}{0}
-        \prod_{i = 1}^{\card{\canrun(r)}-1} \canrun(r)_i \GapLanguage{r}{i} 
-        \right)
-        \quad .
-    \end{equation*}
-
-    Let $u$ and $v$ be two words in the \kl{gap language}
-    $\GapLanguage{r}{\ell}$ for some $r \in M$ and $0 < \ell <
-    \card{\canrun(r)} \defined n$. One can apply \cref{pumping-gap-languages:lem}
-    to conclude that  for all $k \geq 1$,
-    \begin{equation*}
-       \left(\prod_{i = 0}^{\ell - 1} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}\right) 
-       v u^k v
-       \left(\prod_{i = \ell+1}^{n} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}\right)
-       \in 
-       L
-    \end{equation*}
-    Where $x_i + y_i + z_i = k$ for all $0 \leq i \leq n$
-    Let us assume without loss of generality that the sequence
-    $\seqof{(x_i, y_i, n_i)}[i \geq 1]$ is pointwise increasing,
-    and even increasing coordinate wise. This is possible because
-    at least one of the coordinates tends to $+\infty$ and in the case
-    of a variable that is bounded, one can extract the sequence to
-    simply not use this variable.
-
-    Now, leveraging \cref{pumping-periods:lem}, we get that for infinitely many
-    $k \geq 1$, $u v^k u$ is an infix of some $x^p$ where $x$ has size smaller
-    or equal than $u$ and $v$. This proves  that $u$ and $v$ are comparable for
-    the prefix, infix, and suffix relations. In particular, we have can
-    conclude that $\GapLanguage{r}{i}$ is a \kl{bounded language}, because of
-    \cite[Lemma 4.1]{ASZZ24}, when $0 < i < \card{\canrun(r)}$. The proof goes
-    on similarly for proving that $\GapLanguage{r}{0}$ and $\GapLanguage{r}{n}$
-    are \kl{bounded languages}, using the other items of
-    \cref{pumping-gap-languages:lem}.
-
-    Because \kl{bounded languages} are stable under concatenation and finite
-    unions, we conclude that $L$ itself must be a \kl{bounded language}.
-\end{proof}
-
-\begin{proofof}{infix-amalgamation:thm}
-    We first apply \cref{infix-amalgamation-bounded:lem},
-    and conclude with \cref{bounded-language:thm}.
-\end{proofof}
-
-For the next result, we impose a mild restriction by requiring the language class to be closed under rational transductions. This property holds for most common language classes, including all known \kl{amalgamation systems}.
-
-\begin{theorem}
-	\label{infix-wqo-is-emptiness:thm}
-	Let $\mathcal{C}$ be a class of languages recognized by amalgamation systems and closed under rational transductions. Then the following are equivalent:
-	
-	\begin{enumerate}
-		\item\label{wqo-infix-decidable} \kl[well-quasi-order]{Well-quasi-orderedness} of the \kl{infix relation} is decidable.
-		\item\label{emptiness-decidable} Emptiness is decidable.
-	\end{enumerate}
-\end{theorem}
-
-\begin{proof}
-	\cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{amalgamation-infix-wqo-inclusion:eqn} effective. 
-	
-	Let $R = \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in \Sigma^{\leq m \times N_0}} \InfPeriodChain{x} u \InfPeriodChain{y} \cup \InfPeriodChain{x}u \cup u\InfPeriodChain{x}$. For any concrete values of the bounds $n$, $m$, and $N_0$, this language is regular. As $\mathcal{C}$ is closed under rational transductions, we can therefore reduce the inclusion to emptiness of $L \cap \overline{R}$. However, we need to find these bounds first.
-	
-	To determine values for $n$ and $m$, we first test if $L$ is bounded. As the algorithm in \cite[Section 4.2]{ASZZ24} is effective, this yields words $w_1, \ldots w_n$ such that $L \subseteq w_1^* \cdots w_n^*$ and therefore yields also the bounds in questions.
-	
-	To determine the value for $N_0$, we first computer maximal subsets $S \subseteq [n]$ such that $w_i$ for $i \in S$ are simultaneously unbounded. We do this by applying a transduction mapping $w_i$ to some fresh letter $a_i$ if $i \in S$ and $\varepsilon$ otherwise, and testing for simultaneous unboundedness \cite[Section 4.1]{ASZZ24}. Given a candidate bound $n_0$ for $N_0$, we construct the languages $L_{S,n_0} = w_1^{\circ_1}\cdots w_n^{\circ_n}$ where $\circ_i = *$ if $i \in S$ and $\circ_i = \leq n_0$ otherwise. We then test if $L \subseteq \bigcup_{S \text{ maximal}} L_{S,n_0}$. If yes, $n_0$ is our value for $N_0$, otherwise, we increase it and repeat the construction. As we chose maximal sets $S$, this procedure will eventually terminate.
-	
-	\cref{wqo-infix-decidable} $\Rightarrow$ \cref{emptiness-decidable}. We 
-	consider the transduction $\mathcal T = \Sigma^* \times \{a, b\}$. Then 
-	for any language $L \in \mathcal C$, $\mathcal TL$ is well-quasi-ordered 
-	by infix if and only if $L$ is empty.
-\end{proof}
-
-Let us conclude this section by fully characterizing what are
-actually the chains for the \kl{infix} relation, without any 
-regularity assumption.
-
-\begin{lemma}
-    \label{chains-infix:lem}
-    Let $L$ be a \kl{chain} for the \kl{infix relation}. Then, there exists
-    a \kl{chain} $P$ for the \kl{prefix relation} and a \kl{chain}
-    $S$ for the \kl{suffix relation} such that $L \subseteq SP$.
-\end{lemma}
-\begin{proof}
-    Because $L$ is a chain,
-    we have an enumeration $L = \seqof{w_n}$,
-    where $s_n \defined \card{w_n}$ is increasing, 
-    and functions
-    $f_{i,j} \colon \set{1, \dots, s_i} \to \set{1, \dots s_{j}}$
-    satisfying
-    that $f_{j,k} \circ f_{i, j} = f_{i, k}$,
-    $f_{i,i} = \mathrm{id}$, and
-    $w_i = w_j[f_{i,j}(1):f_{i,j}(s_i)]$ for all $i \leq j$.
-    Now, we can build the infinite word $w_\infty$ indexed by $\Rel$, and
-    embeddings $f_{i, \infty} \colon \set{1, \dots, s_i} \to \Rel$ such that
-    $w_i = w_\infty[f_{i, \infty}(1):f_{i, \infty}(s_i)]$, and $f_{i, \infty}
-    \circ f_{j, i} = f_{j, \infty}$ for all $i \leq j$.
-
-    Let us define $w_l$ as the (infinite) word $w_\infty[-\infty: f_{0,
-    \infty}(s_0)]$ and $w_r$ as the (infinite) word $w_\infty[f_{0,
-    \infty}(s_0): +\infty]$. It is now clear that every word $w_i$ can be
-    written as $w_i = w_{i,l} w_{i,r}$, where $w_{i,l}$ is a prefix of $w_r$
-    and $w_{i,r}$ is a suffix of $w_l$. Furthermore, the functions $f_{i,
-    \infty}$ can be used to notice that $\seqof{w_{i,r}}$ is a \kl{chain} for
-    the \kl{prefix relation}, and $\seqof{w_{i,l}}$ is a \kl{chain} for the
-    \kl{suffix relation}, which allows us to conclude.
-\end{proof}
-
-
-
+\begin{conjecture}
+    \label{small-ordinal-invariants:conj}
+    Let $L$ be a \kl{well-quasi-ordered} language for the \kl{infix relation}
+    that is \kl{downwards closed}.
+    Then, the \kl{maximal order type} of $L$ is at most $\omega^3$,
+    its \kl{ordinal height} is at most $\omega$,
+    and its \kl{ordinal width} is at most $\omega^2$.
+\end{conjecture}

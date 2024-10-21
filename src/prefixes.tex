@@ -47,13 +47,14 @@ for a given language $L$, namely by introducing \kl{antichain branches}.
 \begin{definition}
     An \intro{antichain branch} for a language $L$ is an infinite 
     branch $B$ of the \kl{tree of prefixes} such that from every point of the branch, 
-    one can reach a word in $L \setminus B$.
+    one can reach a word in $L \setminus B$. Formally:
+    $\forall u \in B, \exists v \in \Sigma^*, uv \in L \setminus B$.
 \end{definition}
 
 Let us illustrate the notion of \kl{antichain branch} over the alphabet $\Sigma
 = \set{a,b}$, and the language $L = a^* b$. In this case, the set $a^*$ (which
 is a branch of the \kl{tree of prefixes}) is an \kl{antichain branch} for $L$.
-This holds because for any $a^k$, the word $a \prefleq a^kb$ belongs to $L
+This holds because for any $a^k$, the word $a^k \prefleq a^kb$ belongs to $L
 \setminus a^*$. In general, the existence of an \kl{antichain branch} for a
 language $L$ implies that $L$ contains an infinite \kl{antichain}, and because
 the alphabet $\Sigma$ is assumed to be finite, one can leverage the fact that
@@ -85,18 +86,21 @@ holds as well.
     an infinite branch. By definition this is an \kl{antichain branch}.
 \end{proof}
 
-One immediate application of \cref{antichain-branches-prefix:lem} is that
-\kl{antichain branches} can be described inside the \kl{tree of prefixes} by a
-monadic second order formula (\kl{$\MSO$-formula}), allowing us to leverage the
-decidability of $\MSO$ over infinite binary trees \cite[Theorem 1.1]{RAB69}.
+One immediate application of \cref{antichain-branches-prefix:lem} is
+that \kl{antichain branches} can be described inside the \kl{tree of prefixes}
+by a monadic second order formula ($\MSO$-formula), allowing us to
+leverage the decidability of $\MSO$ over infinite binary trees \cite[Theorem
+1.1]{RAB69}. This result will follow from our general decidability result
+(\cref{infix-wqo-is-emptiness:thm}) but is worth stating on its own for its
+simplicity.
 
 \begin{corollary}
     \label{prefix-wqo-reg-decidable:cor}
     If $L$ is regular, then the existence of an infinite antichain is decidable.
 \end{corollary}
 \begin{proof}
-    If $L$ is regular, then it is \kl{$\MSO$-definable}, and there 
-    exists a formula $\varphi(x)$ in \kl{$\MSO$} that selects nodes 
+    If $L$ is regular, then it is $\MSO$-definable, and there 
+    exists a formula $\varphi(x)$ in $\MSO$ that selects nodes 
     of the \kl{tree of prefixes} that belong to $L$. Now, to decide whether there
     exists an \kl{antichain branch} for $L$, we can simply check whether
     the following formula is satisfied:
@@ -114,7 +118,7 @@ decidability of $\MSO$ over infinite binary trees \cite[Theorem 1.1]{RAB69}.
 \end{proof}
 
 Let us now go further and fully characterize languages $L$ such that the
-prefix relation is well-quasi-ordered, even without any restriction on the
+prefix relation is well-quasi-ordered, without any restriction on the
 decidability of $L$ itself. Let us remark that finite unions of \kl{chains} are
 always \kl{well-quasi-ordered} by the \kl{prefix relation} because they lack
 infinite \kl{antichains} by definition. The following theorem states that this
@@ -129,7 +133,7 @@ which is defined as $\upset[\preceq]{S} \defined \setof{y \in \Sigma^*}{
 \in \Sigma^*}{ \exists x \in S. y \preceq x}$. Abusing notations, we will
 write $\upset{w}$ and $\dwset{w}$ for the upwards and downwards closure of a
 single element $w$, omitting the ordering relation when it is clear from the
-context.
+context. A set $S$ is called \intro{downwards closed} if $\dwset{S} = S$.
 
 \begin{figure}
     \centering
@@ -184,31 +188,10 @@ As an immediate consequence, we have a very fine-grained understanding of the
 leveraged in bounding the complexity of algorithms working on such languages.
 
 \begin{corollary}
-    Let $L \subseteq \Sigma^*$ be an infinite language that is \kl{well-quasi-ordered} by
-    the \kl{prefix relation}. Then, there exists finite numbers $k,\ell \in \Nat$ such that
-    the
-    \kl{maximal order type} of $L$ is $k \cdot \omega$,
-    the \kl{ordinal height} of $L$ is $\omega$, and its
-    \kl{ordinal width} is $\ell$.
+    \label{prefixes-ordinal-invariants:cor}
+    Let $L \subseteq \Sigma^*$ be a language that is
+    \kl{well-quasi-ordered} by the \kl{prefix relation}. Then,
+    \kl{maximal order type} of $L$ strictly smaller than $\omega^2$,
+    the \kl{ordinal height} of $L$ is at most $\omega$, and
+    its \kl{ordinal width} is finite.
 \end{corollary}
-
-Let us conclude by noting that it is unsurprisingly not possible to decide
-whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
-relation}. This is a very easy result whose sole purpose is to contrast with
-the decidability result of \cref{prefix-wqo-reg-decidable:cor}.
-
-\begin{lemma}
-    The following problem is undecidable: given a language $L$
-    decided by a Turing machine, answer whether 
-    $L$ is \kl{well-quasi-ordered} for the \kl{prefix relation}.
-\end{lemma}
-\begin{proof}
-    We reduce the halting problem on the empty string $\varepsilon$.
-    Let $M$ be a Turing Machine, we write the languages $L$ of finite runs
-    of $M$ starting on the empty string,
-    that we surround by special markers. This language is decidable,
-    and 
-    is
-    \kl{well-quasi-ordered} if and only if it is finite
-    if and only if $M$ terminates on $\varepsilon$.
-\end{proof}

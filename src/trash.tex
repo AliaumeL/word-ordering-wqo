@@ -1,0 +1,88 @@
+\section{Trash}
+
+Let us first play this game for languages that are recognized by
+finite automata. We assume that the reader is familiar with the notions of
+deterministic finite automaton and regular languages, and refer to the book of
+Thomas for a comprehensive introduction to the subject \cite{THOM97}. The main
+goal of the remainder of this section is to prove the following
+\cref{infix-finite-automata:thm}.
+
+\begin{theorem}[restate=infix-finite-automata:thm,label=infix-finite-automata:thm]
+    \proofref{infix-finite-automata:thm}
+    Let $L \subseteq \Sigma^*$ be a language recognized by a finite automaton.
+    Then $L$ is \kl{well-quasi-ordered} by the \kl{infix relation} if and only if $L$ is
+    a finite union of \kl{chains} for the \kl{infix relation}.
+\end{theorem}
+\begin{proofof}{infix-finite-automata:thm}
+    Let $w \in L$, because $Q$ is finite, there exists
+    a factorization of $w$
+    into words $(\prod_{i = 1}^k u_i v_i) u_{k+1}$
+    such that 
+    for all $1 \leq i \leq k+1$, $\card{u_i} \leq \card{Q}$,
+    for all $1 \leq i \leq k$, $1 \leq \card{v_i} \leq \card{Q}$,
+    and satisfying 
+    that $w[\vec{X}] \defined 
+    (\prod_{i = 1}^k u_i v_i^{X_i}) u_{k+1}$
+    belongs to $L$ for all choices of values $\vec{X} \in \Nat^k$.
+
+    Applying \cref{pumping-periods:lem}, we conclude that 
+    there exists $x,y \in \Sigma^+$ of size at most $\card{Q}$
+    such that 
+    $w \in u_1 \InfPeriodChain{x} \cup \InfPeriodChain{y} u_{k+1}
+    \cup \bigcup_{1 \leq i \leq k+1} \InfPeriodChain{x} u_i \InfPeriodChain{y}$.
+    In particular, we conclude that
+    \begin{equation}
+        \label{infix-automata:eq}
+        L
+        \subseteq
+        \bigcup_{x,y,u\in \Sigma^{\leq \card{Q}}}
+        u \InfPeriodChain{x}
+        \cup 
+        \InfPeriodChain{x} u
+        \cup
+        \InfPeriodChain{x} u \InfPeriodChain{y}
+        \quad .
+    \end{equation}
+
+    Because $\InfPeriodChain{x}$ is a finite union of \kl{chains} for the \kl{suffix}
+    relation (using \cref{inf-period-chain:lem}), we conclude that $\InfPeriodChain{x}u$ is one too for
+    the \kl{infix} relation. This holds similarly for $u \InfPeriodChain{x}$.
+    In the case of $\InfPeriodChain{x} u \InfPeriodChain{y}$,
+    we remark that $\InfPeriodChain{x} u$ is a finite union of chains
+    for the \kl{suffix relation},
+    and that $\InfPeriodChain{y}$ is one for the \kl{prefix relation}
+    (using again \cref{inf-period-chain:lem}).
+    As a consequence,
+    $\InfPeriodChain{x}u \cdot \InfPeriodChain{y}$ is a finite union 
+    of products of \kl{chains}, as desired.
+\end{proofof}
+
+\begin{corollary}
+    \label{reg-wqo-decidable:cor}
+    Given a regular language $L$, it is decidable whether
+    $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
+\end{corollary}
+\begin{proof}
+    It suffices to decide whether 
+    \cref{infix-automata:eq} holds for the language $L$.
+    This is an inclusion of regular languages, which is decidable.
+\end{proof}
+
+
+Let $(X,\preceq)$ be a quasi-ordered set, and $L \subseteq X$ be such that $(L,
+\preceq)$ is \kl{well-quasi-ordered}. It is not true in general that
+$(\dwset{L}, \preceq)$ is \kl{well-quasi-ordered}. In the case of $(\Sigma^*,
+\infleq)$ a typical example is to start from an infinite \kl{antichain} $A$,
+together with an enumeration $\seqof{w_i}$ of $A$, and build the language $L
+\defined \setof{ \prod_{i = 0}^n w_i }{ i \in \Nat }$. By definition, $L$ is a
+\kl{chain} for the \kl{infix} ordering, hence \kl{well-quasi-ordered}. However,
+$\dwset[\infleq]{L}$ contains $A$, and is therefore not
+\kl{well-quasi-ordered}. As a fun corollary of our analysis, we conclude that
+this particular example cannot be realized by a regular language $A$.
+
+\begin{corollary}
+    \label{reg-wqo-iff-dwclosed-wqo:cor}
+    Given a regular language $L$, it is \kl{well-quasi-ordered} 
+    for the \kl{infix relation} if and only if 
+    $\dwset[\infleq] L$ is.
+\end{corollary}

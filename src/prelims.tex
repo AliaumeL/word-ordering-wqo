@@ -1,0 +1,59 @@
+\section{Preliminaries}
+\label{prelims:sec}
+
+\paragraph*{Finite words.} In this paper, we use letters $\Sigma, \Gamma$ to
+denote finite alphabets, $\Sigma^*$ to denote the set of finite words over
+$\Sigma$, and $\varepsilon$ for the empty word in $\Sigma^*$. In order to give
+some intuition on the decision problems, we will sometimes use the notion of
+\intro{finite automata}, \intro{regular languages}, and Monadic Second Order
+logic ($\intro*\MSO$) over finite words, and assume is familiar with them. We
+refer to the textbook of \cite{THOM97} for a detailed introduction to this
+topic.
+
+
+\paragraph*{Orderings and Well-Quasi-Orderings.} A \intro{quasi-order} is a
+reflexive and transitive binary relation, it is a \intro{partial order} if it
+is furthermore antisymmetric. A \intro{total order} is a \kl{partial order}
+where any two elements are comparable. Let now us introduce some notations for
+\kl{well-quasi-orders}. A sequence $\seqof{x_i}$ in a set $X$ is
+\intro(sequence){good} if there exist $i < j$ such that $x_i \leq x_j$. It is
+\intro(sequence){bad} otherwise. Therefore, a \kl{well-quasi-ordered} set is a
+set where every infinite sequence is \kl(sequence){good}. A \intro{decreasing
+sequence} is a sequence $\seqof{x_i}$ such that $x_{i+1} < x_i$ for all $i$,
+and an \intro{antichain} is a set of pairwise incomparable elements. An
+equivalent definition of a \kl{well-quasi-ordered} set is that it contains no
+infinite \kl{decreasing sequences}, nor infinite \kl{antichains}. We refer to
+\cite{SCSC12} for a detailed survey on well-quasi-orders.
+
+The \kl{prefix relation} (resp. the \kl{suffix relation} and the \kl{infix
+relation}) on $\Sigma^*$ are always \intro{well-founded}, i.e., there are no
+infinite \kl{decreasing sequences} for this ordering. In particular, for a
+language $L \subseteq \Sigma^*$ to be \kl{well-quasi-ordered}, it suffices to
+prove that it contains no infinite \kl{antichain}. 
+
+\paragraph*{Ordinal Invariants.} \label{ordinal-invariants:subsec}
+An \intro{ordinal} is a \kl{well-founded} \kl{totally ordered}
+set. We use $\alpha, \beta, \gamma$ to denote ordinals, and use $\omega$ to
+denote the first infinite ordinal, i.e., the set of natural numbers with the
+usual ordering. We assume superficial familiarity with ordinal arithmetic, and
+refer to the books of Kunen \cite{KUNEN80} and Krivine~\cite[Chapter
+II]{KRIVINE71} for a detailed introduction to this domain. Given a tree $T$
+whose branches are all finite we can define an ordinal $\alpha_T$ inductively
+as follows: if $T$ is a leaf then $\alpha_T = 0$, if $T$ has children
+$\seqof{T_i}$ then $\alpha_T = \sup \setof{\alpha_{T_i} + 1}{i \in \Nat}$. We
+say that $\alpha_T$ is the \emph{rank} of $T$. 
+
+Let $(X, \leq)$ be a \kl{well-quasi-ordered} set. One can define three
+well-founded trees from $X$: the tree of \kl{bad sequences}, the tree of
+decreasing sequences, and the tree of \kl{antichains}. The rank of these
+respective trees are called respectively the \intro{maximal order type} of $X$
+written $\intro*{\oType{X}}$ \cite{dejongh77}, the \intro{ordinal height} of
+$X$ written $\intro*{\oHeight{X}}$ \cite{schmidt81}, and the \intro{ordinal
+width} of $X$ written $\intro*{\oWidth{X}}$ \cite{kriz90b}. These three
+parameters are called the \intro{ordinal invariants} of a
+\kl{well-quasi-ordered} set $X$. We refer to the survey of \cite{DZSCSC20} for
+a detail discussion on these concepts and their computation on specific classes
+of well-quasi-ordered sets.
+
+
+

@@ -221,7 +221,7 @@ def render_figure_tikz(nodes, edges, compare_with=None, standalone=True, infix_e
         isInfixEnc/.style={},
         isRealWord/.style={A4,opacity=0.2},
         isRealEmbedding/.style={A4,opacity=0.2},
-        isNewEdge/.style={B2},
+        isNewEdge/.style={B2,dashed},
         ]
 
         """)

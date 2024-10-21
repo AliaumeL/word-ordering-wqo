@@ -4,6 +4,13 @@
 
 % classical knowldeges
 \knowledge{notion}
+ | quasi-order
+\knowledge{notion}
+ | ordinal
+\knowledge{notion}
+ | totally ordered
+ | total order
+\knowledge{notion}
  | well-quasi-ordered
  | well-quasi-ordering
  | well-quasi-orderings
@@ -17,36 +24,42 @@
  | partially ordered
 \knowledge{notion}
  | well-founded
-
+\knowledge{notion}
+ | good@sequence
+ | good@wqo
+ | good sequence
+\knowledge{notion}
+ | bad@sequence
+ | bad sequences
+ | bad sequence
 \knowledge{notion}
  | downwards closure
+ | downwards closures
+\knowledge{notion}
+ | downwards closed
 \knowledge{notion}
  | upwards closure
-
-
 \knowledge{notion}
  | decreasing sequence
  | decreasing sequences
-
 \knowledge{notion}
  | antichain
  | antichains
-
 \knowledge{notion}
  | chains
  | chain
-
 \knowledge{notion}
  | order embedding
  | embeds into
+ | embedding@order
  | embedding
  | embeddings
  | embedded
-
 \knowledge{notion}
  | subword relation
  | scattered subword
  | subword
+ | subwords
  | Higman’s subword relation
  | subword embedding
  | subword embedding relation
@@ -57,20 +70,16 @@
  | infix ordering
  | infix
  | infixes 
-
 \knowledge{notion}
  | prefix relation
  | prefix ordering
  | prefix 
  | prefixes
-
 \knowledge{notion}
  | suffix relation
  | suffix ordering 
  | suffix 
  | suffixes
-
-
 \knowledge{notion}
  | ordinal invariants
 \knowledge{notion}
@@ -79,8 +88,6 @@
  | maximal order type
 \knowledge{notion}
  | ordinal width
-
-
 \knowledge{notion}
  | periodic word
  | periodic words
@@ -90,14 +97,29 @@
  | periodic lengths
 
 \knowledge{notion}
+ | regular language
+ | regular languages
+\knowledge{notion}
+ | finite automaton
+ | finite automata
+\knowledge{notion}
+ | rational transduction
+ | rational transductions
+\knowledge{notion}
+ | closed under rational transductions
+ | effectively closed under rational transductions
+
+\knowledge{notion}
  | $\MSO $-definable
 \knowledge{notion}
  | $\MSO $
  | $\MSO $-formula
-
 \knowledge{notion}
- | unbounded language
- | unbounded languages
+ | Thue-Morse sequence
+\knowledge{notion}
+ | cube-free
+\knowledge{notion}
+ | uniformly recurrent
 
 % custom commands
 \knowledge{notion}
@@ -123,7 +145,21 @@
 \knowledge{notion}
  | gap language
  | gap languages
-
+\knowledge{notion}
+ | unbounded@language
+ | unbounded language
+ | unbounded languages
 \knowledge{notion}
  | bounded language
+ | bounded@language
  | bounded languages
+
+\knowledge{notion}
+ | effective@amalg
+ | effective amalgamative class
+ | effective amalgamative classes
+
+\knowledge{notion}
+ | strongly effective@amalg
+ | strongly effective amalgamative class
+ | strongly effective amalgamative classes
