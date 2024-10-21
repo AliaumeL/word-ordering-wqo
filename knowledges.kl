@@ -4,6 +4,13 @@
 
 % classical knowldeges
 \knowledge{notion}
+ | quasi-order
+\knowledge{notion}
+ | ordinal
+\knowledge{notion}
+ | totally ordered
+ | total order
+\knowledge{notion}
  | well-quasi-ordered
  | well-quasi-ordering
  | well-quasi-orderings
@@ -100,6 +107,7 @@
  | rational transductions
 \knowledge{notion}
  | closed under rational transductions
+ | effectively closed under rational transductions
 
 \knowledge{notion}
  | $\MSO $-definable

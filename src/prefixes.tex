@@ -88,7 +88,7 @@ holds as well.
 
 One immediate application of \cref{antichain-branches-prefix:lem} is
 that \kl{antichain branches} can be described inside the \kl{tree of prefixes}
-by a monadic second order formula (\kl{$\MSO$-formula}), allowing us to
+by a monadic second order formula ($\MSO$-formula), allowing us to
 leverage the decidability of $\MSO$ over infinite binary trees \cite[Theorem
 1.1]{RAB69}. This result will follow from our general decidability result
 (\cref{infix-wqo-is-emptiness:thm}) but is worth stating on its own for its
@@ -99,8 +99,8 @@ simplicity.
     If $L$ is regular, then the existence of an infinite antichain is decidable.
 \end{corollary}
 \begin{proof}
-    If $L$ is regular, then it is \kl{$\MSO$-definable}, and there 
-    exists a formula $\varphi(x)$ in \kl{$\MSO$} that selects nodes 
+    If $L$ is regular, then it is $\MSO$-definable, and there 
+    exists a formula $\varphi(x)$ in $\MSO$ that selects nodes 
     of the \kl{tree of prefixes} that belong to $L$. Now, to decide whether there
     exists an \kl{antichain branch} for $L$, we can simply check whether
     the following formula is satisfied:
@@ -133,7 +133,7 @@ which is defined as $\upset[\preceq]{S} \defined \setof{y \in \Sigma^*}{
 \in \Sigma^*}{ \exists x \in S. y \preceq x}$. Abusing notations, we will
 write $\upset{w}$ and $\dwset{w}$ for the upwards and downwards closure of a
 single element $w$, omitting the ordering relation when it is clear from the
-context.
+context. A set $S$ is called \intro{downwards closed} if $\dwset{S} = S$.
 
 \begin{figure}
     \centering
