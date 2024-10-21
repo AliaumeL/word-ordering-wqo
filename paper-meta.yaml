@@ -16,15 +16,14 @@ abstract: |
   and that under extra regularity assumptions, this also
   extends to the infix ordering.
 author:
-  - name: "Roland Guttenberg"
-    affiliation: "Technical University of Munich, Germany"
-    email: "guttenbe@in.tum.de"
   - name: "Nathan Lhote"
     affiliation: "Aix-Marseille University"
     email: nathan.lhote@lis-lab.fr
   - name: "Aliaume Lopez"
     orcid: "0000-0002-4205-327X"
     affiliation: "University of Warsaw"
+    arxiv: alopez_3
+    github: AliaumeL
     email: ad.lopez@uw.edu.pl
   - name: "Lia Schütze"
     affiliation: "MPI-SWS, Germany"
