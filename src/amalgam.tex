@@ -33,14 +33,14 @@ particular \cref{bounded-language:thm}, can safely be transferred to
 procedure for being \kl{well-quasi-ordered}. This will require us to introduce
 \emph{effectiveness assumptions} on the \kl{amalgamation systems}. While most
 of them will be innocuous, an important consequence is that we have to consider
-\emph{classes of languages} rather than individual ones. Such classes will be
-called \kl{effective amalgamative classes} (\kcref{effective amalgamative
-classes}). In the following theorem, we prove that under such assumptions,
-testing \kl{well-quasi-ordering} is inter-reducible to testing whether a
-language of the class is empty.
+\emph{classes of languages} rather than individual ones, for instance: the
+class of all regular language, or the class of all context-free languages. Such
+classes will be called \kl{effective amalgamative classes} (\kcref{effective
+amalgamative classes}). In the following theorem, we prove that under such
+assumptions, testing \kl{well-quasi-ordering} is inter-reducible to testing
+whether a language of the class is empty.
 
-
-\begin{theorem}[restated=infix-wqo-is-emptiness:thm,label=infix-wqo-is-emptiness:thm]
+\begin{theorem}[restate=infix-wqo-is-emptiness:thm,label=infix-wqo-is-emptiness:thm]
 % 	\label{infix-wqo-is-emptiness:thm}
 	Let $\mathcal{C}$ be an \kl{effective amalgamative class} of languages.
     Then the following are equivalent:
@@ -69,7 +69,7 @@ tailored to produce \emph{pumping arguments}, which is exactly what our
 there is a notion of \emph{run}, which could for instance be a sequence of
 transitions taken in a finite state automaton. Continuing on the analogy with
 finite automata, there is a natural ordering between runs, i.e., a run is
-smaller than another one if one can ``unroll loops" of the first run to obtain
+smaller than another one if one can ``unroll loops'' of the first run to obtain
 the second one. Typical pumping arguments then rely on the fact that
 \emph{minimal} runs are of finite size, and that all other runs are
 obtained by ``gluing'' minimal runs together. This is exactly what
@@ -170,14 +170,13 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
 \end{definition}
 
 Intuitively, the definition of an amalgamation system allows the comparison of
-runs, and the proper ``gluing" of runs together to obtain new runs. Let us
+runs, and the proper ``gluing'' of runs together to obtain new runs. Let us
 recall some examples of languages that can be recognized by \kl{amalgamation
-systems} given by the authors of the original paper: regular languages
-\cite[Theorem 5.3]{ASZZ24}, VASS as a consequence of \cite[Theorem
-5.5]{ASZZ24}, context-free languages as a consequence of \cite[Theorem
-5.10]{ASZZ24}. For this paper to be self-contained, we will also recall how
-runs of a finite state automaton can be understood as an \kl{amalgamation
-system}.
+systems}: regular languages \cite[Theorem 5.3]{ASZZ24}, VASS as a consequence
+of \cite[Theorem 5.5]{ASZZ24}, context-free languages as a consequence of
+\cite[Theorem 5.10]{ASZZ24}. For this paper to be self-contained, we will also
+recall how runs of a finite state automaton can be understood as an
+\kl{amalgamation system}.
 
 \begin{example}[{\cite[Section 3.2]{ASZZ24}}]
     Let $A = (Q, \delta, q_0, F)$ be a finite state automaton over a finite
@@ -313,7 +312,7 @@ languages}.
     Now, leveraging \cref{pumping-periods:lem}, we get that for infinitely many
     $k \geq 1$, $u v^k u$ is an infix of some $x^p$ where $x$ has size smaller
     or equal than $u$ and $v$. This proves  that $u$ and $v$ are comparable for
-    the prefix, infix, and suffix relations. In particular, we have can
+    the prefix, infix, and suffix relations. In particular, we
     conclude that $\GapLanguage{r}{i}$ is a \kl{bounded language}, because of
     \cite[Lemma 4.1]{ASZZ24}, when $0 < i < \card{\canrun(r)}$. The proof goes
     on similarly for proving that $\GapLanguage{r}{0}$ and $\GapLanguage{r}{n}$
@@ -380,17 +379,18 @@ any two runs $r, s \in R$, the set $E(r,s)$ is computable.
 \todo[inline]{In this definition, the alphabet $\Sigma$ can be changed 
 (and we seem to actually use it in the proofs), it is strange.}
 
-\AP We say that a class $\mathcal{C}$ of languages is an \kl{effective
+\AP We say that a class $\mathcal{C}$ of languages is an \intro{effective
 amalgamative class} whenever for every $L \in \mathcal{C}$, there exists an
 effective \kl{amalgamation system} recognizing $L$, and such that $\mathcal{C}$
 is \kl{effectively closed under rational transductions}. Recall that a
-\intro{rational transduction} is a function $f \colon \Sigma^* \to \Gamma^*$
-that can be defined by a (nondeterministic) finite automaton with output. A
-class of languages $\mathcal{C}$ is \intro{effectively closed under rational
-transductions} when, for every language $L \in \mathcal{C}$, and every rational
-transduction $f \colon \Sigma^* \to \Gamma^*$, the image of $L$ through $f$
-belongs to $\mathcal{C}$ and is effectively computable. We refer the reader to
-\cite{BERST79} for a primer on \kl{rational transductions}.
+\intro{rational transduction} is a \emph{realtion} $R \subseteq \Sigma^* \times
+\Gamma^*$ that can be defined by a (nondeterministic) finite automaton with
+output \cite[Chapter 5, page 64]{BERST79}. A class of languages $\mathcal{C}$
+is \intro{effectively closed under rational transductions} when, for every
+language $L \in \mathcal{C}$, and every rational transduction $R \subseteq
+\Sigma^* \times \Gamma^*$, the image of $L$ through $R$ --- that is,
+ $\setof{v \in \Gamma^*}{\exists u \in L. (u,v) \in R}$ --- is in $\mathcal{C}$
+and effectively computable.
 
 \AP A class $\mathcal{C}$ of languages is \intro(amalg){strongly effective}
 whenever the emptiness problem for languages in $\mathcal{C}$ is decidable.
@@ -401,35 +401,38 @@ amalgamative classes}~\cite{ASZZ24}.
 \begin{proofof}{infix-wqo-is-emptiness:thm}
 	\cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} effective. 
 	
-    Let $R = \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in \Sigma^{\leq m
-    \times N_0}} \InfPeriodChain{x} u \InfPeriodChain{y} \cup
+    Let $R(n,m,N_0) \defined \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in
+    \Sigma^{\leq m \times N_0}} \InfPeriodChain{x} u \InfPeriodChain{y} \cup
     \InfPeriodChain{x}u \cup u\InfPeriodChain{x}$. For any concrete values of
     the bounds $n$, $m$, and $N_0$, this language is regular. The map $L
-    \mapsto L \cap \Sigma^* \setminus R$  is a \kl{rational transduction}
-    because $\Sigma^* \setminus R$ is regular. Since $\mathcal{C}$ is
-    \kl{closed under rational transductions}, we can therefore reduce the
-    inclusion to emptiness of $L \cap \overline{R}$. However, we need to find
-    these bounds first.
+    \mapsto L \cap \Sigma^* \setminus R(n,m,N_0)$  is a \kl{rational
+    transduction} because $\Sigma^* \setminus R(n,m,N_0)$ is regular. Since
+    $\mathcal{C}$ is \kl{closed under rational transductions}, we can therefore
+    reduce the inclusion to emptiness of this language. However, we need to
+    find these bounds first.
 	
-    To determine values for $n$ and $m$, we first test if $L$ is bounded. Since
-    emptiness is decidable, we can apply the algorithm in~\cite[Section
-    4.2]{ASZZ24} to decide if $L$ is bounded. If $L$ is bounded, this algorithm
+    To determine values for $n$ and $m$, we first test if $L$ is
+    \kl(language){bounded}. Since emptiness is decidable, we can apply the
+    algorithm in~\cite[Section 4.2]{ASZZ24} to decide if $L$ is
+    \kl(language){bounded}. If $L$ is \kl(language){bounded}, this algorithm
     yields words $w_1, \ldots w_n$ such that $L \subseteq w_1^* \cdots w_n^*$
-    and therefore yields also the bounds in questions. If $L$ is not bounded,
-    then $L$ cannot be \kl{well-quasi-ordered} by the \kl{infix relation}
-    because of \cref{infix-amalgamation:thm} and we immediately return false.
+    and therefore yields also the bounds in questions: $n$ is the number of
+    words, and $m$ is the maximal length of a word $w_i$ where $1 \leq i \leq
+    n$. If $L$ is not bounded, then $L$ cannot be \kl{well-quasi-ordered} by
+    the \kl{infix relation} because of \cref{infix-amalgamation:thm} and we
+    immediately return false.
 	
     To determine the value for $N_0$, we first computer maximal subsets $S
-    \subseteq [n]$ such that $w_i$ for $i \in S$ are simultaneously unbounded.\todo{define this}
-    We do this by applying a transduction mapping $w_i$ to some fresh letter
-    $a_i$ if $i \in S$ and $\varepsilon$ otherwise, and testing for
-    simultaneous unboundedness \cite[Section 4.1]{ASZZ24}. Given a candidate
-    bound $n_0$ for $N_0$, we construct the languages $L_{S,n_0} =
-    w_1^{\circ_1}\cdots w_n^{\circ_n}$ where $\circ_i = *$ if $i \in S$ and
-    $\circ_i = \leq n_0$ otherwise. We then test if $L \subseteq \bigcup_{S
-    \text{ maximal}} L_{S,n_0}$. If yes, $n_0$ is our value for $N_0$,
-    otherwise, we increase it and repeat the construction. As we chose maximal
-    sets $S$, this procedure will eventually terminate.
+    \subseteq [n]$ such that $w_i$ for $i \in S$ are simultaneously
+    unbounded.\todo{define this} We do this by applying a transduction mapping
+    $w_i$ to some fresh letter $a_i$ if $i \in S$ and $\varepsilon$ otherwise,
+    and testing for simultaneous unboundedness \cite[Section 4.1]{ASZZ24}.
+    Given a candidate bound $n_0$ for $N_0$, we construct the languages
+    $L_{S,n_0} = w_1^{\circ_1}\cdots w_n^{\circ_n}$ where $\circ_i = *$ if $i
+    \in S$ and $\circ_i = \leq n_0$ otherwise. We then test if $L \subseteq
+    \bigcup_{S \text{ maximal}} L_{S,n_0}$. If yes, $n_0$ is our value for
+    $N_0$, otherwise, we increase it and repeat the construction. As we chose
+    maximal sets $S$, this procedure will eventually terminate.
 
     \cref{wqo-infix-decidable} $\Rightarrow$
     \cref{wqo-prefix-decidable}. We just consider the transduction $f$
@@ -439,12 +442,44 @@ amalgamative classes}~\cite{ASZZ24}.
     \todo{fresh symbols? can we assume we have those??}
 	
     \cref{wqo-prefix-decidable} $\Rightarrow$
-    \cref{emptiness-decidable}. We consider the transduction $f$ that 
-    maps every word $w$ to the word $a b^{|w|} a$.
-    Then, for any language $L \in \mathcal C$, $f(L)$ is \kl{well-quasi-ordered}
-    by \kl{prefix} if and only if $L$ is finite if and only if $L$ is finite.
-    Hence, we can decide if $L$ is finite, and therefore if $L$ is empty 
-    by enumeration.
-    \todo{I don't understand the notation $\Sigma^* \times \set{a,b}^*$, so I did 
-    a worse but correct proof for me.}
+    \cref{emptiness-decidable}. 
+	We 
+	consider the transduction $R \defined \Sigma^* \times \set{a, b}^*$. Then 
+	for any language $L \in \mathcal C$,
+    the image of $L$ through $R$ is \kl{well-quasi-ordered}
+    by \kl{infix} if and only if $L$ is empty.
 \end{proofof}
+
+The class $\mathcal{C}_\text{aut}$ of \kl{regular languages} and the class
+$\mathcal{C}_{\text{cfg}}$ of context-free languages are examples of
+\kl{effective amalgamative classes}, hence the following corollary.
+
+\begin{corollary}
+    \label{aut-cfg-infix:cor}
+    Let $\mathcal{C} \in \set{ \mathcal{C}_\text{aut}, \mathcal{C}_{\text{cfg}}}$.
+    It is decidable whether a language in $\mathcal{C}$ is \kl{well-quasi-ordered}
+    by the \kl{infix relation}.
+    Furthermore, whenever it is \kl{well-quasi-ordered} by the \kl{infix relation},
+    it is a \kl{bounded language}.
+\end{corollary}
+
+Let us conclude by noting that it is unsurprisingly not possible to decide
+whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
+relation}. This is a very easy result whose sole purpose is to contrast with
+the decidability result of \cref{aut-cfg-infix:cor}.
+
+\begin{remark}
+    The following problem is undecidable: given a language $L$
+    decided by a Turing machine, answer whether 
+    $L$ is \kl{well-quasi-ordered} for the \kl{prefix relation}.
+\end{remark}
+\begin{proof}
+    We reduce the halting problem on the empty string $\varepsilon$.
+    Let $M$ be a Turing Machine, we write the languages $L$ of finite runs
+    of $M$ starting on the empty string,
+    that we surround by special markers. This language is decidable,
+    and 
+    is
+    \kl{well-quasi-ordered} if and only if it is finite
+    if and only if $M$ terminates on $\varepsilon$.
+\end{proof}

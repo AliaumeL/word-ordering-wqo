@@ -51,7 +51,7 @@ $i \in \{1, \ldots, |u|\}$.
         on the alphabet $\set{a,b}$ for words of
         length at most $3$. The figures are Hasse Diagrams,
         representing the successor relation of the order.
-        Furthermore, we highlight in red relations that are added
+        Furthermore, we highlight in dashed red relations that are added
         when moving from the prefix relation to the infix one,
         and to the infix relation to the subword one.}
     \label{word-embeddings:fig}
@@ -66,7 +66,7 @@ relation} ($u \intro*\prefleq v$ if there exists $w$ with $uw = v$), the
 $wu = v$), and the \intro{infix relation} ($u \intro*\infleq v$ if there exists
 $w_1,w_2$ such that $w_1 u w_2 = v$). Note that these three relations
 straightforwardly generalize to infinite quasi-ordered alphabets.
-Unfortunately, it is easy to see that all of these constructions are not
+Unfortunately, it is easy to see that none of these constructions are 
 well-quasi-ordered as soon as the alphabet contains two distinct letters:
 for instance, the infinite sequence $a^n b^n a^n$ is \kl{well-quasi-ordered} by
 the \kl{subword relation} but by neither the \kl{prefix relation}, nor the
@@ -97,8 +97,7 @@ class of partially ordered sets as subsets of $\set{a,b}^*$. As a consequence,
 the following decision problem provides a reasonable abstract framework for
 deciding whether a given partially ordered set is \kl{well-quasi-ordered}:
 given a language $L \subseteq \Sigma^*$, decide whether $L$ is
-\kl{well-quasi-ordered} by the \kl{suffix relation}, or the \kl{infix
-relation}.
+\kl{well-quasi-ordered} by the \kl{infix relation}.
 
 \AP When considering an algorithm based on a \kl{well-quasi-ordering}, the
 runtime of the algorithm is deeply related to the ``complexity'' of the
@@ -139,13 +138,13 @@ Specifically, for the \kl{prefix relation} and the
 }
 
 Note that \kl{chains} are the simplest possible \kl{well-quasi-ordered} sets
-(they are totally ordered and well-founded) and it is known that finite unions
+(they are \kl{totally ordered} and \kl{well-founded}) and it is known that finite unions
 of \kl{well-quasi-ordered} sets are \kl{well-quasi-ordered}. As a consequence,
 the above characterization states that only the simplest possible
 \kl{well-quasi-ordered} sets are \kl{well-quasi-ordered} by the \kl{prefix
 relation}. Let us furthermore highlight that this characterization holds
-without any restriction on the decidability of the language $L$ itself, but
-heavily relies on the assumption that $\Sigma$ is finite. This allows us to
+without any restriction on the decidability of the language $L$ itself.\footnote{But
+heavily relies on the assumption that $\Sigma$ is finite} This allows us to
 derive the following bounds on the \kl{ordinal invariants} of such
 \kl{well-quasi-ordered} languages, which can be interpreted in two dual ways:
 first, these languages are extremely simple, which means that one could have
@@ -221,7 +220,7 @@ models such as finite automata, context-free grammars, and Petri nets
 whether a given language is \kl{well-quasi-ordered} by the \kl{prefix
 relation}, the \kl{suffix relation}, or the \kl{infix relation} under mild
 effective restrictions on the computational model that we call an \kl{effective
-amalgamative class}, the formal statement of which we defer to
+amalgamative class}, the formal definition of which we defer to
 \cref{infixes-amalgamation-effective:subsec}.
 
 {
@@ -243,13 +242,13 @@ amalgamative class}, the formal statement of which we defer to
 \end{enumerate}
 }
 Let us point out that the above result implies that the hypothesis of
-\kl{bounded languages} on the theoretical side is not a restriction at all in
-practice. As a practical and more easily understandable 
+\kl{bounded languages} on the theoretical side is not a restriction in
+practice. As a down-to-earth and more easily understandable 
 consequence,
 our generic decision procedure applies 
 to the class $\mathcal{C}_\text{aut}$ of all languages recognized by finite automata,
 and to the class $\mathcal{C}_\text{cfg}$ of all languages recognized by context-free grammars,
-which are both \kl{effective amalgamative classes}.
+which are both \kl{effective amalgamative classes} \cite{aut-cfg-infix:cor}.
 
 
 \subparagraph{Related work} The study of alternative \kl{well-quasi-ordered}

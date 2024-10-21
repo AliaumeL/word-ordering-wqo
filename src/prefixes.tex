@@ -91,7 +91,7 @@ that \kl{antichain branches} can be described inside the \kl{tree of prefixes}
 by a monadic second order formula (\kl{$\MSO$-formula}), allowing us to
 leverage the decidability of $\MSO$ over infinite binary trees \cite[Theorem
 1.1]{RAB69}. This result will follow from our general decidability result
-(\cref{infix-wqo-emptiness:thm}) but is worth stating on its own for its
+(\cref{infix-wqo-is-emptiness:thm}) but is worth stating on its own for its
 simplicity.
 
 \begin{corollary}
@@ -118,7 +118,7 @@ simplicity.
 \end{proof}
 
 Let us now go further and fully characterize languages $L$ such that the
-prefix relation is well-quasi-ordered, even without any restriction on the
+prefix relation is well-quasi-ordered, without any restriction on the
 decidability of $L$ itself. Let us remark that finite unions of \kl{chains} are
 always \kl{well-quasi-ordered} by the \kl{prefix relation} because they lack
 infinite \kl{antichains} by definition. The following theorem states that this
@@ -195,24 +195,3 @@ leveraged in bounding the complexity of algorithms working on such languages.
     the \kl{ordinal height} of $L$ is at most $\omega$, and
     its \kl{ordinal width} is finite.
 \end{corollary}
-
-Let us conclude by noting that it is unsurprisingly not possible to decide
-whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
-relation}. This is a very easy result whose sole purpose is to contrast with
-the decidability result of \cref{prefix-wqo-reg-decidable:cor}.
-
-\begin{lemma}
-    The following problem is undecidable: given a language $L$
-    decided by a Turing machine, answer whether 
-    $L$ is \kl{well-quasi-ordered} for the \kl{prefix relation}.
-\end{lemma}
-\begin{proof}
-    We reduce the halting problem on the empty string $\varepsilon$.
-    Let $M$ be a Turing Machine, we write the languages $L$ of finite runs
-    of $M$ starting on the empty string,
-    that we surround by special markers. This language is decidable,
-    and 
-    is
-    \kl{well-quasi-ordered} if and only if it is finite
-    if and only if $M$ terminates on $\varepsilon$.
-\end{proof}

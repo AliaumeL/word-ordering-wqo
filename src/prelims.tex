@@ -10,7 +10,11 @@ logic ($\intro*\MSO$) over finite words, and assume is familiar with them. We
 refer to the textbook of \cite{THOM97} for a detailed introduction to this
 topic.
 
-\paragraph*{Well-quasi-orders.} Let us introduce some notations for
+
+\paragraph*{Orderings and Well-Quasi-Orderings.} A \intro{quasi-order} is a
+reflexive and transitive binary relation, it is a \intro{partial order} if it
+is furthermore antisymmetric. A \intro{total order} is a \kl{partial order}
+where any two elements are comparable. Let now us introduce some notations for
 \kl{well-quasi-orders}. A sequence $\seqof{x_i}$ in a set $X$ is
 \intro(sequence){good} if there exist $i < j$ such that $x_i \leq x_j$. It is
 \intro(sequence){bad} otherwise. Therefore, a \kl{well-quasi-ordered} set is a
@@ -21,23 +25,23 @@ equivalent definition of a \kl{well-quasi-ordered} set is that it contains no
 infinite \kl{decreasing sequences}, nor infinite \kl{antichains}. We refer to
 \cite{SCSC12} for a detailed survey on well-quasi-orders.
 
-Let us point out that the \kl{prefix relation} (resp. the \kl{suffix relation}
-and the \kl{infix relation}) on $\Sigma^*$ are always \kl{well-founded}, i.e.,
-there are no infinite \kl{decreasing sequences} for this ordering. In
-particular, for a language $L \subseteq \Sigma^*$ to be
-\kl{well-quasi-ordered}, it suffices to prove that it contains no infinite
-\kl{antichain}. 
+The \kl{prefix relation} (resp. the \kl{suffix relation} and the \kl{infix
+relation}) on $\Sigma^*$ are always \kl{well-founded}, i.e., there are no
+infinite \kl{decreasing sequences} for this ordering. In particular, for a
+language $L \subseteq \Sigma^*$ to be \kl{well-quasi-ordered}, it suffices to
+prove that it contains no infinite \kl{antichain}. 
 
-\paragraph*{Ordinal Invariants.} 
-\label{ordinal-invariants:subsec} An ordinal is a well-founded ordered set. We
-use $\alpha, \beta, \gamma$ to denote ordinals, and use $\omega$ to denote the
-first infinite ordinal, i.e., the set of natural numbers with the usual
-ordering. We assume superficial familiarity with ordinal arithmetic, and refer
-to \cite{KUNEN80} for a detailed introduction to this domain.
-Given a tree $T$ whose branches are all finite we can define
-an ordinal $\alpha_T$ inductively as follows: if $T$ is a leaf then $\alpha_T =
-0$, if $T$ has children $\seqof{T_i}$ then $\alpha_T = \sup \setof{\alpha_{T_i}
-+ 1}{i \in \Nat}$. We say that $\alpha_T$ is the \emph{rank} of $T$. 
+\paragraph*{Ordinal Invariants.} \label{ordinal-invariants:subsec}
+An \intro{ordinal} is a \kl{well-founded} \kl{totally ordered}
+set. We use $\alpha, \beta, \gamma$ to denote ordinals, and use $\omega$ to
+denote the first infinite ordinal, i.e., the set of natural numbers with the
+usual ordering. We assume superficial familiarity with ordinal arithmetic, and
+refer to the books of Kunen \cite{KUNEN80} and Krivine~\cite[Chapter
+II]{KRIVINE71} for a detailed introduction to this domain. Given a tree $T$
+whose branches are all finite we can define an ordinal $\alpha_T$ inductively
+as follows: if $T$ is a leaf then $\alpha_T = 0$, if $T$ has children
+$\seqof{T_i}$ then $\alpha_T = \sup \setof{\alpha_{T_i} + 1}{i \in \Nat}$. We
+say that $\alpha_T$ is the \emph{rank} of $T$. 
 
 Let $(X, \leq)$ be a \kl{well-quasi-ordered} set. One can define three
 well-founded trees from $X$: the tree of \kl{bad sequences}, the tree of

@@ -15,7 +15,7 @@ X \to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
 into} $Y$. We say that a quasi-ordered set $(X, \preceq)$ is a \intro{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
-The embedding defined in \cref{infix-embedding:thm} is illustrated
+A simplified version of the embedding defined in \cref{infix-embedding:thm} is illustrated
 for the \kl{subword relation} in \cref{infix-embedding:fig}.
 \begin{lemma}{\cite[Lemma 5.1]{DBLP:journals/ita/Kuske06}}
     \label{infix-embedding:thm}
@@ -36,9 +36,8 @@ for the \kl{subword relation} in \cref{infix-embedding:fig}.
     \includestandalone[width=\linewidth]{fig/infix-encoding-standalone}
     \caption{Representation of the \kl{subword relation} for $\set{a,b}^*$
         inside the \kl{infix relation} for $\set{a,b,\#}^*$
-        using the encoding of \cref{infix-embedding:thm}, restricted to words
-        of length at most $3$. To obtain smaller words,
-        we replaced $D_i$ by $\max D_i$ in this construction.
+        using a simplified version of \cref{infix-embedding:thm}, restricted to words
+        of length at most $3$. 
     }
     \label{infix-embedding:fig}
 \end{figure}
@@ -117,12 +116,26 @@ are interesting for the \kl{infix relation} is that they naturally create
 \kl{chains} for the \kl{prefix} and \kl{suffix} relations. Indeed, if $x \in
 \Sigma^+$ is a finite word, then $\setof{x^p}{p \in \Nat}$ is a \kl{chain} for
 the \kl{infix relation}. Note that in general, the \kl{downwards closure} of a
-chain is \emph{not} a chain. However, for the chains generated using periodic
+chain is \emph{not} a chain (see \cref{dw-closure-not-wqo:rem}). However, for the chains generated using periodic
 words, the \kl{downwards closure} $\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is
 a \emph{finite union} of \kl{chains}. Because this set will appear in bigger
 equations, we introduce the shorter notation $\intro*\InfPeriodChain{x}$ for
 the set of \kl{infixes} of words of the form $x^p$, where $p$ ranges over
 $\Nat$.
+
+
+\begin{remark}
+    \label{dw-closure-not-wqo:rem}
+    Let $(X,\preceq)$ be a quasi-ordered set, and $L \subseteq X$ be such that $(L,
+    \preceq)$ is \kl{well-quasi-ordered}. It is not true in general that
+    $(\dwset{L}, \preceq)$ is \kl{well-quasi-ordered}. In the case of $(\Sigma^*,
+    \infleq)$ a typical example is to start from an infinite \kl{antichain} $A$,
+    together with an enumeration $\seqof{w_i}$ of $A$, and build the language $L
+    \defined \setof{ \prod_{i = 0}^n w_i }{ i \in \Nat }$. By definition, $L$ is a
+    \kl{chain} for the \kl{infix} ordering, hence \kl{well-quasi-ordered}. However,
+    $\dwset[\infleq]{L}$ contains $A$, and is therefore not
+    \kl{well-quasi-ordered}. 
+\end{remark}
 
 \begin{lemma}
     \label{inf-period-chain:lem}
@@ -163,7 +176,7 @@ The following combinatorial lemma connects the property of being
 \kl{well-quasi-ordered} to a property of the \kl{periodic lengths} of words in
 a language, based on the assumption that some factors can be iterated. It is
 the core result that powers the analysis done in the upcoming
-\cref{infix-finite-automata:thm,infix-amalgamation:thm}.
+\cref{bounded-language:thm,infix-amalgamation:thm}.
 
 \begin{lemma}
     \label{pumping-periods:lem}
