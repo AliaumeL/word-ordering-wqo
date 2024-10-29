@@ -2,6 +2,7 @@
 \NewDocumentOrdering{suff}{\sqsubseteq_{\mathsf{suff}}}{\sqsubset_{\mathsf{suff}}}
 \NewDocumentOrdering{inf}{\sqsubseteq_{\mathsf{infix}}}{\sqsubset_{\mathsf{infix}}}
 \NewDocumentOrdering{hig}{\leq^*}{<^*}
+\NewDocumentOrdering{run}{\trianglelefteq}{\trianglelefts}
 
 \NewDocumentCommand{\InfPeriodChain}{ m }{
     \mathop{\kl[\InfPeriodChain]{\mathsf{PI}\!\!\!\!\downarrow}}
@@ -41,6 +42,8 @@
 \NewDocumentCommand{\MSO}{ }{\kl[\MSO]{\mathsf{MSO}}}
 \knowledge{\MSO}{notion}
 
+\NewDocumentCommand{\cansep}{}{\#}
+\NewDocumentCommand{\project}{}{\pi}
 
 \NewDocumentCommand{\oType}{ m }{\kl[\oType]{\mathfrak{t}}(#1)}
 \knowledge{\oType}{notion}

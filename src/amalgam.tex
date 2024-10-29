@@ -11,7 +11,7 @@ system to ``pump'' them and produce new runs: this is the usual pumping lemma
 in automata theory, and Ogden's lemma for context-free grammars \cite{OGDEN68}.
 It turns out that there is a rather large family of systems for which pumping
 arguments based on so-called \emph{minimal runs} exist: they are called
-\emph{amalgamation systems} and were recently introduced by Anad, Schmitz,
+\emph{amalgamation systems} and were recently introduced by Anand, Schmitz,
 Schütze, and Zetzsche \cite{ASZZ24}.
 
 \AP Our first result, of theoretical nature, is that \kl{amalgamation systems}
@@ -66,14 +66,14 @@ recall some results from \cite{ASZZ24} that will be useful for the proof of
 \cref{infix-amalgamation:thm}. The notion of \kl{amalgamation system} is
 tailored to produce \emph{pumping arguments}, which is exactly what our
 \cref{pumping-periods:lem} talks about. At the core of a pumping argument,
-there is a notion of \emph{run}, which could for instance be a sequence of
+%there is a notion of a \emph{run}, which could for instance be a sequence of
 transitions taken in a finite state automaton. Continuing on the analogy with
 finite automata, there is a natural ordering between runs, i.e., a run is
-smaller than another one if one can ``unroll loops'' of the first run to obtain
-the second one. Typical pumping arguments then rely on the fact that
+smaller than another one if one can ``delete'' loops of the larger run to obtain
+the other. Typical pumping arguments then rely on the fact that
 \emph{minimal} runs are of finite size, and that all other runs are
-obtained by ``gluing'' minimal runs together. This is exactly what
-\kl{amalgamation systems} are about.
+obtained by ``gluing'' loops to minimal runs. Generalizing this notion yields the 
+notion of \kl{amalgamation systems}.
 
 \AP Let us recall that over an alphabet $(\Sigma, =)$ a \kl{subword embedding}
 between two words $u \in \Sigma^*$ and $v \in \Sigma^*$ is a function $\rho
@@ -89,8 +89,8 @@ $u,v,w \in \Sigma^*$.
 \AP Given a \kl{subword embedding} $f \colon u \to v$ between two words $u$ and
 $v$, there exists a unique decomposition $v = \GapWord{f}{0} u_1 \GapWord{f}{1}
 \cdots \GapWord{f}{k-1} u_k \GapWord{f}{k}$ where $\GapWord{f}{i} =
-v[f(i)+1:f(i+1)-1]$ for all $1 \leq i \leq k-1$, $\GapWord{f}{k} =
-v[f(k)+1:\card{v}]$, and $\GapWord{f}{0}   = v[1: f(1)-1]$. We say that
+v_{f(i)+1} \cdots v_{f(i+1)-1}$ for all $1 \leq i \leq k-1$, $\GapWord{f}{k} =
+v_{[f(k)+1} \cdots v_{\card v}$, and $\GapWord{f}{0}   = v_1 \cdots v_{f(1)-1}$. We say that
 $\intro*\GapWord{f}{i}$ is the $i$-th \intro{gap word} of $f$. We encourage the
 reader to look at \cref{gap-word-embedding:fig} to see an example of the
 \kl{gap words} resulting from a \kl{subword embedding} between two words. These
@@ -119,62 +119,52 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
 
 \begin{definition}
     An \intro{amalgamation system}
-    is a triple $(\Sigma, R, E, \canrun)$ where
+    is a tuple $(\Sigma, R, \canrun, E)$ where
     $\Sigma$ is a finite alphabet,
     $R$ is a set of so-called \emph{runs},
-    and 
-    $E$ is a set of so-called \emph{run embeddings},
-    and $\canrun \colon R \to (\Sigma \uplus \set{\varepsilon})^*$ is a 
-    function computing a \emph{canonical decomposition} of a run.
+    $\canrun \colon R \to (\Sigma \uplus \set{\cansep})^*$ is a 
+    function computing a \emph{canonical decomposition} of a run,
+    and $E$ describes the so-called \emph{admissible embeddings} between runs: If $\rho$ and $\sigma$ are runs from $R$, then $E(\rho, \sigma)$ is a subset of the subword embeddings between $\canrun[\rho]$ and $\canrun[\sigma]$. We write $\rho \intro*\runleq \sigma$ if $E(\rho, \sigma)$ is non-empty. If we want to refer to a specific embedding $f \in E(\rho, \sigma)$, we also write $\rho \runleq_f \sigma$.
     Given a run $r \in R$, and $i \in \range[0]{\card{\canrun(r)}}$, 
     the \intro{gap language} of $r$ at position $i$ is $\intro*\GapLanguage{r}{i} \defined
     \setof{\GapWord{f}{i}}{\exists s \in R. \exists f \in E(r,s) }$.
     An \kl{amalgamation system} furthermore satisfies the following 
     properties:
     \begin{enumerate}
-        \item \emph{Word Embeddings as Morphisms.} For all $r, s \in R$,
-            $E(r,s) \subseteq \HigEmb(\canrun(r), \canrun(s))$.
         \item \emph{$(R, E)$ Forms a Category.}
-            For all $r,s,t \in R$,
-            $\mathrm{id} \in E(r,r)$,
-            and whenever $f \in E(r,s)$ and $g \in E(s,t)$,
-            then $g \circ f \in E(r,t)$.
+            For all $\rho, \sigma, \tau \in R$,
+            $\mathrm{id} \in E(\rho,\rho)$,
+            and whenever $f \in E(\rho,\sigma)$ and $g \in E(\sigma,\tau)$,
+            then $g \circ f \in E(\rho,\tau)$.
         \item \emph{Well-Quasi-Ordered System.}
-            $(R, \leq_E)$ is a well-quasi-ordered set,
-            where $r \leq_E s$ if and only if $E(r,s) \neq \emptyset$.
-        \item \emph{Controlled Amalgamation.}
-            For all $r, s, t \in R$,
-            for all $f \in E(r,s)$,
-            for all $g \in E(r,t)$,
-            and for all $0 \leq i_0 \leq \card{\canrun(r)}$,
-            there exists a run $z \in R$ and morphisms
-            $h \in E(s,z)$ and $k \in E(t,z)$
-            satisfying
-            $h \circ f = k \circ g$,
-            $\GapWord{h \circ f}{i} = \GapWord{f}{i} \GapWord{g}{i}$
-            or 
-            $\GapWord{h \circ f}{i} = \GapWord{g}{i} \GapWord{f}{i}$
-            for every $0 \leq j \leq n$,
-            and
-            $\GapWord{h \circ f}{i_0} = \GapWord{f}{i_0} \GapWord{g}{i_0}$.
+            $(R, \runleq)$ is a well-quasi-ordered set.
+        \item \emph{Concatenative Amalgamation.}
+            Let $\rho_0, \rho_1, \rho_2$ be runs 
+            with $\rho_0 \runleq_f \rho_1$ 
+            and $\rho_0 \runleq_g \rho_2$.
+            Then for all $0 \leq i \leq \card{\canrun(\rho_0)}$,
+            there exists a run $\rho_3 \in R$ 
+            and embeddings $\rho_1 \runleq_{g'} \rho_3$
+            and $\rho_2 \runleq_{f'} \rho_3$ 
+            satisfying two conditions:
+            (a) $g' \circ f = f' \circ g$ (we write $h$ for this composition) and
+            (b) for every $0 \leq j \leq \card{\canrun[\rho_0]}$, 
+            the gap word $\GapWord{h}{j}$
+            is either $\GapWord{f}{j} \GapWord{g}{j}$
+            or $\GapWord{h}{j} = \GapWord{g}{j} \GapWord{f}{j}$. 
+            Specifically, for $i$ we may fix $G_{h}{i} = \GapWord{f}{j} \GapWord{g}{j}$.
             We refer to \cref{amalgamation-runs:fig} for an illustration 
             of this property.
     \end{enumerate}
 
-    The \intro{amalgamation language} of such a system
-    is the set of all words $w \in \Sigma^*$ such that
-    there exists a run $r \in R$
-    such that the concatenation of the letters of its
-    canonical decomposition, written $\intro*\yieldrun(r)$,
-    equals $w$.
+	The \emph{yield} of a run is obtained by projecting away the separator symbol \cansep~from the canonical decomposition, i.e. $\intro*s\yieldrun(\rho) = \project_\Sigma( \canrun[\rho])$. The language recognized by an \kl{amalgamation system} is $\yieldrun(R)$.
+    
+    We say a language $L$ is an \intro*{amalgamation language} if there exists an \kl{amalgamation system} recognizing it. 
 \end{definition}
 
 Intuitively, the definition of an amalgamation system allows the comparison of
-runs, and the proper ``gluing'' of runs together to obtain new runs. Let us
-recall some examples of languages that can be recognized by \kl{amalgamation
-systems}: regular languages \cite[Theorem 5.3]{ASZZ24}, VASS as a consequence
-of \cite[Theorem 5.5]{ASZZ24}, context-free languages as a consequence of
-\cite[Theorem 5.10]{ASZZ24}. For this paper to be self-contained, we will also
+runs, and the proper ``gluing'' of runs together to obtain new runs. A number of well-known language classes can be seen to be recognized by \kl{amalgamation
+systems}, e.g., regular languages \cite[Theorem 5.3]{ASZZ24}, reachability and coverability languages of VASS \cite[Theorem 5.5]{ASZZ24}, and context-free languages \cite[Theorem 5.10]{ASZZ24}. For this paper to be self-contained, we will also
 recall how runs of a finite state automaton can be understood as an
 \kl{amalgamation system}.
 
@@ -186,31 +176,32 @@ recall how runs of a finite state automaton can be understood as an
     words over transitions that start with the initial state $q_0$,
     end in a final state $q_f \in F$, and such that the end state of a
     letter is the start state of the following one.
-    The canonical decomposition $\canrun \colon R \to \Sigma^*$
+    The canonical decomposition $\canrun$
     is defined as a morphism from $\Delta^*$ to $\Sigma^*$
-    that maps $(q,a,p)$ to $a$.
-    Finally, given two runs $r$ and $s$ of the automaton,
-    we say that an embedding $f \in \HigEmb(\canrun(r), \canrun(s))$
-    belongs to $E(r,s)$ when
-    $f$ is also defining an embedding from $r$ to $s$ as words in $\Delta^*$,
-    where $\Delta$ is equipped with the equality relation.
+    that maps $(q,a,p)$ to $a$. 
+    Because of the one-to-one correspondence of steps of a run $\rho$ and letters in its \kl{canonical decomposition}, 
+    we may treat the two interchangeably.
+    Finally, given two runs $\rho$ and $\sigma$ of the automaton,
+    we say that an embedding $f \in \HigEmb(\canrun(\rho), \canrun(\sigma))$
+    belongs to $E(\rho,\sigma)$ when
+    $f$ is also defining an embedding from $\rho$ to $\sigma$ as words in $\Delta^*$.
 
     The system $(\Sigma, R, E, \canrun)$ is an \kl{amalgamation system},
     whose language is precisely the language of words recognized
     by the automaton $A$.
 \end{example}
 \begin{proof}
-    By definition, the embeddings inside $E(r,s)$ are defined as elements
-    of $\HigEmb(\canrun(r), \canrun(s))$, and they compose properly.
+    By definition, the embeddings inside $E(\rho,\sigma)$ are defined as elements
+    of $\HigEmb(\canrun(\rho), \canrun(\sigma))$, and they compose properly.
     Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
     a \kl{well-quasi-ordering} when equipped with the equality relation, and 
     we conclude that $\Delta^*$ with $\higleq$ is a \kl{well-quasi-order}
     according to Higman’s Lemma \cite{HIG52}.
     
     Let us now move to proving that the system satisfies the amalgamation
-    property. Given three runs $r,s,t \in R$, and two embeddings $f \in E(r,s)$
-    and $g \in E(r,t)$, we want to construct an amalgamated run $s \vee t$.
-    Because letters in the run $r$ respect the transitions of the automaton
+    property. Given three runs $\rho,\sigma,\tau \in R$, and two embeddings $f \in E(\rho,\sigma)$
+    and $g \in E(\rho,\tau)$, we want to construct an amalgamated run $\sigma \vee \tau$.
+    Because letters in the run $\rho$ respect the transitions of the automaton
     (i.e., if the letter $i$ ends in state $q$, then the letter $i+1$ starts in
     state $q$), then the \kl{gap word} at position $i$ starts in state $q$ and
     ends in state $q$ too. This means that for both embeddings
@@ -218,58 +209,48 @@ recall how runs of a finite state automaton can be understood as an
     on a state. In particular, these loops can be taken in any order
     and continue to represent a valid run. That is, we can even select
     the order of concatenation in the amalgamation for \emph{all} 
-    $0 \leq i \leq \card{\canrun(r)}$ and not just for one separately.
+    $0 \leq i \leq \card{\canrun(\rho)}$ and not just for one separately.
 
-    Let us now remark that 
+    We conclude by remarking that 
     the language of this amalgamation system is
-    the set of $\yieldrun(r)$ when $r$ ranges over $R$,
-    and because $R$ is the set of valid runs of the automaton,
-    and $\yieldrun(r)$ is the word read along this run,
-    we immediately conclude.
+    the set of $\yieldrun(R)$, 
+    because $R$ is the set of valid runs of the automaton,
+    and $\yieldrun(\rho)$ is the word read along a run $\rho$.
 \end{proof}
 
-\subsection{Amalgamation Systems, WQOs, and Bounded Languages}
+\subsection{$\infleq$-Well-Quasi-Ordered Amalgamation Systems}
 
-Let us now introduce a combinatorial lemma that explains how \kl{gap languages}
-can be pumped. Note that a single \kl{gap language} is always stable under
-concatenation, and our concern will be on a potential description of
-\emph{simultaneously} pumping different \kl{gap languages} to produce valid
-runs.
+We can now show a simple lemma that illuminates much of the structure of amalgamation systems whose language is well-quasi-ordered by $\infleq$.
 
 \begin{lemma}
-    \label{pumping-gap-languages:lem}
-    Let $(\Sigma, R, E, \canrun)$ be an \kl{amalgamation system}, let $r \in R$
-    be a run of size $n \in \Nat$, and let $s, t \in R$ be two runs
-    with embeddings $f \in E(r,s)$ and $g \in E(r,t)$.
-    Let $\seqof{u_i}[0 \leq i \leq n]$ be the sequence of \kl{gap words}
-    for $f$, that is, $u_i =
-    \GapWord{f}{i}$ for all $0 \leq i \leq n$. Similarly, let
-    $\seqof{v_i}[0 \leq i \leq n]$ be the sequence of \kl{gap words} for $g$.
-
-    Then, for all $k \in \Nat$, and $0 < \ell < n$, the following words belong to 
-    the language of the \kl{amalgamation system}.
-    \begin{enumerate}
-        \item $(\prod_{i = 0}^{\ell - 1} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}) 
-               v_\ell u_\ell^k v_\ell
-               (\prod_{i = \ell+1}^{n} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i})$,
-        \item $(\prod_{i = 0}^{n - 1} u_i^{x_i} v_i u_i^{y_i}) 
-               v_n u_n^k$,
-        \item $u_0^k v_0 
-            (\prod_{i = 1}^{n} u_i^{x_i} v_i u_i^{y_i})$.
-    \end{enumerate}
-    Where, for all $0 \leq i \leq n$, $x_i + y_i + z_i = k$, with $z_i = 0$
-    in the two last items.
+	\label{gap-words-prefix-ordered:lem}
+	Let $L$ by an \kl{amalgamation language} recognized by $(\Sigma, R, E, \canrun)$ that is well-quasi-ordered by $\infleq$. Let $\rho$ be a run with $\canrun[\rho] = a_1 \cdots a_n$, and let $\sigma, \tau$ be runs with $\rho \runleq_f \sigma$ and $\rho \runleq_g \sigma$. 
+	
+	For any $0 \leq \ell \leq n$, we have $\GapWord{f}{\ell} \infleq \GapWord{g}{\ell}$ or vice versa.
 \end{lemma}
+
 \begin{proof}
-    The result immediately follows from the embedding property
-    applied inductively on runs obtained by gluing 
-    $k$ times $s$ with one or two times $t$ (depending on the item number).
+	Write $u$ for $\GapWord{f}{\ell}$ and $v$ for $\GapWord{g}{\ell}$. 
+	We may assume that both $u$ and $v$ are non-empty, as otherwise the lemma holds trivially.
+	Then, for all $k \in \Nat$, there exists a run with canonical decomposition
+	$$
+	w_k = L_0 a_1 \cdots a_n L_n,
+	$$
+	where $L_i \in \set{vv u^k, vu^kv, u^k vv}$ and specifically $L_\ell = vu^kv$.
+	
+	From \cref{pumping-periods:lem}, we may conclude that there are a finite number of words $x, y,$ and $w$ 
+	such that each $w_k$ is contained in a language 
+	$\InfPeriodChain{x}w\InfPeriodChain{y}$.
+	
+	As there is an infinite number of words $w_k$, 
+	we may fix $x, y,$ and $w$ and an infinite subset $I \subseteq \Nat$ 
+	such that $\set{w_i \mid i \in I} \subseteq \InfPeriodChain{x}w\InfPeriodChain{y}$. 
+	This implies that either for infinitely many $m \in \Nat$, $u^m v \in \InfPeriodChain{y}$ 
+	or for infinitely many $m$, $v u^m \in \InfPeriodChain{x}$. 
+	In either case, we may conclude that either $u \infleq v$ or $v \infleq u$.
 \end{proof}
 
-To conclude this section and prove our main \cref{infix-amalgamation:thm}, it
-suffices to demonstrate that languages recognized by \kl{amalgamation systems}
-that are \kl{well-quasi-ordered} for the \kl{infix relation} are \kl{bounded
-languages}.
+
 
 \begin{proofof}{infix-amalgamation:thm}
     Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
@@ -277,56 +258,15 @@ languages}.
     $(\Sigma, R, E, \canrun)$.
 
     Let us consider the set $M$ of minimal runs for the relation $\leq_E$,
-    which is finite because the latter is a \kl{well-quasi-ordering}. By
-    definition, for every word $w \in L$, there exists $r \in M$, $s \in R$,
-    and $f \in E(r,s)$ such that $w = \canrun(s)$.
-    In particular, we conclude that
-    \begin{equation*}
-        L \subseteq \bigcup_{r \in M} 
-        \left(
-        \GapLanguage{r}{0}
-        \prod_{i = 1}^{\card{\canrun(r)}-1} \canrun(r)_i \GapLanguage{r}{i} 
-        \right)
-        \quad .
-    \end{equation*}
-
-    Let $u$ and $v$ be two words in the \kl{gap language}
-    $\GapLanguage{r}{\ell}$ for some $r \in M$ and $0 < \ell <
-    \card{\canrun(r)} \defined n$. One can apply \cref{pumping-gap-languages:lem}
-    to conclude that  for all $k \geq 1$,
-    \begin{equation*}
-       \left(\prod_{i = 0}^{\ell - 1} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}\right) 
-       v u^k v
-       \left(\prod_{i = \ell+1}^{n} u_i^{x_i} v_i u_i^{y_i} v_i u_i^{z_i}\right)
-       \in 
-       L
-    \end{equation*}
-    Where $x_i + y_i + z_i = k$ for all $0 \leq i \leq n$
-    Let us assume without loss of generality that the sequence
-    $\seqof{(x_i, y_i, n_i)}[i \geq 1]$ is pointwise increasing,
-    and even increasing coordinate wise. This is possible because
-    at least one of the coordinates tends to $+\infty$ and in the case
-    of a variable that is bounded, one can extract the sequence to
-    simply not use this variable.
-
-    Now, leveraging \cref{pumping-periods:lem}, we get that for infinitely many
-    $k \geq 1$, $u v^k u$ is an infix of some $x^p$ where $x$ has size smaller
-    or equal than $u$ and $v$. This proves  that $u$ and $v$ are comparable for
-    the prefix, infix, and suffix relations. In particular, we
-    conclude that $\GapLanguage{r}{i}$ is a \kl{bounded language}, because of
-    \cite[Lemma 4.1]{ASZZ24}, when $0 < i < \card{\canrun(r)}$. The proof goes
-    on similarly for proving that $\GapLanguage{r}{0}$ and $\GapLanguage{r}{n}$
-    are \kl{bounded languages}, using the other items of
-    \cref{pumping-gap-languages:lem}.
-
-    Because \kl{bounded languages} are stable under concatenation and finite
-    unions, we conclude that $L$ itself must be a \kl{bounded language}.
+    which is finite because the latter is a \kl{well-quasi-ordering}. 
+    By \cref{gap-words-prefix-ordered:lem}, we know that for each minimal run $\rho \in M$,
+    each gap language $\GapLanguage{\rho}{i}$ of $\rho$ is totally ordered by $\infleq$.
+    Adapting the proof of language boundedness from $\cite[Section 4.2]{ASZZ24}$, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
+    As $\InfPeriodChain{w}$ is language bounded and this property is stable under subsets, concatenation and finite union,
+    we can conclude that $L$ is bounded as well.
 \end{proofof}
 
-Leveraging a similar reasoning, we conclude that being a \kl{bounded language},
-a \kl{regular language}, or being included in a finite union of products of
-\kl{chains} all collapse for \kl{well-quasi-ordered} and \kl{downwards closed}
-languages for the \kl{infix relation}.
+If we additionally assume that such a language is closed under infixes, we obtain an even stronger structure: All such languages are regular:
 
 \begin{lemma}
     \label{dwclosed-infixes-wqo:lem}
@@ -354,6 +294,7 @@ languages for the \kl{infix relation}.
     Finally, the implication \cref{dwci-uoc:item} $\Rightarrow$ \cref{dwci-reg:item}
     is simply because a \kl{downwards closed} language 
     that is a finite union of products of \kl{chains} is a regular language.
+    \todo[inline]{maybe elaborate on this point}
 \end{proof}
 
 \AP Combining
@@ -363,8 +304,7 @@ cannot be recognized by \emph{any} \kl{amalgamation system}. To put this result
 in context, it was proven that the complement of the set $T$ of prefixes of the
 \kl{Thue-Morse sequence} is context-free, and conjectured that the same holds
 for the complement of $\LMorse$ \cite{BERST86}. To the knowledge of the
-authors, this conjecture remains open. Our remark provides a negative answer to
-this conjecture for the language $\LMorse$.
+authors, this conjecture remained open so far. With \cref{dwclosed-infixes-wqo:lem} we are able to show it false.
 
 
 \subsection{Effective Decision Procedures}
@@ -374,7 +314,7 @@ this conjecture for the language $\LMorse$.
 systems}. We follow the approach of \cite{ASZZ24} and require that an
 \kl{amalgamation system} $(\Sigma, R, E, \canrun)$ is effective when $R$ is
 recursively enumerable, the function $\canrun(\cdot)$ is computable, and for
-any two runs $r, s \in R$, the set $E(r,s)$ is computable.
+any two runs $\rho, \sigma \in R$, the set $E(\rho,\sigma)$ is computable.
 
 \todo[inline]{In this definition, the alphabet $\Sigma$ can be changed 
 (and we seem to actually use it in the proofs), it is strange.}
@@ -383,7 +323,7 @@ any two runs $r, s \in R$, the set $E(r,s)$ is computable.
 amalgamative class} whenever for every $L \in \mathcal{C}$, there exists an
 effective \kl{amalgamation system} recognizing $L$, and such that $\mathcal{C}$
 is \kl{effectively closed under rational transductions}. Recall that a
-\intro{rational transduction} is a \emph{realtion} $R \subseteq \Sigma^* \times
+\intro{rational transduction} is a \emph{relation} $R \subseteq \Sigma^* \times
 \Gamma^*$ that can be defined by a (nondeterministic) finite automaton with
 output \cite[Chapter 5, page 64]{BERST79}. A class of languages $\mathcal{C}$
 is \intro{effectively closed under rational transductions} when, for every
@@ -399,9 +339,8 @@ or simultaneous boundedness are decidable for \kl{strongly effective
 amalgamative classes}~\cite{ASZZ24}. 
 
 \begin{proofof}{infix-wqo-is-emptiness:thm}
-	\cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} effective. 
-	
-    Let $R(n,m,N_0) \defined \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in
+	\cref{emptiness-decidable} We first show $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} of \cref{bounded-language:thm} effective. 
+	Let $R(n,m,N_0) \defined \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in
     \Sigma^{\leq m \times N_0}} \InfPeriodChain{x} u \InfPeriodChain{y} \cup
     \InfPeriodChain{x}u \cup u\InfPeriodChain{x}$. For any concrete values of
     the bounds $n$, $m$, and $N_0$, this language is regular. The map $L
@@ -422,18 +361,11 @@ amalgamative classes}~\cite{ASZZ24}.
     the \kl{infix relation} because of \cref{infix-amalgamation:thm} and we
     immediately return false.
 	
-    To determine the value for $N_0$, we first computer maximal subsets $S
-    \subseteq [n]$ such that $w_i$ for $i \in S$ are simultaneously
-    unbounded.\todo{define this} We do this by applying a transduction mapping
-    $w_i$ to some fresh letter $a_i$ if $i \in S$ and $\varepsilon$ otherwise,
-    and testing for simultaneous unboundedness \cite[Section 4.1]{ASZZ24}.
-    Given a candidate bound $n_0$ for $N_0$, we construct the languages
-    $L_{S,n_0} = w_1^{\circ_1}\cdots w_n^{\circ_n}$ where $\circ_i = *$ if $i
-    \in S$ and $\circ_i = \leq n_0$ otherwise. We then test if $L \subseteq
-    \bigcup_{S \text{ maximal}} L_{S,n_0}$. If yes, $n_0$ is our value for
-    $N_0$, otherwise, we increase it and repeat the construction. As we chose
-    maximal sets $S$, this procedure will eventually terminate.
-
+    To determine the value for $N_0$, we then compute the downward closure (with respect to subwords) of $L$. 
+    This is effective and yields a finite-state automaton. 
+    Recall that $N_0$ is the maximum number of repetitions of a word $w_i$ that can not be iterated arbitrarily often. 
+    This value is therefore bounded above by the length of the longest simple path in this automaton.
+    
     \cref{wqo-infix-decidable} $\Rightarrow$
     \cref{wqo-prefix-decidable}. We just consider the transduction $f$
     that maps every word $w$ to $\# w$ where $\# $ is a fresh symbol. Then, for
@@ -447,7 +379,7 @@ amalgamative classes}~\cite{ASZZ24}.
 	consider the transduction $R \defined \Sigma^* \times \set{a, b}^*$. Then 
 	for any language $L \in \mathcal C$,
     the image of $L$ through $R$ is \kl{well-quasi-ordered}
-    by \kl{infix} if and only if $L$ is empty.
+    by \kl{prefix} if and only if $L$ is empty.
 \end{proofof}
 
 The class $\mathcal{C}_\text{aut}$ of \kl{regular languages} and the class
