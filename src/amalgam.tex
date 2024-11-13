@@ -152,12 +152,12 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
             the gap word $\GapWord{h}{j}$
             is either $\GapWord{f}{j} \GapWord{g}{j}$
             or $\GapWord{h}{j} = \GapWord{g}{j} \GapWord{f}{j}$. 
-            Specifically, for $i$ we may fix $G_{h}{i} = \GapWord{f}{j} \GapWord{g}{j}$.
+            Specifically, for $i$ we may fix $\GapWord_{h}{i} = \GapWord{f}{i} \GapWord{g}{i}$.
             We refer to \cref{amalgamation-runs:fig} for an illustration 
             of this property.
     \end{enumerate}
 
-	The \emph{yield} of a run is obtained by projecting away the separator symbol \cansep~from the canonical decomposition, i.e. $\intro*s\yieldrun(\rho) = \project_\Sigma( \canrun[\rho])$. The language recognized by an \kl{amalgamation system} is $\yieldrun(R)$.
+	The \emph{yield} of a run is obtained by projecting away the separator symbol \cansep~from the canonical decomposition, i.e. $\intro*\yieldrun(\rho) = \project_\Sigma( \canrun[\rho])$. The language recognized by an \kl{amalgamation system} is $\yieldrun(R)$.
     
     We say a language $L$ is an \intro*{amalgamation language} if there exists an \kl{amalgamation system} recognizing it. 
 \end{definition}
@@ -261,7 +261,7 @@ We can now show a simple lemma that illuminates much of the structure of amalgam
     which is finite because the latter is a \kl{well-quasi-ordering}. 
     By \cref{gap-words-prefix-ordered:lem}, we know that for each minimal run $\rho \in M$,
     each gap language $\GapLanguage{\rho}{i}$ of $\rho$ is totally ordered by $\infleq$.
-    Adapting the proof of language boundedness from $\cite[Section 4.2]{ASZZ24}$, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
+    Adapting the proof of language boundedness from \cite[Section 4.2]{ASZZ24}, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
     As $\InfPeriodChain{w}$ is language bounded and this property is stable under subsets, concatenation and finite union,
     we can conclude that $L$ is bounded as well.
 \end{proofof}
@@ -300,11 +300,7 @@ If we additionally assume that such a language is closed under infixes, we obtai
 \AP Combining
 \cref{thue-morse:lemma,dwclosed-infixes-wqo:lem}, we can
 conclude that the collection of \kl{infixes} of the \kl{Thue-Morse sequence}
-cannot be recognized by \emph{any} \kl{amalgamation system}. To put this result
-in context, it was proven that the complement of the set $T$ of prefixes of the
-\kl{Thue-Morse sequence} is context-free, and conjectured that the same holds
-for the complement of $\LMorse$ \cite{BERST86}. To the knowledge of the
-authors, this conjecture remained open so far. With \cref{dwclosed-infixes-wqo:lem} we are able to show it false.
+cannot be recognized by \emph{any} \kl{amalgamation system}. 
 
 
 \subsection{Effective Decision Procedures}
