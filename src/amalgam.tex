@@ -247,7 +247,14 @@ We can now show a simple lemma that illuminates much of the structure of amalgam
 	such that $\set{w_i \mid i \in I} \subseteq \InfPeriodChain{x}w\InfPeriodChain{y}$. 
 	This implies that either for infinitely many $m \in \Nat$, $u^m v \in \InfPeriodChain{y}$ 
 	or for infinitely many $m$, $v u^m \in \InfPeriodChain{x}$. 
-	In either case, we may conclude that either $u \infleq v$ or $v \infleq u$.
+	
+	In either case, we may conclude that either $u \infleq v$ or $v \infleq u$: Let $m, n \in \Nat$
+	such that $m < n$ and $u^m v, u^n v \in \InfPeriodChain{y}$ (the case for $v u^m$ and $v u^n$ 
+	proceeding analogously). Without loss of generality, assume that $\card{u^m}$ and $\card{u^n}$ are
+	multiples of $\card{y}$. We therefore find $p \prefleq y, s \suffleq y$ such that $u^m, u^n \in sy^*p$, 
+	ergo $ps = y$.
+	In other words, we can write $u^m = (sp)^{m'}, u^n = (sp)^{n'}$. As $u^mv \in \InfPeriodChain{y}$, it 
+	follows that $v$ is a prefix of some word in $(sp)^*$. Hence either $v$ is a prefix of $u$ or $u$ vice versa.
 \end{proof}
 
 
