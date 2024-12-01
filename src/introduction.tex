@@ -5,7 +5,7 @@
 
 \AP A \intro{well-quasi-ordered} set is a set $X$ equipped with a quasi-order
 $\preceq$ such that every infinite sequence $\seqof{x_n}$ of elements taken in
-$X$ contains a pair $x_i \preceq x_j$ with $i < j$. Well-quasi-orderings serve
+$X$ contains an increasing pair $x_i \preceq x_j$ with $i < j$. Well-quasi-orderings serve
 as a core combinatorial tool powering many termination arguments, and was
 successfully applied to the verification of infinite state transition
 systems~\cite{ABDU96,ABDU98}. One of the appealing properties of
@@ -80,15 +80,15 @@ case of finite sets of (finite) words which are all \kl{well-quasi-ordered}
 regardless of the ordering considered. This raises the question of
 characterizing exactly which subsets $L \subseteq \Sigma^*$ are
 \kl{well-quasi-ordered} with respect to the \kl{prefix relation} (respectively,
-the \kl{suffix relation} or the \kl{infix relation}), and together with
+the \kl{suffix relation} or the \kl{infix relation}), and designing
 suitable decision procedures.
 
-\AP Let us argue that this question is not only of theoretical interest.
+\AP Let us argue that these decision procedures fit a larger picture in the
+research area of well-quasi-orderings.
 Indeed, there has been recent breakthroughs in deciding whether a given order
 is a \kl{well-quasi-order}, for instance in the context of the verification of
 infinite state transition systems~\cite{DBLP:conf/fsttcs/FinkelG19} or in the
-context of logic~\cite{DBLP:journals/pacmpl/BergstrasserGLZ24}. Our decision
-procedures clearly contribute to this line of research in the context of words.
+context of logic~\cite{DBLP:journals/pacmpl/BergstrasserGLZ24}.
 Furthermore, a previous work by Kuske shows that any
 \emph{reasonable}\footnote{ This will be made precise in
 \cref{infix-embedding:thm}. } partially ordered set $(X, \leq)$ can
@@ -111,10 +111,10 @@ the size of the set. Better runtime bounds were obtained by considering two
 other parameters~\cite{SCHMITZ19}: the \kl{ordinal height} introduced by
 Schmidt \cite{schmidt81}, and the \kl{ordinal width} of Kříž and Thomas
 \cite{kriz90b}. Therefore, when characterizing \kl{well-quasi-ordered}
-languages, we will also be interested in computing bounds on their \kl{ordinal
-invariants}. We refer to \cref{ordinal-invariants:subsec}
-for a more detailed introduction to these
-parameters and ordinal computations in general.
+languages, we will also be interested in deriving upper bounds on their
+\kl{ordinal invariants}. We refer to \cref{ordinal-invariants:subsec} for a
+more detailed introduction to these parameters and ordinal computations in
+general.
 
 \subparagraph{Contribution} In this paper, we focus on words over a finite
 alphabet $\Sigma$, and characterize subsets $L \subseteq \Sigma^*$ that are
@@ -126,7 +126,7 @@ such languages.
 
 Specifically, for the \kl{prefix relation} and the
 \kl{suffix relation}, we are able to show the following decomposition into
-\intro{chains}, that is, totally ordered ascending sequences.
+\intro{chains}, that are totally ordered ascending sequences.
 
 {
 \renewcommand{\labelenumi}{R\arabic{enumi}}
@@ -249,7 +249,7 @@ consequence,
 our generic decision procedure applies 
 to the class $\mathcal{C}_\text{aut}$ of all languages recognized by finite automata,
 and to the class $\mathcal{C}_\text{cfg}$ of all languages recognized by context-free grammars,
-which are both \kl{effective amalgamative classes} \cite{aut-cfg-infix:cor}.
+which are both \kl{effective amalgamative classes} \cref{aut-cfg-infix:cor}.
 
 
 \subparagraph{Related work} The study of alternative \kl{well-quasi-ordered}

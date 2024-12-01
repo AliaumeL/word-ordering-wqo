@@ -20,8 +20,7 @@ relation}. A simple example being the (regular) language $a^* \subseteq
 orderings $(\Nat, \leq)$.
 
 In order to characterize the existence of infinite \kl{antichains} for the
-\kl{prefix relation}, we will introduce the following tree construction that
-will be useful in the rest of this section.
+\kl{prefix relation}, we will introduce the following tree.
 
 \begin{figure}
     \centering
@@ -136,20 +135,20 @@ write $\upset{w}$ and $\dwset{w}$ for the upwards and downwards closure of a
 single element $w$, omitting the ordering relation when it is clear from the
 context. A set $S$ is called \intro{downwards closed} if $\dwset{S} = S$.
 
-\begin{figure}
-    \centering
-    \includestandalone[width=\linewidth]{fig/prefix-core-and-branches-standalone}
-    \caption{Illustrating the construction of 
-        \cref{prefixes:thm}. We represent the Hasse Diagram of a
-        \kl{partial order}, with elements in $S$ being bigger and 
-        in desert sand, elements of $S_{\max}$ being in
-        blood-red, and \kl{chains} of elements in sky blue.
-        The upwards closure of an element in $S_{\max}$ 
-        is depicted in pale green, and cannot intersect two distinct
-        branches, as it does not contain two incomparable elements.
-    }
-    \label{prefixes-theorem:fig}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includestandalone[width=\linewidth]{fig/prefix-core-and-branches-standalone}
+%     \caption{Illustrating the construction of 
+%         \cref{prefixes:thm}. We represent the Hasse Diagram of a
+%         \kl{partial order}, with elements in $S$ being bigger and 
+%         in desert sand, elements of $S_{\max}$ being in
+%         blood-red, and \kl{chains} of elements in sky blue.
+%         The upwards closure of an element in $S_{\max}$ 
+%         is depicted in pale green, and cannot intersect two distinct
+%         branches, as it does not contain two incomparable elements.
+%     }
+%     \label{prefixes-theorem:fig}
+% \end{figure}
 
 \begin{theorem}
     \label{prefixes:thm}
@@ -185,7 +184,7 @@ context. A set $S$ is called \intro{downwards closed} if $\dwset{S} = S$.
 \end{proof}
 
 As an immediate consequence, we have a very fine-grained understanding of the
-\kl{ordinal invariants} of such \kl{well-quasi-ordered} languages, which could be
+\kl{ordinal invariants} of such \kl{well-quasi-ordered} languages, which can be
 leveraged in bounding the complexity of algorithms working on such languages.
 
 \begin{corollary}
@@ -196,3 +195,8 @@ leveraged in bounding the complexity of algorithms working on such languages.
     the \kl{ordinal height} of $L$ is at most $\omega$, and
     its \kl{ordinal width} is finite.
 \end{corollary}
+
+\todo[inline]{
+    We actually can \emph{compute} the ordinal invariants
+    in the regular case.
+}

@@ -18,7 +18,7 @@ Schütze, and Zetzsche \cite{ASZZ24}.
 cannot define \kl{well-quasi-ordered} languages that are not
 \kl(language){bounded}. This implies that all the results of
 \cref{infixes-regular:sec}, and in
-particular \cref{bounded-language:thm}, can safely be transferred to
+particular \cref{bounded-language:thm}, can safely be applied to
 \kl{amalgamation systems}.
 
 \begin{theorem}[label=infix-amalgamation:thm,restate=infix-amalgamation:thm]
@@ -38,7 +38,10 @@ class of all regular language, or the class of all context-free languages. Such
 classes will be called \kl{effective amalgamative classes} (\kcref{effective
 amalgamative classes}). In the following theorem, we prove that under such
 assumptions, testing \kl{well-quasi-ordering} is inter-reducible to testing
-whether a language of the class is empty.
+whether a language of the class is empty, which is usually the simplest
+problem for a computational model.
+
+\todo[inline]{ What is the complexity of the reduction? Logspace? }
 
 \begin{theorem}[restate=infix-wqo-is-emptiness:thm,label=infix-wqo-is-emptiness:thm]
 % 	\label{infix-wqo-is-emptiness:thm}
