@@ -69,8 +69,8 @@ fig/infix-encoding-standalone.tex: src/word-embeddings-figure.py
 # Create a single file tex document for arXiv
 $(PAPER).arxiv.tex: $(PAPER).pdf
 	latexpand -o $(PAPER).arxiv.tex     \
-			  --empty-comments          \
-		      --expand-bbl $(PAPER).bbl \
+		  --empty-comments          \
+		  --expand-bbl $(PAPER).bbl \
               $(PAPER).tex
 
 # Create an archive with the single file tex document and the license
@@ -79,6 +79,7 @@ $(PAPER).arxiv.tar.gz: $(PAPER).arxiv.tex
              $(PAPER).arxiv.tex    \
 			 plainurl.bst          \
 			 ensps-colorscheme.sty \
+			 fig/*.tex 	  \
              LICENSE
 
 # Use a docker container to compile the arXiv version
