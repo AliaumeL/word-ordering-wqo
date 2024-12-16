@@ -51,6 +51,7 @@ Aliaume Lopez, Corto Mascle, Lia Schütze, Vincent Michielini, Nathan Lhote,
 Roland Guttenberg, and Omid Yaghoubi. Furthermore, the authors would like to
 thank all the participants of the [Autobóz 2024 workshop] for their feedback
 and discussions.
+We would also like to thank Vincent Jugé for his help with word combinatorics.
 
 [Autobóz 2024 workshop]: https://autoboz.org/2024
 [LaTeX]: https://www.latex-project.org/

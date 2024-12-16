@@ -104,9 +104,9 @@ given a language $L \subseteq \Sigma^*$, decide whether $L$ is
 runtime of the algorithm is deeply related to the ``complexity'' of the
 underlying quasi-order~\cite{SCHMITZ17}. One way to measure this complexity is
 to consider its so-called \kl{ordinal invariants}: for instance, the
-\kl{maximal order type} (or m.o.t.), originally defined by De Jongh and Parikh
+\kl{maximal order type} (or \kl{m.o.t.}), originally defined by De Jongh and Parikh
 \cite{dejongh77}, is the order type of the maximal linearization of a
-well-quasi-ordered set. In the case of a finite set, the m.o.t. is precisely
+well-quasi-ordered set. In the case of a finite set, the \kl{m.o.t.} is precisely
 the size of the set. Better runtime bounds were obtained by considering two
 other parameters~\cite{SCHMITZ19}: the \kl{ordinal height} introduced by
 Schmidt \cite{schmidt81}, and the \kl{ordinal width} of Kříž and Thomas
@@ -123,6 +123,46 @@ and the \kl{infix relation}. Furthermore, we devise decision algorithms
 whenever the languages are given by reasonable computational models. Finally,
 we provide relatively low bounds on the possible \kl{ordinal invariants} of
 such languages.
+
+\todo[inline]{Add a table with the results. But we have to be able to say
+    that bounds are \emph{tight}, and also distinguish between 
+    hypotheses (bounded, downwards closed) and representations
+    (amalgamation system, automatic etc).
+    Plus, it would be good to give \emph{names} to the characterisations,
+    so that we can write them directly in the table.
+    Plus it would be nice to have the corresponding theorem number in the table.
+    \cref{summary:tab}.
+}
+
+\begin{table}
+    \caption{Summary of the results on the \kl{well-quasi-ordered} languages
+    with respect to the \kl{prefix relation}, the \kl{suffix relation}, and the
+    \kl{infix relation}.}
+    \label{summary:tab}
+\begin{center}
+    \begin{tabular}{lp{6cm}l}
+        \toprule
+        \textbf{Hypothesis} & \textbf{Characterization} & $\oWidth{ \cdot }$ \\
+        \midrule
+        \multicolumn{3}{c}{\textbf{Prefix and Suffix Relations}} \\
+        \midrule
+        \addlinespace
+        None & finite union of \kl{chains} & $< \omegaOrd$ \\
+        None & finite union of \kl{chains} & $< \omegaOrd$ \\
+        \midrule
+        % infix for the next four rows in the first column
+        \multicolumn{3}{c}{\textbf{Infix Relation}} \\
+        \midrule
+        \addlinespace
+        None & None & $< \omegaOne$ \\
+        \kl{Downwards Closed} & finite unions of infixes of \kl{ultimately uniformly recurrent} bi-infinite words & $< \omegaOrd^3$ \\
+        \kl{Automatic} & infixes of \kl{ultimately uniformly recurrent} bi-infinite words & $< \omegaOrd^2$ \\
+        \kl{Bounded} & finite union of products of \kl{chains} & $< \omegaOrd^2$ \\
+        \kl{Amalgamation System} & infixes of \kl{ultimately uniformly recurrent} bi-infinite words & $< \omegaOrd^2$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+\end{table}
 
 Specifically, for the \kl{prefix relation} and the
 \kl{suffix relation}, we are able to show the following decomposition into
@@ -292,3 +332,4 @@ this context (\cref{infix-wqo-is-emptiness:thm}).
 
 \subparagraph{Acknowledgements} We would like to thank participants of the 2024
 edition of \kl{Autobóz} for their helpful comments and discussions.
+We would also like to thank Vincent Jugé for his pointers on word combinatorics.

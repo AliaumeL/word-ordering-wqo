@@ -41,7 +41,7 @@ assumptions, testing \kl{well-quasi-ordering} is inter-reducible to testing
 whether a language of the class is empty, which is usually the simplest
 problem for a computational model.
 
-\todo[inline]{ What is the complexity of the reduction? Logspace? }
+\todo[inline]{What is the complexity of the reduction? Logspace? }
 
 \begin{theorem}[restate=infix-wqo-is-emptiness:thm,label=infix-wqo-is-emptiness:thm]
 % 	\label{infix-wqo-is-emptiness:thm}
@@ -305,7 +305,21 @@ If we additionally assume that such a language is closed under infixes, we obtai
     Finally, the implication \cref{dwci-uoc:item} $\Rightarrow$ \cref{dwci-reg:item}
     is simply because a \kl{downwards closed} language 
     that is a finite union of products of \kl{chains} is a regular language.
-    \todo[inline]{maybe elaborate on this point}
+
+    \todo[inline]{This proof is not very satisfying.}
+    Indeed, assume that
+    $L$ is \kl{downwards closed} and included in a finite union of sets of the form
+    $\InfPeriodChain{x} u \InfPeriodChain{y}$ where $x,y,u$ are possibly empty words.
+    We can assume without loss of generality that
+    for every $n$, $x^n u y^n$ is in $L$, otherwise, we have a bound on the maximal $n$ such that
+    $x^n u y^n$ is in $L$, and we can increase the number of languages in the union, replacing $x$ or $y$
+    with the empty word as necessary.
+    Let us write $L' \defined \bigcup_{i = 1}^k x_i^* u_i y_i^*$. Then, $L'
+    \subseteq L$ by construction. Furthermore, $L \subseteq \dwset{L'}$, also
+    by construction. Finally, we conclude that $L = \dwset{L'}$ because $L$ is
+    \kl{downwards closed}. Now, because $L'$ is a \kl{regular language}, and 
+    \kl{regular languges} are closed under \kl{downwards closure}, we conclude
+    that $L$ is a \kl{regular language}.
 \end{proof}
 
 \AP Combining
