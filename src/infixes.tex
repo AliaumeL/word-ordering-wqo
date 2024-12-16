@@ -396,30 +396,30 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
 
 \begin{lemma}
     \label{thue-morse-ordinal:lemma}
-    The \kl{maximal order type} of $\LMorse$ is $\omega$,
-    the \kl{ordinal height} of $\LMorse$ is $\omega$,
-    the \kl{ordinal width} of $\LMorse$ is $\omega$.
+    The \kl{maximal order type} of $\LMorse$ is $\omegaOrd$,
+    the \kl{ordinal height} of $\LMorse$ is $\omegaOrd$,
+    the \kl{ordinal width} of $\LMorse$ is $\omegaOrd$.
 \end{lemma}
 \begin{proof}
     Let us prove that these are upper bounds for the \kl{ordinal invariants} of
     $L$. For the \kl{ordinal height}, it is true for any language $\LMorse$.
     For the \kl{maximal order type}, we remark that
     the maximal length of a \kl{bad sequence} is determined by its first element,
-    hence that it is at most $\omega$.
+    hence that it is at most $\omegaOrd$.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order type},
-    we conclude that the \kl{ordinal width} is also at most $\omega$.
+    we conclude that the \kl{ordinal width} is also at most $\omegaOrd$.
 
     Now, let us prove that these bounds are tight. It is clear that
-    $\oHeight{\LMorse} = \omega$: given any number $n \in \Nat$, one can construct a
+    $\oHeight{\LMorse} = \omegaOrd$: given any number $n \in \Nat$, one can construct a
     \kl{decreasing sequence} of words in $L$ of length $n$, for instance by
     considering the first $n$ prefixes of the \kl{Thue-Morse sequence} by
     decreasing size.
-    Let us now prove that $\oWidth{\LMorse} = \omega$. Assume by contradiction that
+    Let us now prove that $\oWidth{\LMorse} = \omegaOrd$. Assume by contradiction that
     $\oWidth{\LMorse}$ is finite. Then, $L$ can be written as a finite union of
     \kl{chains} for the \kl{infix relation}, and in particular, $L$ is
     \kl(language){bounded}, which is absurd by \cref{thue-morse:lemma}.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order
-    type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omega$.
+    type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omegaOrd$.
 \end{proof}
 
 This suggests the following conjecture which states that for \kl{downwards
