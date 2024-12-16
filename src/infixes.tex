@@ -429,7 +429,60 @@ closed} languages, the \kl{ordinal invariants} are relatively small.
     \label{small-ordinal-invariants:conj}
     Let $L$ be a \kl{well-quasi-ordered} language for the \kl{infix relation}
     that is \kl{downwards closed}.
-    Then, the \kl{maximal order type} of $L$ is at most $\omega^3$,
-    its \kl{ordinal height} is at most $\omega$,
-    and its \kl{ordinal width} is at most $\omega^2$.
+    Then, the \kl{maximal order type} of $L$ is at most $\omegaOrd^3$,
+    its \kl{ordinal height} is at most $\omegaOrd$,
+    and its \kl{ordinal width} is at most $\omegaOrd^2$.
 \end{conjecture}
+
+\todo[inline]{
+    Write this in a nicer way.
+    Maybe talk a bit more about automatic sequences?
+    This could be a section ``Infixes and downwards closed languages''. Before the
+    ``infixes and amalgamation systems''.
+}
+
+\begin{theorem}
+    \label{small-ordinal-invariants:thm}
+    Let $L$ be a \kl{well-quasi-ordered} language for the \kl{infix relation}
+    that is \kl{downwards closed}.
+    Then, the \kl{maximal order type} of $L$ is strictly less than $\omegaOrd^3$,
+    its \kl{ordinal height} is at most $\omegaOrd$,
+    and its \kl{ordinal width} is at most $\omegaOrd^2$.
+\end{theorem}
+
+The \cref{small-ordinal-invariants:thm} is a direct consequence of the following
+remarks.
+
+\begin{itemize}
+    \item If $L$ is \kl{wqo} and \kl{downwards closed}, then $L = \bigcup_{i = 1}^n L_i$ where $L_i$
+        is an \kl{order ideal}.
+    \item If $L$ is an \kl{order ideal} that is \kl{well-quasi-ordered}, then
+        $L$ is the set of infixes of some \emph{bi-infinite} word $w \in \Sigma^{\Rel}$.
+    \item The set of infixes of a \emph{bi-infinte} word can be understood 
+        as the set of \kl{infixes} of two infinite words $u,v \in \Sigma^{\Nat}$.
+    \item The set of infixes of an infinite word $w \in \Sigma^{\Nat}$ is 
+        \kl{well-quasi-ordered} if and only if $w$ is \kl{ultimately uniformly recurrent},
+        that is, if there exists an infinite suffix of $w$ that is \kl{uniformly recurrent}.
+    \item The ordinal invariants of a \kl{uniformly recurrent} word are small.
+\end{itemize}
+
+Note that being \kl{uniformly recurrent} still leaves open a lot of potential behaviours,
+for instance, Sturmian words are \kl{uniformly recurrent}, but are not \kl{automatic}.
+\todo{Find citations for this.}
+
+\begin{theorem}
+    Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
+    whether the set of \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the
+    \kl{infix relation}, and if so, compute the associated \kl{ordinal
+    invariants}.
+\end{theorem}
+\begin{proof}
+    One can check if $w$ is \kl{ultimately uniformly recurrent} by checking if
+    $\exists N_0 \in \Nat, \dots$. Because $w$ is \kl{automatic}, this is decidable.
+    Now, to decide whether $w$ has width $\omegaOrd$, then one can check if $w$ is 
+    \kl{ultimately periodic}. If not, then $w$ has width $\omegaOrd$.
+    If it is \kl{ultimately periodic}, one can compute the smallest size of
+    the period, which gives us the width.
+    Using the width, and because we know the height is at most $\omegaOrd$, we can
+    compute the maximal order type.
+\end{proof}
