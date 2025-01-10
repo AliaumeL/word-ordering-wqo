@@ -259,12 +259,18 @@ the core result that powers the analysis done in the upcoming
     and we conclude with an identical reasoning.
 \end{proof}
 
-\todo[inline]{
-    Directly write $\InfPeriodChain{x} u \InfPeriodChain{y}$
-    instead of $S_i \cdot P_i$, because we need it later on.
-}
-
-\begin{proofof}{bounded-language:thm}
+\begin{lemma}
+    \label{bounded-language:lem}
+    Let $L \subseteq \Sigma^*$ be a \kl{bounded language}
+    that is \kl{well-quasi-ordered} by the \kl{infix relation}.
+    Then, there exists a finite subset $E \subseteq (\Sigma^*)^3$,
+    such that:
+    \begin{equation*}
+        L \subseteq \bigcup_{(x,u,y) \in E} \InfPeriodChain{x} u \InfPeriodChain{y}
+        \quad .
+    \end{equation*}
+\end{lemma}
+\begin{proof}
     Let $w_1, \dots, w_n$ be such that
     $L \subseteq w_1^* \cdots w_n^*$.
     Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
@@ -306,6 +312,13 @@ the core result that powers the analysis done in the upcoming
         u \InfPeriodChain{x}
         \quad .
     \end{equation}
+\end{proof}
+
+\begin{proofof}{bounded-language:thm}
+    We apply \cref{bounded-language:lem}, and conclude
+    because $\InfPeriodChain{x}$ is a finite union of \kl{chains}
+    for the \kl{prefix}, \kl{suffix} and \kl{infix} relations
+    (\cref{inf-period-chain:lem}).
 \end{proofof}
 
 
