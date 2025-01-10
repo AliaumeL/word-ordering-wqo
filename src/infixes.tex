@@ -383,6 +383,22 @@ refer the reader to a nice survey of Allouche and Shallit for more information
 on this sequence and its properties \cite{ALSHA99}.
 
 \begin{lemma}
+    \label{uniformly-recurrent:lem}
+    Let $w \in \Sigma^\Nat$ be a \kl{uniformly recurrent} word.
+    Then, the set of finite \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
+\end{lemma}
+\begin{proof}
+    Let $L$ be the set of finite \kl{infixes} of $w$.
+    Consider a sequence $\seqof{u_i}$ of words in $L$. Without loss of
+    generality, we may consider a subsequence such that $\card{u_i} <
+    \card{u_{i+1}}$ for all $i \in \Nat$. Because $\ThueMorse$ is \kl{uniformly
+    recurrent}, there exists $k \geq 1$ such that $u_1$ is an \kl{infix} of
+    every word $v$ of size at least $k$. In particular, $u_1$ is an \kl{infix}
+    of $u_k$, hence the sequence $\seqof{u_i}$ is \kl(sequence){good}.
+\end{proof}
+
+
+\begin{lemma}
     \label{thue-morse:lemma}
     The language $\intro*\LMorse$ of \kl{infixes} of the \kl{Thue-Morse sequence}
     is \kl{downwards closed} for the \kl{infix
@@ -393,20 +409,14 @@ on this sequence and its properties \cite{ALSHA99}.
     By construction $\LMorse$ is an \emph{infinite}
     \kl{downwards closed} for the \kl{infix relation}. Let us argue that $\LMorse$ is
     \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl(language){bounded}.
+    It is \kl{well-quasi-ordered} because it is the set of finite \kl{infixes}
+    of a \kl{uniformly recurrent} word, and we can apply \cref{uniformly-recurrent:lem}.
 
     Assume by contradiction that $\LMorse$ is \kl(language){bounded}. In this case, there exist
     words $w_1, \dots, w_k \in \Sigma^*$ such that $L \subseteq w_1^* \cdots
     w_k^*$. Since $L$ is infinite and \kl{downwards closed}, there exists a
     word $u \in L$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is absurd
     because $u \infleq \ThueMorse$, which is \kl{cube-free}.
-
-    Furthermore, $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
-    Indeed, consider a sequence $\seqof{u_i}$ of words in $L$. Without loss of
-    generality, we may consider a subsequence such that $\card{u_i} <
-    \card{u_{i+1}}$ for all $i \in \Nat$. Because $\ThueMorse$ is \kl{uniformly
-    recurrent}, there exists $k \geq 1$ such that $u_1$ is an \kl{infix} of
-    every word $v$ of size at least $k$. In particular, $u_1$ is an \kl{infix}
-    of $u_k$, hence the sequence $\seqof{u_i}$ is \kl(sequence){good}.
 \end{proof}
 
 One may refine our analysis of the \kl{Thue-Morse sequence} to obtain 
@@ -440,24 +450,8 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omegaOrd$.
 \end{proof}
 
-This suggests the following conjecture which states that for \kl{downwards
+This motivated the following theorem, which states that for \kl{downwards
 closed} languages, the \kl{ordinal invariants} are relatively small.
-
-\begin{conjecture}
-    \label{small-ordinal-invariants:conj}
-    Let $L$ be a \kl{well-quasi-ordered} language for the \kl{infix relation}
-    that is \kl{downwards closed}.
-    Then, the \kl{maximal order type} of $L$ is at most $\omegaOrd^3$,
-    its \kl{ordinal height} is at most $\omegaOrd$,
-    and its \kl{ordinal width} is at most $\omegaOrd^2$.
-\end{conjecture}
-
-\todo[inline]{
-    Write this in a nicer way.
-    Maybe talk a bit more about automatic sequences?
-    This could be a section ``Infixes and downwards closed languages''. Before the
-    ``infixes and amalgamation systems''.
-}
 
 \begin{theorem}
     \label{small-ordinal-invariants:thm}
@@ -468,8 +462,128 @@ closed} languages, the \kl{ordinal invariants} are relatively small.
     and its \kl{ordinal width} is at most $\omegaOrd^2$.
 \end{theorem}
 
-The \cref{small-ordinal-invariants:thm} is a direct consequence of the following
-remarks.
+\AP A subset $I \subseteq X$ is \intro{directed} if, for every $x,y \in I$,
+there exists $z \in I$ such that $x \leq z$ and $y \leq z$. Given a
+\kl{well-quasi-order} $(X, \leq)$, one can always decompose $X$ into a finite
+union of \intro{order ideals}, that is, non-empty sets $I \subseteq X$ that are
+\kl{downwards closed} and \kl{directed} for the \kl{order relation} $\leq$. In
+our case, a \kl{well-quasi-ordered} \kl{order ideal} for the \kl{infix
+relation} is the set of finite \kl{infixes} of a finite or bi-infinte word $w
+\in \Sigma^\Nat \cup \Sigma^\Rel $ (\cref{bi-infinite:lem}). Therefore, we will
+first study languages that are described as the set of finite \kl{infixes} of
+some (bi-)infinite word.
+
+\begin{lemma}
+    \label{bi-infinite:lem}
+    Let $L \subseteq \Sigma^*$ be an \kl{order ideal} that is \kl{well-quasi-ordered} 
+    for the 
+    \kl{infix relation}. Then $L$ is the set of finite \kl{infixes}
+    of a finite, infinite or bi-infinite word $w$.
+\end{lemma}
+\begin{proof}
+    Let us assume that $L$ is infinite, the case when it is finite 
+    is similar, but leads to a finite word.
+
+    Because the alphabet $\Sigma$ is finite, we can enumerate the words of $L$
+    as $\seqof{w_i}$. Now, let us build the sequence $\seqof{u_i}$ by induction
+    as follows: $u_0 = w_0$, and $u_{i+1}$ is a word that contains $u_i$ and
+    $w_i$, which exists in $L$ because $L$ is \kl{directed}. Since $L$ is
+    \kl{well-quasi-ordered}, one can extract an infinite set of indices $I
+    \subseteq \Nat$ such that $u_i \infleq u_{j}$ for all $i \leq j \in I$.
+
+    We can build a word $w$ as the limit of the sequence $\seqof{u_i}[i \in
+    I]$. This word is infinite or bi-infinite, and contains as infixes all the
+    words $u_i$ for $i \in I$. Because every word of $L$ is an infix of every
+    $u_i$ for a large enough $I$, one concludes that $L$ is contained in the
+    set of finite infixes of $w$. Conversely, every finite infix of $w$ is 
+    an infix of some $u_i$ by definition of the limit construction, hence
+    belongs to $L$ since $u_i \in L$ and $L$ is \kl{downwards closed}.
+\end{proof}
+
+
+\AP We say that an infinite word $w \in \Sigma^\Nat$ is \intro{ultimately
+uniformly recurrent} if there exists a bound $N_0 \in \Nat$ such that $w_{\geq
+N_0}$ is \kl{uniformly recurrent}.
+
+\begin{lemma}
+    \label{ultimately-uniformly-recurrent:lem}
+    Let $w \in \Sigma^\Nat$ be an infinite word. 
+    Then, the set of finite infixes of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation}
+    if and only if $w$ is \kl{ultimately uniformly recurrent}.
+\end{lemma}
+\begin{proof}
+
+    Assume that $w$ is \kl{ultimately uniformly recurrent}. Consider a sequence
+    of words $\seqof{w_i}$ that are finite \kl{infixes} of $w$. Because $w$ is
+    \kl{ultimately uniformly recurrent}, there exists a bound $N_0$ such that
+    $w_{\geq N_0}$ is \kl{uniformly recurrent}. Let $i < N_0$, we claim that,
+    without loss of generality, only finitely many words in the sequence
+    $\seqof{w_i}$ can be found starting at the position $i$ in $w$. Indeed, if
+    it is not the case, then we have an infinite subsequence of words that are
+    all comparable for the \kl{infix relation}, and therefore a \kl{good
+    sequence}, because the \kl{infix relation} is \kl{well-founded}. We can
+    therefore assume that all words in the sequence $\seqof{w_i}$ are such that
+    they start at a position $i \geq N_0$. But then, they are all finite
+    \kl{infixes} of $w_{\geq N_0}$, which is a \kl{uniformly recurrent} word,
+    whose set of finite \kl{infixes} is \kl{well-quasi-ordered}
+    (\cref{uniformly-recurrent:lem}).
+
+    Conversely, assume that the set of finite infixes of $w$ is
+    \kl{well-quasi-ordered}. Let us write $\mathsf{Rec}(w)$ the set of finite
+    \kl{infixes} of $w$ that appear infinitely often. We can similarly define
+    $\mathsf{Rec}(w_{\geq i})$ for any (infinite) suffix of $w$. The sequence
+    $R_i \defined \mathsf{Rec}(w_{\geq i})$ is a sequence of \kl{downwards
+    closed} sets of finite words, included in the set of finite infixes of $w$
+    by definition. Because the latter is \kl{well-quasi-ordered}, there exists
+    an $N_0 \in \Nat$, such that $\bigcap_{i \in \Nat} R_i = R_{N_0}$.
+    Now, consider $v \defined w_{\geq N_0}$. By construction, 
+    every finite infix of $v$ 
+    appears infinitely often in $v$. Let us consider 
+    some finite infix $u \infleq v$, we claim that there is a bound $N_u$
+    on the distance
+    between two consecutive occurrences of $u$ in $v$.
+    Indeed, if it is not the case, then there exists an infinite sequence
+    $\seqof{u x_i u}[i \in \Nat]$ of infixes of $v$, such that $x_i$ is a word that is
+    of size $\geq i$.
+    Because the finite infixes of $w$ (hence, of $v$) are \kl{well-quasi-ordered},
+    one can extract an infinite set of indices $I \subseteq \Nat$
+    such that $u x_i u \infleq u x_{j} u$ for all $i \leq j \in I$.
+    In particular, $u x_i u \infleq u x_{j} u$ for some $j > |x_i|$, 
+    which contradicts the fact that $u x_j u$ coded two consecutive
+    occurrences of $u$ in $v$.
+
+    We have shown that for every finite infix $u$ of $v$, there exists a bound
+    $N_u$ such that every two occurrences of $u$ in $v$ start at distance at
+    most $N_u$. In particular, there exists a bound $M_u$ such that every infix
+    of $v$ of size at least $M_u$ contains $u$. We have proven that
+    $v$ is \kl{uniformly recurrent}, hence that $w$ is \kl{ultimately uniformly
+    recurrent}.
+\end{proof}
+
+\begin{lemma}
+    \label{small-ordinal-invariants:lem}
+    Let $w \in \Sigma^\Nat$ be an \kl{ultimately uniformly recurrent} word.
+    Then, the set of finite infixes of $w$ has \kl{ordinal width}
+    less than $2 \cdot \omegaOrd$.
+\end{lemma}
+\begin{proof}
+    \todo[inline]{prove this}
+\end{proof}
+
+\begin{lemma}
+    \label{from-bi-to-single:lem}
+    Let $w \in \Sigma^\Rel$ be a bi-infinite word. Then, the set of finite
+    infixes of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation} if
+    and only if $w_+$ and $w_-$ are two \kl{ultimately uniformly recurrent}
+    words. In this case, the \kl{ordinal width}
+    of the set of finite infixes of $w$ is less than $3 \cdot \omegaOrd$.
+\end{lemma}
+
+Before proving \cref{small-ordinal-invariants:thm}, let us restrict 
+our attention to a simpler case: 
+
+The \cref{small-ordinal-invariants:thm} is a direct consequence of the
+following remarks. 
 
 \begin{itemize}
     \item If $L$ is \kl{wqo} and \kl{downwards closed}, then $L = \bigcup_{i = 1}^n L_i$ where $L_i$
