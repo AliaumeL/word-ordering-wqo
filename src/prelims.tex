@@ -1,7 +1,9 @@
 \section{Preliminaries}
 \label{prelims:sec}
 
-\paragraph*{Finite words.} In this paper, we use letters $\Sigma, \Gamma$ to
+\paragraph*{Finite words.}
+\AP 
+In this paper, we use letters $\Sigma, \Gamma$ to
 denote finite alphabets, $\Sigma^*$ to denote the set of finite words over
 $\Sigma$, and $\varepsilon$ for the empty word in $\Sigma^*$. In order to give
 some intuition on the decision problems, we will sometimes use the notion of
@@ -11,7 +13,9 @@ refer to the textbook of \cite{THOM97} for a detailed introduction to this
 topic.
 
 
-\paragraph*{Orderings and Well-Quasi-Orderings.} A \intro{quasi-order} is a
+\paragraph*{Orderings and Well-Quasi-Orderings.}
+\AP
+A \intro{quasi-order} is a
 reflexive and transitive binary relation, it is a \intro{partial order} if it
 is furthermore antisymmetric. A \intro{total order} is a \kl{partial order}
 where any two elements are comparable. Let now us introduce some notations for
@@ -32,6 +36,7 @@ language $L \subseteq \Sigma^*$ to be \kl{well-quasi-ordered}, it suffices to
 prove that it contains no infinite \kl{antichain}. 
 
 \paragraph*{Ordinal Invariants.} \label{ordinal-invariants:subsec}
+\AP
 An \intro{ordinal} is a \kl{well-founded} \kl{totally ordered}
 set. We use $\alpha, \beta, \gamma$ to denote ordinals, and use $\intro*\omegaOrd$ to
 denote the first infinite \kl{ordinal}, i.e., the set of natural numbers with the
@@ -39,12 +44,14 @@ usual ordering. We also use $\intro*\omegaOne$ to denote the first \emph{uncount
 ordinal.
 We only assume superficial familiarity with ordinal arithmetic, and
 refer to the books of Kunen \cite{KUNEN80} and Krivine~\cite[Chapter
-II]{KRIVINE71} for a detailed introduction to this domain. Given a tree $T$
+II]{KRIVINE71} for a detailed introduction to this domain.
+Given a tree $T$
 whose branches are all finite we can define an \kl{ordinal} $\alpha_T$ inductively
 as follows: if $T$ is a leaf then $\alpha_T = 0$, if $T$ has children
 $\seqof{T_i}$ then $\alpha_T = \sup \setof{\alpha_{T_i} + 1}{i \in \Nat}$. We
 say that $\alpha_T$ is the \emph{rank} of $T$. 
 
+\AP
 Let $(X, \leq)$ be a \kl{well-quasi-ordered} set. One can define three
 well-founded trees from $X$: the tree of \kl{bad sequences}, the tree of
 decreasing sequences, and the tree of \kl{antichains}. The rank of these
@@ -57,5 +64,14 @@ parameters are called the \intro{ordinal invariants} of a
 a detail discussion on these concepts and their computation on specific classes
 of well-quasi-ordered sets.
 
+\AP
+We will use the following inequality between \kl{ordinal invariants}, due to
+\cite{kriz90b}, and that was recalled in \cite[Theorem 3.8]{DZSCSC20}:
+$\oType{X} \leq \oHeight{X} \oComProd \oWidth{X}$, where $\intro*\oComProd$ is
+the \intro{commutative ordinal product}, also known as the \reintro{Hessenberg
+product}. We will not recall the definition of this product here, and refer to
+\cite[Section 3.5]{DZSCSC20} for a detailed introduction to this concept. The
+only equalities we will use are $\omegaOrd \oComProd \omegaOrd = \omegaOrd^2$
+and $\omegaOrd^2 \oComProd \omegaOrd = \omegaOrd^3$.
 
 
