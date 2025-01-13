@@ -127,8 +127,8 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
     $\Sigma$ is a finite alphabet,
     $R$ is a set of so-called \emph{runs},
     $\canrun \colon R \to (\Sigma \uplus \set{\cansep})^*$ is a 
-    function computing a \emph{canonical decomposition} of a run,
-    and $E$ describes the so-called \emph{admissible embeddings} between runs: If $\rho$ and $\sigma$ are runs from $R$, then $E(\rho, \sigma)$ is a subset of the subword embeddings between $\canrun[\rho]$ and $\canrun[\sigma]$. We write $\rho \intro*\runleq \sigma$ if $E(\rho, \sigma)$ is non-empty. If we want to refer to a specific embedding $f \in E(\rho, \sigma)$, we also write $\rho \runleq_f \sigma$.
+    function computing a \intro{canonical decomposition} of a run,
+    and $E$ describes the so-called \intro{admissible embeddings} between runs: If $\rho$ and $\sigma$ are runs from $R$, then $E(\rho, \sigma)$ is a subset of the subword embeddings between $\canrun[\rho]$ and $\canrun[\sigma]$. We write $\rho \intro*\runleq \sigma$ if $E(\rho, \sigma)$ is non-empty. If we want to refer to a specific embedding $f \in E(\rho, \sigma)$, we also write $\rho \runleq_f \sigma$.
     Given a run $r \in R$, and $i \in \range[0]{\card{\canrun(r)}}$, 
     the \intro{gap language} of $r$ at position $i$ is $\intro*\GapLanguage{r}{i} \defined
     \setof{\GapWord{f}{i}}{\exists s \in R. \exists f \in E(r,s) }$.
@@ -319,7 +319,7 @@ If we additionally assume that such a language is closed under infixes, we obtai
     \subseteq L$ by construction. Furthermore, $L \subseteq \dwset{L'}$, also
     by construction. Finally, we conclude that $L = \dwset{L'}$ because $L$ is
     \kl{downwards closed}. Now, because $L'$ is a \kl{regular language}, and 
-    \kl{regular languges} are closed under \kl{downwards closure}, we conclude
+    \kl{regular languages} are closed under \kl{downwards closure}, we conclude
     that $L$ is a \kl{regular language}.
 \end{proof}
 

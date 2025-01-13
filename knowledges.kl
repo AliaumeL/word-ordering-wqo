@@ -37,6 +37,7 @@
  | downwards closures
 \knowledge{notion}
  | downwards closed
+ | Downwards Closed
 \knowledge{notion}
  | upwards closure
 \knowledge{notion}
@@ -86,6 +87,7 @@
  | ordinal height
 \knowledge{notion}
  | maximal order type
+ | m.o.t.
 \knowledge{notion}
  | ordinal width
 \knowledge{notion}
@@ -120,6 +122,9 @@
  | cube-free
 \knowledge{notion}
  | uniformly recurrent
+
+\knowledge{notion}
+ | ultimately uniformly recurrent
 
 % custom commands
 \knowledge{notion}
@@ -163,3 +168,26 @@
  | strongly effective@amalg
  | strongly effective amalgamative class
  | strongly effective amalgamative classes
+
+
+\knowledge{notion}
+ | order ideal
+ | order ideals
+ | ideal@order
+ | ideals@order
+
+\knowledge{notion}
+ | directed subsets
+ | directed subset
+ | directed@subset
+
+\knowledge{notion}
+ | Automatic@sequence
+ | automatic sequences
+ | automatic@sequence
+ | automatic sequence
+
+\knowledge{notion}
+ | canonical decomposition
+\knowledge{notion}
+ | admissible embeddings
