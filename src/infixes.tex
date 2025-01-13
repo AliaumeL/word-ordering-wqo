@@ -1,7 +1,7 @@
 % LTeX: language=en-GB 
 % !TeX root=../wqo-on-words.tex
 \section{Infixes and Bounded Languages}
-\label{infixes-regular:sec}
+\label{infixes-bounded:sec}
 
 \AP In this section, we study languages equipped with the \kl{infix relation}.
 As opposed to the \kl{prefix} and \kl{suffix} relations, the \kl{infix
@@ -363,6 +363,7 @@ $L$ or its \kl{downwards closure} is equivalent with respect to being
 \end{corollary}
 
 \section{Infixes and Downwards Closed Languages}
+\label{infixes-dwclosed:sec}
 
 One may think that all \kl{downwards closed} languages for the \kl{infix
 relation} that are \kl{well-quasi-ordered} are \kl(language){bounded}. Note
@@ -653,7 +654,7 @@ the letter at position $0$.
     \kl{well-quasi-ordered}.
 
     Conversely, assume that $\infset{w}$ is \kl{well-quasi-ordered}. In
-    particular, $\infset{w_+} \subseteq \infset{w}$ is \kl{well-quasi-ordered}.
+    particular, the subset $\infset{w_+} \subseteq \infset{w}$ is \kl{well-quasi-ordered}.
     Similarly, $\infset{w_-}$ is \kl{well-quasi-ordered} because the \kl{infix
     relation} is compatible with mirroring. Applying
     \cref{ultimately-uniformly-recurrent:lem}, we conclude that both are
@@ -719,6 +720,7 @@ number $i$ in base $b$. The \kl{Thue-Morse sequence} is an example of an
 \kl{automatic sequence}.
 
 \begin{theorem}
+    \label{automatic-wqo:thm}
     Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
     whether the set of \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the
     \kl{infix relation}.

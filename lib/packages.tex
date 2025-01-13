@@ -41,7 +41,7 @@
 % links inside the document
 \usepackage{hyperref}
 \usepackage[capitalise,noabbrev,nameinlink]{cleveref}
-\usepackage[composition,hyperref,xcolor,cleveref]{knowledge}
+\usepackage[electronic,hyperref,xcolor,cleveref]{knowledge}
 \knowledgeconfigure{notion}
 
 % Tables 
@@ -60,5 +60,15 @@
 % Colors 
 \usepackage{ensps-colorscheme}
 
+\hypersetup{
+    colorlinks=true,
+    linkcolor=Prune,
+    filecolor=Prune,
+    urlcolor=Prune,
+    citecolor=Prune,
+}
+\knowledgestyle{intro notion}{color=B4,emphasize}
+\knowledgestyle{notion}{color=A4}
+
 % Misc
-\usepackage{todonotes}
+%\usepackage{todonotes}

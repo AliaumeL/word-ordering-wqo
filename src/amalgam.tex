@@ -41,8 +41,6 @@ assumptions, testing \kl{well-quasi-ordering} is inter-reducible to testing
 whether a language of the class is empty, which is usually the simplest
 problem for a computational model.
 
-\todo[inline]{What is the complexity of the reduction? Logspace? }
-
 \begin{theorem}[restate=infix-wqo-is-emptiness:thm,label=infix-wqo-is-emptiness:thm]
 % 	\label{infix-wqo-is-emptiness:thm}
 	Let $\mathcal{C}$ be an \kl{effective amalgamative class} of languages.
@@ -110,7 +108,6 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
 
 \begin{figure}
     \centering
-    \todo[inline]{simplify the figure, only two letter initial word}
     \includestandalone[width=\linewidth]{fig/run-amalgamation-standalone}
     \caption{We illustrate how 
         embeddings $f$ and $g$ between runs of an
@@ -163,7 +160,8 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
 
 	The \emph{yield} of a run is obtained by projecting away the separator symbol \cansep~from the canonical decomposition, i.e. $\intro*\yieldrun(\rho) = \project_\Sigma( \canrun[\rho])$. The language recognized by an \kl{amalgamation system} is $\yieldrun(R)$.
     
-    We say a language $L$ is an \intro*{amalgamation language} if there exists an \kl{amalgamation system} recognizing it. 
+    We say a language $L$ is an \intro{amalgamation language} 
+    if there exists an \kl{amalgamation system} recognizing it. 
 \end{definition}
 
 Intuitively, the definition of an amalgamation system allows the comparison of
@@ -195,7 +193,7 @@ recall how runs of a finite state automaton can be understood as an
     by the automaton $A$.
 \end{example}
 \begin{proof}
-    By definition, the embeddings inside $E(\rho,\sigma)$ are defined as elements
+    By definition, the embeddings inside $E(\rho,\sigma)$ are in
     of $\HigEmb(\canrun(\rho), \canrun(\sigma))$, and they compose properly.
     Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
     a \kl{well-quasi-ordering} when equipped with the equality relation, and 
@@ -338,9 +336,6 @@ systems}. We follow the approach of \cite{ASZZ24} and require that an
 recursively enumerable, the function $\canrun(\cdot)$ is computable, and for
 any two runs $\rho, \sigma \in R$, the set $E(\rho,\sigma)$ is computable.
 
-\todo[inline]{In this definition, the alphabet $\Sigma$ can be changed 
-(and we seem to actually use it in the proofs), it is strange.}
-
 \AP We say that a class $\mathcal{C}$ of languages is an \intro{effective
 amalgamative class} whenever for every $L \in \mathcal{C}$, there exists an
 effective \kl{amalgamation system} recognizing $L$, and such that $\mathcal{C}$
@@ -350,9 +345,10 @@ is \kl{effectively closed under rational transductions}. Recall that a
 output \cite[Chapter 5, page 64]{BERST79}. A class of languages $\mathcal{C}$
 is \intro{effectively closed under rational transductions} when, for every
 language $L \in \mathcal{C}$, and every rational transduction $R \subseteq
-\Sigma^* \times \Gamma^*$, the image of $L$ through $R$ --- that is,
- $\setof{v \in \Gamma^*}{\exists u \in L. (u,v) \in R}$ --- is in $\mathcal{C}$
-and effectively computable.
+\Sigma^* \times \Gamma^*$, the image of $L$ through $R$ --- that is, $\setof{v
+\in \Gamma^*}{\exists u \in L. (u,v) \in R}$ --- is in $\mathcal{C}$ and
+effectively computable. In particular, it implies that the class contains
+languages over arbitrary (finite) alphabets.
 
 \AP A class $\mathcal{C}$ of languages is \intro(amalg){strongly effective}
 whenever the emptiness problem for languages in $\mathcal{C}$ is decidable.
@@ -393,7 +389,6 @@ amalgamative classes}~\cite{ASZZ24}.
     that maps every word $w$ to $\# w$ where $\# $ is a fresh symbol. Then, for
     any language $L \in \mathcal C$, $L$ is \kl{well-quasi-ordered} by
     \kl{prefix} if and only if $f(L)$ is \kl{well-quasi-ordered} by \kl{infix}.
-    \todo{fresh symbols? can we assume we have those??}
 	
     \cref{wqo-prefix-decidable} $\Rightarrow$
     \cref{emptiness-decidable}. 
@@ -437,9 +432,3 @@ the decidability result of \cref{aut-cfg-infix:cor}.
     \kl{well-quasi-ordered} if and only if it is finite
     if and only if $M$ terminates on $\varepsilon$.
 \end{proof}
-
-\todo[inline]{
-    Add computing the \kl{ordinal invariants}
-    of the \kl{infix relation} for languages 
-    recognized by \kl{amalgamation systems}.
-}

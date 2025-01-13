@@ -59,6 +59,7 @@
 \knowledge{notion}
  | subword relation
  | scattered subword
+ | scattered subword relation
  | subword
  | subwords
  | Higman’s subword relation
@@ -100,6 +101,7 @@
 
 \knowledge{notion}
  | regular language
+ | regular@language
  | regular languages
 \knowledge{notion}
  | finite automaton
@@ -122,6 +124,8 @@
  | cube-free
 \knowledge{notion}
  | uniformly recurrent
+ | uniformly recurrent words
+
 
 \knowledge{notion}
  | ultimately uniformly recurrent
@@ -134,9 +138,11 @@
 \knowledge{notion}
  | amalgamation system
  | amalgamation systems
+
 \knowledge{notion}
  | effective amalgamation system
  | effective amalgamation systems
+
 \knowledge{notion}
  | amalgamation language
  | language@amalgamation
@@ -191,3 +197,7 @@
  | canonical decomposition
 \knowledge{notion}
  | admissible embeddings
+
+\knowledge{notion}
+ | commutative ordinal product
+ | Hessenberg product

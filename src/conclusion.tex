@@ -11,8 +11,9 @@ of $\Nat$ or $\Nat^2$. However, our approach suffers some limitations
 and opens the road to natural continuation of this line of work.
 
 \subparagraph{Towards infinite alphabets} In this paper, we restricted our
-attention to \emph{finite} alphabets, having in mind the application to regular
-languages. However, the conclusions of \cref{infix-finite-automata:thm} and
+attention to \emph{finite} alphabets, having in mind the application to
+\kl{regular languages}. However, the conclusions of
+\cref{bounded-language:thm}, \cref{small-ordinal-invariants:thm}, and
 \cref{prefixes:thm} could be conjecture to hold in the case of infinite
 alphabets (themselves equipped with a \kl{well-quasi-ordering}). This would
 require new techniques, as the finiteness of the alphabet is crucial to all of
@@ -25,8 +26,6 @@ connected to finding which classes of graphs of \emph{bounded clique-width} are
 \kl{well-quasi-ordered} with respect to the \emph{induced subgraph relation},
 as shown in \cite{DRT10}, and recently revisited by one of the authors in
 \cite{L24:arxiv:v2}.
-\todo{this is also related to what we did for automatic sequences: what are 
-    the kind of automaton that recognize well-quasi-ordered automatic sequences?}
 
 \subparagraph{Complexity} We have chosen to disregard complexity considerations
 when proving decidability results, as we do not believe that a fined grained
@@ -37,7 +36,7 @@ the minimal automaton recognizing the language.
 
 \subparagraph{Lexicographic orderings} There is another natural ordering on
 words, the \emph{lexicographic ordering}, which does not fit well in our
-current framework because it is always of \kl{ordinal width} $0$. However, the
+current framework because it is always of \kl{ordinal width} $1$. However, the
 order-type of the lexicographic ordering over \kl{regular languages} has
 already been investigated in the context of infinite words \cite{CACOPU18}, and
 it would be interesting to see if one can extend these results to decide
