@@ -7,18 +7,10 @@
 \title{$title$}
 \author{%
     $for(author)$
-    $author.name$$for(author.affiliation)$\thanks{$author.affiliation$}$endfor$
+    $author.name$$for(author.affiliation)$\thanks{$author.affiliation$. $author.funding$}$endfor$
     $sep$ \and
     $endfor$
 }
-
-$if(date)$
-\date{$date$$if(git-meta)$ --- $git-meta.commit$$endif$}
-$else$
-$if(git-meta)$
-\date{$git-meta.date$ -- $git-meta.commit$ ($git-meta.branch$) at $git-meta.origin$}
-$endif$
-$endif$
 
 \newcommand{\makeabstract}{
 \begin{abstract}

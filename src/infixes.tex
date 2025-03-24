@@ -131,7 +131,7 @@ $\Nat$.
     \preceq)$ is \kl{well-quasi-ordered}. It is not true in general that
     $(\dwset{L}, \preceq)$ is \kl{well-quasi-ordered}. In the case of $(\Sigma^*,
     \infleq)$ a typical example is to start from an infinite \kl{antichain} $A$,
-    together with an enumeration $\seqof{w_i}$ of $A$, and build the language $L
+    together with an enumeration $\seqof{w_i}[i \in \Nat]$ of $A$, and build the language $L
     \defined \setof{ \prod_{i = 0}^n w_i }{ i \in \Nat }$. By definition, $L$ is a
     \kl{chain} for the \kl{infix} ordering, hence \kl{well-quasi-ordered}. However,
     $\dwset[\infleq]{L}$ contains $A$, and is therefore not
@@ -399,12 +399,12 @@ on this sequence and its properties \cite{ALSHA99}.
 \end{lemma}
 \begin{proof}
     Let $L$ be the set of finite \kl{infixes} of $w$.
-    Consider a sequence $\seqof{u_i}$ of words in $L$. Without loss of
+    Consider a sequence $\seqof{u_i}[i \in \Nat]$ of words in $L$. Without loss of
     generality, we may consider a subsequence such that $\card{u_i} <
     \card{u_{i+1}}$ for all $i \in \Nat$. Because $\ThueMorse$ is \kl{uniformly
     recurrent}, there exists $k \geq 1$ such that $u_1$ is an \kl{infix} of
     every word $v$ of size at least $k$. In particular, $u_1$ is an \kl{infix}
-    of $u_k$, hence the sequence $\seqof{u_i}$ is \kl(sequence){good}.
+    of $u_k$, hence the sequence $\seqof{u_i}[i \in \Nat]$ is \kl(sequence){good}.
 \end{proof}
 
 
@@ -502,7 +502,7 @@ end, let us introduce the notation $\intro*\infset{w}$ for the set of finite
     is similar, but leads to a finite word.
 
     Because the alphabet $\Sigma$ is finite, we can enumerate the words of $L$
-    as $\seqof{w_i}$. Now, let us build the sequence $\seqof{u_i}$ by induction
+    as $\seqof{w_i}[i \in \Nat]$. Now, let us build the sequence $\seqof{u_i}[i \in \Nat]$ by induction
     as follows: $u_0 = w_0$, and $u_{i+1}$ is a word that contains $u_i$ and
     $w_i$, which exists in $L$ because $L$ is \kl(subset){directed}. Since $L$ is
     \kl{well-quasi-ordered}, one can extract an infinite set of indices $I
@@ -531,15 +531,15 @@ N_0}$ is \kl{uniformly recurrent}.
 \begin{proof}
 
     Assume that $w$ is \kl{ultimately uniformly recurrent}. Consider a sequence
-    of words $\seqof{w_i}$ that are finite \kl{infixes} of $w$. Because $w$ is
+    of words $\seqof{w_i}[i \in \Nat]$ that are finite \kl{infixes} of $w$. Because $w$ is
     \kl{ultimately uniformly recurrent}, there exists a bound $N_0$ such that
     $w_{\geq N_0}$ is \kl{uniformly recurrent}. Let $i < N_0$, we claim that,
     without loss of generality, only finitely many words in the sequence
-    $\seqof{w_i}$ can be found starting at the position $i$ in $w$. Indeed, if
+    $\seqof{w_i}[i \in \Nat]$ can be found starting at the position $i$ in $w$. Indeed, if
     it is not the case, then we have an infinite subsequence of words that are
     all comparable for the \kl{infix relation}, and therefore a \kl{good
     sequence}, because the \kl{infix relation} is \kl{well-founded}. We can
-    therefore assume that all words in the sequence $\seqof{w_i}$ are such that
+    therefore assume that all words in the sequence $\seqof{w_i}[i \in \Nat]$ are such that
     they start at a position $i \geq N_0$. But then, they are all finite
     \kl{infixes} of $w_{\geq N_0}$, which is a \kl{uniformly recurrent} word,
     whose set of finite \kl{infixes} is \kl{well-quasi-ordered}

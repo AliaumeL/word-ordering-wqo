@@ -15,6 +15,9 @@ abstract: |
   is possible for the prefix and suffix orderings,
   and that under extra regularity assumptions, this also
   extends to the infix ordering.
+  We furthermore provide decision procedures for a large
+  class of languages, that contains
+  regular and context-free languages.
 author:
   - name: "Nathan Lhote"
     affiliation: "Aix-Marseille University"
@@ -25,6 +28,9 @@ author:
     arxiv: alopez_3
     github: AliaumeL
     email: ad.lopez@uw.edu.pl
+    funding: |
+      Aliaume Lopez was supported by the Polish National Science Centre (NCN) grant “Polynomial
+      finite state computation” (2022/46/A/ST6/00072).
   - name: "Lia Schütze"
     affiliation: "MPI-SWS, Germany"
     email: lschuetze@mpi-sws.org
