@@ -20,11 +20,20 @@ abstract: |
   regular and context-free languages.
 author:
   - name: "Nathan Lhote"
-    affiliation: "Aix-Marseille University"
+    initials: "N. Lhote"
+    orcid: "0000-0003-3303-5368"
+    affiliation: 
+      - name: "Aix-Marseille University"
+        country: "France"
+        city: "Marseille"
     email: nathan.lhote@lis-lab.fr
   - name: "Aliaume Lopez"
+    initials: "A. Lopez"
     orcid: "0000-0002-4205-327X"
-    affiliation: "University of Warsaw"
+    affiliation: 
+      - name: "University of Warsaw"
+        country: "Poland"
+        city: "Warsaw"
     arxiv: alopez_3
     github: AliaumeL
     email: ad.lopez@uw.edu.pl
@@ -32,5 +41,22 @@ author:
       Aliaume Lopez was supported by the Polish National Science Centre (NCN) grant “Polynomial
       finite state computation” (2022/46/A/ST6/00072).
   - name: "Lia Schütze"
-    affiliation: "MPI-SWS, Germany"
+    initials: "L. Schütze"
+    orcid: "0000-0003-4002-5491"
+    affiliation: 
+      - name: "Max Planck Institute for Software Systems"
+        country: "Germany"
+        city: "Kaiserslautern"
     email: lschuetze@mpi-sws.org
+classification:
+  ccdesc:
+    - Mathematics of computing~Algebra~Polynomials
+    - Theory of computation~Logic and verification~Model checking
+keywords:
+  - equivariant ideal
+  - Hilbert basis
+  - ideal membership problem
+  - orbit finite
+  - oligomorphic
+  - well-quasi-ordering
+

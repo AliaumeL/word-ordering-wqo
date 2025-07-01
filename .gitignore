@@ -1,4 +1,8 @@
 ## Core latex/pdflatex auxiliary files:
+.DS_Store
+*.html
+*.vtc
+*.tar.gz
 *.aux
 *.lof
 *.log
@@ -310,3 +314,6 @@ wqo-on-words.pdf
 *.arxiv.tar.gz
 *.arxiv.zip
 fig/*.pdf
+*.lipics.tex
+*.flat.tex
+*.lipics.pdf

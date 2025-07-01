@@ -28,6 +28,36 @@ version of the paper by running the following command:[^arxiv]
 make arxiv.tar.gz
 ```
 
+In order to create the `lipics` version of the paper, you can run the following
+command. This requires you to have the [gnu stow] package installed on your
+machine (for `setup-lipics` to work), or to manually copy the files
+in `templates/lipics` to the root of the directory.
+
+```bash
+make setup-lipics
+make wqo-on-words.lipics.pdf
+```
+
+This will generate the file `wqo-on-words.lipics.pdf` in the current directory.
+To create a self-contained archive ready to upload on the Dagstuhl
+servers, you can run:
+
+```bash
+make wqo-on-words.lipics.tar.gz
+```
+
+To clean the generated files, you can run:
+
+```bash
+make clean
+```
+
+And to unlink the `lipics` files, you can run:
+
+```bash
+make delete-lipics
+```
+
 [^arxiv]: This uses the [tar] command, which should be available on most Unix-like systems.
 
 ## How to contribute
