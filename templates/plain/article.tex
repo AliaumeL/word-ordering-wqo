@@ -27,7 +27,14 @@
 $if(draft)$
 \usepackage{todonotes}
 \usepackage{lineno}
+\linenumbers
+$else$
+$if(review)$
+\usepackage{lineno}
+\linenumbers
 $endif$
+$endif$
+
 
 
 % math packages

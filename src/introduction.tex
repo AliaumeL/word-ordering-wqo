@@ -239,6 +239,13 @@ closure} is a \kl{regular language}. This is a weak version of the usual result
 that the \kl{downwards closure} for the \kl{scattered subword relation} is
 always a \kl{regular language}.
 
+
+\todo[inline]{
+  Add a figure to recap our complexity results: 
+  bounded / downwards closed / amalgamative / morphic | width.
+  And only talk about WQO classes, collapse everything and say regular.
+}
+
 \subparagraph{Related work} The study of alternative \kl{well-quasi-ordered}
 relations over finite words is far from new. For instance, orders obtained by
 so-called \emph{derivation relations} where already analysed by Bucher,
@@ -247,6 +254,32 @@ D'Alessandro and Varricchio \cite{ALVA03,ALVA06}. However, in all those cases
 the orderings are \emph{multiplicative}, that is, if $u_1 \preceq v_1$ and $u_2
 \preceq v_2$ then $u_1u_2 \preceq v_1v_2$. This assumption does not hold for
 the \kl{prefix}, \kl{suffix}, and \kl{infix} relations.
+
+A similar question was studied by Atminas, Lozin, and Moshkov \cite{ALM17}, in
+the hope of finding characterizations of classes of \emph{finite graphs} that
+are \kl{well-quasi-ordered} by the \emph{induced subgraph relation}
+\cite[Section 7]{ALM17}. In this setting, it is common to refer to classes of
+graphs via a list of \emph{forbidden patterns}, which are finite graphs that
+cannot be found as induced subgraphs in the class. Applying this reasoning to
+finite words with the \kl{infix relation}, they provide an efficient decision
+procedure for checking whether a language $L \subseteq \Sigma^*$ is
+\kl{well-quasi-ordered} by the \kl{infix relation} whenever said language is
+given as input via a list of \emph{forbidden factors} \cite[Theorem 1, Theorem
+2]{ALM17}. The key construction of their paper is to study languages $L$ that
+are \emph{regular} (recognized by some finite deterministic automata), for
+which they can decide whether $L$ is \kl{well-quasi-ordered} by the \kl{infix
+relation} \cite[Theorem 1]{ALM17}. Because it is easy to transform a list of
+forbidden factors into a regular language \cite[Theorem 1]{ALM17}, this yields
+the desired decision procedure. Our work extends this result in several ways:
+first, we also consider the \kl{prefix relation} and the \kl{suffix relation},
+then we consider non-regular languages, and finally, we provide very precise
+descriptions of the \kl{well-quasi-ordered} languages, as well as tight bounds
+on their \kl{ordinal invariants}. In particular, we highlight the role of
+\kl{bounded languages} as the one that are well-behaved with respect to being
+\kl{well-quasi-ordering} by the \kl{infix relation} \cref{infixes-bounded:sec}.
+These non-trivial extensions continue to rely
+on classical word combinatorial techniques that are already present in the work
+of Atminas, Lozin, and Moshkov \cite[Section 3]{ALM17}.
 
 \subparagraph{Outline} 
 We introduce in \cref{prelims:sec} the

@@ -1,5 +1,7 @@
 title: "Well-quasi-orderings on word languages"
 license: "CC-BY-SA 4.0"
+repository:
+  url: https://github.com/AliaumeL/word-ordering-wqo
 abstract: |
   The set of finite words over a well-quasi-ordered set
   is itself well-quasi-ordered. This seminal result by

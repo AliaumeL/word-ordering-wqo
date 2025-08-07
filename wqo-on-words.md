@@ -2,7 +2,7 @@
 bibliography: papers.bib
 draft: true
 final: false
-anonymous: true 
+anonymous: false
 review: true
 arxiv: false
 libraries:

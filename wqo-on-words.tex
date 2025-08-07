@@ -26,6 +26,8 @@
 
 \usepackage{todonotes}
 \usepackage{lineno}
+\linenumbers
+
 
 
 % math packages
@@ -130,9 +132,9 @@ Lia Schütze\thanks{Max Planck Institute for Software Systems}
 
 % For the date, we first check if the user has provided a date,
 % and otherwise use the git meta inforamtion (if available).
-\date{2025-03-24 10:59:54 +0100\footnote{d841cd8fe0485d728a5a88fb2510a7f955236843 -- branch main at git@github.com:AliaumeL/word-ordering-wqo.git}}
+\date{2025-07-01 13:26:43 +0200\footnote{99064007a226e55157ecfac20bbb40804687f3e2 -- branch main at git@github.com:AliaumeL/word-ordering-wqo.git}}
 
-\newcommand{\repositoryUrl}{\url{}}
+\newcommand{\repositoryUrl}{\url{https://github.com/AliaumeL/word-ordering-wqo}}
 
 \knowledge{notion}
  | kl-usage
@@ -154,7 +156,12 @@ Lia Schütze\thanks{Max Planck Institute for Software Systems}
 
 
 % Include the content of the paper
-\% main content \input{src/introduction} \input{src/prelims.tex} \input{src/prefixes} \input{src/infixes} \input{src/amalgam} \input{src/conclusion}
+\input{src/introduction}
+\input{src/prelims.tex}
+\input{src/prefixes}
+\input{src/infixes}
+\input{src/amalgam}
+\input{src/conclusion}
 
 % Include the bibliography
 \bibliographystyle{plainurl}
