@@ -67,21 +67,20 @@ and $P$ is a \kl{chain} for the \kl{prefix relation}, then $SP$ is
 \kl{well-quasi-ordered} for the \kl{infix relation}. This proves the (easy)
 right-to-left implication of \cref{bounded-language:thm}. Furthermore, any
 language $L$ included in a finite union of products $S_i \cdot P_i$
-is in fact a \kl{bounded language} \todo[inline]{I think we can in fact construct chains that are not bounded languages. E.g. $ab, aba^2b, aba^2ba^3b, \ldots$?}.
+is in fact a \kl{bounded language}. \todo[inline]{I think we can in fact construct chains that are not bounded languages. E.g. $ab, aba^2b, aba^2ba^3b, \ldots$?}
 
 \AP In order to prove the (difficult) left-to-right implication of
 \cref{bounded-language:thm}, we will rely heavily on the
 combinatorics of periodic words. Let us recall that a non-empty word $w \in
 \Sigma^+$ is \intro(word){periodic} with period $x \in \Sigma^*$ if there
 exists a $p \in \Nat$ such that $w \infleq x^p$. The \intro{periodic length} of
-a word $u$ is the minimal length of a word $x$ such that $u$ is an \kl{infix}
-of $x^p$ for some $p \in \Nat$ and $x \in \Sigma^+$.
+a word $u$ is the minimal length of a period $x$ of $u$.
 
 \begin{lemma}
     \label{periodic-infixes:lem}
     Let $u,v \in \Sigma^*$ be two (non-empty) \kl{periodic words}
     having \kl{periodic lengths} $p$ and $q$ respectively.
-    Then, if $u \infleq v$ and $\card{u} \geq \factorial[p]{p \times q}$,
+    Then, if $u \infleq v$ and $\card{u} \geq pq$,
     then $u$ and $v$ share the same \kl{periodic length}
     $p = q$.
 \end{lemma}
@@ -94,11 +93,20 @@ of $x^p$ for some $p \in \Nat$ and $x \in \Sigma^+$.
     Now, assume that $u$ is an \kl{infix} of $v$, this provides the existence
     of a $k \in \Nat$ such that $u = v_{k} \cdots v_{k + \card{u} - 1}$. In
     particular, $v_{k+i+p} = v_{k+i}$ for all $i \in \Nat$ such that $k+i+p < k
-    + \card{u}$. Since we also have $v_{k+i+q} = v_{k+i}$ for all $1 \leq i
-    \leq \card{v} - k - q$. We conclude that both $u$ and $v$ are of
+    + \card{u}$. Due to the periodicity of $v$, we also have $v_{k+i+q} = v_{k+i}$ for all $i$ with $k + i + q \leq k + \card{u}$. We conclude that both $u$ and $v$ are of
     \kl{periodic length} the greatest common divisor of $p$ and $q$, and by
     minimality of $q$ this must be equal to $q$ and to $p$.
+    \todo{maybe elaborate on why $pq$ as bound on $\card{u}$ (also technically $2\max\{p,q\}$ would be enough, but maybe more cumbersome?}
 \end{proof}
+
+\begin{figure}
+	\begin{center}
+		\input{fig/periodic-infixed.tex}
+	\end{center}
+	\caption{Alignment of two periodic words with periods of length $6$ and $4$, respectively. We can conclude that the periodic length is at most $2$.}
+	\label{fig:periodic-infixes}
+\end{figure}
+
 
 \begin{corollary}
     \label{powers-infixes:cor}
