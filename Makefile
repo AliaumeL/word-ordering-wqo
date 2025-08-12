@@ -17,7 +17,8 @@ FIGURES=fig/subword-embedding-standalone.tex \
 
 TEMPLATES=templates/plain/article.tex \
 	  templates/filters/git-meta.lua    \
-	  templates/lipics/lipics.tex 
+	  templates/lipics/lipics.tex       \
+		templates/lncs/lncs.tex \
 
 
 # Default target: create the pdf file
@@ -79,6 +80,15 @@ $(PAPER).lipics.tex: $(SRC) $(TEMPLATES) ./paper-meta.yaml
 		     -o $(PAPER).lipics.tex \
 		     $(PAPER).md
 
+# Create an lncs document for submission
+$(PAPER).lncs.tex: $(SRC) $(TEMPLATES) ./paper-meta.yaml
+	pandoc --template=templates/lncs/lncs.tex \
+		     --lua-filter=templates/filters/git-meta.lua \
+		     --metadata-file=./paper-meta.yaml   \
+		     --wrap=none \
+		     -o $(PAPER).lncs.tex \
+		     $(PAPER).md
+
 # Create `plain` document for arxiv and drafts.
 $(PAPER).tex: $(PAPER).md ./paper-meta.yaml $(TEMPLATES)
 	pandoc --template=templates/plain/article.tex \
@@ -119,6 +129,32 @@ $(PAPER).arxiv.pdf: $(PAPER).arxiv.tar.gz
 	# delete the temporary directory
 	@rm -rf /tmp/$(PAPER).arxiv/
 
+### LNCS EXPORT ###
+setup-lncs:
+	stow --dir templates --target . lncs
+
+delete-lncs:
+	stow --delete --dir templates --target . lncs
+
+$(PAPER).lncs.tar.gz: $(PAPER).lncs.pdf
+	latexpand -o $(PAPER).lncs.flat.tex  \
+		        --empty-comments             \
+						$(PAPER).lncs.tex
+
+	@rm -rf lncs-arxiv
+	@mkdir  lncs-arxiv
+	@cp $(PAPER).lncs.flat.tex            lncs-arxiv/main.tex
+	@cp ensps-colorscheme.sty             lncs-arxiv/
+	@cp templates/lncs/splncs04.bst       lncs-arxiv/
+	@cp templates/lncs/lncs.cls           lncs-arxiv/
+	@cp papers.bib                        lncs-arxiv/
+	@cp knowledges.kl                     lncs-arxiv/
+	@cp -r lib                            lncs-arxiv/lib
+	@cp -r fig                            lncs-arxiv/fig
+	@cp LICENSE                           lncs-arxiv/
+
+	tar -czf $(PAPER).lncs.tar.gz \
+					 lncs-arxiv
 
 ### LIPICS EXPORT ###
 setup-lipics:
