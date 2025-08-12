@@ -10,8 +10,6 @@
 %   edit the `templates/lncs/lncs.tex` file instead.
 \documentclass[runningheads]{llncs}
 
-% create a new LNCS environment for assumptions
-\newtheorem{assumption}[theorem]{Assumption}{\bfseries}{\itshape}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -36,7 +34,7 @@ $endif$
 
 
 % math packages
-\usepackage{amssymb,amsmath,stmaryrd,thmtools,upgreek}
+\usepackage{amssymb,amsmath,stmaryrd,thmtools,thm-restate,upgreek}
 
 
 % graphics packages
@@ -52,6 +50,8 @@ $endif$
 \usetikzlibrary{arrows}
 \tikzset{every state/.style={minimum size=1pt}}
 \usepackage{tikz-cd}
+
+\usepackage{subcaption}
 
 
 % links inside the document
@@ -124,11 +124,16 @@ $if(anonymous)$
 $else$
 \author{
     $for(author)$
-    $author.name$\inst{1}$if(author.orcid)$\orcidID{$author.orcid$}$endif$$sep$ \and
+    $author.name$\inst{$author.inst-num$}$if(author.orcid)$\orcidID{$author.orcid$}$endif$$sep$ \and
     $endfor$
 }
 \authorrunning{$for(author)$$author.initials$$sep$ and $endfor$}
-\institute{University of Warsaw}
+\institute{
+$for(institutions)$
+$it.name$
+$sep$ \and
+$endfor$
+}
 $endif$
 
 \date{\today}

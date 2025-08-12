@@ -18,7 +18,7 @@ FIGURES=fig/subword-embedding-standalone.tex \
 TEMPLATES=templates/plain/article.tex \
 	  templates/filters/git-meta.lua    \
 	  templates/lipics/lipics.tex       \
-		templates/lncs/lncs.tex \
+		templates/lncs/lncs.tex 
 
 
 # Default target: create the pdf file
@@ -84,6 +84,7 @@ $(PAPER).lipics.tex: $(SRC) $(TEMPLATES) ./paper-meta.yaml
 $(PAPER).lncs.tex: $(SRC) $(TEMPLATES) ./paper-meta.yaml
 	pandoc --template=templates/lncs/lncs.tex \
 		     --lua-filter=templates/filters/git-meta.lua \
+		     --lua-filter=templates/filters/institutions.lua \
 		     --metadata-file=./paper-meta.yaml   \
 		     --wrap=none \
 		     -o $(PAPER).lncs.tex \
@@ -193,5 +194,7 @@ tests:
 		   --cov-report=html
 
 clean: 
-	latexmk -C
+	latexmk -C 
 	rm -f $(PAPER).arxiv.tex $(PAPER).arxiv.tar.gz $(PAPER).arxiv.pdf
+	rm -f $(PAPER).lncs.tex $(PAPER).lncs.tar.gz $(PAPER).lncs.pdf
+	rm -f $(PAPER).lipics.tex $(PAPER).lipics.tar.gz $(PAPER).lipics.pdf
