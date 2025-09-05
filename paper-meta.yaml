@@ -14,13 +14,11 @@ abstract: |
   on words can be used to derive Higman-like theorems. 
   More specifically, we are interested in characterizing
   *languages* of words that are well-quasi-ordered under
-  these orderings. We show that a simple characterization
-  is possible for the prefix and suffix orderings,
-  and that under extra regularity assumptions, this also
-  extends to the infix ordering.
-  We furthermore provide decision procedures for a large
-  class of languages, that contains
-  regular and context-free languages.
+  these orderings, and explore their properties and connections
+  with other language theoretic notions. We furthermore give decition
+  procedures when the languages are given by various comupational
+  models such as automata, context-free grammars, and
+  automatic structures.
 author:
   - name: "Nathan Lhote"
     initials: "N. Lhote"
