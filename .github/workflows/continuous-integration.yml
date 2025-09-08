@@ -29,6 +29,6 @@ jobs:
         with:
           name: pdfs
           path: |
-            wqo-on-words.tex
-            wqo-on-words.lncs.tex
-            wqo-on-words.lipics.tex
+            wqo-on-words.pdf
+            wqo-on-words.lncs.pdf
+            wqo-on-words.lipics.pdf
