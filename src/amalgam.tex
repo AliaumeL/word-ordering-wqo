@@ -1,34 +1,19 @@
 \section{Infixes and Amalgamation Systems}
 \label{infixes-amalgamation:sec}
 
-\todo[inline]{%
-  We have studied infinite words, but there are other ways to represent
-  languages, such as finite automata, context-free grammars, or vector
-  addition systems with states. In this section, we show that even for
-  a generalisation of these systems, we can decide whether the language is
-  well-quasi-ordered by the infix relation, and that in turns,
-  they all fit in the bounded languages studied in the previous section.
-}
-
-\AP In this section, we are going to design an effective decision procedure for
-\kl{well-quasi-ordering} by the \kl{infix relation}. To that end, the first
-requirement is to fix a way to represent languages $L \subseteq \Sigma^*$.
-Traditionally, one would use finite automata, context-free grammars, or for the
-more adventurous, vector addition systems with states. However, our proof
-technique will only require us to have a way to ``glue'' together runs of the
-system to ``pump'' them and produce new runs: this is the usual pumping lemma
-in automata theory, and Ogden's lemma for context-free grammars \cite{OGDEN68}.
-It turns out that there is a rather large family of systems for which pumping
-arguments based on so-called \emph{minimal runs} exist: they are called
-\emph{amalgamation systems} and were recently introduced by Anand, Schmitz,
-Schütze, and Zetzsche \cite{ASZZ24}.
+\AP In the previous section, we have represented languages that are
+\kl{downwards closed} by the \kl{infix relation} as \kl{infixes} of infinite
+words. However, there are many other natural ways to represent languages, such
+as finite automata or context-free grammars. In this section, we are going to
+show that our results on \kl{bounded languages} can be applied to a large class
+of systems, called \kl{amalgamation systems}, that includes as particular
+examples finite automata and context-free grammars. 
 
 \AP Our first result, of theoretical nature, is that \kl{amalgamation systems}
 cannot define \kl{well-quasi-ordered} languages that are not
 \kl(language){bounded}. This implies that all the results of
-\cref{infixes-bounded:sec}, and in
-particular \cref{bounded-language:thm}, can safely be applied to
-\kl{amalgamation systems}.
+\cref{infixes-bounded:sec}, and in particular \cref{bounded-language:thm}, can
+safely be applied to \kl{amalgamation systems}.
 
 \begin{theorem}
     \label{infix-amalgamation:thm}

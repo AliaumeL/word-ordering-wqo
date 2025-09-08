@@ -338,19 +338,28 @@ the core result that powers the analysis done in the upcoming
   that are \kl{bounded languages} of $\set{a,b}^*$,
   \kl{well-quasi-ordered} by the \kl{infix relation},
   and have \kl{ordinal width}, \kl{ordinal height} and
-  \kl{maximal order type} respectively equal to $\omega \cdot k$, $\omega$ and $\omega^2 \cdot k$.
+  \kl{maximal order type} respectively equal to $k \cdot \omega$, $\omega$ and $k \cdot \omega^2$.
 \end{proof}
 
 \section{Infixes and Downwards Closed Languages}
 \label{infixes-dwclosed:sec}
 
+Let us now discuss another classical restriction that can be imposed on 
+languages when studying \kl{well-quasi-orders}, that of being
+\kl{downwards closed}. Indeed, the \cref{infix-embedding:thm}
+crucially relies on constructing languages that are \emph{not}
+\kl{downwards closed}, and we have shown 
+in \cref{dw-closure-not-wqo:rem} that the \kl{downwards closure}
+of a \kl{well-quasi-ordered} language is not necessarily
+\kl{well-quasi-ordered}.
 
-\subsection{Downwards Closures and Bounded Languages}
+\subsection{Characterization of Well-Quasi-Ordered Downwards Closed Languages}
 
-Let us now discuss the implications of this characterization in terms of
-\kl{downwards closures}: if $L$ is a \kl{bounded language}, then considering
-$L$ or its \kl{downwards closure} is equivalent with respect to being
-\kl{well-quasi-ordered} by the \kl{infix relation}.
+An immediate consequence of \cref{bounded-language:thm} is that   if $L$ is a
+\kl{bounded language}, then considering $L$ or its \kl{downwards closure}
+$\dwset[\infleq]{L}$ is equivalent with respect to being
+\kl{well-quasi-ordered} by the \kl{infix relation}, as opposed to
+the general case illustrated in \cref{dw-closure-not-wqo:rem}.
 
 \begin{corollary}
     \label{bounded-wqo-dwclosed:cor}
@@ -377,21 +386,6 @@ $L$ or its \kl{downwards closure} is equivalent with respect to being
     via
     \cref{bounded-language:thm}.
 \end{proof}
-
-\begin{theorem}
-  \label{bounded-wqo-dw-closed-regular:thm}
-  Let $L$ be a \kl{downwards closed} and \kl{well-quasi-ordered} language
-  of $\Sigma^*$ for the \kl{infix relation}. The following are equivalent:
-  \begin{enumerate}
-    \item $L$ is a \kl{bounded language},
-    \item $L$ is a \kl{regular language},
-    \item There exists a finite set $E \subset_{\mathsf{fin}} (\Sigma^*)^3$ such that
-      $L = \bigcup_{(x,u,y) \in E} \InfPeriodChain{x} u \InfPeriodChain{y}$.
-  \end{enumerate}
-\end{theorem}
-
-\subsection{General Downwards Closed Languages}
-
 
 One may think that all \kl{downwards closed} languages for the \kl{infix
 relation} that are \kl{well-quasi-ordered} are \kl(language){bounded}. Note
@@ -420,11 +414,11 @@ for every word $u$ that is an \kl{infix} of $\ThueMorse$, there exists $k \geq
 refer the reader to a nice survey of Allouche and Shallit for more information
 on this sequence and its properties \cite{ALSHA99}.
 
-\begin{lemma}
+\begin{theorem}
     \label{uniformly-recurrent:lem}
     Let $w \in \Sigma^\Nat$ be a \kl{uniformly recurrent} word.
     Then, the set of finite \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
-\end{lemma}
+\end{theorem}
 \begin{proof}
     Let $L$ be the set of finite \kl{infixes} of $w$.
     Consider a sequence $\seqof{u_i}[i \in \Nat]$ of words in $L$. Without loss of
@@ -735,15 +729,37 @@ We are now ready to conclude the proof of \cref{small-ordinal-invariants:thm}.
     \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to conclude.
 \end{proofof}
 
-\todo[inline]{aliaume: write it}
-Let us conclude this section with a few remarks on the notion of
-\kl{factor complexity} of languages. 
+\AP
+Let us conclude this section with a few remarks on the notion of \kl{factor
+complexity} of languages. Recall that the \intro{factor complexity} of a
+language $L \subseteq \Sigma^*$ is the function $f_L: \Nat \to \Nat$ such that
+$f_L(n)$ is the number of distinct words of size $n$ in $L$. A language $L$ has
+\intro{exponential factor complexity} if there exists a constant $C > 1$ such
+that $f_L(n) \geq C^n$ for infinitely many $n \in \Nat$.
 
 \begin{lemma}
-  There exists a language $L$ with exponential factor complexity 
+  \label{exponential-factor-complexity:lem}
+  There exists a language $L$ with \kl{exponential factor complexity}
   that is \kl{well-quasi-ordered} for the \kl{infix relation}.
 \end{lemma}
+\begin{proof}
+  We leverage results from \cite{CAKA97} on Toeplitz words.
+  Namely, the 
+  $(5, 3)$-Toeplitz word is \kl{uniformly recurrent} 
+  \cite[p. 499]{CAKA97},
+  but has an exponential factor complexity 
+  \cite[Theorem 5]{CAKA97}.
+\end{proof}
 
+It is the case that \kl{bounded languages} have at most a polynomial factor
+complexity, and that the \kl{Thue-Morse sequence} has a linear factor
+complexity. More generally, as we will see, most ``concrete'' examples of
+infinite words have a low factor complexity: \kl{automatic sequences} have at
+most a linear factor complexity, and \kl(morphic){morphic sequences} have at
+most a polynomial factor complexity. In that sense, the
+\cref{exponential-factor-complexity:lem} shows that one can still construct
+``pathological'' examples of infinite words that are \kl{well-quasi-ordered}
+for the \kl{infix relation}, but have a high factor complexity.
 
 \subsection{Decision Procedures}
 
@@ -786,25 +802,21 @@ number $i$ in base $b$. The \kl{Thue-Morse sequence} is an example of an
     is decidable.
 \end{proof}
 
-Note that being \kl{uniformly recurrent} still leaves open a lot of potential
-behaviours, for instance, Sturmian words are \kl{uniformly recurrent}, but are
-not \kl(sequence){automatic}. Interestingly enough, the \kl{ordinal invariants}
-of the \kl{automatic sequences} are not smaller than the ones of \kl{ultimately
-uniformly recurrent} words: this contrasts with the case of languages that are
-\kl{well-quasi-ordered} for the \kl{infix relation} in general, where the
-hypothesis of being representable (by a \kl{regular language}, or an
-\kl{amalgamation system}) will drastically reduce the \kl{ordinal invariants}
-of said language (\cref{ordinal-invariants-bounded:cor}, \cref{infix-amalgamation:thm}).
+One can go beyond \cref{automatic-wqo:thm} and consider
+\kl(morphic){morphic sequences}, which are obtained by iterating a
+\kl(substitution){substitution} on a finite alphabet, and then applying a
+\kl(homomorphism){homomorphism}. The \kl{Fibonacci sequence} is an example of
+a \kl(morphic){morphic sequence}. It is known that one can decide whether a
+\kl(morphic){morphic sequence} is \kl{uniformly recurrent}
+\cite[Theorem 1]{DURAND13}.
 
-
-\todo[inline]{For Nathan: 
-  talk about morphic words / sequences and 
-  decidability here.
-  \url{https://arxiv.org/pdf/1204.5393}
-}
-
-\todo[inline]{Talk about factor complexity and 
-well-quasi-orderings: the two are unrelated. This can be a remark.
-\url{https://arxiv.org/pdf/2206.00376}
-Here example 5 p8 is an explicit example of a uniformly recurrent word with exponential factor complexity.
-}
+\todo[inline]{Define properly morphic words and 
+  the questions associated to them. Also, there is a difference between
+  \kl{ultimately uniformly recurrent} and \kl{uniformly recurrent}
+  that is not handled here.}
+\begin{theorem}
+    \label{morphic-wqo:thm}
+    Given a \kl(morphic){morphic sequence} $w \in \Sigma^{\Nat}$, one can decide
+    whether the set of \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the
+    \kl{infix relation}.
+\end{theorem}
