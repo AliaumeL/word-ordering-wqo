@@ -14,7 +14,7 @@ jobs:
       - name: Install gnu stow
         run: sudo apt-get install stow
       - name: Setup compilation environment
-        run:
+        run: |
           make setup-lipics
           make setup-lncs
       - name: Compile Latex Document
