@@ -188,5 +188,15 @@ leveraged in bounding the complexity of algorithms working on such languages.
     \kl{well-quasi-ordered} by the \kl{prefix relation}. Then,
     \kl{maximal order type} of $L$ strictly smaller than $\omega^2$,
     the \kl{ordinal height} of $L$ is at most $\omega$, and
-    its \kl{ordinal width} is finite.
+    its \kl{ordinal width} is finite. Furthermore, these bounds 
+    are tight.
 \end{corollary}
+\begin{proof}
+    The upper bounds follow from the fact that $L$ is a finite union of
+    \kl{chains}. The tightness can be obtained by considering the languages
+    $L_k \defined \bigcup_{i=0}^{k-1} a^i b^*$ for $k \in \Nat$, which 
+    are \kl{well-quasi-ordered} by the \kl{prefix relation} (as they are
+    finite unions of \kl{chains}), and satisfy
+    that $\oWidth{L_k} = k$, $\oHeight{L_k} = \omega$,
+    and therefore $\oType{L_k} = \omega \cdot k$.
+\end{proof}
