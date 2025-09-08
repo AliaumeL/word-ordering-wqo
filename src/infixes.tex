@@ -321,6 +321,32 @@ the core result that powers the analysis done in the upcoming
 \end{proofof}
 
 
+\begin{corollary}
+    \label{ordinal-invariants-bounded:cor}
+    Let $L$ be a \kl{bounded language} of $\Sigma^*$
+    that is \kl{well-quasi-ordered} by the \kl{infix relation}.
+    Then, the \kl{ordinal width} of $L$ less than $\omega^2$,
+    its \kl{ordinal height} is at most $\omega$,
+    and its \kl{maximal order type} less than $\omega^3$.
+    Furthermore, those three bounds are tight.
+\end{corollary}
+\begin{proof}
+  Upper bounds are a direct consequence of \cref{bounded-language:thm},
+  and the tightness is witnessed by the 
+  languages: 
+  $L_k \defined \bigcup_{i = 2}^{k+1} (a b^i a)^* (b a^i b)^*$,
+  that are \kl{bounded languages} of $\set{a,b}^*$,
+  \kl{well-quasi-ordered} by the \kl{infix relation},
+  and have \kl{ordinal width}, \kl{ordinal height} and
+  \kl{maximal order type} respectively equal to $\omega \cdot k$, $\omega$ and $\omega^2 \cdot k$.
+\end{proof}
+
+\section{Infixes and Downwards Closed Languages}
+\label{infixes-dwclosed:sec}
+
+
+\subsection{Downwards Closures and Bounded Languages}
+
 Let us now discuss the implications of this characterization in terms of
 \kl{downwards closures}: if $L$ is a \kl{bounded language}, then considering
 $L$ or its \kl{downwards closure} is equivalent with respect to being
@@ -352,17 +378,20 @@ $L$ or its \kl{downwards closure} is equivalent with respect to being
     \cref{bounded-language:thm}.
 \end{proof}
 
-\begin{corollary}
-    \label{ordinal-invariants-bounded:cor}
-    Let $L$ be a \kl{bounded language} of $\Sigma^*$
-    that is \kl{well-quasi-ordered} by the \kl{infix relation}.
-    Then, the \kl{ordinal width} of $L$ is finite,
-    its \kl{ordinal height} is at most $\omega$,
-    and its \kl{maximal order type} is at most $\omega$.
-\end{corollary}
+\begin{theorem}
+  \label{bounded-wqo-dw-closed-regular:thm}
+  Let $L$ be a \kl{downwards closed} and \kl{well-quasi-ordered} language
+  of $\Sigma^*$ for the \kl{infix relation}. The following are equivalent:
+  \begin{enumerate}
+    \item $L$ is a \kl{bounded language},
+    \item $L$ is a \kl{regular language},
+    \item There exists a finite set $E \subset_{\mathsf{fin}} (\Sigma^*)^3$ such that
+      $L = \bigcup_{(x,u,y) \in E} \InfPeriodChain{x} u \InfPeriodChain{y}$.
+  \end{enumerate}
+\end{theorem}
 
-\section{Infixes and Downwards Closed Languages}
-\label{infixes-dwclosed:sec}
+\subsection{General Downwards Closed Languages}
+
 
 One may think that all \kl{downwards closed} languages for the \kl{infix
 relation} that are \kl{well-quasi-ordered} are \kl(language){bounded}. Note
@@ -706,6 +735,17 @@ We are now ready to conclude the proof of \cref{small-ordinal-invariants:thm}.
     \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to conclude.
 \end{proofof}
 
+\todo[inline]{aliaume: write it}
+Let us conclude this section with a few remarks on the notion of
+\kl{factor complexity} of languages. 
+
+\begin{lemma}
+  There exists a language $L$ with exponential factor complexity 
+  that is \kl{well-quasi-ordered} for the \kl{infix relation}.
+\end{lemma}
+
+
+\subsection{Decision Procedures}
 
 \AP As we have demonstrated, infinite (or bi-infinite words) can be used to
 represent languages that are \kl{well-quasi-ordered} for the \kl{infix
