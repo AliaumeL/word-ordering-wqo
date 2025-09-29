@@ -1,0 +1,1 @@
+templates/lncs/splncs04.bst

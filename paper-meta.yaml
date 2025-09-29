@@ -32,9 +32,9 @@ author:
     initials: "A. Lopez"
     orcid: "0000-0002-4205-327X"
     affiliation: 
-      - name: "University of Warsaw"
-        country: "Poland"
-        city: "Warsaw"
+      - name: "INP Bordeaux, LaBRI, CNRS"
+        country: "France"
+        city: "Bordeaux"
     arxiv: alopez_3
     github: AliaumeL
     email: ad.lopez@uw.edu.pl
