@@ -65,9 +65,7 @@ $w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots w_n^*$.
 Let us first remark that if $S$ is a \kl{chain} for the \kl{suffix relation}
 and $P$ is a \kl{chain} for the \kl{prefix relation}, then $SP$ is
 \kl{well-quasi-ordered} for the \kl{infix relation}. This proves the (easy)
-right-to-left implication of \cref{bounded-language:thm}. Furthermore, any
-language $L$ included in a finite union of products $S_i \cdot P_i$ where $S_i$
-is in fact a \kl{bounded language}.
+right-to-left implication of \cref{bounded-language:thm}.
 
 \AP In order to prove the (difficult) left-to-right implication of
 \cref{bounded-language:thm}, we will rely heavily on the
@@ -497,6 +495,8 @@ recurrent} words.
     Then, the \kl{maximal order type} of $L$ is strictly less than $\omegaOrd^3$,
     its \kl{ordinal height} is at most $\omegaOrd$,
     and its \kl{ordinal width} is at most $\omegaOrd^2$.
+
+    Furthermore, those bounds are tight.
 \end{theorem}
 
 \AP A subset $I \subseteq X$ is \intro(subset){directed} if, for every $x,y \in
@@ -604,6 +604,7 @@ N_0}$ is \kl{uniformly recurrent}.
     Let $w \in \Sigma^\Nat$ be an \kl{ultimately uniformly recurrent} word.
     Then, the set of finite infixes of $w$ has \kl{ordinal width}
     less than $2 \cdot \omegaOrd$.
+    Furthermore, this bound is tight. 
 \end{lemma}
 \begin{proof}
     Let $N_0$ be a bound such that $w_{\geq N_0}$ is \kl{uniformly recurrent}.
@@ -627,23 +628,25 @@ N_0}$ is \kl{uniformly recurrent}.
     at the start of any sequence of
     incomparable elements in $\infset{w}$. We conclude that
     $\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
+
+  Let us now justify that this bound is tight.
+  The \kl{Thue-Morse sequence} over a binary
+  alphabet $\set{a,b}$ has \kl{ordinal width} $\omegaOrd$
+  from \cref{thue-morse-ordinal:lemma}.
+    Given a number $N_0
+  \in \Nat$, one can construct an arbitrarily long \kl{antichain} of words for
+  the \kl{infix relation} by using a new letter $c$. When concatenating this
+  (finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
+  new (infinite) word $w$. It is clear that the \kl{ordinal width} of
+  $\infset{w}$ is now at least $\omegaOrd + N_0$.
 \end{proof}
 
-Let us briefly discuss the tightness of the bound in
-\cref{small-ordinal-invariants:lem}. The \kl{Thue-Morse sequence} over a binary
-alphabet $\set{a,b}$ has \kl{ordinal width} $\omegaOrd$. Given a number $N_0
-\in \Nat$, one can construct an arbitrarily long \kl{antichain} of words for
-the \kl{infix relation} by using a new letter $c$. When concatenating this
-(finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
-new (infinite) word $w$. It is clear that the \kl{ordinal width} of
-$\infset{w}$ is now at least $\omegaOrd + N_0$. Hence, the bound $\oWidth{X} <
-2 \cdot \omegaOrd$ is tight.
 
-The behaviour of bi-infinite words is very similar to the infinite ones. Given
-a bi-infinite word $w \in \Sigma^{\Rel}$, we can consider $w_+ \in \Sigma^\Nat$
-and $w_- \in \Sigma^\Nat$ the two infinite words obtained as follows: for all
-$i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note that the two share
-the letter at position $0$.
+The behaviour of bi-infinite words is very similar to the behaviour of infinite
+ones. Given a bi-infinite word $w \in \Sigma^{\Rel}$, we can consider $w_+ \in
+\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
+follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
+that the two share the letter at position $0$.
 
 \begin{lemma}
     \label{from-bi-to-single:lem}
@@ -651,7 +654,8 @@ the letter at position $0$.
     infixes of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation} if
     and only if $w_+$ and $w_-$ are two \kl{ultimately uniformly recurrent}
     words. In this case, the \kl{ordinal width}
-    of the set of finite infixes of $w$ is less than $3 \cdot \omegaOrd$.
+    of the set of finite infixes of $w$ is less than $3 \cdot \omegaOrd$,
+    and this bound is tight.
 \end{lemma}
 \begin{proof}
     Assume that $w_+$ and $w_-$ are \kl{ultimately uniformly recurrent}. Let us
@@ -693,20 +697,19 @@ the letter at position $0$.
     on the choice of the first element of that sequence. This means that the
     \kl{ordinal width} of $\infset{w}$ is at most $\omegaOrd + \omegaOrd +
     N_0^2$. We conclude that $\oWidth{\infset{w}} < 3 \cdot \omegaOrd$.
-\end{proof}
 
-As for \cref{small-ordinal-invariants:lem}, let us briefly discuss
-that the bound in \cref{from-bi-to-single:lem} is tight. Indeed, one can
-construct a bi-infinite word $w$ by concatenating a reversed \kl{Thue-Morse
-sequence} on a binary alphabet $\set{a,b}$, a finite antichain of arbitrarily
-large size over a distinct alphabet $\set{c,d}$, and then a \kl{Thue-Morse
-sequence} on a binary alphabet $\set{e,f}$. The \kl{ordinal width} of the set
-of \kl{infixes} of $w$ is then at least $2 \cdot \omegaOrd + K$, where $K$ is the
-size of the chosen antichain.
+  Let us briefly argue that the bound is tight. Indeed, one can
+  construct a bi-infinite word $w$ by concatenating a reversed \kl{Thue-Morse
+  sequence} on a binary alphabet $\set{a,b}$, a finite antichain of arbitrarily
+  large size over a distinct alphabet $\set{c,d}$, and then a \kl{Thue-Morse
+  sequence} on a binary alphabet $\set{e,f}$. The \kl{ordinal width} of the set
+  of \kl{infixes} of $w$ is then at least $2 \cdot \omegaOrd + K$, where $K$ is the
+  size of the chosen antichain, following the same argument as in the proof of
+  \cref{small-ordinal-invariants:lem}, using \cref{thue-morse-ordinal:lemma}.
+\end{proof}
 
 We are now ready to conclude the proof of \cref{small-ordinal-invariants:thm}.
 \begin{proofof}{small-ordinal-invariants:thm}
-
     It is always true that the \kl{ordinal height} of a language over a finite
     alphabet is at most $\omegaOrd$. Let us now consider a
     \kl{well-quasi-ordered} language $L$ that is \kl{downwards closed} for the
@@ -727,73 +730,46 @@ We are now ready to conclude the proof of \cref{small-ordinal-invariants:thm}.
     \omegaOrd^2$. We conclude that the \kl{ordinal width} of $L$ is less than
     $\omegaOrd^2$. Finally, the inequality $\oType{L} \leq \oWidth{L} \oComProd
     \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to conclude.
+
+    The tightness of the bounds is a direct consequence of
+    \cref{from-bi-to-single:lem}, and by considering a finite union of 
+    these examples over disjoint alphabets (or even, by considering a binary 
+    alphabet and using unambiguous codes to separate the different components).
 \end{proofof}
 
-
-\subsubsection{Factor Complexity}
-
-\AP Let us conclude this section with a few remarks on the notion of \kl{factor
-complexity} of languages. Recall that the \intro{factor complexity} of a
-language $L \subseteq \Sigma^*$ is the function $f_L: \Nat \to \Nat$ such that
-$f_L(n)$ is the number of distinct words of size $n$ in $L$. A language $L$ has
-\intro{exponential factor complexity} if there exists a constant $C > 1$ such
-that $f_L(n) \geq C^n$ for infinitely many $n \in \Nat$. A language $L$ has
-\intro{subaffine factor complexity} if $f_L(n) \leq C \cdot n + K$ for some
-constants $C, K > 0$ and all $n \in \Nat$.
-
-\begin{lemma}
-  \label{exponential-factor-complexity:lem}
-  There exists a language $L$ with \kl{exponential factor complexity}
-  that is \kl{well-quasi-ordered} for the \kl{infix relation}.
-\end{lemma}
-\begin{proof}
-  We leverage results from \cite{CAKA97} on Toeplitz words.
-  Namely, the 
-  $(5, 3)$-Toeplitz word is \kl{uniformly recurrent} 
-  \cite[p. 499]{CAKA97},
-  but has an exponential factor complexity 
-  \cite[Theorem 5]{CAKA97}.
-\end{proof}
-
-\todo[inline]{Rewrite this paragraph to cite precise results.}
-It is the case that \kl{bounded languages} have at most a polynomial factor
-complexity, and that the \kl{Thue-Morse sequence} has a linear factor
-complexity. More generally, as we will see, most ``concrete'' examples of
-infinite words have a low factor complexity: \kl{automatic sequences} have at
-most a linear factor complexity, and \kl(morphic){morphic sequences} 
-have a polynomial factor complexity. In
-that sense, the \cref{exponential-factor-complexity:lem} shows that one can
-still construct ``pathological'' examples of infinite words that are
-\kl{well-quasi-ordered} for the \kl{infix relation}, but have a high factor
-complexity.
-
-Note that because of \cite[Theorem 24]{NIPR09}, any \kl{uniformly recurrent}
-\kl{morphic sequence} has a linear factor complexity. In particular, we
-conjecture that any \kl{ultimately uniformly recurrent} \kl{morphic sequence}
-has a linear factor complexity too. 
-
 \subsection{Decision Procedures}
+\label{decision-procedures:sec}
 
 \AP As we have demonstrated, infinite (or bi-infinite words) can be used to
 represent languages that are \kl{well-quasi-ordered} for the \kl{infix
-relation} by considering their set of finite \kl{infixes}. We can leverage the
-theory of \kl{automatic sequences}, that is tailored to study the regularity of
-infinite words to build a decision procedure for \kl{well-quasi-ordered}
-languages for the \kl{infix relation}. A sequence $w \in \Sigma^\Nat$ is
-\intro(sequence){automatic} whenever there exists a base $b \in \Nat$ and a
-finite automaton that can compute the $i$-th letter of $w$ given as input the
-number $i$ in base $b$. The \kl{Thue-Morse sequence} is an example of an
-\kl{automatic sequence}.
+relation} by considering their set of finite \kl{infixes}.
+Let us formalise the representation of languages by sets of bi-infinite
+words that we will use in this section, following the characterization of
+\cref{bi-infinite:lem}. A \intro{sequence representation} of a language $L
+\subseteq \Sigma^*$ is a finite set of triples $(w_i^-, a_i, w_i^+)_{1 \leq i
+\leq n}$ where $w_i^-, w_i^+ \in \Sigma^\Nat \cup \Sigma^*$ are two potentially
+infinite words, and $a_i \in \Sigma$ is a letter, such that
+\begin{equation*}
+    L = \bigcup_{i = 1}^n \infset{\mathsf{reversed}(w_i^-) a_i w_i^+} \quad .
+\end{equation*}
 
-\begin{theorem}
-    \label{automatic-wqo:thm}
+\AP Given an effective representation of sequences, one obtains an effective
+representation of languages via \kl{sequence representations}. We can leverage
+the theory of \kl{automatic sequences}, that is tailored to study the
+regularity of infinite words to build a decision procedure for
+\kl{well-quasi-ordered} languages for the \kl{infix relation}. A sequence $w
+\in \Sigma^\Nat$ is \intro(sequence){automatic} whenever there exists a base $b
+\in \Nat$ and a finite automaton that can compute the $i$-th letter of $w$
+given as input the number $i$ in base $b$. The \kl{Thue-Morse sequence} is an
+example of an \kl{automatic sequence}.
+
+
+\begin{lemma}
+  \label{automatic-uur:lem}
     Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
-    whether the set of \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the
-    \kl{infix relation}.
-\end{theorem}
+    whether it is \kl{ultimately uniformly recurrent}.
+\end{lemma}
 \begin{proof}
-    Because of \cref{ultimately-uniformly-recurrent:lem}, it suffices
-    to decide whether $w$ is \kl{ultimately uniformly recurrent}.
     We can rewrite this as a question on the \kl{automatic sequence} $w$
     as follows:
     \begin{align*}
@@ -813,22 +789,52 @@ number $i$ in base $b$. The \kl{Thue-Morse sequence} is an example of an
     is decidable.
 \end{proof}
 
-One can go beyond \cref{automatic-wqo:thm} and consider
-\kl(morphic){morphic sequences}, which are obtained by iterating a
-\kl(substitution){substitution} on a finite alphabet, and then applying a
-\kl(homomorphism){homomorphism}. The \kl{Fibonacci sequence} is an example of
-a \kl(morphic){morphic sequence}. It is known that one can decide whether a
-\kl(morphic){morphic sequence} is \kl{uniformly recurrent}
-\cite[Theorem 1]{DURAND13}.
-
-\todo[inline]{Define properly morphic words and 
-  the questions associated to them. Also, there is a difference between
-  \kl{ultimately uniformly recurrent} and \kl{uniformly recurrent}
-  that is not handled here.}
+Based on \cref{automatic-uur:lem}, we can now prove the following theorem.
 \begin{theorem}
-    \label{morphic-wqo:thm}
-    Given a \kl(morphic){morphic sequence} $w \in \Sigma^{\Nat}$, one can decide
-    whether the set of \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the
-    \kl{infix relation}.
+    \label{automatic-wqo:thm}
+    Given a \kl{sequence representation} of a language $L \subseteq
+    \Sigma^*$ where all infinite words are \kl{automatic sequences}, one can
+    decide whether $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
 \end{theorem}
+\begin{proof}
+    It is easy to see that $L$ is \kl{well-quasi-ordered} for the \kl{infix
+    relation} if and only if for every triple $(w_i^-, a_i, w_i^+)$ in the
+    \kl{sequence representation} of $L$, the (potentially bi-infinite) word
+    $\mathsf{reversed}(w_i^-) a_i w_i^+$ defines a \kl{well-quasi-ordered}
+    language. By \cref{from-bi-to-single:lem}, this is the case if and only if
+    both $w_i^-$ and $w_i^+$ are \kl{ultimately uniformly recurrent}. 
+    Since one can decide whether an \kl{automatic sequence} is
+    \kl{ultimately uniformly recurrent} from \cref{automatic-uur:lem},
+    we conclude the proof.
+\end{proof}
+
+\todo[inline]{properly introduce morphic sequences, and maybe talk about
+them in the introduction}
+
+\AP
+For \kl{automatic sequences}, the question of being \kl{ultimately uniformly
+recurrent} is easily seen to be decidable, but symbolic dynamics provides a
+more general framework to study infinite words. A \intro{morphic sequence} is
+obtained by iterating a \kl(substitution){substitution} on a finite alphabet,
+and then applying a \kl(homomorphism){homomorphism}. The \kl{Fibonacci
+sequence} is an example of a \kl(morphic){morphic sequence}.
+It was recently shown that one can decide whether a \kl(morphic){morphic
+sequence} is \kl{uniformly recurrent} \cite[Theorem 1]{DURAND13}.
+We can leverage this result to obtain the following lemma.
+
+\begin{lemma}
+  \label{morphic-uur:lem}
+    Given a \kl(morphic){morphic sequence} $w \in \Sigma^{\Nat}$, one can decide
+    whether it is \kl{ultimately uniformly recurrent}.
+\end{lemma}
+
+From \cref{morphic-uur:lem}, we can now prove the following corollary,
+which is a generalization of \cref{automatic-wqo:thm}.
+
+\begin{corollary}
+    \label{morphic-wqo:cor}
+    Given a \kl{sequence representation} of a language $L \subseteq
+    \Sigma^*$ where all infinite words are \kl(morphic){morphic sequences}, one can
+    decide whether $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
+\end{corollary} 
 

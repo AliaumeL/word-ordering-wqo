@@ -155,7 +155,7 @@ finite choice of words $w_1, \ldots, w_k$; on the other hand, we consider
 \kl{infixes}. In both cases, we provide a very precise characterization of
 \kl{well-quasi-ordered} languages by the \kl{infix relation}, and derive tight
 bounds on their \kl{ordinal invariants}. These results are summarized in
-\cref{infixes-summary:fig}. We furthermore notice that for \kl{downwards
+\cref{infixes-summary:fig}. \todo{this is not what the corollary says} We furthermore notice that for \kl{downwards
 closed} languages that are \kl{well-quasi-ordered} by the \kl{infix relation},
 being \kl(language){bounded} is the same as being \kl(language){regular}
 (\cref{bounded-wqo-dwclosed:cor}), and that a \kl{bounded language} is
@@ -183,20 +183,20 @@ relation} is always a \kl{regular language}.
     \label{infixes-summary:fig}
 \end{figure}
 
-Let us point out that \cref{small-ordinal-invariants:thm} connects
-\kl{well-quasi-orderings} by the \kl{infix relation} with the notion of
-\kl{uniformly recurrent words}, borrowed from the field of word combinatorics.
-
 Turning our attention to decision procedures, we consider two computational
 models respectively tailored to \kl{downwards closed} languages and to
 \kl{bounded languages}. For \kl{downwards closed} languages, we consider a
-model based on \kl{morphic words}, for which we provide a decision procedure
-(\cref{automatic-wqo:thm}). For \kl{bounded languages}, we consider the model
+model based on representations of infinite words
+(\cref{decision-procedures:sec}), for which we provide a decision procedure
+(\cref{automatic-wqo:thm}). The model used to represent these infinite words is
+based on \kl{automatic sequences} and \kl{morphic sequences} \cite{CAKA97},
+which are well-studied in the context of symbolic dynamics.
+For \kl{bounded languages}, we consider the model
 of \kl{amalgamation systems} \cite{ASZZ24}, which is an abstract computational
-model that encompasses many classical ones, such as finite
-automata, context-free grammars, and Petri nets \cite{ASZZ24}. We show that if
-a language recognized by an \kl{amalgamation system} is \kl{well-quasi-ordered}
-by the \kl{infix relation}, then it is a \kl{bounded language}
+model that encompasses many classical ones, such as finite automata,
+context-free grammars, and Petri nets \cite{ASZZ24}. We show that if a language
+recognized by an \kl{amalgamation system} is \kl{well-quasi-ordered} by the
+\kl{infix relation}, then it is a \kl{bounded language}
 (\cref{infix-amalgamation:thm}), and is therefore \kl{regular}. Furthermore, we
 show that we can decide whether a given language recognized by an
 \kl{amalgamation system} is \kl{well-quasi-ordered} by the \kl{infix relation}
