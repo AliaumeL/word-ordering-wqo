@@ -729,13 +729,17 @@ We are now ready to conclude the proof of \cref{small-ordinal-invariants:thm}.
     \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to conclude.
 \end{proofof}
 
-\AP
-Let us conclude this section with a few remarks on the notion of \kl{factor
+
+\subsubsection{Factor Complexity}
+
+\AP Let us conclude this section with a few remarks on the notion of \kl{factor
 complexity} of languages. Recall that the \intro{factor complexity} of a
 language $L \subseteq \Sigma^*$ is the function $f_L: \Nat \to \Nat$ such that
 $f_L(n)$ is the number of distinct words of size $n$ in $L$. A language $L$ has
 \intro{exponential factor complexity} if there exists a constant $C > 1$ such
-that $f_L(n) \geq C^n$ for infinitely many $n \in \Nat$.
+that $f_L(n) \geq C^n$ for infinitely many $n \in \Nat$. A language $L$ has
+\intro{subaffine factor complexity} if $f_L(n) \leq C \cdot n + K$ for some
+constants $C, K > 0$ and all $n \in \Nat$.
 
 \begin{lemma}
   \label{exponential-factor-complexity:lem}
@@ -751,15 +755,22 @@ that $f_L(n) \geq C^n$ for infinitely many $n \in \Nat$.
   \cite[Theorem 5]{CAKA97}.
 \end{proof}
 
+\todo[inline]{Rewrite this paragraph to cite precise results.}
 It is the case that \kl{bounded languages} have at most a polynomial factor
 complexity, and that the \kl{Thue-Morse sequence} has a linear factor
 complexity. More generally, as we will see, most ``concrete'' examples of
 infinite words have a low factor complexity: \kl{automatic sequences} have at
-most a linear factor complexity, and \kl(morphic){morphic sequences} have at
-most a polynomial factor complexity. In that sense, the
-\cref{exponential-factor-complexity:lem} shows that one can still construct
-``pathological'' examples of infinite words that are \kl{well-quasi-ordered}
-for the \kl{infix relation}, but have a high factor complexity.
+most a linear factor complexity, and \kl(morphic){morphic sequences} 
+have a polynomial factor complexity. In
+that sense, the \cref{exponential-factor-complexity:lem} shows that one can
+still construct ``pathological'' examples of infinite words that are
+\kl{well-quasi-ordered} for the \kl{infix relation}, but have a high factor
+complexity.
+
+Note that because of \cite[Theorem 24]{NIPR09}, any \kl{uniformly recurrent}
+\kl{morphic sequence} has a linear factor complexity. In particular, we
+conjecture that any \kl{ultimately uniformly recurrent} \kl{morphic sequence}
+has a linear factor complexity too. 
 
 \subsection{Decision Procedures}
 
@@ -820,3 +831,4 @@ a \kl(morphic){morphic sequence}. It is known that one can decide whether a
     whether the set of \kl{infixes} of $w$ is \kl{well-quasi-ordered} for the
     \kl{infix relation}.
 \end{theorem}
+
