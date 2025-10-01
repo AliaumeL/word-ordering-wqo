@@ -118,17 +118,9 @@
 \knowledge{notion}
  | $\MSO $
  | $\MSO $-formula
-\knowledge{notion}
- | Thue-Morse sequence
-\knowledge{notion}
- | cube-free
-\knowledge{notion}
- | uniformly recurrent
- | uniformly recurrent words
 
 
-\knowledge{notion}
- | ultimately uniformly recurrent
+
 
 % custom commands
 \knowledge{notion}
@@ -187,11 +179,6 @@
  | directed subset
  | directed@subset
 
-\knowledge{notion}
- | Automatic@sequence
- | automatic sequences
- | automatic@sequence
- | automatic sequence
 
 \knowledge{notion}
  | canonical decomposition
@@ -201,3 +188,63 @@
 \knowledge{notion}
  | commutative ordinal product
  | Hessenberg product
+
+% Infinite words and dynamical systems
+
+\knowledge{notion}
+ | Thue-Morse sequence
+\knowledge{notion}
+ | cube-free
+
+\knowledge{notion}
+ | uniformly recurrent
+ | uniform recurrence
+ | uniformly recurrent words
+
+
+\knowledge{notion}
+ | ultimately uniformly recurrent
+ | ultimate uniform recurrence
+
+
+\knowledge{notion}
+ | Automatic@sequence
+ | automatic sequences
+ | automatic@sequence
+ | automatic sequence
+
+
+\knowledge{notion}
+ | morphism@words
+ | homomorphism@words
+ | morphisms@words
+ | homomorphisms@words
+
+\knowledge{notion}
+ | morphic sequences
+ | morphic sequence
+ | sequence@morphic
+ | morphic@sequence
+
+\knowledge{notion}
+ | pure morphic sequences
+ | pure morphic sequence
+
+\knowledge{notion}
+ | factor complexity
+\knowledge{notion}
+ | exponential factor complexity
+\knowledge{notion}
+ | subaffine factor complexity
+
+
+\knowledge{notion}
+ | sequence representation
+ | sequence representations
+
+
+% Graph theory
+
+
+\knowledge{notion}
+ | induced subgraph relation

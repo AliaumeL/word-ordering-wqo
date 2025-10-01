@@ -1,5 +1,5 @@
 % LTeX: language=en-GB 
-% !TeX root=../wqo-on-words.tex
+% !TeX root=../wqo-on-words.lncs.tex
 \section{Infixes and Bounded Languages}
 \label{infixes-bounded:sec}
 
@@ -754,15 +754,24 @@ infinite words, and $a_i \in \Sigma$ is a letter, such that
 \end{equation*}
 
 \AP Given an effective representation of sequences, one obtains an effective
-representation of languages via \kl{sequence representations}. We can leverage
-the theory of \kl{automatic sequences}, that is tailored to study the
-regularity of infinite words to build a decision procedure for
-\kl{well-quasi-ordered} languages for the \kl{infix relation}. A sequence $w
-\in \Sigma^\Nat$ is \intro(sequence){automatic} whenever there exists a base $b
-\in \Nat$ and a finite automaton that can compute the $i$-th letter of $w$
-given as input the number $i$ in base $b$. The \kl{Thue-Morse sequence} is an
-example of an \kl{automatic sequence}.
+representation of languages via \kl{sequence representations}. In this section,
+we will rely on definitions originating from the area of symbolic dynamics,
+that precisely study infinite words whose generation follows from a finitely
+described process. However, we will not assume that the reader is familiar with
+this domain, and we will use as black-boxes key results from this area.
 
+\AP A first model that one can use to represent infinite words is the model of
+\intro{automatic sequences}. In this case, the infinite word $w$ is described
+by a finite state automaton, that can compute the $i$-th letter of the word $w$
+given as input the number $i$ written in some base $b \in \Nat$. An example of
+such a sequence is the \kl{Thue-Morse sequence} that can be described by a
+finite automaton using a binary representation of the indices. The good
+algorithmic properties of \kl{automatic sequences} come from the fact that a
+Presburger definable property that uses letters of the sequence can be
+(trivially) translated into a finite automaton that reads the base $b$
+representation of the free variables (that are indices of the sequence). We
+briefly explain in the following lemma the folklore result that one can decide
+if an \kl{automatic sequence} is \kl{ultimately uniformly recurrent}.
 
 \begin{lemma}
   \label{automatic-uur:lem}
@@ -804,37 +813,77 @@ Based on \cref{automatic-uur:lem}, we can now prove the following theorem.
     language. By \cref{from-bi-to-single:lem}, this is the case if and only if
     both $w_i^-$ and $w_i^+$ are \kl{ultimately uniformly recurrent}. 
     Since one can decide whether an \kl{automatic sequence} is
-    \kl{ultimately uniformly recurrent} from \cref{automatic-uur:lem},
+    \kl{ultimately uniformly recurrent} using \cref{automatic-uur:lem},
     we conclude the proof.
 \end{proof}
 
-\todo[inline]{properly introduce morphic sequences, and maybe talk about
-them in the introduction}
+
+\AP In fact, \kl{automatic sequences} are part of a larger family of sequences
+studied in symbolic dynamics, called \kl{morphic sequences}. Let us first
+recall that a \intro(words){morphism} is a function $f \colon \Sigma^* \to
+\Gamma^*$ such that for every $u,v \in \Sigma^*$, $f(uv) = f(u)f(v)$. A
+\intro{morphic sequence} $w$ is an infinite word obtained by iterating a
+\kl(words){morphism} $f \colon \Sigma^* \to \Sigma^*$ on a letter $a \in
+\Sigma$ such that $f(a)$ starts with $a$, and then applying a
+\kl(words){homomorphism} $h \colon \Sigma^* \to \Gamma^*$. The infinite word
+$f^\omega(a)$ is the limit of the sequence $\seqof{f^n(a)}[n \in \Nat]$, which
+is well-defined because $f(a)$ starts with $a$, and the \kl{morphic sequence}
+is $ w \defined h(f^\omega(a))$. 
 
 \AP
-For \kl{automatic sequences}, the question of being \kl{ultimately uniformly
-recurrent} is easily seen to be decidable, but symbolic dynamics provides a
-more general framework to study infinite words. A \intro{morphic sequence} is
-obtained by iterating a \kl(substitution){substitution} on a finite alphabet,
-and then applying a \kl(homomorphism){homomorphism}. The \kl{Fibonacci
-sequence} is an example of a \kl(morphic){morphic sequence}.
-It was recently shown that one can decide whether a \kl(morphic){morphic
-sequence} is \kl{uniformly recurrent} \cite[Theorem 1]{DURAND13}.
-We can leverage this result to obtain the following lemma.
+Every \kl{automatic
+sequence} is a \kl{morphic sequence}, but not the other way around. We refer
+the reader to a short survey of \cite{ALSZ17} for more details on the possible
+variations on the definition of \kl{morphic sequences} and their relationships.
+It was relatively recently proven that one can decide whether a \kl{morphic
+sequence} is \kl{uniformly recurrent} \cite[Theorem 1]{DURAND13}. We were not
+able to find in the literature whether one can decide \kl{ultimate uniform
+recurrence}, but we can prove it for a restricted class of \kl{morphic
+sequences}, that are called \intro{pure morphic sequences}, and are precisely
+those that do not use a final \kl(words){homomorphism} $h$. Following the same proof
+as for \cref{automatic-wqo:thm}, one deduces from the upcoming
+\cref{morphic-uur:lem} the following \cref{morphic-wqo:cor}. We actually
+conjecture that \cref{morphic-uur:lem} can be extended to all \kl{morphic
+sequences} \cref{morphic-uur:conj}.
 
 \begin{lemma}
   \label{morphic-uur:lem}
-    Given a \kl(morphic){morphic sequence} $w \in \Sigma^{\Nat}$, one can decide
+    Given a \kl{pure morphic sequence} $w \in \Sigma^{\Nat}$, one can decide
     whether it is \kl{ultimately uniformly recurrent}.
 \end{lemma}
+\begin{proof}
+  On the one hand, one can guess a bound $N_0$ and check that 
+  the suffix of the word $w_{\geq N_0}$ is \kl{uniformly recurrent},
+  since the suffix of a \kl{morphic sequence} is also a \kl{morphic sequence},
+  and \kl{uniform recurrence} is decidable for \kl{morphic sequences}
+  \cite[Theorem 2]{DURAND13}.
 
-From \cref{morphic-uur:lem}, we can now prove the following corollary,
-which is a generalization of \cref{automatic-wqo:thm}.
+  On the other hand, we can also provide an upper bound on the possible values
+  of $N_0$ if $w$ is \kl{ultimately uniformly recurrent}. Let us write $f(a) =
+  a s$ for some finite word $s \in \Sigma^*$. If $s$ is $f$-bounded, i.e., if
+  the size of $f^n(s)$ is bounded by some constant $K \in \Nat$, then $w$ is
+  ultimately periodic, and the prefix $N_0$ that may not be periodic can easily
+  be bounded by looking at the morphism $f$. Let us consider the case when $s$
+  is not $f$-bounded. If the word $w$ is \kl{ultimately uniformly recurrent},
+  then there exists a bound $N_0$ such that $w_{\geq N_0}$ is \kl{uniformly
+  recurrent}. In particular, for a large enough $n$, there exists $k_0$  such
+  that for all $k \geq k_0$, the word $f^n(s)$ is an \kl{infix} of $f^{n +
+  k}(s)$.
+  \todo[inline]{not clear how to conclude ...}
+
+\end{proof}
 
 \begin{corollary}
     \label{morphic-wqo:cor}
     Given a \kl{sequence representation} of a language $L \subseteq
-    \Sigma^*$ where all infinite words are \kl(morphic){morphic sequences}, one can
+    \Sigma^*$ where all infinite words are \kl{pure morphic sequences}, one can
     decide whether $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
 \end{corollary} 
 
+
+
+\begin{conjecture}
+  \label{morphic-uur:conj}
+    Given a \kl{morphic sequence} $w \in \Sigma^{\Nat}$, one can decide
+    whether it is \kl{ultimately uniformly recurrent}.
+\end{conjecture}
