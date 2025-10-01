@@ -858,18 +858,45 @@ sequences} \cref{morphic-uur:conj}.
   and \kl{uniform recurrence} is decidable for \kl{morphic sequences}
   \cite[Theorem 2]{DURAND13}.
 
-  On the other hand, we can also provide an upper bound on the possible values
-  of $N_0$ if $w$ is \kl{ultimately uniformly recurrent}. Let us write $f(a) =
-  a s$ for some finite word $s \in \Sigma^*$. If $s$ is $f$-bounded, i.e., if
-  the size of $f^n(s)$ is bounded by some constant $K \in \Nat$, then $w$ is
-  ultimately periodic, and the prefix $N_0$ that may not be periodic can easily
-  be bounded by looking at the morphism $f$. Let us consider the case when $s$
-  is not $f$-bounded. If the word $w$ is \kl{ultimately uniformly recurrent},
-  then there exists a bound $N_0$ such that $w_{\geq N_0}$ is \kl{uniformly
-  recurrent}. In particular, for a large enough $n$, there exists $k_0$  such
-  that for all $k \geq k_0$, the word $f^n(s)$ is an \kl{infix} of $f^{n +
-  k}(s)$.
-  \todo[inline]{not clear how to conclude ...}
+  Let us now prove that a specific choice of $N_0$ is sufficient. Let us write
+  $w \defined f^\omega(a)$ where $f \colon \Sigma^* \to \Sigma^*$ is a
+  \kl(words){morphism} and $a \in \Sigma$ is a letter such that $f(a)$ starts
+  with $a$. Let us also write $f(a) = a s$, where $s \in \Sigma^+$ is a
+  non-empty word. Notice that $w = a s f(s) f^2(s) \cdots$. Without loss of
+  generality, one can assume that $|f^n(s)| \to \infty$ when $n \to \infty$,
+  otherwise $w$ is ultimately periodic, and therefore \kl{ultimately uniformly
+  recurrent}. Since one can algorithmically detect if this is the case, we
+  assume that it is not.
+
+  Because $\Sigma$ is finite, there exists a finite set of letters $A \subseteq
+  \Sigma$ and a suffix $w'$ of $w$ such that $w' \in A^*$ and every letter of
+  $w'$ appears infinitely often in $w'$. Furthermore, one can compute this set
+  $A$ and a bound $N_0$ such that $f^n(s) \in A^*$ for every $n \geq N_0$. We
+  claim that $w$ is \kl{ultimately uniformly recurrent} if and only if
+  $f^{N_0}(s) f^{N_0 + 1}(s) \cdots$ is \kl{uniformly recurrent}.
+  One direction being obvious, we assume that $w$ is \kl{ultimately uniformly
+  recurrent}, and let us prove that $f^{N_0}(s) f^{N_0 + 1}(s) \cdots$ is
+  \kl{uniformly recurrent}. 
+
+  Let us assume that $w'' \defined f^{N_1}(s) f^{N_1 + 1}(s) \cdots$ where $N_1
+  \geq N_0$ is \kl{uniformly recurrent}. Let us show that $f^{N_0}(s)$ is an
+  \kl{infix} of $w''$ if and only if there exists a letter $b$ in $s$ such that
+  $f^{N_0}(s) \infleq f^{k} (b)$ for some finite number $k$.
+
+  Assume that $f^{N_0}(s)$ is an \kl{infix} of $w''$. Recall that $|f^n(s)| \to
+  \infty$ when $n \to \infty$, hence, there must exist a letter $b$ in $s$ such
+  that $|f^n(b)| \to \infty$ when $n \to \infty$. Because every letter of
+  $f^{N_0}(s)$ appears infinitely often in $w''$, $f^n(b)$ is a growing
+  sequence of infixes of $w''$. Since $w''$ is \kl{uniformly recurrent}, there
+  exists a bound $K$ such that $f^{N_0}(s)$ is an \kl{infix} of every $f^k(b)$
+  for $k \geq K$. Conversely, if there exists a letter $b$ in $s$ such that
+  $f^{N_0}(s) \infleq f^{k} (b)$ for some finite number $k$, then $f^{N_0}(s)$
+  is an \kl{infix} of $w''$ because $f^n(b)$ is an infix of $w''$ for every $n
+  \in \Nat$.
+
+  Because $w''$ is \kl{uniformly recurrent}, there exists a bound $K$ such that
+  $f^{N_1}(s) \infleq f^k(b)$ for every $k \geq K$.
+  \todo[inline]{Cannot finish the proof...}
 
 \end{proof}
 
