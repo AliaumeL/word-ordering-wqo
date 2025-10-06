@@ -383,12 +383,12 @@ the general case illustrated in \cref{dw-closure-not-wqo:rem}.
     For the left-to-right implication, let us assume that $L$ is a
     \kl{well-quasi-ordered} language for the \kl{infix relation}.
     Then $L$ is included in a finite union 
-    of products of \kl{chains}:
+    of products of \kl{chains}: \todo{reference}
     \begin{equation*}
         L \subseteq \bigcup_{i = 1}^n S_i \cdot P_i \quad .
     \end{equation*}
     Remark that the \kl{downwards closure} of a product of two \kl{chains}
-    is a finite union of products of two chains.
+    is a finite union of products of two chains. \todo{reference/proof}.
     As a consequence, we conclude that $\dwset[\infleq]{L}$ is itself included
     in a finite union of products of \kl{chains}.
     Note that this also proves that $\dwset[\infleq]{L}$ is a \kl{bounded language},
@@ -401,13 +401,13 @@ One may think that all \kl{downwards closed} languages for the \kl{infix
 relation} that are \kl{well-quasi-ordered} are \kl(language){bounded}. Note
 that this is what happens in the case of the \kl{subword embedding}, where any
 \kl{downwards closed} language for this relation is characterized by finitely
-many excluded \kl{subwords}, hence provides a \kl{bounded language}. However, this
+many excluded \kl{subwords}, hence provides a \kl{bounded language} \todo{wrong? $\{a,b\}^*$ is downward closed but not bounded}. However, this
 is not the case for the \kl{infix relation}, as we will now illustrate with the
 following two examples.
 
 \begin{example}
     \label{dwclosed-wqo-not-finite-excl:ex}
-    Let $L \defined a^* b^* \cup b^* a^*$. This language is \kl{downwards
+    Let $L \defined a^* b^* \cup b^* a^*$ \todo{However, this language is bounded, so this seems to be a non sequitur}. This language is \kl{downwards
     closed} for the \kl{infix relation}, is \kl{well-quasi-ordered} for the
     \kl{infix relation}, but is characterized by an \emph{infinite} number 
     of excluded infixes, respectively of the form $ab^ka$ and $ba^kb$ where $k \geq 1$.

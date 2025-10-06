@@ -7,16 +7,18 @@
 % - If you want to update the content of the paper, please edit the latex files
 %   in the `src` directory.
 % - If you want to update the template itself (e.g., change the layout), please
-%   edit the `templates/plain-article.tex` file instead.
-\documentclass[11pt,a4paper,twosided]{article}
+%   edit the `templates/lncs/lncs.tex` file instead.
+\documentclass[runningheads]{llncs}
 
-% we setup a custom geometry because the default one is too narrow
-\usepackage{geometry}
-\geometry{margin=3.5cm}
 
-% utf-8 for old systems
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+
+\usepackage{lineno}
+\linenumbers
+
+\usepackage{todonotes}
 
 % babel for language settings
 \usepackage[english]{babel}
@@ -24,32 +26,13 @@
 % microtype for better typography
 \usepackage{microtype}
 
-\usepackage{todonotes}
-\usepackage{lineno}
-\linenumbers
-
-
 
 % math packages
-\usepackage{amsmath,amsthm,amssymb,stmaryrd,thmtools,upgreek}
-
-% configure some theorems
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{assumption}[theorem]{Assumption}
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
-
+\usepackage{amssymb,amsmath,stmaryrd,thmtools,thm-restate,upgreek}
 
 
 % graphics packages
 \usepackage{graphicx}
-\usepackage{subcaption}
 \usepackage[obeyclassoptions,mode=tex]{standalone}
 \usepackage{tikz}
 \usetikzlibrary{backgrounds}
@@ -62,8 +45,7 @@
 \tikzset{every state/.style={minimum size=1pt}}
 \usepackage{tikz-cd}
 
-% ornaments
-\usepackage{pgfornament}
+\usepackage{subcaption}
 
 
 % links inside the document
@@ -73,9 +55,19 @@
 \usepackage[composition,hyperref,xcolor,cleveref]{knowledge}
 \knowledgeconfigure{notion}
 
+
 % Tables 
 \usepackage{booktabs}
 \usepackage{varwidth}
+
+% Packages for macro definitions
+\usepackage{xparse}
+\usepackage{xpatch}
+\usepackage{tokcycle}
+\usepackage{ifthen}
+
+% Proof trees
+\usepackage{bussproofs}
 
 % Algorithms
 \usepackage{algorithm2e}
@@ -84,31 +76,10 @@
 \crefname{algocf}{Algorithm}{Algorithms}
 \Crefname{algocf}{Algorithm}{Algorithms}
 
-% Packages for macro definitions
-\usepackage{xparse}
-\usepackage{xpatch}
-\usepackage{tokcycle}
-\usepackage{ifthen}
-
-% Proofs
-\usepackage{bussproofs}
-
 % Colors 
 \usepackage{ensps-colorscheme}
-% parametrize knowledge colors and style
-% intro => A4 + emph 
-% kl    => normal color, normal size not emph
 \knowledgestyle{intro notion}{color={A2}, emphasize}
 \knowledgestyle{notion}{color={B1}}
-\hypersetup{
-    colorlinks=true,
-    breaklinks=true,
-    linkcolor=A4,
-    citecolor=A4,
-    urlcolor=A4,
-    filecolor=A4,
-}
-
 
 % we include whatever the user wants to include in the header
 
@@ -117,43 +88,37 @@
 \input{lib/maths}
 \input{knowledges.kl}
 
-% We include the title and author information based on the 
-% `paper-meta.yaml` file.
- 
-\title{Well-quasi-orderings on word languages}
-
-\author{
-Nathan Lhote\thanks{Aix-Marseille University}
- \and
-Aliaume Lopez\thanks{University of Warsaw}
- \and
-Lia Schütze\thanks{Max Planck Institute for Software Systems}
-}
-
-% For the date, we first check if the user has provided a date,
-% and otherwise use the git meta inforamtion (if available).
-\date{2025-08-12 15:11:25 +0200\footnote{5ede8d5033f0419024d7857dd3aacd9d3c036068 -- branch main at git@github.com:AliaumeL/word-ordering-wqo.git}}
-
 \newcommand{\repositoryUrl}{\url{https://github.com/AliaumeL/word-ordering-wqo}}
 
-\knowledge{notion}
- | kl-usage
-
-% Now, we create the document itself.
 \begin{document}
-% Generate the title page
-\maketitle
-% Print the abstract
+%
+\title{Well-quasi-orderings on word languages \\
+       main edb3a6bc24be4a12fe4f383c75384a6dff9d1a3c \\
+       2025-10-02 17:15:30 +0200
+}
+\titlerunning{WQO on Words}
+
+\author{
+        Nathan Lhote\inst{2}\orcidID{0000-0003-3303-5368} \and
+        Aliaume Lopez\inst{3}\orcidID{0000-0002-4205-327X} \and
+        Lia Schütze\inst{1}\orcidID{0000-0003-4002-5491}}
+\authorrunning{N. Lhote and A. Lopez and L. Schütze}
+\institute{
+Max Planck Institute for Software Systems
+ \and
+Aix-Marseille University
+ \and
+INP Bordeaux, LaBRI, CNRS
+}
+
+\date{\today}
+
+%
+\maketitle              % typeset the header of the contribution
+%
 \begin{abstract}
-    The set of finite words over a well-quasi-ordered set is itself well-quasi-ordered. This seminal result by Higman is a cornerstone of the theory of well-quasi-orderings and has found numerous applications in computer science. However, this result is based on a specific choice of ordering on words, the (scattered) subword ordering. In this paper, we describe to what extent other natural orderings (prefix, suffix, and infix) on words can be used to derive Higman-like theorems. More specifically, we are interested in characterizing \emph{languages} of words that are well-quasi-ordered under these orderings. We show that a simple characterization is possible for the prefix and suffix orderings, and that under extra regularity assumptions, this also extends to the infix ordering. We furthermore provide decision procedures for a large class of languages, that contains regular and context-free languages.
-    \paragraph{Keywords:}
-    equivariant ideal, Hilbert basis, ideal membership problem, orbit finite, oligomorphic, well-quasi-ordering
-\paragraph{Repository:} \repositoryUrl
+    The set of finite words over a well-quasi-ordered set is itself well-quasi-ordered. This seminal result by Higman is a cornerstone of the theory of well-quasi-orderings and has found numerous applications in computer science. However, this result is based on a specific choice of ordering on words, the (scattered) subword ordering. In this paper, we describe to what extent other natural orderings (prefix, suffix, and infix) on words can be used to derive Higman-like theorems. More specifically, we are interested in characterizing \emph{languages} of words that are well-quasi-ordered under these orderings, and explore their properties and connections with other language theoretic notions. We furthermore give decition procedures when the languages are given by various comupational models such as automata, context-free grammars, and automatic structures.
 \end{abstract}
-
-\klogo\ This document uses \href{https://ctan.org/pkg/knowledge}{knowledge}:
-\kl[kl-usage]{notion} points to its \intro[kl-usage]{definition}. 
-
 
 % Include the content of the paper
 \input{src/introduction}
@@ -163,8 +128,10 @@ Lia Schütze\thanks{Max Planck Institute for Software Systems}
 \input{src/amalgam}
 \input{src/conclusion}
 
+% Include acknowledgements
+
 % Include the bibliography
-\bibliographystyle{plainurl}
+\bibliographystyle{splncs04}
 \bibliography{papers.bib}
 
 % If there are any appendices, we include them here.
