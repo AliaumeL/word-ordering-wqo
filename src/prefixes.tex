@@ -155,19 +155,24 @@ context. A set $S$ is called \intro{downwards closed} if $\dwset{S} = S$.
     Because the \kl{prefix relation} is \kl{well-founded},
     and that finite unions of \kl{chains} have finite \kl{antichains},
     we conclude that $L$ is \kl{well-quasi-ordered}.
-
+    
     Conversely, assume that $L$ is \kl{well-quasi-ordered} by the \kl{prefix
-    relation}. Let us define $S$ the set of words $w$ such that there exists
+    relation}. Let us define $S_{\mathrm{split}}$ the set of words $w \in \Sigma^*$ 
+    such that there exists
     two words $wu$ and $wv$ both in $L$ that are not comparable for the
-    \kl{prefix relation}. Assume by contradiction that $S$ is infinite.
+    \kl{prefix relation}. Let $S = S_{\mathrm{split}}~\cup~\min_{\prefleq} L$\todo{kinda ugly, but i can't find a nicer way of phrasing it}. 
+    Assume by contradiction that $S$ is infinite.
     Then, $S$ equipped with the \kl{prefix relation} is an infinite
     tree with finite branching, and therefore contains an infinite
     branch, which is by definition an \kl{antichain branch} for $L$.
     This contradicts the assumption that $L$ is \kl{well-quasi-ordered}.
-    Now, consider $w$ be a maximal element for the \kl{prefix ordering}
-    in $S$. By definition, all words in $L$ that contain $w$ as a prefix
-    must be comparable for the \kl{prefix relation}. Therefore,
-    $(\upset[\prefleq]{w}) \cap L$ is a \kl{chain} for the \kl{prefix relation}.
+    
+    Now, let $w$ be a maximal element for the \kl{prefix ordering}
+    in $S$. 
+    The upward closure of $w$ in $L$, $(\upset[\prefleq]{w}) \cap L$, must be a 
+    finite union of \kl{chains}. Otherwise at least two of the chains would share a common 
+    prefix in $w\Sigma$, contradicting the maximality of $w$.
+    
     In particular, letting $S_{\max}$ be the set of all maximal elements
     of $S$,
     we conclude that 
@@ -175,9 +180,6 @@ context. A set $S$ is called \intro{downwards closed} if $\dwset{S} = S$.
         L \subseteq S \cup \bigcup_{w \in S_{\max}} (\upset[\prefleq]{w}) \cap L
         \quad .
     \end{equation*}
-    \todo[inline]{Because $S$ only contains words with two incomparable suffixes in $L$, I think this is wrong - consider e.g. $L \subseteq a^*$, where $S$ and $S_{max}$ are necessarily empty}
-    \todo[inline]{Aliaume:
-    Yes, this is an incorrect proof. 
     Hence, that $L$ is finite union of \kl{chains}.
 \end{proof}
 
