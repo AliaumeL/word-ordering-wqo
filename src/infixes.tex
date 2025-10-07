@@ -101,8 +101,7 @@ a word $u$ is the minimal length of a period $x$ of $u$.
 \begin{corollary}
     \label{powers-infixes:cor}
     Let $u,v \in \Sigma^*$ and $k, \ell \in \Nat$
-    such that $k \geq \factorial[p]{\card{u} \times \card{v}}$,
-    $\ell \geq \factorial[p]{\card{v} \times \card{u}}$,
+    such that $k \geq 2\max\{\card{u},\card{v}\}$,
     and $u^k \infleq v^\ell$.
     Then, there exists $w \in \Sigma^*$ of size at most
     $\min \set{\card{u}, \card{v}}$ and a $p \in \Nat$
