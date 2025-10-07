@@ -137,7 +137,7 @@ $\Nat$.
 
 \begin{lemma}
     \label{inf-period-chain:lem}
-    Let $x \in \Sigma^+$ be a word, and
+    Let $x \in \Sigma^+$ be a word.
     Then $\InfPeriodChain{x}$ is a finite union of \kl{chains}
     for the \kl{infix}, \kl{prefix} and \kl{suffix} relations 
     simultaneously.
@@ -188,9 +188,10 @@ the core result that powers the analysis done in the upcoming
     Then, 
     there exists $x,y \in \Sigma^+$ of size 
     at most $\max \setof{\card{v_i}}{1 \leq i \leq k}$
-    such that 
-    one of the following holds for all
-    $\vec{n} \in \Nat^{k}$:
+    such that
+    for all
+    $\vec{n} \in \Nat^{k}$
+    one of the following holds:
     \begin{enumerate}
         \item $w[\vec{n}] \in u_1 \InfPeriodChain{x}$,
         \item $w[\vec{n}] \in \InfPeriodChain{x} u_{k+1}$,
