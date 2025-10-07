@@ -77,24 +77,16 @@ a word $u$ is the minimal length of a period $x$ of $u$.
 \begin{lemma}
     \label{periodic-infixes:lem}
     Let $u,v \in \Sigma^*$ be two (non-empty) \kl{periodic words}
-    having \kl{periodic lengths} $p$ and $q$ respectively.
-    Then, if $u \infleq v$ and $\card{u} \geq pq$,
-    then $u$ and $v$ share the same \kl{periodic length}
-    $p = q$.
+    having \kl{periods} of length $p$ and $q$ respectively.
+    If $u \infleq v$ and $\card{u} \geq 2\max\{p, q\}$,
+    then $u$ and $v$ both have a period of length
+    $\gcd(p,q)$.
 \end{lemma}
 \begin{proof}
-    The fact that $u$ and $v$ are \kl{periodic length}
-    respectively $p$ and $q$ translates into the fact that $u_{i+p} = u_i$ and
-    $v_{i+q} = v_i$ for all indices $i \in \Nat$ such that those letters are
-    well-defined.
-
-    Now, assume that $u$ is an \kl{infix} of $v$, this provides the existence
-    of a $k \in \Nat$ such that $u = v_{k} \cdots v_{k + \card{u} - 1}$. In
-    particular, $v_{k+i+p} = v_{k+i}$ for all $i \in \Nat$ such that $k+i+p < k
-    + \card{u}$. Due to the periodicity of $v$, we also have $v_{k+i+q} = v_{k+i}$ for all $i$ with $k + i + q \leq k + \card{u}$. We conclude that both $u$ and $v$ are of
-    \kl{periodic length} the greatest common divisor of $p$ and $q$, and by
-    minimality of $q$ this must be equal to $q$ and to $p$.
-    \todo{maybe elaborate on why $pq$ as bound on $\card{u}$ (also technically $2\max\{p,q\}$ would be enough, but maybe more cumbersome?}
+    Since $u$ has a period of length $p$ we have $u_{i+p} = u_i$ for all indices $i \in \Nat$ such that those letters are
+    well-defined. Since $u$ is an \kl{infix} of $v$ and $\card{u} \geq q$, we also have $u_{i+q} = u_i$. It follows that $u$ has a period of length $\gcd(p, q)$. 
+        
+    Since $v$ contains $u$ as a suffix and $\card{u} \geq q$, we can also conclude that $v$ must also have period of length $\gcd(p,q)$.
 \end{proof}
 
 \begin{figure}
