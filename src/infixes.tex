@@ -189,7 +189,7 @@ the core result that powers the analysis done in the upcoming
     there exists $x,y \in \Sigma^+$ of size 
     at most $\max \setof{\card{v_i}}{1 \leq i \leq k}$
     such that
-    for all
+    for all \todo{proof does not actually show for all}
     $\vec{n} \in \Nat^{k}$
     one of the following holds:
     \begin{enumerate}
@@ -230,23 +230,21 @@ the core result that powers the analysis done in the upcoming
     Because $L$ is \kl{well-quasi-ordered} by the \kl{infix relation}, there
     exists $i < j$ such that $w[\vec{n_i}]$ is an \kl{infix} of $w[\vec{n_j}]$.
     Now, because of the chosen values for $\vec{n_j}$, there exists $1 \leq \ell \leq
-    k-1$ such that $w[\vec{n_i}]$ is actually an \kl{infix} of $u_{\ell}
-    v_{\ell}^{n_{j,\ell}} u_{\ell+1} v_{\ell+1}^{n_{j,\ell+1}} u_{\ell+2}$.
-    Even more,
+    k-1$ such that
     one of the three following equations holds:
     \begin{itemize}
         \item $w[\vec{n_i}] \infleq v_{\ell}^{n_{j,\ell}} u_{\ell+1} v_{\ell+1}^{n_{j,\ell+1}}$,
         \item $w[\vec{n_i}] \infleq u_{\ell}
             v_{\ell}^{n_{j,\ell}}$,
         \item $w[\vec{n_i}] \infleq
-            v_{\ell+1}^{n_{j,\ell+1}} u_{\ell+2}$.
+            v_{\ell}^{n_{j,\ell}} u_{\ell+1}$.
     \end{itemize}
     In all those cases, we conclude using \cref{powers-infixes:cor}
     that there exists $x,y \in \Sigma^+$ of size at most $s$, and 
     a number $1 \leq t \leq k$ such that
-    $v_i^{n_i} \in \InfPeriodChain{x}$ for all $1 \leq i \leq t$,
+    $v_i^{n_{i,\ell}} \in \InfPeriodChain{x}$ for all $1 \leq \ell \leq t$,
     and
-    $v_i^{n_i} \in \InfPeriodChain{y}$ for all $t < i \leq k$.
+    $v_i^{n_{i,\ell}} \in \InfPeriodChain{y}$ for all $t < \ell \leq k$.
     In particular,
     $w[\vec{n_i}] \in \InfPeriodChain{x} u_{t} \InfPeriodChain{y}$.
 
