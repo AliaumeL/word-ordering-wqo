@@ -241,10 +241,10 @@ the core result that powers the analysis done in the upcoming
     \end{itemize}
     In all those cases, we conclude using \cref{powers-infixes:cor}
     that there exists $x,y \in \Sigma^+$ of size at most $s$, and 
-    a number $1 \leq t \leq k$ such that
-    $v_i^{n_{i,\ell}} \in \InfPeriodChain{x}$ for all $1 \leq \ell \leq t$,
+    a number $1 \leq t \leq k$ such that for all $z \in \Nat$,
+    $v_i^{z} \in \InfPeriodChain{x}$ for all $1 \leq i \leq t$,
     and
-    $v_i^{n_{i,\ell}} \in \InfPeriodChain{y}$ for all $t < \ell \leq k$.
+    $v_i^{z} \in \InfPeriodChain{y}$ for all $t < i \leq k$.
     In particular,
     $w[\vec{n_i}] \in \InfPeriodChain{x} u_{t} \InfPeriodChain{y}$.
 
