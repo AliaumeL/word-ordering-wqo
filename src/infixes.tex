@@ -509,7 +509,8 @@ I$, there exists $z \in I$ such that $x \leq z$ and $y \leq z$. Given a
 union of \intro{order ideals}, that is, non-empty sets $I \subseteq X$ that are
 \kl{downwards closed} and \kl(subset){directed} for the relation $\leq$. In our
 case, a \kl{well-quasi-ordered} \kl{order ideal} for the \kl{infix relation} is
-the set of finite \kl{infixes} of a finite or bi-infinte word $w \in
+the set of finite \kl{infixes} of a finite \todo{$\Sigma^\Nat$ is an infinite word}
+or bi-infinte word $w \in
 \Sigma^\Nat \cup \Sigma^\Rel $ (\cref{bi-infinite:lem}). Therefore, we will
 first study languages that are described as the set of finite \kl{infixes} of
 some (bi-)infinite word (\cref{ultimately-uniformly-recurrent:lem}). To that
@@ -518,17 +519,17 @@ end, let us introduce the notation $\intro*\infset{w}$ for the set of finite
 
 \begin{lemma}
     \label{bi-infinite:lem}
-    Let $L \subseteq \Sigma^*$ be an \kl{order ideal} that is \kl{well-quasi-ordered} 
-    for the 
+    Let $L \subseteq \Sigma^*$ be an \kl{order ideal} 
+    for a \kl{well-quasi-ordered} 
     \kl{infix relation}. Then $L$ is the set of finite \kl{infixes}
     of a finite, infinite or bi-infinite word $w$.
 \end{lemma}
 \begin{proof}
-    Let us assume that $L$ is infinite, the case when it is finite 
-    is similar, but leads to a finite word.
+    Let us assume that $L$ is infinite. The case when it is finite 
+    is similar, but will result in a finite word.
 
     Because the alphabet $\Sigma$ is finite, we can enumerate the words of $L$
-    as $\seqof{w_i}[i \in \Nat]$. Now, let us build the sequence $\seqof{u_i}[i \in \Nat]$ by induction
+    as $\seqof{w_i}[i \in \Nat]$. From $\seqof{w_i}[i \in \Nat]$, we construct a sequence $\seqof{u_i}[i \in \Nat]$ by induction
     as follows: $u_0 = w_0$, and $u_{i+1}$ is a word that contains $u_i$ and
     $w_i$, which exists in $L$ because $L$ is \kl(subset){directed}. Since $L$ is
     \kl{well-quasi-ordered}, one can extract an infinite set of indices $I
