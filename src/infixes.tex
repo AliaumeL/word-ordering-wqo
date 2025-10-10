@@ -567,7 +567,7 @@ N_0}$ is \kl{uniformly recurrent}.
     all comparable for the \kl{infix relation}, and therefore a \kl{good
     sequence}, because the \kl{infix relation} is \kl{well-founded}. We can
     therefore assume that all words in the sequence $\seqof{w_i}[i \in \Nat]$ are such that
-    they start at a position $i \geq N_0$. But then, they are all finite
+    they start at a position $i \geq N_0$. But then they are all finite
     \kl{infixes} of $w_{\geq N_0}$, which is a \kl{uniformly recurrent} word,
     whose set of finite \kl{infixes} is \kl{well-quasi-ordered}
     (\cref{uniformly-recurrent:lem}).
@@ -576,19 +576,22 @@ N_0}$ is \kl{uniformly recurrent}.
     \kl{well-quasi-ordered}. Let us write $\mathsf{Rec}(w)$ the set of finite
     \kl{infixes} of $w$ that appear infinitely often. We can similarly define
     $\mathsf{Rec}(w_{\geq i})$ for any (infinite) suffix of $w$. The sequence
-    $R_i \defined \mathsf{Rec}(w_{\geq i})$ is a sequence of \kl{downwards
+    $R_i \defined \mathsf{Rec}(w_{\geq i})$ is a descending sequence of \kl{downwards
     closed} sets of finite words, included in the set of finite infixes of $w$
     by definition. Because the latter is \kl{well-quasi-ordered}, there exists
     an $N_0 \in \Nat$, such that $\bigcap_{i \in \Nat} R_i = R_{N_0}$.
     Now, consider $v \defined w_{\geq N_0}$. By construction, 
     every finite infix of $v$ 
-    appears infinitely often in $v$. Let us consider 
-    some finite infix $u \infleq v$, we claim that there is a bound $N_u$
+    appears infinitely often in $v$. 
+    Given
+    some finite infix $u \infleq v$, we 
+    there exists a bound $N_u$
     on the distance
     between two consecutive occurrences of $u$ in $v$.
     Indeed, if it is not the case, then there exists an infinite sequence
-    $\seqof{u x_i u}[i \in \Nat]$ of infixes of $v$, such that $x_i$ is a word that is
-    of size $\geq i$.
+    $\seqof{u x_i u}[i \in \Nat]$ of infixes of $v$, such that $x_i$ is a word
+    of size $\geq i$
+    and no shorter word $u y u$ is an infix of $u x_i u$.
     Because the finite infixes of $w$ (hence, of $v$) are \kl{well-quasi-ordered},
     one can extract an infinite set of indices $I \subseteq \Nat$
     such that $u x_i u \infleq u x_{j} u$ for all $i \leq j \in I$.
