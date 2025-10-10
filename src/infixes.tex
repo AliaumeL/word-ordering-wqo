@@ -434,16 +434,15 @@ on this sequence and its properties \cite{ALSHA99}.
     \kl(language){bounded}.
 \end{lemma}
 \begin{proof}
-    By construction $\LMorse$ is an \emph{infinite}
-    \kl{downwards closed} for the \kl{infix relation}. Let us argue that $\LMorse$ is
-    \kl{well-quasi-ordered} for the \kl{infix relation}, but is not \kl(language){bounded}.
-    It is \kl{well-quasi-ordered} because it is the set of finite \kl{infixes}
-    of a \kl{uniformly recurrent} word, and we can apply \cref{uniformly-recurrent:lem}.
+    By construction $\LMorse$ is
+    \kl{downwards closed} for the \kl{infix relation},
+    and by \cref{uniformly-recurrent:lem}, it is
+    \kl{well-quasi-ordered}.
 
     Assume by contradiction that $\LMorse$ is \kl(language){bounded}. In this case, there exist
-    words $w_1, \dots, w_k \in \Sigma^*$ such that $L \subseteq w_1^* \cdots
-    w_k^*$. Since $L$ is infinite and \kl{downwards closed}, there exists a
-    word $u \in L$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is absurd
+    words $w_1, \dots, w_k \in \Sigma^*$ such that $\LMorse \subseteq w_1^* \cdots
+    w_k^*$. Since $\LMorse$ is infinite and \kl{downwards closed}, there exists a
+    word $u \in \LMorse$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is a contradiction,
     because $u \infleq \ThueMorse$, which is \kl{cube-free}.
 \end{proof}
 
