@@ -187,7 +187,7 @@ the core result that powers the analysis done in the upcoming
     for arbitrarily large values of $\vec{n} \in \Nat^k$.
     Then, 
     there exists $x,y \in \Sigma^+$ of size 
-    at most $\max \setof{\card{v_i}}{1 \leq i \leq k}$
+    at most $\min \setof{\card{v_i}}{1 \leq i \leq k}$
     such that
     for all \todo{proof does not actually show for all}
     $\vec{n} \in \Nat^{k}$
@@ -212,7 +212,7 @@ the core result that powers the analysis done in the upcoming
     with an intersection that is long enough to successfully apply
     \cref{periodic-infixes:lem}.
     In order to achieve this,
-    let us first define $s$ as the maximal size of a word $v_i$
+    let us first define $s$ as the minimal size of a word $v_i$
     ($1 \leq i \leq k$) and $u_j$ ($1 \leq j \leq k+1$).
     Then,
     we consider $\vec{n_0} \in \Nat^k$ such that $\vec{n_0}$ has all 
@@ -223,7 +223,6 @@ the core result that powers the analysis done in the upcoming
     such that $w[\vec{n_{i+1}}]$ belongs to $L$, 
     and with $\vec{n_i}$ having all components greater than
     $2\card{w[\vec{n_i}]}$.
-
 
     Let us assume that $k \geq 2$ in the following proof for symmetry purposes,
     and argue later on that when $k = 1$ the same argument goes through.
@@ -247,6 +246,9 @@ the core result that powers the analysis done in the upcoming
     $v_i^{z} \in \InfPeriodChain{y}$ for all $t < i \leq k$.
     In particular,
     $w[\vec{n_i}] \in \InfPeriodChain{x} u_{t} \InfPeriodChain{y}$.
+
+    \todo[inline]{Aliaume: proof of concept proof}
+    Let us now conclude that the same $x,y$ work for all $\vec{n} \in \Nat^k$.
 
     
     When $k = 1$, the situation is a bit more specific since we only have two
@@ -369,31 +371,46 @@ the general case illustrated in \cref{dw-closure-not-wqo:rem}.
     For the left-to-right implication, let us assume that $L$ is a
     \kl{well-quasi-ordered} language for the \kl{infix relation}.
     Then $L$ is included in a finite union 
-    of products of \kl{chains}: \todo{reference}
+    of products of \kl{chains} for the \kl{prefix} and \kl{suffix} relations
+    thanks to
+    \cref{bounded-language:thm}:
     \begin{equation*}
         L \subseteq \bigcup_{i = 1}^n S_i \cdot P_i \quad .
     \end{equation*}
-    Remark that the \kl{downwards closure} of a product of two \kl{chains}
-    is a finite union of products of two chains. \todo{reference/proof}.
+    Remark that if $S_i$ is a \kl{chain} for the \kl{suffix relation}
+    and $P_i$ is a \kl{chain} for the \kl{prefix relation},
+    then 
+    \begin{equation*}
+      \dwset[\infleq]{(S_i \cdot P_i)} = (\dwset[\suffleq]{S_i}) \cdot (\dwset[\prefleq]{P_i})
+        \quad .
+    \end{equation*}
+    Indeed, any \kl{infix} of a word in $S_i P_i$ can be split into
+    a \kl{suffix} of a word in $S_i$ and a \kl{prefix} of a word in $P_i$.
+    Conversely, any such concatenations are \kl{infixes} of a word in $S_i P_i$.
+
+
     As a consequence, we conclude that $\dwset[\infleq]{L}$ is itself included
     in a finite union of products of \kl{chains}.
-    Note that this also proves that $\dwset[\infleq]{L}$ is a \kl{bounded language},
-    hence that it is \kl{well-quasi-ordered} by the \kl{infix relation} 
+    Furthermore, by definition of \kl{bounded languages},
+    $\dwset[\infleq]{L}$ is also a \kl{bounded language}.
+    Hence, it is \kl{well-quasi-ordered} by the \kl{infix relation} 
     via
     \cref{bounded-language:thm}.
 \end{proof}
 
-One may think that all \kl{downwards closed} languages for the \kl{infix
-relation} that are \kl{well-quasi-ordered} are \kl(language){bounded}. Note
-that this is what happens in the case of the \kl{subword embedding}, where any
-\kl{downwards closed} language for this relation is characterized by finitely
-many excluded \kl{subwords}, hence provides a \kl{bounded language} \todo{wrong? $\{a,b\}^*$ is downward closed but not bounded}. However, this
-is not the case for the \kl{infix relation}, as we will now illustrate with the
-following two examples.
+
+
+The \cref{bounded-wqo-dwclosed:cor} is reminiscent of a similar result for the
+\kl{subword embedding},  stipulating that for any language $L \subseteq
+\Sigma^*$, the \kl{downwards closure} $\dwset[\higleq]{L}$ is described using
+finitely many excluded \kl{subwords}, hence is regular. However, this is not
+the case for the \kl{infix relation}, even with \kl{bounded languages}, as we
+will now illustrate with the following example.
 
 \begin{example}
     \label{dwclosed-wqo-not-finite-excl:ex}
-    Let $L \defined a^* b^* \cup b^* a^*$ \todo{However, this language is bounded, so this seems to be a non sequitur}. This language is \kl{downwards
+    Let $L \defined a^* b^* \cup b^* a^*$. This language is 
+    \kl(language){bounded}, is \kl{downwards
     closed} for the \kl{infix relation}, is \kl{well-quasi-ordered} for the
     \kl{infix relation}, but is characterized by an \emph{infinite} number 
     of excluded infixes, respectively of the form $ab^ka$ and $ba^kb$ where $k \geq 1$.
@@ -460,16 +477,17 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
 	We first show that $\omegaOrd$ is an upper bound for each of these measure, 
 	before showing that the bounds are tight.
 	
-    %Let us prove that these are upper bounds for the \kl{ordinal invariants} of
-    $\LMorse$. 
-    The bound of the \kl{ordinal height} holds for any language $L$,
-    since a descending chain for $(\Sigma^*, \infleq)$ is isomorphic to one for $(\Nat, \leq)$ \todo{please check this is a good argument}.
-    For the \kl{maximal order type}, we remark that
-    the \kl{uniform recurrence} of $\ThueMorse$ means that
-    the maximal length of a \kl{bad sequence} is determined by its first element,
-    hence that it is at most $\omegaOrd$.
-    Finally, because the \kl{ordinal width} is at most the \kl{maximal order type} \todo{add reference},
-    we conclude that the \kl{ordinal width} is also at most $\omegaOrd$.
+    Let us prove that these are upper bounds for the \kl{ordinal invariants} of
+    $\LMorse$. The bound of the \kl{ordinal height} holds for any language $L$,
+    as the length of a decreasing sequence of words is bounded by the length of
+    its first element. For the \kl{maximal order type}, we remark that the
+    \kl{uniform recurrence} of $\ThueMorse$ means that the maximal length of a
+    \kl{bad sequence} is determined by its first element, hence that it is at
+    most $\omegaOrd$. Finally, because the \kl{ordinal width} is at most the
+    \kl{maximal order type} (as per \cref{ordinal-invariants:subsec}, using for instance the
+    results of \cite{kriz90b} or \cite[Theorem 3.8]{DZSCSC20} stating 
+    $\oType{X} \leq \oHeight{X} \oComProd \oWidth{X}$): we conclude
+    that the \kl{ordinal width} is also at most $\omegaOrd$.
 
     Now, let us prove that these bounds are tight. It is clear that
     $\oHeight{\LMorse} = \omegaOrd$: given any number $n \in \Nat$, one can construct a
@@ -509,8 +527,8 @@ I$, there exists $z \in I$ such that $x \leq z$ and $y \leq z$. Given a
 union of \intro{order ideals}, that is, non-empty sets $I \subseteq X$ that are
 \kl{downwards closed} and \kl(subset){directed} for the relation $\leq$. In our
 case, a \kl{well-quasi-ordered} \kl{order ideal} for the \kl{infix relation} is
-the set of finite \kl{infixes} of a finite \todo{$\Sigma^\Nat$ is an infinite word}
-or bi-infinte word $w \in
+the set of finite \kl{infixes} of a finite, infinite,
+or bi-infinte word $w \in \Sigma^* \cup
 \Sigma^\Nat \cup \Sigma^\Rel $ (\cref{bi-infinite:lem}). Therefore, we will
 first study languages that are described as the set of finite \kl{infixes} of
 some (bi-)infinite word (\cref{ultimately-uniformly-recurrent:lem}). To that
