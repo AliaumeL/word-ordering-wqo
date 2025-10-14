@@ -247,8 +247,18 @@ the core result that powers the analysis done in the upcoming
     In particular,
     $w[\vec{n_i}] \in \InfPeriodChain{x} u_{t} \InfPeriodChain{y}$.
 
-    \todo[inline]{Aliaume: proof of concept proof}
-    Let us now conclude that the same $x,y$ work for all $\vec{n} \in \Nat^k$.
+    \todo[inline]{Aliaume: proof of concept proof} Let us now conclude that the
+    same $x,y$ work for all $\vec{n} \in \Nat^k$. The reasoning is that if
+    $w[\vec{n}]$ is of the form $u_1 x^p x'$ where $x' \prefleq x$, and $x$ is
+    primitive (not a power of a smaller word), then all the iterated words
+    $v_i^{n_i}$ must be powers of a conjugate of $x$ (cyclic shift of $x$), and
+    all the $u_i$'s must be such that the concatenation of the $u_i$'s and
+    $v_i$'s align properly with $x$. Since the length of $x$ is at most $\min
+    \setof{\card{v_i}}{1 \leq i \leq k}$, we conclude that the $v_i$'s
+    themselves are powers of a conjugate of $x$, and that the $u_i$'s are
+    suffixes or prefixes of $x$. Now, we conclude that all the words
+    $w[\vec{n}]$ are of the correct form. Similar reasoning applies for the
+    other two cases.
 
     
     When $k = 1$, the situation is a bit more specific since we only have two
