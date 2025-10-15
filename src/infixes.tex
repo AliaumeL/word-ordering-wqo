@@ -619,6 +619,7 @@ that the two share the letter at position $0$.
 \end{proof}
 
 We are now ready to conclude the proof of \cref{dw-closed-wqo-charac:thm}.
+
 \begin{proofof}{dw-closed-wqo-charac:thm}
   It is clear that the set of finite \kl{infixes} of a finite, infinite or
   bi-infinite \kl{ultimately uniformly recurrent} word is \kl{well-quasi-ordered}
@@ -637,54 +638,22 @@ We are now ready to conclude the proof of \cref{dw-closed-wqo-charac:thm}.
   \kl{ultimately uniformly recurrent}.
 \end{proofof}
 
-Let us now analyse the \kl{ordinal invariants} of the set of finite
+Finally, we comment on the \kl{ordinal invariants} of the set of finite
 \kl{infixes} of an \kl{ultimately uniformly recurrent} infinite word, in order
 to derive the bounds of \cref{small-ordinal-invariants:thm}.
 
 \begin{lemma}
     \label{small-ordinal-invariants:lem}
+    \proofref{small-ordinal-invariants:lem}
     Let $w \in \Sigma^\Nat$ be an \kl{ultimately uniformly recurrent} word.
     Then, the set of finite infixes of $w$ has \kl{ordinal width}
     less than $2 \cdot \omegaOrd$.
     Furthermore, this bound is tight. 
 \end{lemma}
-\begin{proof}
-    Let $N_0$ be a bound such that $w_{\geq N_0}$ is \kl{uniformly recurrent}.
-    Let us write $\infset{w}$ the set of finite infixes of $w$.
-    We prove that $\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
-    Let $u_1 \infleq w$ be a finite word. 
-
-    If $u_1$ is an \kl{infix} of $w_{\geq N_0}$, then there exists $k \geq 1$
-    such that $u_1$ is an \kl{infix} of every word of size at least $k$. In
-    particular, there is finite bound on the length of every sequence of
-    incomparable elements starting with $u_1$. We conclude in particular that
-    $\infset{w} \setminus \upset{u_1}$ has a finite \kl{ordinal width}.
-
-    Otherwise, $u_1$ can only be found \emph{before} $N_0$. In this case, we
-    consider a second element of a \kl{bad sequence} $u_2 \infleq w$, which is
-    incomparable with $u_1$ for the \kl{infix relation}. If $u_2$ is an
-    \kl{infix} of $w_{\geq N_0}$, then we can conclude as before. Otherwise,
-    notice that $u_1$ and $u_2$ cannot start at the same position in $w$
-    (because they are incomparable). Continuing this argument, we conclude that
-    there are at most $N_0$ elements starting before $N_0$
-    at the start of any sequence of
-    incomparable elements in $\infset{w}$. We conclude that
-    $\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
-
-  Let us now justify that this bound is tight.
-  The \kl{Thue-Morse sequence} over a binary
-  alphabet $\set{a,b}$ has \kl{ordinal width} $\omegaOrd$
-  from \cref{thue-morse-ordinal:lemma}.
-    Given a number $N_0
-  \in \Nat$, one can construct an arbitrarily long \kl{antichain} of words for
-  the \kl{infix relation} by using a new letter $c$. When concatenating this
-  (finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
-  new (infinite) word $w$. It is clear that the \kl{ordinal width} of
-  $\infset{w}$ is now at least $\omegaOrd + N_0$.
-\end{proof}
 
 \begin{lemma}
     \label{from-bi-to-single:lem}
+    \proofref{from-bi-to-single:lem}
     Let $w \in \Sigma^\Rel$ be a bi-infinite word. Then, the set of finite
     infixes of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation} if
     and only if $w_+$ and $w_-$ are two \kl{ultimately uniformly recurrent}
@@ -692,35 +661,8 @@ to derive the bounds of \cref{small-ordinal-invariants:thm}.
     of the set of finite infixes of $w$ is less than $3 \cdot \omegaOrd$,
     and this bound is tight.
 \end{lemma}
-\begin{proof}
-  Given a bi-infinite word $w \in \Sigma^{\Rel}$, recall that we can consider $w_+ \in
-\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
-follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
-that the two share the letter at position $0$.
 
-    To obtain the upper bound of $3 \cdot \omegaOrd$, we can consider the same
-    argument as for \cref{small-ordinal-invariants:lem}. We let $N_0$ be such
-    that $w_{\geq N_0}$ and $(w_-)_{\geq N_0}$ are \kl{uniformly recurrent}
-    words. In any sequence of incomparable elements of $\infset{w}$, there are
-    less than $N_0^2$ elements that are found in $(w_{< N_0})_{> -N_0}$. Then,
-    one has to pick a finite \kl{infix} in either $w_{\geq N_0}$ or $w_{\leq
-    -N_0}$. Because of \cref{small-ordinal-invariants:lem}, any sequence of
-    incomparable elements of these two infinite words has length bounded based
-    on the choice of the first element of that sequence. This means that the
-    \kl{ordinal width} of $\infset{w}$ is at most $\omegaOrd + \omegaOrd +
-    N_0^2$. We conclude that $\oWidth{\infset{w}} < 3 \cdot \omegaOrd$.
-
-  Let us briefly argue that the bound is tight. Indeed, one can
-  construct a bi-infinite word $w$ by concatenating a reversed \kl{Thue-Morse
-  sequence} on a binary alphabet $\set{a,b}$, a finite antichain of arbitrarily
-  large size over a distinct alphabet $\set{c,d}$, and then a \kl{Thue-Morse
-  sequence} on a binary alphabet $\set{e,f}$. The \kl{ordinal width} of the set
-  of \kl{infixes} of $w$ is then at least $2 \cdot \omegaOrd + K$, where $K$ is the
-  size of the chosen antichain, following the same argument as in the proof of
-  \cref{small-ordinal-invariants:lem}, using \cref{thue-morse-ordinal:lemma}.
-\end{proof}
-
-We are now ready to conclude the proof of \cref{small-ordinal-invariants:thm}.
+Ordinal invariants in hand, we proceed with the proof of \cref{small-ordinal-invariants:thm}.
 \begin{proofof}{small-ordinal-invariants:thm}
     It is always true that the \kl{ordinal height} of a language over a finite
     alphabet is at most $\omegaOrd$. Let us now consider a
