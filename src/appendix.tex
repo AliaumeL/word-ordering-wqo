@@ -36,6 +36,27 @@
     an infinite branch. By definition this is an \kl{antichain branch}.
 \end{proofof}
 
+
+\begin{proofof}{prefix-wqo-reg-decidable:cor}
+	If $L$ is regular, then it is $\MSO$-definable, and there 
+	exists a formula $\varphi(x)$ in $\MSO$ that selects nodes 
+	of the \kl{tree of prefixes} that belong to $L$. Now, to decide whether there
+	exists an \kl{antichain branch} for $L$, we can simply check whether
+	the following formula is satisfied:
+	\begin{equation*}
+		\exists B. 
+		B \text{ is a branch } \land
+		\forall x \in B, \exists y. y \text{ is a child of } x \land \varphi(y) \land y \not\in B
+		\quad .
+	\end{equation*}
+	Because the above formula is an $\MSO$-formula over the infinite
+	$\Sigma$-branching tree, whether it is satisfied is decidable
+	as an easy consequence of the decidability of $\MSO$ over infinite binary
+	trees
+	\cite[Theorem 1.1]{RAB69}.
+\end{proofof}
+
+
 \begin{proofof}{prefixes:thm}
     Assume that $L$ is a finite union of \kl{chains}.
     Because the \kl{prefix relation} is \kl{well-founded},

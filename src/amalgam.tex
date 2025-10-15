@@ -30,8 +30,7 @@ procedure for being \kl{well-quasi-ordered}. This will require us to introduce
 of them will be innocuous, an important consequence is that we have to consider
 \emph{classes of languages} rather than individual ones, for instance: the
 class of all regular language, or the class of all context-free languages. Such
-classes will be called \kl{effective amalgamative classes} (\kcref{effective
-amalgamative classes}). In the following theorem, we prove that under such
+classes will be called \kl[effectiveness assumptions@amalgamation]{effective amalgamative classes} (\kcref{effectiveness assumptions@amalgamation})\todo{can't get the knowledge to work}. In the following theorem, we prove that under such
 assumptions, testing \kl{well-quasi-ordering} is inter-reducible to testing
 whether a language of the class is empty, which is usually the simplest
 problem for a computational model.
@@ -47,12 +46,12 @@ problem for a computational model.
 	\end{enumerate}
 \end{theorem}
 
-\AP We say that a \kl{strongly effective amalgamative class} is an
-\kl{effective amalgamative class} for which the emptiness problem is decidable.
-Let us immediately remark that the class of \kl{regular languages} is
-\kl(amalg){strongly effective}, and so is the class of context-free languages.
-Therefore, \cref{infix-wqo-is-emptiness:thm} provides a concrete decision
-procedure for these classes.
+%\AP We say that a \kl{strongly effective amalgamative class} is an
+%\kl{effective amalgamative class} for which the emptiness problem is decidable.
+%Let us immediately remark that the class of \kl{regular languages} is
+%\kl(amalg){strongly effective}, and so is the class of context-free languages.
+%Therefore, \cref{infix-wqo-is-emptiness:thm} provides a concrete decision
+%procedure for these classes.
 
 \subsection{Amalgamation Systems}
 \label{amalgamation-systems:subsec}
@@ -101,7 +100,7 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
     $R$ is a set of so-called \emph{runs},
     $\canrun \colon R \to (\Sigma \uplus \set{\cansep})^*$ is a 
     function computing a \intro{canonical decomposition} of a run,
-    and $E$ describes the so-called \intro{admissible embeddings} between runs: If $\rho$ and $\sigma$ are runs from $R$, then $E(\rho, \sigma)$ is a subset of the subword embeddings between $\canrun[\rho]$ and $\canrun[\sigma]$. We write $\rho \intro*\runleq \sigma$ if $E(\rho, \sigma)$ is non-empty. If we want to refer to a specific embedding $f \in E(\rho, \sigma)$, we also write $\rho \runleq_f \sigma$.
+    and $E$ describes the so-called \intro{admissible embeddings} between runs: If $\rho$ and $\sigma$ are runs from $R$, then $E(\rho, \sigma)$ is a subset of the subword embeddings between $\canrun(\rho)$ and $\canrun(\sigma)$. We write $\rho \intro*\runleq \sigma$ if $E(\rho, \sigma)$ is non-empty. If we want to refer to a specific embedding $f \in E(\rho, \sigma)$, we also write $\rho \runleq_f \sigma$.
     Given a run $r \in R$, and $i \in \range[0]{\card{\canrun(r)}}$, 
     the \intro{gap language} of $r$ at position $i$ is $\intro*\GapLanguage{r}{i} \defined
     \setof{\GapWord{f}{i}}{\exists s \in R. \exists f \in E(r,s) }$.
@@ -145,59 +144,61 @@ runs, and the proper ``gluing'' of runs together to obtain new runs. A number
 of well-known language classes can be seen to be recognized by \kl{amalgamation
 systems}, e.g., regular languages \cite[Theorem 5.3]{ASZZ24}, reachability and
 coverability languages of VASS \cite[Theorem 5.5]{ASZZ24}, and context-free
-languages \cite[Theorem 5.10]{ASZZ24}. For this paper to be self-contained, we
-will also recall how runs of a finite state automaton can be understood as an
-\kl{amalgamation system}.
+languages \cite[Theorem 5.10]{ASZZ24}. 
 
-\begin{example}[{\cite[Section 3.2]{ASZZ24}}]
-    Let $A = (Q, \delta, q_0, F)$ be a finite state automaton over a finite
-    alphabet $\Sigma$. Let $\Delta$ be the set of transitions $(q_1, a, q_2)
-    \in Q \times \Sigma \times Q$,
-    and $R \subseteq \Delta^*$ be the set of 
-    words over transitions that start with the initial state $q_0$,
-    end in a final state $q_f \in F$, and such that the end state of a
-    letter is the start state of the following one.
-    The canonical decomposition $\canrun$
-    is defined as a morphism from $\Delta^*$ to $\Sigma^*$
-    that maps $(q,a,p)$ to $a$. 
-    Because of the one-to-one correspondence of steps of a run $\rho$ and letters in its \kl{canonical decomposition}, 
-    we may treat the two interchangeably.
-    Finally, given two runs $\rho$ and $\sigma$ of the automaton,
-    we say that an embedding $f \in \HigEmb(\canrun(\rho), \canrun(\sigma))$
-    belongs to $E(\rho,\sigma)$ when
-    $f$ is also defining an embedding from $\rho$ to $\sigma$ as words in $\Delta^*$.
-
-    The system $(\Sigma, R, E, \canrun)$ is an \kl{amalgamation system},
-    whose language is precisely the language of words recognized
-    by the automaton $A$.
-\end{example}
-\begin{proof}
-    By definition, the embeddings inside $E(\rho,\sigma)$ are in
-    of $\HigEmb(\canrun(\rho), \canrun(\sigma))$, and they compose properly.
-    Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
-    a \kl{well-quasi-ordering} when equipped with the equality relation, and 
-    we conclude that $\Delta^*$ with $\higleq$ is a \kl{well-quasi-order}
-    according to Higman’s Lemma \cite{HIG52}.
-    
-    Let us now move to proving that the system satisfies the amalgamation
-    property. Given three runs $\rho,\sigma,\tau \in R$, and two embeddings $f \in E(\rho,\sigma)$
-    and $g \in E(\rho,\tau)$, we want to construct an amalgamated run $\sigma \vee \tau$.
-    Because letters in the run $\rho$ respect the transitions of the automaton
-    (i.e., if the letter $i$ ends in state $q$, then the letter $i+1$ starts in
-    state $q$), then the \kl{gap word} at position $i$ starts in state $q$ and
-    ends in state $q$ too. This means that for both embeddings
-    $f$ and $g$, the \kl{gap words} are read by the automaton by looping
-    on a state. In particular, these loops can be taken in any order
-    and continue to represent a valid run. That is, we can even select
-    the order of concatenation in the amalgamation for \emph{all} 
-    $0 \leq i \leq \card{\canrun(\rho)}$ and not just for one separately.
-
-    We conclude by remarking that 
-    the language of this amalgamation system is
-    the set of $\yieldrun(R)$, 
-    because $R$ is the set of valid runs of the automaton,
-    and $\yieldrun(\rho)$ is the word read along a run $\rho$.
-\end{proof}
+%For this paper to be self-contained, we
+%will also recall how runs of a finite state automaton can be understood as an
+%\kl{amalgamation system}.
+%
+%\begin{example}[{\cite[Section 3.2]{ASZZ24}}]
+%    Let $A = (Q, \delta, q_0, F)$ be a finite state automaton over a finite
+%    alphabet $\Sigma$. Let $\Delta$ be the set of transitions $(q_1, a, q_2)
+%    \in Q \times \Sigma \times Q$,
+%    and $R \subseteq \Delta^*$ be the set of 
+%    words over transitions that start with the initial state $q_0$,
+%    end in a final state $q_f \in F$, and such that the end state of a
+%    letter is the start state of the following one.
+%    The canonical decomposition $\canrun$
+%    is defined as a morphism from $\Delta^*$ to $\Sigma^*$
+%    that maps $(q,a,p)$ to $a$. 
+%    Because of the one-to-one correspondence of steps of a run $\rho$ and letters in its \kl{canonical decomposition}, 
+%    we may treat the two interchangeably.
+%    Finally, given two runs $\rho$ and $\sigma$ of the automaton,
+%    we say that an embedding $f \in \HigEmb(\canrun(\rho), \canrun(\sigma))$
+%    belongs to $E(\rho,\sigma)$ when
+%    $f$ is also defining an embedding from $\rho$ to $\sigma$ as words in $\Delta^*$.
+%
+%    The system $(\Sigma, R, E, \canrun)$ is an \kl{amalgamation system},
+%    whose language is precisely the language of words recognized
+%    by the automaton $A$.
+%\end{example}
+%\begin{proof}
+%    By definition, the embeddings inside $E(\rho,\sigma)$ are in
+%    of $\HigEmb(\canrun(\rho), \canrun(\sigma))$, and they compose properly.
+%    Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
+%    a \kl{well-quasi-ordering} when equipped with the equality relation, and 
+%    we conclude that $\Delta^*$ with $\higleq$ is a \kl{well-quasi-order}
+%    according to Higman’s Lemma \cite{HIG52}.
+%    
+%    Let us now move to proving that the system satisfies the amalgamation
+%    property. Given three runs $\rho,\sigma,\tau \in R$, and two embeddings $f \in E(\rho,\sigma)$
+%    and $g \in E(\rho,\tau)$, we want to construct an amalgamated run $\sigma \vee \tau$.
+%    Because letters in the run $\rho$ respect the transitions of the automaton
+%    (i.e., if the letter $i$ ends in state $q$, then the letter $i+1$ starts in
+%    state $q$), then the \kl{gap word} at position $i$ starts in state $q$ and
+%    ends in state $q$ too. This means that for both embeddings
+%    $f$ and $g$, the \kl{gap words} are read by the automaton by looping
+%    on a state. In particular, these loops can be taken in any order
+%    and continue to represent a valid run. That is, we can even select
+%    the order of concatenation in the amalgamation for \emph{all} 
+%    $0 \leq i \leq \card{\canrun(\rho)}$ and not just for one separately.
+%
+%    We conclude by remarking that 
+%    the language of this amalgamation system is
+%    the set of $\yieldrun(R)$, 
+%    because $R$ is the set of valid runs of the automaton,
+%    and $\yieldrun(\rho)$ is the word read along a run $\rho$.
+%\end{proof}
 
 \subsection{$\infleq$-Well-Quasi-Ordered Amalgamation Systems}
 
@@ -213,6 +214,37 @@ proof, and our \cref{infix-amalgamation:thm} follows from it.
 	
 	For any $0 \leq \ell \leq n$, we have $\GapWord{f}{\ell} \infleq \GapWord{g}{\ell}$ or vice versa.
 \end{lemma}
+
+\begin{proof}
+	Write $u$ for $\GapWord{f}{\ell}$ and $v$ for $\GapWord{g}{\ell}$. 
+	We may assume that both $u$ and $v$ are non-empty, as otherwise the lemma holds trivially.
+	Then, for all $k \in \Nat$, there exists a run with canonical decomposition
+	$$
+	w_k = L_0 a_1 \cdots a_n L_n,
+	$$
+	where $L_i \in \set{vv u^k, vu^kv, u^k vv}$ and specifically $L_\ell = vu^kv$.
+	
+	\todo[inline]{The following can probably be replaced by a reference to Fine \& Wilf}
+	From \cref{pumping-periods:lem}, we may conclude that there are a finite number of words $x, y,$ and $w$ 
+	such that each $w_k$ is contained in a language 
+	$\InfPeriodChain{x}w\InfPeriodChain{y}$.
+	
+	As there is an infinite number of words $w_k$, 
+	we may fix $x, y,$ and $w$ and an infinite subset $I \subseteq \Nat$ 
+	such that $\set{w_i \mid i \in I} \subseteq \InfPeriodChain{x}w\InfPeriodChain{y}$. 
+	This implies that either for infinitely many $m \in \Nat$, $u^m v \in \InfPeriodChain{y}$ 
+	or for infinitely many $m$, $v u^m \in \InfPeriodChain{x}$. 
+	
+	In either case, we may conclude that either $u \infleq v$ or $v \infleq u$: Let $m, n \in \Nat$
+	such that $m < n$ and $u^m v, u^n v \in \InfPeriodChain{y}$ (the case for $v u^m$ and $v u^n$ 
+	proceeding analogously). Without loss of generality, assume that $\card{u^m}$ and $\card{u^n}$ are
+	multiples of $\card{y}$. We therefore find $p \prefleq y, s \suffleq y$ such that $u^m, u^n \in sy^*p$, 
+	ergo $ps = y$.
+	In other words, we can write $u^m = (sp)^{m'}, u^n = (sp)^{n'}$. As $u^mv \in \InfPeriodChain{y}$, it 
+	follows that $v$ is a prefix of some word in $(sp)^*$. Hence either $v$ is a prefix of $u$ or $u$ vice versa.
+\end{proof}
+
+
 
 \begin{proofof}{infix-amalgamation:thm}
     Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
@@ -258,34 +290,34 @@ recognized by \emph{any} \kl{amalgamation system}.
 \subsection{Effective Decision Procedures}
 \label{infixes-amalgamation-effective:subsec}
 
-\AP Let us now introduce our effectiveness assumptions on \kl{amalgamation
-systems}. We follow the approach of \cite{ASZZ24} and require that an
-\kl{amalgamation system} $(\Sigma, R, E, \canrun)$ is effective when $R$ is
+\AP To construct a decision procedure for well-quasi-orderedness under $\infleq$, we 
+our \kl{amalgamation systems} to satisfy certain \intro{effectiveness assumptions}. We require that for an
+\kl{amalgamation system} $(\Sigma, R, E, \canrun)$, $R$ is
 recursively enumerable, the function $\canrun(\cdot)$ is computable, and for
-any two runs $\rho, \sigma \in R$, the set $E(\rho,\sigma)$ is computable.
+any two runs $\rho, \sigma \in R$, the set $E(\rho,\sigma)$ is computable. Additionally, we require the class to be effectively closed under rational transductions \cite[Chapter 5, page 64]{BERST79}.
 
-\AP We say that a class $\mathcal{C}$ of languages is an \intro{effective
-amalgamative class} whenever for every $L \in \mathcal{C}$, there exists an
-effective \kl{amalgamation system} recognizing $L$, and such that $\mathcal{C}$
-is \kl{effectively closed under rational transductions}. Recall that a
-\intro{rational transduction} is a \emph{relation} $R \subseteq \Sigma^* \times
-\Gamma^*$ that can be defined by a (nondeterministic) finite automaton with
-output \cite[Chapter 5, page 64]{BERST79}. A class of languages $\mathcal{C}$
-is \intro{effectively closed under rational transductions} when, for every
-language $L \in \mathcal{C}$, and every rational transduction $R \subseteq
-\Sigma^* \times \Gamma^*$, the image of $L$ through $R$ --- that is, $\setof{v
-\in \Gamma^*}{\exists u \in L. (u,v) \in R}$ --- is in $\mathcal{C}$ and
-effectively computable. In particular, it implies that the class contains
-languages over arbitrary (finite) alphabets.
+%\AP We say that a class $\mathcal{C}$ of languages is an \intro{effective
+%amalgamative class} whenever for every $L \in \mathcal{C}$, there exists an
+%effective \kl{amalgamation system} recognizing $L$, and such that $\mathcal{C}$
+%is \kl{effectively closed under rational transductions}. Recall that a
+%\intro{rational transduction} is a \emph{relation} $R \subseteq \Sigma^* \times
+%\Gamma^*$ that can be defined by a (nondeterministic) finite automaton with
+%output \cite[Chapter 5, page 64]{BERST79}. A class of languages $\mathcal{C}$
+%is \intro{effectively closed under rational transductions} when, for every
+%language $L \in \mathcal{C}$, and every rational transduction $R \subseteq
+%\Sigma^* \times \Gamma^*$, the image of $L$ through $R$ --- that is, $\setof{v
+%\in \Gamma^*}{\exists u \in L. (u,v) \in R}$ --- is in $\mathcal{C}$ and
+%effectively computable. In particular, it implies that the class contains
+%languages over arbitrary (finite) alphabets.
 
-\AP A class $\mathcal{C}$ of languages is \intro(amalg){strongly effective}
-whenever the emptiness problem for languages in $\mathcal{C}$ is decidable.
-This notion is interesting because usual language problems such as boundedness
-or simultaneous boundedness are decidable for \kl{strongly effective
-amalgamative classes}~\cite{ASZZ24}. 
+%\AP A class $\mathcal{C}$ of languages is \intro(amalg){strongly effective}
+%whenever the emptiness problem for languages in $\mathcal{C}$ is decidable.
+%This notion is interesting because usual language problems such as boundedness
+%or simultaneous boundedness are decidable for \kl{strongly effective
+%amalgamative classes}~\cite{ASZZ24}. 
 
 \begin{proofof}{infix-wqo-is-emptiness:thm}
-	\cref{emptiness-decidable} We first show $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} of \cref{bounded-language:thm} effective. 
+	We first show \cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} of \cref{bounded-language:thm} effective. 
 	Let $R(n,m,N_0) \defined \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in
     \Sigma^{\leq m \times N_0}} \InfPeriodChain{x} u \InfPeriodChain{y} \cup
     \InfPeriodChain{x}u \cup u\InfPeriodChain{x}$. For any concrete values of
@@ -340,15 +372,14 @@ $\mathcal{C}_{\text{cfg}}$ of context-free languages are examples of
     it is a \kl{bounded language}.
 \end{corollary}
 
-Let us conclude by noting that it is unsurprisingly not possible to decide
-whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
-relation}. This is a very easy result whose sole purpose is to contrast with
-the decidability result of \cref{aut-cfg-infix:cor}.
 
 \begin{remark}
-    The following problem is undecidable: given a language $L$
-    decided by a Turing machine, answer whether 
-    $L$ is \kl{well-quasi-ordered} for the \kl{prefix relation}.
+	Let us conclude by noting that it is unsurprisingly not possible to decide
+	whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
+	relation} in general. 
+	%This is a very easy result whose sole purpose is to contrast with
+	%the decidability result of \cref{aut-cfg-infix:cor}.
+	
 \end{remark}
 \begin{proof}
     We reduce the halting problem on the empty string $\varepsilon$.
