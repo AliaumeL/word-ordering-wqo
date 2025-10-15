@@ -33,6 +33,27 @@
     an infinite branch. By definition this is an \kl{antichain branch}.
 \end{proofof}
 
+
+\begin{proofof}{prefix-wqo-reg-decidable:cor}
+	If $L$ is regular, then it is $\MSO$-definable, and there 
+	exists a formula $\varphi(x)$ in $\MSO$ that selects nodes 
+	of the \kl{tree of prefixes} that belong to $L$. Now, to decide whether there
+	exists an \kl{antichain branch} for $L$, we can simply check whether
+	the following formula is satisfied:
+	\begin{equation*}
+		\exists B. 
+		B \text{ is a branch } \land
+		\forall x \in B, \exists y. y \text{ is a child of } x \land \varphi(y) \land y \not\in B
+		\quad .
+	\end{equation*}
+	Because the above formula is an $\MSO$-formula over the infinite
+	$\Sigma$-branching tree, whether it is satisfied is decidable
+	as an easy consequence of the decidability of $\MSO$ over infinite binary
+	trees
+	\cite[Theorem 1.1]{RAB69}.
+\end{proofof}
+
+
 \begin{proofof}{prefixes:thm}
     Assume that $L$ is a finite union of \kl{chains}.
     Because the \kl{prefix relation} is \kl{well-founded},
@@ -104,6 +125,52 @@
     v$, and \emph{a fortiori}, $u x^\ell v \infleq u x^k v$. 
     Similarly, because $u \suffleq x$,  there exists $w$ such that $wu  = x$, 
     and we conclude that $u x^{\ell} v \suffleq w u x^\ell v = x^{\ell + 1} v \suffleq u x^k v$.
+\end{proofof}
+
+\begin{proofof}{bounded-language:lem}
+	\begin{proof}
+		Let $w_1, \dots, w_n$ be such that
+		$L \subseteq w_1^* \cdots w_n^*$.
+		Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
+		
+		Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
+		to $\Sigma^*$. We are interested in the intersection of the image of $w$
+		with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
+		there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
+		Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
+		$x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
+		$w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
+		\InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
+		\cup \InfPeriodChain{x} \InfPeriodChain{y}$.
+		
+		Now, it may be the case that one cannot simultaneously assume that two
+		component of the vector $\vec{k}$ are unbounded. In general, given a set $S
+		\subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
+		there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
+		exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
+		$\vec{b}$ on the $S$ components, and the other components are below the
+		bound $N_0$. The language of an admissible set $S$ is the set of words
+		obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
+		($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
+		Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
+		
+		Now, admissible languages are ready to be pumped according to
+		\cref{pumping-periods:lem}. For every admissible language,
+		the size of a word that is not iterated is at most
+		$N_0 \times m$ by definition, and we conclude that:
+		\begin{equation}
+			\label{bounded-language:eq}
+			L \subseteq 
+			\bigcup_{x,y \in \Sigma^{\leq n}}
+			\bigcup_{u \in \Sigma^{\leq m \times N_0}}
+			\InfPeriodChain{x} u \InfPeriodChain{y}
+			\cup
+			\InfPeriodChain{x} u
+			\cup
+			u \InfPeriodChain{x}
+			\quad .
+		\end{equation}
+	\end{proof}
 \end{proofof}
 
 \section{Proofs for Section~\ref{infixes-amalgamation:sec}}
