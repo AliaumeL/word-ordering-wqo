@@ -1,5 +1,5 @@
 % LTeX: language=en-GB 
-% !TeX root=../wqo-on-words.tex
+% !TeX root=../wqo-on-words.lncs.tex
 \section{Introduction}
 \label{introduction:sec}
 
@@ -170,16 +170,25 @@ relation} is always a \kl{regular language}.
 
 \begin{figure}[h]
   \centering
-  \begin{tabular}{c|c|c|c}
+  \setlength{\tabcolsep}{6pt}
+  \begin{tabular}{c|p{6cm}|c|c}
       \toprule
       $L$ & \textbf{Characterisation} & $\oWidth{L}$ & $\oType{L}$ \\
       \midrule
-      arbitrary & \cref{infix-embedding:thm} & $< \omegaOne$  & $< \omegaOne$ \\
-      bounded & \cref{bounded-language:thm} & $< \omegaOrd^2$ & $< \omegaOrd^3$ \\
-      downwards closed & \cref{small-ordinal-invariants:thm} & $< \omegaOrd^2$ & $< \omegaOrd^3$ \\
+      arbitrary & \cref{infix-embedding:thm}: countable well-quasi orders
+                with finite initial segments & $< \omegaOne$  & $< \omegaOne$ \\
+      \addlinespace
+      \kl(language){bounded} & \cref{bounded-language:thm}: finite union of products of prefix and suffix chains& $< \omegaOrd^2$ & $< \omegaOrd^3$ \\
+      \addlinespace
+      \kl{downwards closed}  & \cref{dw-closed-wqo-charac:thm}: finite union of infixes of \kl{ultimately uniformly recurrent words} & $< \omegaOrd^2$ & $< \omegaOrd^3$ \\
       \bottomrule
     \end{tabular}
-    \caption{Summary of results for the \kl{infix relation}.}
+    \caption{Summary of results for the \kl{infix relation},
+    the bounds on $\oWidth{L}$ and $\oType{L}$ are tight, and respectively 
+    proven in
+    \cref{ordinal-invariants-bounded:cor}
+    and 
+  \cref{small-ordinal-invariants:thm}.}
     \label{infixes-summary:fig}
 \end{figure}
 
@@ -202,12 +211,6 @@ language recognized by an \kl{amalgamation system} is \kl{well-quasi-ordered}
 by the \kl{infix relation} (\cref{infix-wqo-is-emptiness:thm}). We defer the
 introduction of \kl{amalgamation systems} to
 \cref{amalgamation-systems:subsec}.
-
-\todo[inline]{
-  rework the content so that cited things exists and/or are 
-  corollaries and theorems (mainly). Also, add results to prove that 
-  bounds are tight!
-}
 
 \paragraph*{Related work} The study of alternative \kl{well-quasi-ordered}
 relations over finite words is far from new. For instance, orders obtained by
@@ -239,28 +242,23 @@ then we consider non-regular languages, and finally, we provide very precise
 descriptions of the \kl{well-quasi-ordered} languages, as well as tight bounds
 on their \kl{ordinal invariants}. 
 
-\paragraph*{Outline} 
-We introduce in \cref{prelims:sec} the
-necessary background on \kl{well-quasi-orders} and \kl{ordinal invariants}.
-In
-\cref{prefixes:sec}, which is relatively
-self-contained, we study the \kl{prefix relation} and prove in
-\cref{prefixes:thm} the characterization of \kl{well-quasi-ordered}
-languages by the \kl{prefix relation}. In
-\cref{infixes-bounded:sec}, we
-obtain the \kl[infix relation]{infix} analogue of \cref{prefixes:thm}
-specifically for \kl{bounded languages}
-(\cref{bounded-language:thm}). 
-In \cref{infixes-dwclosed:sec}, we study the \kl{downwards closed}
-languages, and compute bounds on their \kl{ordinal invariants} in \cref{small-ordinal-invariants:thm}.
-Finally, 
-we generalize these results to all
-\kl{amalgamation systems} in \cref{infixes-amalgamation:sec}
-in
-(\cref{infix-amalgamation:thm}),
-and provide a decision procedure for checking whether a language is
-\kl{well-quasi-ordered} by the \kl{infix relation} (resp. \kl{prefix} and \kl{suffix}) in
-this context (\cref{infix-wqo-is-emptiness:thm}).
+\paragraph*{Outline} We introduce in \cref{prelims:sec} the necessary
+background on \kl{well-quasi-orders} and \kl{ordinal invariants}. In
+\cref{prefixes:sec}, which is relatively self-contained, we study the
+\kl{prefix relation} and prove in \cref{prefixes:thm} the characterization of
+\kl{well-quasi-ordered} languages by the \kl{prefix relation}. In
+\cref{infixes-bounded:sec}, we obtain the \kl[infix relation]{infix} analogue
+of \cref{prefixes:thm} specifically for \kl{bounded languages}
+(\cref{bounded-language:thm}). In \cref{infixes-dwclosed:sec}, we study the
+\kl{downwards closed} languages, characterize them using a notion of
+\kl{ultimately uniformly recurrent words} borrowed from symbolic dynamics
+(\cref{dw-closed-wqo-charac:thm}), and compute bounds on their \kl{ordinal
+invariants} in \cref{small-ordinal-invariants:thm}. Finally, we generalize
+these results to all \kl{amalgamation systems} in
+\cref{infixes-amalgamation:sec} in (\cref{infix-amalgamation:thm}), and provide
+a decision procedure for checking whether a language is \kl{well-quasi-ordered}
+by the \kl{infix relation} (resp. \kl{prefix} and \kl{suffix}) in this context
+(\cref{infix-wqo-is-emptiness:thm}).
 
 \paragraph*{Acknowledgements} We would like to thank participants of the 2024
 edition of \kl{Autobóz} for their helpful comments and discussions.

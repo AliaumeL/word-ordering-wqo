@@ -512,38 +512,54 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omegaOrd$.
 \end{proof}
 
-
-We prove if the upcoming theorem that the status of the \kl{Thue-Morse
-sequence} is actually representative of most \kl{downwards closed} languages
-for the \kl{infix relation}. Indeed, we show that the \kl{ordinal invariants}
-of such languages are relatively small, and the proof of this fact relies on
-the connection between \kl{well-quasi-ordered} languages and \kl{uniformly
-recurrent} words.
+\AP We prove in the upcoming \cref{dw-closed-wqo-charac:thm} that the status of
+the \kl{Thue-Morse sequence} is actually representative of \kl{downwards
+closed} languages for the \kl{infix relation}. To that end, let us introduce
+the notation $\intro*\infset{w}$ for the set of finite \kl{infixes} of a
+(possibly infinite or bi-infinite) word $w \in \Sigma^* \cup \Sigma^\Nat \cup
+\Sigma^\Rel$. We say that an infinite word $w \in \Sigma^\Nat$ is
+\intro{ultimately uniformly recurrent} if there exists a bound $N_0 \in \Nat$
+such that $w_{\geq N_0}$ is \kl{uniformly recurrent}. We extend this notion to
+finite words by considering that they all are \kl{ultimately uniformly
+recurrent}, and to bi-infinite words by considering that they are
+\kl{ultimately uniformly recurrent} if and only if both their left-infinite and
+right-infinite parts are.
 
 \begin{theorem}
-    \label{small-ordinal-invariants:thm}
+    \label{dw-closed-wqo-charac:thm}
     Let $L$ be a \kl{well-quasi-ordered} language for the \kl{infix relation}
     that is \kl{downwards closed}.
+    Then, there exist finitely many \kl{ultimately uniformly recurrent words} 
+    $w_1, \dots, w_n \in \Sigma^* \cup 
+    \Sigma^\Nat \cup \Sigma^\Rel$ such that
+    $L = \bigcup_{i = 1}^n \infset{w_i}$.
+\end{theorem}
+
+Thanks to \cref{dw-closed-wqo-charac:thm}, and by analysing 
+the \kl{ordinal invariants} of \kl{infixes} of an \kl{ultimately uniformly recurrent}
+infinite word $w$ (\cref{ultimately-uniformly-recurrent:lem}),
+we conclude that the \kl{ordinal invariants} of a \kl{well-quasi-ordered}
+\kl{downwards closed} language are relatively small.
+
+\begin{corollary}
+  \label{small-ordinal-invariants:thm}
     Then, the \kl{maximal order type} of $L$ is strictly less than $\omegaOrd^3$,
     its \kl{ordinal height} is at most $\omegaOrd$,
     and its \kl{ordinal width} is at most $\omegaOrd^2$.
 
     Furthermore, those bounds are tight.
-\end{theorem}
+\end{corollary}
 
-\AP A subset $I \subseteq X$ is \intro(subset){directed} if, for every $x,y \in
-I$, there exists $z \in I$ such that $x \leq z$ and $y \leq z$. Given a
+\AP To connect infixes of a (bi)-infinite word to \kl{downwards closed}
+languages, a useful notion is that of \kl(subset){directed} sets. A subset $I
+\subseteq X$ is \intro(subset){directed} if, for every $x,y \in I$, there
+exists $z \in I$ such that $x \leq z$ and $y \leq z$. Given a
 \kl{well-quasi-order} $(X, \leq)$, one can always decompose $X$ into a finite
 union of \intro{order ideals}, that is, non-empty sets $I \subseteq X$ that are
 \kl{downwards closed} and \kl(subset){directed} for the relation $\leq$. In our
 case, a \kl{well-quasi-ordered} \kl{order ideal} for the \kl{infix relation} is
-the set of finite \kl{infixes} of a finite, infinite,
-or bi-infinte word $w \in \Sigma^* \cup
-\Sigma^\Nat \cup \Sigma^\Rel $ (\cref{bi-infinite:lem}). Therefore, we will
-first study languages that are described as the set of finite \kl{infixes} of
-some (bi-)infinite word (\cref{ultimately-uniformly-recurrent:lem}). To that
-end, let us introduce the notation $\intro*\infset{w}$ for the set of finite
-\kl{infixes} of a (possibly infinite or bi-infinite) word $w$.
+the set of finite \kl{infixes} of a finite, infinite, or bi-infinte word $w \in
+\Sigma^* \cup \Sigma^\Nat \cup \Sigma^\Rel $ (\cref{bi-infinite:lem}). 
 
 \begin{lemma}
     \label{bi-infinite:lem}
@@ -555,6 +571,9 @@ end, let us introduce the notation $\intro*\infset{w}$ for the set of finite
 \begin{proof}
     Let us assume that $L$ is infinite. The case when it is finite 
     is similar, but will result in a finite word.
+    \todo{aliaume: do we need wqo here? the proof
+      should go through without it: the sequence 
+      $u_i$ is already increasing for infix}
 
     Because the alphabet $\Sigma$ is finite, we can enumerate the words of $L$
     as $\seqof{w_i}[i \in \Nat]$. From $\seqof{w_i}[i \in \Nat]$, we construct a sequence $\seqof{u_i}[i \in \Nat]$ by induction
@@ -571,11 +590,6 @@ end, let us introduce the notation $\intro*\infset{w}$ for the set of finite
     an infix of some $u_i$ by definition of the limit construction, hence
     belongs to $L$ since $u_i \in L$ and $L$ is \kl{downwards closed}.
 \end{proof}
-
-
-\AP We say that an infinite word $w \in \Sigma^\Nat$ is \intro{ultimately
-uniformly recurrent} if there exists a bound $N_0 \in \Nat$ such that $w_{\geq
-N_0}$ is \kl{uniformly recurrent}.
 
 \begin{lemma}
     \label{ultimately-uniformly-recurrent:lem}
@@ -636,6 +650,71 @@ N_0}$ is \kl{uniformly recurrent}.
 \end{proof}
 
 \begin{lemma}
+  \label{bi-infinite-uur:lem}
+    Let $w \in \Sigma^\Rel$ be a bi-infinite word. Then, the set of finite
+    infixes of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation} if
+    and only if $w$ is \kl{ultimately uniformly recurrent} as a bi-infinite word.
+\end{lemma}
+\begin{proof}
+  Given a bi-infinite word $w \in \Sigma^{\Rel}$, we can consider $w_+ \in
+\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
+follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
+that the two share the letter at position $0$.
+
+    Assume that $w_+$ and $w_-$ are \kl{ultimately uniformly recurrent}. Let us
+    write $\infset{w}$ the set of finite infixes of $w$. Consider an infinite
+    sequence of words $\seqof{u_i}[i \in \Nat]$ in $\infset{w}$. If there is an
+    infinite subsequence of words that are all in $\infset{w_+}$, then there
+    exists an increasing pair of indices $i < j$ such that $u_i \infleq
+    u_j$ because \cref{uniformly-recurrent:lem} applies to $w_+$. Similarly, if
+    there is an infinite subsequence of words that are all in $\infset{w_-}$,
+    then there exists an increasing pair of indices $i < j$ such that $u_i
+    \infleq u_j$ because \cref{uniformly-recurrent:lem} applies to $w_-$ (and
+    the \kl{infix relation} is compatible with mirroring). Otherwise, one can
+    assume without loss of generality that all words in the sequence have a
+    starting position in $w_-$ and an ending position in $w_+$. In this case,
+    let us write $(k_i,l_i) \in \Nat^2$ the pair of indices such that $u_i$ is the infix
+    of $w$ that starts at position $-k_i$ of $w$ (i.e., $k_i$ of $w_-$) and
+    ends at position $l_i$ of $w$ (i.e., $l_i$ of $w_+$).
+    Because $\Nat^2$ is a \kl{well-quasi-ordering} with the product ordering,
+    there exists $i < j$ such that $k_i \leq k_j$ and $l_i \leq l_j$, 
+    in particular, $u_i \infleq u_j$. We have proven that every infinite
+    sequence of words in $\infset{w}$ is \kl(wqo){good}, hence $\infset{w}$ is
+    \kl{well-quasi-ordered}.
+
+    Conversely, assume that $\infset{w}$ is \kl{well-quasi-ordered}. In
+    particular, the subset $\infset{w_+} \subseteq \infset{w}$ is \kl{well-quasi-ordered}.
+    Similarly, $\infset{w_-}$ is \kl{well-quasi-ordered} because the \kl{infix
+    relation} is compatible with mirroring. Applying
+    \cref{ultimately-uniformly-recurrent:lem}, we conclude that both are
+    \kl{ultimately uniformly recurrent} words.
+
+\end{proof}
+
+We are now ready to conclude the proof of \cref{dw-closed-wqo-charac:thm}.
+\begin{proofof}{dw-closed-wqo-charac:thm}
+  It is clear that the set of finite \kl{infixes} of a finite, infinite or
+  bi-infinite \kl{ultimately uniformly recurrent} word is \kl{well-quasi-ordered}
+  for the \kl{infix relation} thanks to \cref{ultimately-uniformly-recurrent:lem}.
+
+  Conversely, let us consider a \kl{well-quasi-ordered} language $L$ that is
+  \kl{downwards closed} for the \kl{infix relation}. Because it is a
+  \kl{well-quasi-ordered} set, it can be written as a finite union of \kl{order
+  ideals} $L = \bigcup_{i = 1}^n L_i$.
+
+  For every such \kl(order){ideal} $L_i$, we can apply
+  \cref{bi-infinite:lem}, and conclude that $L_i$ is the set of finite
+  \kl{infixes} of a finite, infinite or bi-infinite word $w_i$. 
+  Because the languages $L_i$ are \kl{well-quasi-ordered}, we can apply
+  \cref{ultimately-uniformly-recurrent:lem}, and conclude that $w_i$ is
+  \kl{ultimately uniformly recurrent}.
+\end{proofof}
+
+Let us now analyse the \kl{ordinal invariants} of the set of finite
+\kl{infixes} of an \kl{ultimately uniformly recurrent} infinite word, in order
+to derive the bounds of \cref{small-ordinal-invariants:thm}.
+
+\begin{lemma}
     \label{small-ordinal-invariants:lem}
     Let $w \in \Sigma^\Nat$ be an \kl{ultimately uniformly recurrent} word.
     Then, the set of finite infixes of $w$ has \kl{ordinal width}
@@ -677,13 +756,6 @@ N_0}$ is \kl{uniformly recurrent}.
   $\infset{w}$ is now at least $\omegaOrd + N_0$.
 \end{proof}
 
-
-The behaviour of bi-infinite words is very similar to the behaviour of infinite
-ones. Given a bi-infinite word $w \in \Sigma^{\Rel}$, we can consider $w_+ \in
-\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
-follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
-that the two share the letter at position $0$.
-
 \begin{lemma}
     \label{from-bi-to-single:lem}
     Let $w \in \Sigma^\Rel$ be a bi-infinite word. Then, the set of finite
@@ -694,33 +766,10 @@ that the two share the letter at position $0$.
     and this bound is tight.
 \end{lemma}
 \begin{proof}
-    Assume that $w_+$ and $w_-$ are \kl{ultimately uniformly recurrent}. Let us
-    write $\infset{w}$ the set of finite infixes of $w$. Consider an infinite
-    sequence of words $\seqof{u_i}[i \in \Nat]$ in $\infset{w}$. If there is an
-    infinite subsequence of words that are all in $\infset{w_+}$, then there
-    exists an increasing pair of indices $i < j$ such that $u_i \infleq
-    u_j$ because \cref{uniformly-recurrent:lem} applies to $w_+$. Similarly, if
-    there is an infinite subsequence of words that are all in $\infset{w_-}$,
-    then there exists an increasing pair of indices $i < j$ such that $u_i
-    \infleq u_j$ because \cref{uniformly-recurrent:lem} applies to $w_-$ (and
-    the \kl{infix relation} is compatible with mirroring). Otherwise, one can
-    assume without loss of generality that all words in the sequence have a
-    starting position in $w_-$ and an ending position in $w_+$. In this case,
-    let us write $(k_i,l_i) \in \Nat^2$ the pair of indices such that $u_i$ is the infix
-    of $w$ that starts at position $-k_i$ of $w$ (i.e., $k_i$ of $w_-$) and
-    ends at position $l_i$ of $w$ (i.e., $l_i$ of $w_+$).
-    Because $\Nat^2$ is a \kl{well-quasi-ordering} with the product ordering,
-    there exists $i < j$ such that $k_i \leq k_j$ and $l_i \leq l_j$, 
-    in particular, $u_i \infleq u_j$. We have proven that every infinite
-    sequence of words in $\infset{w}$ is \kl(wqo){good}, hence $\infset{w}$ is
-    \kl{well-quasi-ordered}.
-
-    Conversely, assume that $\infset{w}$ is \kl{well-quasi-ordered}. In
-    particular, the subset $\infset{w_+} \subseteq \infset{w}$ is \kl{well-quasi-ordered}.
-    Similarly, $\infset{w_-}$ is \kl{well-quasi-ordered} because the \kl{infix
-    relation} is compatible with mirroring. Applying
-    \cref{ultimately-uniformly-recurrent:lem}, we conclude that both are
-    \kl{ultimately uniformly recurrent} words.
+  Given a bi-infinite word $w \in \Sigma^{\Rel}$, recall that we can consider $w_+ \in
+\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
+follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
+that the two share the letter at position $0$.
 
     To obtain the upper bound of $3 \cdot \omegaOrd$, we can consider the same
     argument as for \cref{small-ordinal-invariants:lem}. We let $N_0$ be such
@@ -749,12 +798,11 @@ We are now ready to conclude the proof of \cref{small-ordinal-invariants:thm}.
     It is always true that the \kl{ordinal height} of a language over a finite
     alphabet is at most $\omegaOrd$. Let us now consider a
     \kl{well-quasi-ordered} language $L$ that is \kl{downwards closed} for the
-    \kl{infix relation}. Because it is a \kl{well-quasi-ordered} set, it can be
-    written as a finite union of \kl{order ideals} $L = \bigcup_{i = 1}^n L_i$.
-
-    For every such \kl(order){ideal} $L_i$, we can apply
-    \cref{bi-infinite:lem}, and conclude that $L_i$ is the set of finite
-    \kl{infixes} of a finite, infinite or bi-infinite word $w_i$. We can then
+    \kl{infix relation}. Applying 
+    \cref{dw-closed-wqo-charac:thm}, we can write $L = \bigcup_{i = 1}^n L_i$ where
+    each $L_i$ is the set of finite \kl{infixes} of a finite, infinite or
+    bi-infinite \kl{ultimately uniformly recurrent} word $w_i$.
+   We can then
     directly conclude that $\oWidth{L_i}$ less than $\omegaOrd$ (in the case of
     a finite word), less than $2 \cdot \omegaOrd$ (in the case of an infinite
     word thanks to \cref{small-ordinal-invariants:lem}), or less than $3 \cdot
