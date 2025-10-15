@@ -27,37 +27,6 @@ follows: a word $u$ is a \intro{subword} of a word $v$, written $u
 \ldots, |u|\} \to \{1, \ldots, |v|\}$ such that $u_i \preceq v_{f(i)}$ for all
 $i \in \{1, \ldots, |u|\}$.
 
-\begin{figure}
-    \centering
-    \begin{subfigure}[t]{0.48\textwidth}
-    	\centering
-    	\includestandalone[width=\linewidth]{fig/prefix-embedding-standalone}
-    	\caption{Prefix Relation}
-   	\end{subfigure}%
-   	\hfill%
-   	\begin{subfigure}[t]{0.48\textwidth}
-   		\centering
-   		\includestandalone[width=\linewidth]{fig/infix-embedding-standalone}
-   		\caption{Infix Relation}
-   	\end{subfigure}
-   	\begin{subfigure}[t]{0.48\textwidth}
-   		\centering
-   		\includestandalone[width=\linewidth]{fig/subword-embedding-standalone}
-   		\caption{Subword Relation}
-   	\end{subfigure}
-   	
-   	\caption{A simple representation of the \kl{subword relation},
-        \kl{prefix relation},
-        and \kl{infix relation},
-        on the alphabet $\set{a,b}$ for words of
-        length at most $3$. The figures are Hasse Diagrams,
-        representing the successor relation of the order.
-        Furthermore, we highlight in dashed red relations that are added
-        when moving from the prefix relation to the infix one,
-        and to the infix relation to the subword one.}
-    \label{word-embeddings:fig}
-\end{figure}
-
 \AP However, there are many other natural orderings on words that could be
 considered in the context of \kl{well-quasi-orderings}, even in the simplified
 setting of a finite alphabet $\Sigma$ equipped with the equality relation. In

@@ -163,36 +163,6 @@ proof, and our \cref{infix-amalgamation:thm} follows from it.
 	For any $0 \leq \ell \leq n$, we have $\GapWord{f}{\ell} \infleq \GapWord{g}{\ell}$ or vice versa.
 \end{lemma}
 
-\begin{proof}
-	Write $u$ for $\GapWord{f}{\ell}$ and $v$ for $\GapWord{g}{\ell}$. 
-	We may assume that both $u$ and $v$ are non-empty, as otherwise the lemma holds trivially.
-	Then, for all $k \in \Nat$, there exists a run with canonical decomposition
-	$$
-	w_k = L_0 a_1 \cdots a_n L_n,
-	$$
-	where $L_i \in \set{vv u^k, vu^kv, u^k vv}$ and specifically $L_\ell = vu^kv$.
-	
-	\todo[inline]{The following can probably be replaced by a reference to Fine \& Wilf}
-	From \cref{pumping-periods:lem}, we may conclude that there are a finite number of words $x, y,$ and $w$ 
-	such that each $w_k$ is contained in a language 
-	$\InfPeriodChain{x}w\InfPeriodChain{y}$.
-	
-	As there is an infinite number of words $w_k$, 
-	we may fix $x, y,$ and $w$ and an infinite subset $I \subseteq \Nat$ 
-	such that $\set{w_i \mid i \in I} \subseteq \InfPeriodChain{x}w\InfPeriodChain{y}$. 
-	This implies that either for infinitely many $m \in \Nat$, $u^m v \in \InfPeriodChain{y}$ 
-	or for infinitely many $m$, $v u^m \in \InfPeriodChain{x}$. 
-	
-	In either case, we may conclude that either $u \infleq v$ or $v \infleq u$: Let $m, n \in \Nat$
-	such that $m < n$ and $u^m v, u^n v \in \InfPeriodChain{y}$ (the case for $v u^m$ and $v u^n$ 
-	proceeding analogously). Without loss of generality, assume that $\card{u^m}$ and $\card{u^n}$ are
-	multiples of $\card{y}$. We therefore find $p \prefleq y, s \suffleq y$ such that $u^m, u^n \in sy^*p$, 
-	ergo $ps = y$.
-	In other words, we can write $u^m = (sp)^{m'}, u^n = (sp)^{n'}$. As $u^mv \in \InfPeriodChain{y}$, it 
-	follows that $v$ is a prefix of some word in $(sp)^*$. Hence either $v$ is a prefix of $u$ or $u$ vice versa.
-\end{proof}
-
-
 
 \begin{proofof}{infix-amalgamation:thm}
     Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
@@ -322,23 +292,3 @@ $\mathcal{C}_{\text{cfg}}$ of context-free languages are examples of
     Furthermore, whenever it is \kl{well-quasi-ordered} by the \kl{infix relation},
     it is a \kl{bounded language}.
 \end{corollary}
-
-
-\begin{remark}
-	Let us conclude by noting that it is unsurprisingly not possible to decide
-	whether a decidable language is \kl{well-quasi-ordered} by the \kl{prefix
-	relation} in general. 
-	%This is a very easy result whose sole purpose is to contrast with
-	%the decidability result of \cref{aut-cfg-infix:cor}.
-	
-\end{remark}
-\begin{proof}
-    We reduce the halting problem on the empty string $\varepsilon$.
-    Let $M$ be a Turing Machine, we write the languages $L$ of finite runs
-    of $M$ starting on the empty string,
-    that we surround by special markers. This language is decidable,
-    and 
-    is
-    \kl{well-quasi-ordered} if and only if it is finite
-    if and only if $M$ terminates on $\varepsilon$.
-\end{proof}
