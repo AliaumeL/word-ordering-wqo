@@ -172,6 +172,7 @@ we recall here for the sake of completeness.
 
 \begin{corollary}
     \label{ordinal-invariants-bounded:cor}
+    \proofref{ordinal-invariants-bounded:cor}
     Let $L$ be a \kl{bounded language} of $\Sigma^*$
     that is \kl{well-quasi-ordered} by the \kl{infix relation}.
     Then, the \kl{ordinal width} of $L$ less than $\omega^2$,
@@ -317,7 +318,8 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     Let us now prove that $\oWidth{\LMorse} = \omegaOrd$. Assume by contradiction that
     $\oWidth{\LMorse}$ is finite. Then, $\LMorse$ can be written as a finite union of
     \kl{chains} for the \kl{infix relation}, and in particular, $\LMorse$ is
-    \kl(language){bounded}, which is absurd by \cref{thue-morse:lemma}.
+    \kl(language){bounded},\todo{This is false! there are chains that are unbounded languages?} 
+    which is absurd by \cref{thue-morse:lemma}.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order
     type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omegaOrd$.
 \end{proof}
@@ -354,6 +356,7 @@ we conclude that the \kl{ordinal invariants} of a \kl{well-quasi-ordered}
 
 \begin{corollary}
   \label{small-ordinal-invariants:thm}
+  \proofref{small-ordinal-invariants:thm}
     Then, the \kl{maximal order type} of $L$ is strictly less than $\omegaOrd^3$,
     its \kl{ordinal height} is at most $\omegaOrd$,
     and its \kl{ordinal width} is at most $\omegaOrd^2$.
@@ -418,8 +421,10 @@ We are now ready to conclude the proof of \cref{dw-closed-wqo-charac:thm}.
 \end{proofof}
 
 Finally, we comment on the \kl{ordinal invariants} of the set of finite
-\kl{infixes} of an \kl{ultimately uniformly recurrent} infinite word, in order
-to derive the bounds of \cref{small-ordinal-invariants:thm}.
+\kl{infixes} of an \kl{ultimately uniformly recurrent} infinite word, from
+which the bounds of \cref{small-ordinal-invariants:thm} naturally follow (the
+proof is in \cref{small-ordinal-invariants:thm:proof} page
+\pageref{small-ordinal-invariants:thm:proof}).
 
 \begin{lemma}
     \label{small-ordinal-invariants:lem}
@@ -440,34 +445,6 @@ to derive the bounds of \cref{small-ordinal-invariants:thm}.
     of the set of finite infixes of $w$ is less than $3 \cdot \omegaOrd$,
     and this bound is tight.
 \end{lemma}
-
-Ordinal invariants in hand, we proceed with the proof of \cref{small-ordinal-invariants:thm}.
-\begin{proofof}{small-ordinal-invariants:thm}
-    It is always true that the \kl{ordinal height} of a language over a finite
-    alphabet is at most $\omegaOrd$. Let us now consider a
-    \kl{well-quasi-ordered} language $L$ that is \kl{downwards closed} for the
-    \kl{infix relation}. Applying 
-    \cref{dw-closed-wqo-charac:thm}, we can write $L = \bigcup_{i = 1}^n L_i$ where
-    each $L_i$ is the set of finite \kl{infixes} of a finite, infinite or
-    bi-infinite \kl{ultimately uniformly recurrent} word $w_i$.
-   We can then
-    directly conclude that $\oWidth{L_i}$ less than $\omegaOrd$ (in the case of
-    a finite word), less than $2 \cdot \omegaOrd$ (in the case of an infinite
-    word thanks to \cref{small-ordinal-invariants:lem}), or less than $3 \cdot
-    \omegaOrd$ (in the case of a bi-infinite word, thanks to
-    \cref{from-bi-to-single:lem}). In any case,
-    we have the bound $\oWidth{L_i} < 3 \cdot \omegaOrd$.
-
-    Now, $\oWidth{L} \leq \sum_{i = 1}^n \oWidth{L_i} < 3 \cdot \omegaOrd <
-    \omegaOrd^2$. Finally, the inequality $\oType{L} \leq \oWidth{L} \oComProd
-    \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to
-    conclude.
-
-    The tightness of the bounds is a direct consequence of
-    \cref{from-bi-to-single:lem}, and by considering a finite union of 
-    these examples over disjoint alphabets (or even, by considering a binary 
-    alphabet and using unambiguous codes to separate the different components).
-\end{proofof}
 
 \subsection{Decision Procedures}
 \label{decision-procedures:sec}

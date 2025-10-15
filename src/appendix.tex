@@ -529,6 +529,34 @@ that the two share the letter at position $0$.
   \cref{small-ordinal-invariants:lem}, using \cref{thue-morse-ordinal:lemma}.
 \end{proofof}
 
+\begin{proofof}{small-ordinal-invariants:thm}
+    It is always true that the \kl{ordinal height} of a language over a finite
+    alphabet is at most $\omegaOrd$. Let us now consider a
+    \kl{well-quasi-ordered} language $L$ that is \kl{downwards closed} for the
+    \kl{infix relation}. Applying 
+    \cref{dw-closed-wqo-charac:thm}, we can write $L = \bigcup_{i = 1}^n L_i$ where
+    each $L_i$ is the set of finite \kl{infixes} of a finite, infinite or
+    bi-infinite \kl{ultimately uniformly recurrent} word $w_i$.
+   We can then
+    directly conclude that $\oWidth{L_i}$ less than $\omegaOrd$ (in the case of
+    a finite word), less than $2 \cdot \omegaOrd$ (in the case of an infinite
+    word thanks to \cref{small-ordinal-invariants:lem}), or less than $3 \cdot
+    \omegaOrd$ (in the case of a bi-infinite word, thanks to
+    \cref{from-bi-to-single:lem}). In any case,
+    we have the bound $\oWidth{L_i} < 3 \cdot \omegaOrd$.
+
+    Now, $\oWidth{L} \leq \sum_{i = 1}^n \oWidth{L_i} < 3 \cdot \omegaOrd <
+    \omegaOrd^2$. Finally, the inequality $\oType{L} \leq \oWidth{L} \oComProd
+    \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to
+    conclude.
+
+    The tightness of the bounds is a direct consequence of
+    \cref{from-bi-to-single:lem}, and by considering a finite union of 
+    these examples over disjoint alphabets (or even, by considering a binary 
+    alphabet and using unambiguous codes to separate the different components).
+\end{proofof}
+
+
 \section{Proofs for Section~\ref{infixes-amalgamation:sec}}
 
 \begin{figure}
