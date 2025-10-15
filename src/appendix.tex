@@ -173,6 +173,35 @@
 	\end{proof}
 \end{proofof}
 
+
+\begin{lemma}
+	\label{automatic-uur:lem}
+	\proofref{automatic-uur:lem}
+	Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
+	whether it is \kl{ultimately uniformly recurrent}.
+\end{lemma}
+
+\begin{proofof}{automatic-uur:lem}
+	We can rewrite this as a question on the \kl{automatic sequence} $w$
+	as follows:
+	\begin{align*}
+		&\exists N_0,                   &   \text{ultimately} \\
+		&\forall i_s \geq N_0,          &   \text{for every infix (start) } u \\
+		&\forall i_e > i_s,             &   \text{for every infix (end) }   u \\
+		&\exists k \geq 1,              &   \text{there exists a bound} \\
+		&\forall j_s \geq N_0,          &   \text{for every other infix (start) } v \\
+		&\forall j_e \geq j_s + k,      &   \text{of size at least $k$} \\
+		&\exists l \geq 0,              &   \text{there exists a position in } v \\
+		&\forall 0 \leq m < i_e - i_s,  &   \text{where } u \text{ can be found} \\
+		&j_s + m + l < j_e \land
+		w(i_s + m) = w(j_s + m + l) \quad .
+	\end{align*}
+	Because $w$ is computable by a finite automaton, one can reduce the above
+	formula to a regular language, for which it suffices to check emptiness, which
+	is decidable.
+\end{proofof}
+
+
 \section{Proofs for Section~\ref{infixes-amalgamation:sec}}
 
 \begin{figure}

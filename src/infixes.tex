@@ -780,36 +780,9 @@ finite automaton using a binary representation of the indices. The good
 algorithmic properties of \kl{automatic sequences} come from the fact that a
 Presburger definable property that uses letters of the sequence can be
 (trivially) translated into a finite automaton that reads the base $b$
-representation of the free variables (that are indices of the sequence). We
-briefly explain in the following lemma the folklore result that one can decide
-if an \kl{automatic sequence} is \kl{ultimately uniformly recurrent}.
+representation of the free variables (that are indices of the sequence). It is folklore that one can decide if an \kl{automatic sequence} is \kl{ultimately uniformly recurrent}. A proof can be found in the appendix at \cref{automatic-uur:lem}. Based on this, we now prove:
 
-\begin{lemma}
-  \label{automatic-uur:lem}
-    Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
-    whether it is \kl{ultimately uniformly recurrent}.
-\end{lemma}
-\begin{proof}
-    We can rewrite this as a question on the \kl{automatic sequence} $w$
-    as follows:
-    \begin{align*}
-        &\exists N_0,                   &   \text{ultimately} \\
-        &\forall i_s \geq N_0,          &   \text{for every infix (start) } u \\
-        &\forall i_e > i_s,             &   \text{for every infix (end) }   u \\
-        &\exists k \geq 1,              &   \text{there exists a bound} \\
-        &\forall j_s \geq N_0,          &   \text{for every other infix (start) } v \\
-        &\forall j_e \geq j_s + k,      &   \text{of size at least $k$} \\
-        &\exists l \geq 0,              &   \text{there exists a position in } v \\
-        &\forall 0 \leq m < i_e - i_s,  &   \text{where } u \text{ can be found} \\
-        &j_s + m + l < j_e \land
-        w(i_s + m) = w(j_s + m + l) \quad .
-    \end{align*}
-    Because $w$ is computable by a finite automaton, one can reduce the above
-    formula to a regular language, for which it suffices to check emptiness, which
-    is decidable.
-\end{proof}
 
-Based on \cref{automatic-uur:lem}, we can now prove the following theorem.
 \begin{theorem}
     \label{automatic-wqo:thm}
     Given a \kl{sequence representation} of a language $L \subseteq
