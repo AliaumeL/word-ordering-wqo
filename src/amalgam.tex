@@ -201,44 +201,18 @@ will also recall how runs of a finite state automaton can be understood as an
 
 \subsection{$\infleq$-Well-Quasi-Ordered Amalgamation Systems}
 
-We can now show a simple lemma that illuminates much of the structure of amalgamation systems whose language is well-quasi-ordered by $\infleq$.
+We can now show a simple lemma that illuminates much of the structure of
+amalgamation systems whose language is well-quasi-ordered by $\infleq$. Note
+that \cref{gap-words-prefix-ordered:lem} uses \cref{pumping-periods:lem} in its
+proof, and our \cref{infix-amalgamation:thm} follows from it.
 
 \begin{lemma}
 	\label{gap-words-prefix-ordered:lem}
+  \proofref{gap-words-prefix-ordered:lem}
 	Let $L$ by an \kl{amalgamation language} recognized by $(\Sigma, R, E, \canrun)$ that is well-quasi-ordered by $\infleq$. Let $\rho$ be a run with $\canrun[\rho] = a_1 \cdots a_n$, and let $\sigma, \tau$ be runs with $\rho \runleq_f \sigma$ and $\rho \runleq_g \sigma$. 
 	
 	For any $0 \leq \ell \leq n$, we have $\GapWord{f}{\ell} \infleq \GapWord{g}{\ell}$ or vice versa.
 \end{lemma}
-
-\begin{proof}
-	Write $u$ for $\GapWord{f}{\ell}$ and $v$ for $\GapWord{g}{\ell}$. 
-	We may assume that both $u$ and $v$ are non-empty, as otherwise the lemma holds trivially.
-	Then, for all $k \in \Nat$, there exists a run with canonical decomposition
-	$$
-	w_k = L_0 a_1 \cdots a_n L_n,
-	$$
-	where $L_i \in \set{vv u^k, vu^kv, u^k vv}$ and specifically $L_\ell = vu^kv$.
-	
-	From \cref{pumping-periods:lem}, we may conclude that there are a finite number of words $x, y,$ and $w$ 
-	such that each $w_k$ is contained in a language 
-	$\InfPeriodChain{x}w\InfPeriodChain{y}$.
-	
-	As there is an infinite number of words $w_k$, 
-	we may fix $x, y,$ and $w$ and an infinite subset $I \subseteq \Nat$ 
-	such that $\set{w_i \mid i \in I} \subseteq \InfPeriodChain{x}w\InfPeriodChain{y}$. 
-	This implies that either for infinitely many $m \in \Nat$, $u^m v \in \InfPeriodChain{y}$ 
-	or for infinitely many $m$, $v u^m \in \InfPeriodChain{x}$. 
-	
-	In either case, we may conclude that either $u \infleq v$ or $v \infleq u$: Let $m, n \in \Nat$
-	such that $m < n$ and $u^m v, u^n v \in \InfPeriodChain{y}$ (the case for $v u^m$ and $v u^n$ 
-	proceeding analogously). Without loss of generality, assume that $\card{u^m}$ and $\card{u^n}$ are
-	multiples of $\card{y}$. We therefore find $p \prefleq y, s \suffleq y$ such that $u^m, u^n \in sy^*p$, 
-	ergo $ps = y$.
-	In other words, we can write $u^m = (sp)^{m'}, u^n = (sp)^{n'}$. As $u^mv \in \InfPeriodChain{y}$, it 
-	follows that $v$ is a prefix of some word in $(sp)^*$. Hence either $v$ is a prefix of $u$ or $u$ vice versa.
-\end{proof}
-
-
 
 \begin{proofof}{infix-amalgamation:thm}
     Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
@@ -259,6 +233,7 @@ obtain an even stronger structure: All such languages are regular!
 
 \begin{lemma}
     \label{dwclosed-infixes-wqo:lem}
+    \proofref{dwclosed-infixes-wqo:lem}
     Let $L \subseteq \Sigma^*$ be a \kl{downwards closed} language for the
     \kl{infix relation} that is \kl{well-quasi-ordered}. Then, the following
     are equivalent:
@@ -274,37 +249,10 @@ obtain an even stronger structure: All such languages are regular!
     \end{enumerate}
     }
 \end{lemma}
-\begin{proof}
-    It is clear that \cref{dwci-reg:item} $\Rightarrow$ \cref{dwci-aml:item}
-    because regular languages are recognized by finite automata, and finite
-    automata are a particular case of \kl{amalgamation systems}.
-    The implication \cref{dwci-aml:item} $\Rightarrow$ \cref{dwci-bod:item}
-    is the content of \cref{infix-amalgamation:thm}.
-    The implication \cref{dwci-bod:item} $\Rightarrow$ \cref{dwci-uoc:item}
-    is \cref{bounded-language:lem}.
-    Finally, the implication \cref{dwci-uoc:item} $\Rightarrow$ \cref{dwci-reg:item}
-    is simply because a \kl{downwards closed} language 
-    that is a finite union of products of \kl{chains} is a regular language.
 
-    Indeed, assume that
-    $L$ is \kl{downwards closed} and included in a finite union of sets of the form
-    $\InfPeriodChain{x} u \InfPeriodChain{y}$ where $x,y,u$ are possibly empty words.
-    We can assume without loss of generality that
-    for every $n$, $x^n u y^n$ is in $L$, otherwise, we have a bound on the maximal $n$ such that
-    $x^n u y^n$ is in $L$, and we can increase the number of languages in the union, replacing $x$ or $y$
-    with the empty word as necessary.
-    Let us write $L' \defined \bigcup_{i = 1}^k x_i^* u_i y_i^*$. Then, $L'
-    \subseteq L$ by construction. Furthermore, $L \subseteq \dwset{L'}$, also
-    by construction. Finally, we conclude that $L = \dwset{L'}$ because $L$ is
-    \kl{downwards closed}. Now, because $L'$ is a \kl{regular language}, and 
-    \kl{regular languages} are closed under \kl{downwards closure}, we conclude
-    that $L$ is a \kl{regular language}.
-\end{proof}
-
-\AP Combining
-\cref{thue-morse:lemma,dwclosed-infixes-wqo:lem}, we can
-conclude that the collection of \kl{infixes} of the \kl{Thue-Morse sequence}
-cannot be recognized by \emph{any} \kl{amalgamation system}. 
+\AP Combining \cref{thue-morse:lemma,dwclosed-infixes-wqo:lem}, we can conclude
+that the collection of \kl{infixes} of the \kl{Thue-Morse sequence} cannot be
+recognized by \emph{any} \kl{amalgamation system}. 
 
 
 \subsection{Effective Decision Procedures}
