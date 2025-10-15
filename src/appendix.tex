@@ -1,0 +1,130 @@
+% LTeX: language=en-GB 
+% !TeX root=../wqo-on-words.lncs.tex
+\section{Proofs for Section~\ref{prefixes:sec}}
+\begin{figure}
+    \centering
+    \includestandalone{fig/antichain-branch-standalone}
+    \caption{An \kl{antichain branch} for the language $a^* b$,
+        represented in the \kl{tree of prefixes} over the alphabet $\set{a,b}$.
+        The branch is represented with dashed lines in turquoise, and the
+        \kl{antichain} is represented in dotted lines in blood-red.
+    }
+    \label{antichain-branch:fig}
+\end{figure}
+
+
+\begin{proofof}{antichain-branches-prefix:lem}
+    Assume that $L$ contains an \kl{antichain branch}. Let us construct an
+    infinite \kl{antichain} as follows. We start with a set $A_0 \defined
+    \emptyset$ and a node $v_0$ at the root of the tree. At step $i$, we
+    consider a word $w_i$ such that $v_i$ is a \kl{prefix} of $w_i$, and $w_i
+    \in L \setminus B$, which exists by definition of \kl{antichain branches}.
+    We then set $A_{i+1} \defined A_i \cup \set{w_i}$. To compute $v_{i+1}$, we
+    consider the largest prefix of $w_i$ that belongs to $B$, and set $v_{i+1}$
+    to be the successor of this prefix in $B$. By an immediate induction, we
+    conclude that for all $i \in \Nat$, $A_i$ is an \kl{antichain}, and that
+    $v_i$ is a node in the \kl{antichain branch} $B$ such that $v_i$ is not a
+    prefix of any word in $A_i$. 
+
+    Conversely, assume that $L$ contains an infinite \kl{antichain} $A$. Let us
+    construct an \kl{antichain branch}. Let us consider the subtree of the
+    \kl{tree of prefixes} that consists in words that are \kl{prefixes} of
+    words in $A$. This subtree is infinite, and by König's lemma, it contains
+    an infinite branch. By definition this is an \kl{antichain branch}.
+\end{proofof}
+
+\begin{proofof}{prefixes:thm}
+    Assume that $L$ is a finite union of \kl{chains}.
+    Because the \kl{prefix relation} is \kl{well-founded},
+    and that finite unions of \kl{chains} have finite \kl{antichains},
+    we conclude that $L$ is \kl{well-quasi-ordered}.
+    
+    Conversely, assume that $L$ is \kl{well-quasi-ordered} by the \kl{prefix
+    relation}. Let us define $S_{\mathrm{split}}$ the set of words $w \in \Sigma^*$ 
+    such that there exists
+    two words $wu$ and $wv$ both in $L$ that are not comparable for the
+    \kl{prefix relation}. Let $S = S_{\mathrm{split}}~\cup~\min_{\prefleq} L$\todo{kinda ugly, but i can't find a nicer way of phrasing it}. 
+    Assume by contradiction that $S$ is infinite.
+    Then, $S$ equipped with the \kl{prefix relation} is an infinite
+    tree with finite branching, and therefore contains an infinite
+    branch, which is by definition an \kl{antichain branch} for $L$.
+    This contradicts the assumption that $L$ is \kl{well-quasi-ordered}.
+    
+    Now, let $w$ be a maximal element for the \kl{prefix ordering}
+    in $S$. 
+    The upward closure of $w$ in $L$, $(\upset[\prefleq]{w}) \cap L$, must be a 
+    finite union of \kl{chains}. Otherwise at least two of the chains would share a common 
+    prefix in $w\Sigma$, contradicting the maximality of $w$.
+    
+    In particular, letting $S_{\max}$ be the set of all maximal elements
+    of $S$,
+    we conclude that 
+    \begin{equation*}
+        L \subseteq S \cup \bigcup_{w \in S_{\max}} (\upset[\prefleq]{w}) \cap L
+        \quad .
+    \end{equation*}
+    Hence, that $L$ is finite union of \kl{chains}.
+\end{proofof}
+
+
+\section{Proofs for Section~\ref{infixes-bounded:sec}}
+
+\begin{figure}
+    \centering
+    \includestandalone[width=\linewidth]{fig/infix-encoding-standalone}
+    \caption{Representation of the \kl{subword relation} for $\set{a,b}^*$
+        inside the \kl{infix relation} for $\set{a,b,\#}^*$
+        using a simplified version of \cref{infix-embedding:thm}, restricted to words
+        of length at most $3$. 
+    }
+    \label{infix-embedding:fig}
+\end{figure}
+
+
+\begin{proofof}{inf-period-chain:lem}
+    Let $x \in \Sigma^+$ be a word, and let $P_x$ be the (finite) set 
+    of all \kl{prefixes} of $x$, and $S_x$ be the (finite)
+    set of all \kl{suffixes} of $x$.
+    Assume that $w \in \InfPeriodChain{x}$, then $w = u x^p v$ for some
+    $u \in S_x$, $v \in P_x$, and $p \in \Nat$.
+    We have proven that
+    \begin{equation*}
+        \InfPeriodChain{x} \subseteq \bigcup_{u \in P_x} \bigcup_{v \in S_x} u x^* v
+        \quad .
+    \end{equation*}
+
+    Let us now demonstrate that for all $(u,v) \in S_x \times P_x$, the
+    language $u x^* v$ is a \kl{chain} for the \kl{infix}, \kl{suffix} and \kl{prefix} relations.
+    To that end,
+    let $(u,v) \in S_x \times P_x$ and $\ell, k \in \Nat$ be such that $\ell <
+    k$, let us prove that $u x^\ell v \infleq u x^k  v$. Because $v \prefleq
+    x$, we know that there exists $w$ such that $vw = x$. In particular,
+    $ux^\ell vw = u x^{\ell + 1}$, and because $\ell < k$, we conclude that $u
+    x^{\ell + 1} \prefleq u x^k v$. By transitivity, $u x^\ell v \prefleq u x^k
+    v$, and \emph{a fortiori}, $u x^\ell v \infleq u x^k v$. 
+    Similarly, because $u \suffleq x$,  there exists $w$ such that $wu  = x$, 
+    and we conclude that $u x^{\ell} v \suffleq w u x^\ell v = x^{\ell + 1} v \suffleq u x^k v$.
+\end{proofof}
+
+\section{Proofs for Section~\ref{infixes-amalgamation:sec}}
+
+\begin{figure}
+    \centering
+    \includestandalone[width=\linewidth]{fig/gap-word-embedding-standalone}
+    \caption{The \kl{gap words} resulting from a \kl{subword embedding} between two 
+    finite words.}
+    \label{gap-word-embedding:fig}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includestandalone[width=\linewidth]{fig/run-amalgamation-standalone}
+    \caption{We illustrate how 
+        embeddings $f$ and $g$ between runs of an
+        \kl{amalgamation system} can be glued
+        together, seen on their canonical decomposition.
+    }
+    \label{amalgamation-runs:fig}
+\end{figure}
+
+

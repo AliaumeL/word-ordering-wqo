@@ -62,7 +62,7 @@ recall some results from \cite{ASZZ24} that will be useful for the proof of
 \cref{infix-amalgamation:thm}. The notion of \kl{amalgamation system} is
 tailored to produce \emph{pumping arguments}, which is exactly what our
 \cref{pumping-periods:lem} talks about. At the core of a pumping argument,
-%there is a notion of a \emph{run}, which could for instance be a sequence of
+there is a notion of a \emph{run}, which could for instance be a sequence of
 transitions taken in a finite state automaton. Continuing on the analogy with
 finite automata, there is a natural ordering between runs, i.e., a run is
 smaller than another one if one can ``delete'' loops of the larger run to obtain
@@ -92,25 +92,6 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
 \kl{gap words} resulting from a \kl{subword embedding} between two words. These
 \kl{gap words} will be useful to describe how and where runs of a system
 (described by words) can be combined.
-
-\begin{figure}
-    \centering
-    \includestandalone[width=\linewidth]{fig/gap-word-embedding-standalone}
-    \caption{The \kl{gap words} resulting from a \kl{subword embedding} between two 
-    finite words.}
-    \label{gap-word-embedding:fig}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includestandalone[width=\linewidth]{fig/run-amalgamation-standalone}
-    \caption{We illustrate how 
-        embeddings $f$ and $g$ between runs of an
-        \kl{amalgamation system} can be glued
-        together, seen on their canonical decomposition.
-    }
-    \label{amalgamation-runs:fig}
-\end{figure}
 
 
 \begin{definition}
@@ -160,9 +141,12 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
 \end{definition}
 
 Intuitively, the definition of an amalgamation system allows the comparison of
-runs, and the proper ``gluing'' of runs together to obtain new runs. A number of well-known language classes can be seen to be recognized by \kl{amalgamation
-systems}, e.g., regular languages \cite[Theorem 5.3]{ASZZ24}, reachability and coverability languages of VASS \cite[Theorem 5.5]{ASZZ24}, and context-free languages \cite[Theorem 5.10]{ASZZ24}. For this paper to be self-contained, we will also
-recall how runs of a finite state automaton can be understood as an
+runs, and the proper ``gluing'' of runs together to obtain new runs. A number
+of well-known language classes can be seen to be recognized by \kl{amalgamation
+systems}, e.g., regular languages \cite[Theorem 5.3]{ASZZ24}, reachability and
+coverability languages of VASS \cite[Theorem 5.5]{ASZZ24}, and context-free
+languages \cite[Theorem 5.10]{ASZZ24}. For this paper to be self-contained, we
+will also recall how runs of a finite state automaton can be understood as an
 \kl{amalgamation system}.
 
 \begin{example}[{\cite[Section 3.2]{ASZZ24}}]
@@ -270,7 +254,8 @@ We can now show a simple lemma that illuminates much of the structure of amalgam
     we can conclude that $L$ is bounded as well.
 \end{proofof}
 
-If we additionally assume that such a language is closed under infixes, we obtain an even stronger structure: All such languages are regular:
+If we additionally assume that such a language is closed under infixes, we
+obtain an even stronger structure: All such languages are regular!
 
 \begin{lemma}
     \label{dwclosed-infixes-wqo:lem}
