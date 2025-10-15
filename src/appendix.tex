@@ -1,5 +1,8 @@
 % LTeX: language=en-GB 
 % !TeX root=../wqo-on-words.lncs.tex
+
+\clearpage
+
 \section{Proofs for Section~\ref{prefixes:sec}}
 \begin{figure}
     \centering
@@ -87,6 +90,24 @@
     Hence, that $L$ is finite union of \kl{chains}.
 \end{proofof}
 
+\begin{proofof}{prefix-wqo-reg-decidable:cor}
+    If $L$ is regular, then it is $\MSO$-definable, and there 
+    exists a formula $\varphi(x)$ in $\MSO$ that selects nodes 
+    of the \kl{tree of prefixes} that belong to $L$. Now, to decide whether there
+    exists an \kl{antichain branch} for $L$, we can simply check whether
+    the following formula is satisfied:
+    \begin{equation*}
+        \exists B. 
+        B \text{ is a branch } \land
+        \forall x \in B, \exists y. y \text{ is a child of } x \land \varphi(y) \land y \not\in B
+        \quad .
+    \end{equation*}
+    Because the above formula is an $\MSO$-formula over the infinite
+    $\Sigma$-branching tree, whether it is satisfied is decidable
+    as an easy consequence of the decidability of $\MSO$ over infinite binary
+    trees
+    \cite[Theorem 1.1]{RAB69}.
+\end{proofof}
 
 \section{Proofs for Section~\ref{infixes-bounded:sec}}
 
@@ -127,144 +148,227 @@
     and we conclude that $u x^{\ell} v \suffleq w u x^\ell v = x^{\ell + 1} v \suffleq u x^k v$.
 \end{proofof}
 
+
+
 \begin{proofof}{bounded-language:lem}
-	\begin{proof}
-		Let $w_1, \dots, w_n$ be such that
-		$L \subseteq w_1^* \cdots w_n^*$.
-		Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
-		
-		Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
-		to $\Sigma^*$. We are interested in the intersection of the image of $w$
-		with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
-		there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
-		Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
-		$x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
-		$w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
-		\InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
-		\cup \InfPeriodChain{x} \InfPeriodChain{y}$.
-		
-		Now, it may be the case that one cannot simultaneously assume that two
-		component of the vector $\vec{k}$ are unbounded. In general, given a set $S
-		\subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
-		there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
-		exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
-		$\vec{b}$ on the $S$ components, and the other components are below the
-		bound $N_0$. The language of an admissible set $S$ is the set of words
-		obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
-		($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
-		Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
-		
-		Now, admissible languages are ready to be pumped according to
-		\cref{pumping-periods:lem}. For every admissible language,
-		the size of a word that is not iterated is at most
-		$N_0 \times m$ by definition, and we conclude that:
-		\begin{equation}
-			\label{bounded-language:eq}
-			L \subseteq 
-			\bigcup_{x,y \in \Sigma^{\leq n}}
-			\bigcup_{u \in \Sigma^{\leq m \times N_0}}
-			\InfPeriodChain{x} u \InfPeriodChain{y}
-			\cup
-			\InfPeriodChain{x} u
-			\cup
-			u \InfPeriodChain{x}
-			\quad .
-		\end{equation}
-	\end{proof}
+    Let $w_1, \dots, w_n$ be such that
+    $L \subseteq w_1^* \cdots w_n^*$.
+    Let us define $m \defined \max \setof{\card{w_i}}{1 \leq i \leq n}$
+
+      Let $w[\vec{k}] \defined w_1^{k_1} \cdots w_n^{k_n}$ be a map from $\Nat^k$
+      to $\Sigma^*$. We are interested in the intersection of the image of $w$
+      with $L$. Let us assume for instance that for all $\vec{k} \in \Nat^n$,
+      there exists $\vec{\ell} \geq \vec{k}$ such that $w[\vec{\ell}] \in L$.
+      Then, leveraging \cref{pumping-periods:lem}, we conclude that there exists
+      $x,y$ of size at most $\max\setof{\card{w_i}}{1 \leq i \leq n}$ such that
+      $w[\vec{k}] \in \InfPeriodChain{x} \cup \InfPeriodChain{x}
+      \InfPeriodChain{y}$, and we conclude that $L \subseteq \InfPeriodChain{x}
+      \cup \InfPeriodChain{x} \InfPeriodChain{y}$.
+
+      Now, it may be the case that one cannot simultaneously assume that two
+      component of the vector $\vec{k}$ are unbounded. In general, given a set $S
+      \subseteq \set{1, \dots, n}$ of indices, we say that $S$ is admissible if
+      there exists a bound $N_0$ such that for all $\vec{b} \in \Nat^S$, there
+      exists a vector $\vec{k} \in \Nat^n$, such that $\vec{k}$ is greater than
+      $\vec{b}$ on the $S$ components, and the other components are below the
+      bound $N_0$. The language of an admissible set $S$ is the set of words
+      obtained by repeating $w_i$ at most $N_0$ times if it is not in $S$
+      ($w_i^{\leq N_0}$) and arbitrarily many times otherwise ($w_i^*$).
+      Note that $L \subseteq \bigcup_{S \text{ admissible }} L(S)$.
+
+      Now, admissible languages are ready to be pumped according to
+      \cref{pumping-periods:lem}. For every admissible language,
+      the size of a word that is not iterated is at most
+      $N_0 \times m$ by definition, and we conclude that:
+      \begin{equation}
+          \label{bounded-language:eq}
+          L \subseteq 
+          \bigcup_{x,y \in \Sigma^{\leq n}}
+          \bigcup_{u \in \Sigma^{\leq m \times N_0}}
+          \InfPeriodChain{x} u \InfPeriodChain{y}
+          \cup
+          \InfPeriodChain{x} u
+          \cup
+          u \InfPeriodChain{x}
+          \quad .
+      \end{equation}
+  \end{proofof}
+
+\begin{proofof}{bounded-wqo-dwclosed:cor}
+    Because $L \subseteq \dwset[\infleq]{L}$, the right-to-left implication
+    is trivial.
+    For the left-to-right implication, let us assume that $L$ is a
+    \kl{well-quasi-ordered} language for the \kl{infix relation}.
+    Then $L$ is included in a finite union 
+    of products of \kl{chains} for the \kl{prefix} and \kl{suffix} relations
+    thanks to
+    \cref{bounded-language:thm}:
+    \begin{equation*}
+        L \subseteq \bigcup_{i = 1}^n S_i \cdot P_i \quad .
+    \end{equation*}
+    Remark that if $S_i$ is a \kl{chain} for the \kl{suffix relation}
+    and $P_i$ is a \kl{chain} for the \kl{prefix relation},
+    then 
+    \begin{equation*}
+      \dwset[\infleq]{(S_i \cdot P_i)} = (\dwset[\suffleq]{S_i}) \cdot (\dwset[\prefleq]{P_i})
+        \quad .
+    \end{equation*}
+    Indeed, any \kl{infix} of a word in $S_i P_i$ can be split into
+    a \kl{suffix} of a word in $S_i$ and a \kl{prefix} of a word in $P_i$.
+    Conversely, any such concatenations are \kl{infixes} of a word in $S_i P_i$.
+
+
+    As a consequence, we conclude that $\dwset[\infleq]{L}$ is itself included
+    in a finite union of products of \kl{chains}.
+    Furthermore, by definition of \kl{bounded languages},
+    $\dwset[\infleq]{L}$ is also a \kl{bounded language}.
+    Hence, it is \kl{well-quasi-ordered} by the \kl{infix relation} 
+    via
+    \cref{bounded-language:thm}.
 \end{proofof}
 
 
-\begin{lemma}
-	\label{automatic-uur:lem}
-	\proofref{automatic-uur:lem}
-	Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
-	whether it is \kl{ultimately uniformly recurrent}.
-\end{lemma}
+\section{Proofs for Section~\ref{infixes-dwclosed:sec}}
 
-\begin{proofof}{automatic-uur:lem}
-	We can rewrite this as a question on the \kl{automatic sequence} $w$
-	as follows:
-	\begin{align*}
-		&\exists N_0,                   &   \text{ultimately} \\
-		&\forall i_s \geq N_0,          &   \text{for every infix (start) } u \\
-		&\forall i_e > i_s,             &   \text{for every infix (end) }   u \\
-		&\exists k \geq 1,              &   \text{there exists a bound} \\
-		&\forall j_s \geq N_0,          &   \text{for every other infix (start) } v \\
-		&\forall j_e \geq j_s + k,      &   \text{of size at least $k$} \\
-		&\exists l \geq 0,              &   \text{there exists a position in } v \\
-		&\forall 0 \leq m < i_e - i_s,  &   \text{where } u \text{ can be found} \\
-		&j_s + m + l < j_e \land
-		w(i_s + m) = w(j_s + m + l) \quad .
-	\end{align*}
-	Because $w$ is computable by a finite automaton, one can reduce the above
-	formula to a regular language, for which it suffices to check emptiness, which
-	is decidable.
+
+\begin{proofof}{bi-infinite:lem}
+    Let us assume that $L$ is infinite. The case when it is finite 
+    is similar, but will result in a finite word.
+    \todo{aliaume: do we need wqo here? the proof
+      should go through without it: the sequence 
+      $u_i$ is already increasing for infix}
+
+    Because the alphabet $\Sigma$ is finite, we can enumerate the words of $L$
+    as $\seqof{w_i}[i \in \Nat]$. From $\seqof{w_i}[i \in \Nat]$, we construct a sequence $\seqof{u_i}[i \in \Nat]$ by induction
+    as follows: $u_0 = w_0$, and $u_{i+1}$ is a word that contains $u_i$ and
+    $w_i$, which exists in $L$ because $L$ is \kl(subset){directed}. Since $L$ is
+    \kl{well-quasi-ordered}, one can extract an infinite set of indices $I
+    \subseteq \Nat$ such that $u_i \infleq u_{j}$ for all $i \leq j \in I$.
+
+    We can build a word $w$ as the limit of the sequence $\seqof{u_i}[i \in
+    I]$. This word is infinite or bi-infinite, and contains as infixes all the
+    words $u_i$ for $i \in I$. Because every word of $L$ is an infix of every
+    $u_i$ for a large enough $I$, one concludes that $L$ is contained in the
+    set of finite infixes of $w$. Conversely, every finite infix of $w$ is 
+    an infix of some $u_i$ by definition of the limit construction, hence
+    belongs to $L$ since $u_i \in L$ and $L$ is \kl{downwards closed}.
+\end{proofof}
+
+\begin{proofof}{ultimately-uniformly-recurrent:lem}
+
+    Assume that $w$ is \kl{ultimately uniformly recurrent}. Consider a sequence
+    of words $\seqof{w_i}[i \in \Nat]$ that are finite \kl{infixes} of $w$. Because $w$ is
+    \kl{ultimately uniformly recurrent}, there exists a bound $N_0$ such that
+    $w_{\geq N_0}$ is \kl{uniformly recurrent}. Let $i < N_0$, we claim that,
+    without loss of generality, only finitely many words in the sequence
+    $\seqof{w_i}[i \in \Nat]$ can be found starting at the position $i$ in $w$. Indeed, if
+    it is not the case, then we have an infinite subsequence of words that are
+    all comparable for the \kl{infix relation}, and therefore a \kl{good
+    sequence}, because the \kl{infix relation} is \kl{well-founded}. We can
+    therefore assume that all words in the sequence $\seqof{w_i}[i \in \Nat]$ are such that
+    they start at a position $i \geq N_0$. But then they are all finite
+    \kl{infixes} of $w_{\geq N_0}$, which is a \kl{uniformly recurrent} word,
+    whose set of finite \kl{infixes} is \kl{well-quasi-ordered}
+    (\cref{uniformly-recurrent:lem}).
+
+    Conversely, assume that the set of finite infixes of $w$ is
+    \kl{well-quasi-ordered}. Let us write $\mathsf{Rec}(w)$ the set of finite
+    \kl{infixes} of $w$ that appear infinitely often. We can similarly define
+    $\mathsf{Rec}(w_{\geq i})$ for any (infinite) suffix of $w$. The sequence
+    $R_i \defined \mathsf{Rec}(w_{\geq i})$ is a descending sequence of \kl{downwards
+    closed} sets of finite words, included in the set of finite infixes of $w$
+    by definition. Because the latter is \kl{well-quasi-ordered}, there exists
+    an $N_0 \in \Nat$, such that $\bigcap_{i \in \Nat} R_i = R_{N_0}$.
+    Now, consider $v \defined w_{\geq N_0}$. By construction, 
+    every finite infix of $v$ 
+    appears infinitely often in $v$. 
+    Given
+    some finite infix $u \infleq v$, we 
+    there exists a bound $N_u$
+    on the distance
+    between two consecutive occurrences of $u$ in $v$.
+    Indeed, if it is not the case, then there exists an infinite sequence
+    $\seqof{u x_i u}[i \in \Nat]$ of infixes of $v$, such that $x_i$ is a word
+    of size $\geq i$
+    and no shorter word $u y u$ is an infix of $u x_i u$.
+    Because the finite infixes of $w$ (hence, of $v$) are \kl{well-quasi-ordered},
+    one can extract an infinite set of indices $I \subseteq \Nat$
+    such that $u x_i u \infleq u x_{j} u$ for all $i \leq j \in I$.
+    In particular, $u x_i u \infleq u x_{j} u$ for some $j > |x_i|$, 
+    which contradicts the fact that $u x_j u$ coded two consecutive
+    occurrences of $u$ in $v$.
+
+    We have shown that for every finite infix $u$ of $v$, there exists a bound
+    $N_u$ such that every two occurrences of $u$ in $v$ start at distance at
+    most $N_u$. In particular, there exists a bound $M_u$ such that every infix
+    of $v$ of size at least $M_u$ contains $u$. We have proven that
+    $v$ is \kl{uniformly recurrent}, hence that $w$ is \kl{ultimately uniformly
+    recurrent}.
 \end{proofof}
 
 
-\begin{proofof}{small-ordinal-invariants:lem}
-	Let $N_0$ be a bound such that $w_{\geq N_0}$ is \kl{uniformly recurrent}.
-	Let us write $\infset{w}$ the set of finite infixes of $w$.
-	We prove that $\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
-	Let $u_1 \infleq w$ be a finite word. 
-	
-	If $u_1$ is an \kl{infix} of $w_{\geq N_0}$, then there exists $k \geq 1$
-	such that $u_1$ is an \kl{infix} of every word of size at least $k$. In
-	particular, there is finite bound on the length of every sequence of
-	incomparable elements starting with $u_1$. We conclude in particular that
-	$\infset{w} \setminus \upset{u_1}$ has a finite \kl{ordinal width}.
-	
-	Otherwise, $u_1$ can only be found \emph{before} $N_0$. In this case, we
-	consider a second element of a \kl{bad sequence} $u_2 \infleq w$, which is
-	incomparable with $u_1$ for the \kl{infix relation}. If $u_2$ is an
-	\kl{infix} of $w_{\geq N_0}$, then we can conclude as before. Otherwise,
-	notice that $u_1$ and $u_2$ cannot start at the same position in $w$
-	(because they are incomparable). Continuing this argument, we conclude that
-	there are at most $N_0$ elements starting before $N_0$
-	at the start of any sequence of
-	incomparable elements in $\infset{w}$. We conclude that
-	$\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
-	
-	Let us now justify that this bound is tight.
-	The \kl{Thue-Morse sequence} over a binary
-	alphabet $\set{a,b}$ has \kl{ordinal width} $\omegaOrd$
-	from \cref{thue-morse-ordinal:lemma}.
-	Given a number $N_0
-	\in \Nat$, one can construct an arbitrarily long \kl{antichain} of words for
-	the \kl{infix relation} by using a new letter $c$. When concatenating this
-	(finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
-	new (infinite) word $w$. It is clear that the \kl{ordinal width} of
-	$\infset{w}$ is now at least $\omegaOrd + N_0$.
+\begin{proofof}{bi-infinite-uur:lem}
+  Given a bi-infinite word $w \in \Sigma^{\Rel}$, we can consider $w_+ \in
+\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
+follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
+that the two share the letter at position $0$.
+
+    Assume that $w_+$ and $w_-$ are \kl{ultimately uniformly recurrent}. Let us
+    write $\infset{w}$ the set of finite infixes of $w$. Consider an infinite
+    sequence of words $\seqof{u_i}[i \in \Nat]$ in $\infset{w}$. If there is an
+    infinite subsequence of words that are all in $\infset{w_+}$, then there
+    exists an increasing pair of indices $i < j$ such that $u_i \infleq
+    u_j$ because \cref{uniformly-recurrent:lem} applies to $w_+$. Similarly, if
+    there is an infinite subsequence of words that are all in $\infset{w_-}$,
+    then there exists an increasing pair of indices $i < j$ such that $u_i
+    \infleq u_j$ because \cref{uniformly-recurrent:lem} applies to $w_-$ (and
+    the \kl{infix relation} is compatible with mirroring). Otherwise, one can
+    assume without loss of generality that all words in the sequence have a
+    starting position in $w_-$ and an ending position in $w_+$. In this case,
+    let us write $(k_i,l_i) \in \Nat^2$ the pair of indices such that $u_i$ is the infix
+    of $w$ that starts at position $-k_i$ of $w$ (i.e., $k_i$ of $w_-$) and
+    ends at position $l_i$ of $w$ (i.e., $l_i$ of $w_+$).
+    Because $\Nat^2$ is a \kl{well-quasi-ordering} with the product ordering,
+    there exists $i < j$ such that $k_i \leq k_j$ and $l_i \leq l_j$, 
+    in particular, $u_i \infleq u_j$. We have proven that every infinite
+    sequence of words in $\infset{w}$ is \kl(wqo){good}, hence $\infset{w}$ is
+    \kl{well-quasi-ordered}.
+
+    Conversely, assume that $\infset{w}$ is \kl{well-quasi-ordered}. In
+    particular, the subset $\infset{w_+} \subseteq \infset{w}$ is \kl{well-quasi-ordered}.
+    Similarly, $\infset{w_-}$ is \kl{well-quasi-ordered} because the \kl{infix
+    relation} is compatible with mirroring. Applying
+    \cref{ultimately-uniformly-recurrent:lem}, we conclude that both are
+    \kl{ultimately uniformly recurrent} words.
+
 \end{proofof}
-
-
 
 \begin{proofof}{from-bi-to-single:lem}
-	Given a bi-infinite word $w \in \Sigma^{\Rel}$, recall that we can consider $w_+ \in
-	\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
-	follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
-	that the two share the letter at position $0$.
-	
-	To obtain the upper bound of $3 \cdot \omegaOrd$, we can consider the same
-	argument as for \cref{small-ordinal-invariants:lem}. We let $N_0$ be such
-	that $w_{\geq N_0}$ and $(w_-)_{\geq N_0}$ are \kl{uniformly recurrent}
-	words. In any sequence of incomparable elements of $\infset{w}$, there are
-	less than $N_0^2$ elements that are found in $(w_{< N_0})_{> -N_0}$. Then,
-	one has to pick a finite \kl{infix} in either $w_{\geq N_0}$ or $w_{\leq
-		-N_0}$. Because of \cref{small-ordinal-invariants:lem}, any sequence of
-	incomparable elements of these two infinite words has length bounded based
-	on the choice of the first element of that sequence. This means that the
-	\kl{ordinal width} of $\infset{w}$ is at most $\omegaOrd + \omegaOrd +
-	N_0^2$. We conclude that $\oWidth{\infset{w}} < 3 \cdot \omegaOrd$.
-	
-	Let us briefly argue that the bound is tight. Indeed, one can
-	construct a bi-infinite word $w$ by concatenating a reversed \kl{Thue-Morse
-		sequence} on a binary alphabet $\set{a,b}$, a finite antichain of arbitrarily
-	large size over a distinct alphabet $\set{c,d}$, and then a \kl{Thue-Morse
-		sequence} on a binary alphabet $\set{e,f}$. The \kl{ordinal width} of the set
-	of \kl{infixes} of $w$ is then at least $2 \cdot \omegaOrd + K$, where $K$ is the
-	size of the chosen antichain, following the same argument as in the proof of
-	\cref{small-ordinal-invariants:lem}, using \cref{thue-morse-ordinal:lemma}.
+  Given a bi-infinite word $w \in \Sigma^{\Rel}$, recall that we can consider $w_+ \in
+\Sigma^\Nat$ and $w_- \in \Sigma^\Nat$ the two infinite words obtained as
+follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
+that the two share the letter at position $0$.
+
+    To obtain the upper bound of $3 \cdot \omegaOrd$, we can consider the same
+    argument as for \cref{small-ordinal-invariants:lem}. We let $N_0$ be such
+    that $w_{\geq N_0}$ and $(w_-)_{\geq N_0}$ are \kl{uniformly recurrent}
+    words. In any sequence of incomparable elements of $\infset{w}$, there are
+    less than $N_0^2$ elements that are found in $(w_{< N_0})_{> -N_0}$. Then,
+    one has to pick a finite \kl{infix} in either $w_{\geq N_0}$ or $w_{\leq
+    -N_0}$. Because of \cref{small-ordinal-invariants:lem}, any sequence of
+    incomparable elements of these two infinite words has length bounded based
+    on the choice of the first element of that sequence. This means that the
+    \kl{ordinal width} of $\infset{w}$ is at most $\omegaOrd + \omegaOrd +
+    N_0^2$. We conclude that $\oWidth{\infset{w}} < 3 \cdot \omegaOrd$.
+
+  Let us briefly argue that the bound is tight. Indeed, one can
+  construct a bi-infinite word $w$ by concatenating a reversed \kl{Thue-Morse
+  sequence} on a binary alphabet $\set{a,b}$, a finite antichain of arbitrarily
+  large size over a distinct alphabet $\set{c,d}$, and then a \kl{Thue-Morse
+  sequence} on a binary alphabet $\set{e,f}$. The \kl{ordinal width} of the set
+  of \kl{infixes} of $w$ is then at least $2 \cdot \omegaOrd + K$, where $K$ is the
+  size of the chosen antichain, following the same argument as in the proof of
+  \cref{small-ordinal-invariants:lem}, using \cref{thue-morse-ordinal:lemma}.
 \end{proofof}
 
 \section{Proofs for Section~\ref{infixes-amalgamation:sec}}
@@ -289,3 +393,59 @@
 \end{figure}
 
 
+\begin{proofof}{gap-words-prefix-ordered:lem}
+	Write $u$ for $\GapWord{f}{\ell}$ and $v$ for $\GapWord{g}{\ell}$. 
+	We may assume that both $u$ and $v$ are non-empty, as otherwise the lemma holds trivially.
+	Then, for all $k \in \Nat$, there exists a run with canonical decomposition
+	$$
+	w_k = L_0 a_1 \cdots a_n L_n,
+	$$
+	where $L_i \in \set{vv u^k, vu^kv, u^k vv}$ and specifically $L_\ell = vu^kv$.
+	
+	From \cref{pumping-periods:lem}, we may conclude that there are a finite number of words $x, y,$ and $w$ 
+	such that each $w_k$ is contained in a language 
+	$\InfPeriodChain{x}w\InfPeriodChain{y}$.
+	
+	As there is an infinite number of words $w_k$, 
+	we may fix $x, y,$ and $w$ and an infinite subset $I \subseteq \Nat$ 
+	such that $\set{w_i \mid i \in I} \subseteq \InfPeriodChain{x}w\InfPeriodChain{y}$. 
+	This implies that either for infinitely many $m \in \Nat$, $u^m v \in \InfPeriodChain{y}$ 
+	or for infinitely many $m$, $v u^m \in \InfPeriodChain{x}$. 
+	
+	In either case, we may conclude that either $u \infleq v$ or $v \infleq u$: Let $m, n \in \Nat$
+	such that $m < n$ and $u^m v, u^n v \in \InfPeriodChain{y}$ (the case for $v u^m$ and $v u^n$ 
+	proceeding analogously). Without loss of generality, assume that $\card{u^m}$ and $\card{u^n}$ are
+	multiples of $\card{y}$. We therefore find $p \prefleq y, s \suffleq y$ such that $u^m, u^n \in sy^*p$, 
+	ergo $ps = y$.
+	In other words, we can write $u^m = (sp)^{m'}, u^n = (sp)^{n'}$. As $u^mv \in \InfPeriodChain{y}$, it 
+	follows that $v$ is a prefix of some word in $(sp)^*$. Hence either $v$ is a prefix of $u$ or $u$ vice versa.
+\end{proofof}
+
+
+
+\begin{proofof}{dwclosed-infixes-wqo:lem}
+    It is clear that \cref{dwci-reg:item} $\Rightarrow$ \cref{dwci-aml:item}
+    because regular languages are recognized by finite automata, and finite
+    automata are a particular case of \kl{amalgamation systems}.
+    The implication \cref{dwci-aml:item} $\Rightarrow$ \cref{dwci-bod:item}
+    is the content of \cref{infix-amalgamation:thm}.
+    The implication \cref{dwci-bod:item} $\Rightarrow$ \cref{dwci-uoc:item}
+    is \cref{bounded-language:lem}.
+    Finally, the implication \cref{dwci-uoc:item} $\Rightarrow$ \cref{dwci-reg:item}
+    is simply because a \kl{downwards closed} language 
+    that is a finite union of products of \kl{chains} is a regular language.
+
+    Indeed, assume that
+    $L$ is \kl{downwards closed} and included in a finite union of sets of the form
+    $\InfPeriodChain{x} u \InfPeriodChain{y}$ where $x,y,u$ are possibly empty words.
+    We can assume without loss of generality that
+    for every $n$, $x^n u y^n$ is in $L$, otherwise, we have a bound on the maximal $n$ such that
+    $x^n u y^n$ is in $L$, and we can increase the number of languages in the union, replacing $x$ or $y$
+    with the empty word as necessary.
+    Let us write $L' \defined \bigcup_{i = 1}^k x_i^* u_i y_i^*$. Then, $L'
+    \subseteq L$ by construction. Furthermore, $L \subseteq \dwset{L'}$, also
+    by construction. Finally, we conclude that $L = \dwset{L'}$ because $L$ is
+    \kl{downwards closed}. Now, because $L'$ is a \kl{regular language}, and 
+    \kl{regular languages} are closed under \kl{downwards closure}, we conclude
+    that $L$ is a \kl{regular language}.
+\end{proofof}

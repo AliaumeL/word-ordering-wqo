@@ -202,10 +202,14 @@ languages \cite[Theorem 5.10]{ASZZ24}.
 
 \subsection{$\infleq$-Well-Quasi-Ordered Amalgamation Systems}
 
-We can now show a simple lemma that illuminates much of the structure of amalgamation systems whose language is well-quasi-ordered by $\infleq$.
+We can now show a simple lemma that illuminates much of the structure of
+amalgamation systems whose language is well-quasi-ordered by $\infleq$. Note
+that \cref{gap-words-prefix-ordered:lem} uses \cref{pumping-periods:lem} in its
+proof, and our \cref{infix-amalgamation:thm} follows from it.
 
 \begin{lemma}
 	\label{gap-words-prefix-ordered:lem}
+  \proofref{gap-words-prefix-ordered:lem}
 	Let $L$ by an \kl{amalgamation language} recognized by $(\Sigma, R, E, \canrun)$ that is well-quasi-ordered by $\infleq$. Let $\rho$ be a run with $\canrun[\rho] = a_1 \cdots a_n$, and let $\sigma, \tau$ be runs with $\rho \runleq_f \sigma$ and $\rho \runleq_g \sigma$. 
 	
 	For any $0 \leq \ell \leq n$, we have $\GapWord{f}{\ell} \infleq \GapWord{g}{\ell}$ or vice versa.
@@ -261,6 +265,7 @@ obtain an even stronger structure: All such languages are regular!
 
 \begin{lemma}
     \label{dwclosed-infixes-wqo:lem}
+    \proofref{dwclosed-infixes-wqo:lem}
     Let $L \subseteq \Sigma^*$ be a \kl{downwards closed} language for the
     \kl{infix relation} that is \kl{well-quasi-ordered}. Then, the following
     are equivalent:
@@ -276,37 +281,10 @@ obtain an even stronger structure: All such languages are regular!
     \end{enumerate}
     }
 \end{lemma}
-\begin{proof}
-    It is clear that \cref{dwci-reg:item} $\Rightarrow$ \cref{dwci-aml:item}
-    because regular languages are recognized by finite automata, and finite
-    automata are a particular case of \kl{amalgamation systems}.
-    The implication \cref{dwci-aml:item} $\Rightarrow$ \cref{dwci-bod:item}
-    is the content of \cref{infix-amalgamation:thm}.
-    The implication \cref{dwci-bod:item} $\Rightarrow$ \cref{dwci-uoc:item}
-    is \cref{bounded-language:lem}.
-    Finally, the implication \cref{dwci-uoc:item} $\Rightarrow$ \cref{dwci-reg:item}
-    is simply because a \kl{downwards closed} language 
-    that is a finite union of products of \kl{chains} is a regular language.
 
-    Indeed, assume that
-    $L$ is \kl{downwards closed} and included in a finite union of sets of the form
-    $\InfPeriodChain{x} u \InfPeriodChain{y}$ where $x,y,u$ are possibly empty words.
-    We can assume without loss of generality that
-    for every $n$, $x^n u y^n$ is in $L$, otherwise, we have a bound on the maximal $n$ such that
-    $x^n u y^n$ is in $L$, and we can increase the number of languages in the union, replacing $x$ or $y$
-    with the empty word as necessary.
-    Let us write $L' \defined \bigcup_{i = 1}^k x_i^* u_i y_i^*$. Then, $L'
-    \subseteq L$ by construction. Furthermore, $L \subseteq \dwset{L'}$, also
-    by construction. Finally, we conclude that $L = \dwset{L'}$ because $L$ is
-    \kl{downwards closed}. Now, because $L'$ is a \kl{regular language}, and 
-    \kl{regular languages} are closed under \kl{downwards closure}, we conclude
-    that $L$ is a \kl{regular language}.
-\end{proof}
-
-\AP Combining
-\cref{thue-morse:lemma,dwclosed-infixes-wqo:lem}, we can
-conclude that the collection of \kl{infixes} of the \kl{Thue-Morse sequence}
-cannot be recognized by \emph{any} \kl{amalgamation system}. 
+\AP Combining \cref{thue-morse:lemma,dwclosed-infixes-wqo:lem}, we can conclude
+that the collection of \kl{infixes} of the \kl{Thue-Morse sequence} cannot be
+recognized by \emph{any} \kl{amalgamation system}. 
 
 
 \subsection{Effective Decision Procedures}
