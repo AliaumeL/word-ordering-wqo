@@ -4,6 +4,7 @@
 \clearpage
 
 \section{Proofs for Section~\ref{prefixes:sec}}
+
 \begin{figure}
     \centering
     \includestandalone{fig/antichain-branch-standalone}
@@ -193,6 +194,70 @@
           \quad .
       \end{equation}
   \end{proofof}
+
+
+\begin{lemma}
+	\label{automatic-uur:lem}
+	\proofref{automatic-uur:lem}
+	Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
+	whether it is \kl{ultimately uniformly recurrent}.
+\end{lemma}
+
+\begin{proofof}{automatic-uur:lem}
+	We can rewrite this as a question on the \kl{automatic sequence} $w$
+	as follows:
+	\begin{align*}
+		&\exists N_0,                   &   \text{ultimately} \\
+		&\forall i_s \geq N_0,          &   \text{for every infix (start) } u \\
+		&\forall i_e > i_s,             &   \text{for every infix (end) }   u \\
+		&\exists k \geq 1,              &   \text{there exists a bound} \\
+		&\forall j_s \geq N_0,          &   \text{for every other infix (start) } v \\
+		&\forall j_e \geq j_s + k,      &   \text{of size at least $k$} \\
+		&\exists l \geq 0,              &   \text{there exists a position in } v \\
+		&\forall 0 \leq m < i_e - i_s,  &   \text{where } u \text{ can be found} \\
+		&j_s + m + l < j_e \land
+		w(i_s + m) = w(j_s + m + l) \quad .
+	\end{align*}
+	Because $w$ is computable by a finite automaton, one can reduce the above
+	formula to a regular language, for which it suffices to check emptiness, which
+	is decidable.
+\end{proofof}
+
+
+\begin{proofof}{small-ordinal-invariants:lem}
+	Let $N_0$ be a bound such that $w_{\geq N_0}$ is \kl{uniformly recurrent}.
+	Let us write $\infset{w}$ the set of finite infixes of $w$.
+	We prove that $\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
+	Let $u_1 \infleq w$ be a finite word. 
+	
+	If $u_1$ is an \kl{infix} of $w_{\geq N_0}$, then there exists $k \geq 1$
+	such that $u_1$ is an \kl{infix} of every word of size at least $k$. In
+	particular, there is finite bound on the length of every sequence of
+	incomparable elements starting with $u_1$. We conclude in particular that
+	$\infset{w} \setminus \upset{u_1}$ has a finite \kl{ordinal width}.
+	
+	Otherwise, $u_1$ can only be found \emph{before} $N_0$. In this case, we
+	consider a second element of a \kl{bad sequence} $u_2 \infleq w$, which is
+	incomparable with $u_1$ for the \kl{infix relation}. If $u_2$ is an
+	\kl{infix} of $w_{\geq N_0}$, then we can conclude as before. Otherwise,
+	notice that $u_1$ and $u_2$ cannot start at the same position in $w$
+	(because they are incomparable). Continuing this argument, we conclude that
+	there are at most $N_0$ elements starting before $N_0$
+	at the start of any sequence of
+	incomparable elements in $\infset{w}$. We conclude that
+	$\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
+	
+	Let us now justify that this bound is tight.
+	The \kl{Thue-Morse sequence} over a binary
+	alphabet $\set{a,b}$ has \kl{ordinal width} $\omegaOrd$
+	from \cref{thue-morse-ordinal:lemma}.
+	Given a number $N_0
+	\in \Nat$, one can construct an arbitrarily long \kl{antichain} of words for
+	the \kl{infix relation} by using a new letter $c$. When concatenating this
+	(finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
+	new (infinite) word $w$. It is clear that the \kl{ordinal width} of
+	$\infset{w}$ is now at least $\omegaOrd + N_0$.
+\end{proofof}
 
 \begin{proofof}{bounded-wqo-dwclosed:cor}
     Because $L \subseteq \dwset[\infleq]{L}$, the right-to-left implication
@@ -391,6 +456,62 @@ that the two share the letter at position $0$.
     }
     \label{amalgamation-runs:fig}
 \end{figure}
+
+
+For this paper to be self-contained, we will also recall how runs of a finite
+state automaton can be understood as an \kl{amalgamation system}.
+
+\begin{example}[{\cite[Section 3.2]{ASZZ24}}]
+  \label{automaton-amalgamation:example}
+    Let $A = (Q, \delta, q_0, F)$ be a finite state automaton over a finite
+    alphabet $\Sigma$. Let $\Delta$ be the set of transitions $(q_1, a, q_2)
+    \in Q \times \Sigma \times Q$,
+    and $R \subseteq \Delta^*$ be the set of 
+    words over transitions that start with the initial state $q_0$,
+    end in a final state $q_f \in F$, and such that the end state of a
+    letter is the start state of the following one.
+    The canonical decomposition $\canrun$
+    is defined as a morphism from $\Delta^*$ to $\Sigma^*$
+    that maps $(q,a,p)$ to $a$. 
+    Because of the one-to-one correspondence of steps of a run $\rho$ and letters in its \kl{canonical decomposition}, 
+    we may treat the two interchangeably.
+    Finally, given two runs $\rho$ and $\sigma$ of the automaton,
+    we say that an embedding $f \in \HigEmb(\canrun(\rho), \canrun(\sigma))$
+    belongs to $E(\rho,\sigma)$ when
+    $f$ is also defining an embedding from $\rho$ to $\sigma$ as words in $\Delta^*$.
+
+    The system $(\Sigma, R, E, \canrun)$ is an \kl{amalgamation system},
+    whose language is precisely the language of words recognized
+    by the automaton $A$.
+\end{example}
+\begin{proof}
+    By definition, the embeddings inside $E(\rho,\sigma)$ are in
+    of $\HigEmb(\canrun(\rho), \canrun(\sigma))$, and they compose properly.
+    Because $\Delta = Q \times \Sigma \times Q$ is finite, it is 
+    a \kl{well-quasi-ordering} when equipped with the equality relation, and 
+    we conclude that $\Delta^*$ with $\higleq$ is a \kl{well-quasi-order}
+    according to Higman’s Lemma \cite{HIG52}.
+    
+    Let us now move to proving that the system satisfies the amalgamation
+    property. Given three runs $\rho,\sigma,\tau \in R$, and two embeddings $f \in E(\rho,\sigma)$
+    and $g \in E(\rho,\tau)$, we want to construct an amalgamated run $\sigma \vee \tau$.
+    Because letters in the run $\rho$ respect the transitions of the automaton
+    (i.e., if the letter $i$ ends in state $q$, then the letter $i+1$ starts in
+    state $q$), then the \kl{gap word} at position $i$ starts in state $q$ and
+    ends in state $q$ too. This means that for both embeddings
+    $f$ and $g$, the \kl{gap words} are read by the automaton by looping
+    on a state. In particular, these loops can be taken in any order
+    and continue to represent a valid run. That is, we can even select
+    the order of concatenation in the amalgamation for \emph{all} 
+    $0 \leq i \leq \card{\canrun(\rho)}$ and not just for one separately.
+
+    We conclude by remarking that 
+    the language of this amalgamation system is
+    the set of $\yieldrun(R)$, 
+    because $R$ is the set of valid runs of the automaton,
+    and $\yieldrun(\rho)$ is the word read along a run $\rho$.
+\end{proof}
+
 
 
 \begin{proofof}{gap-words-prefix-ordered:lem}

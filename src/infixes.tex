@@ -523,9 +523,9 @@ Ordinal invariants in hand, we proceed with the proof of \cref{small-ordinal-inv
     we have the bound $\oWidth{L_i} < 3 \cdot \omegaOrd$.
 
     Now, $\oWidth{L} \leq \sum_{i = 1}^n \oWidth{L_i} < 3 \cdot \omegaOrd <
-    \omegaOrd^2$ \todo{if inequality 2 holds, why do we not stop there?}. We conclude that the \kl{ordinal width} of $L$ is less than
-    $\omegaOrd^2$. Finally, the inequality $\oType{L} \leq \oWidth{L} \oComProd
-    \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to conclude.
+    \omegaOrd^2$. Finally, the inequality $\oType{L} \leq \oWidth{L} \oComProd
+    \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to
+    conclude.
 
     The tightness of the bounds is a direct consequence of
     \cref{from-bi-to-single:lem}, and by considering a finite union of 
@@ -565,7 +565,10 @@ finite automaton using a binary representation of the indices. The good
 algorithmic properties of \kl{automatic sequences} come from the fact that a
 Presburger definable property that uses letters of the sequence can be
 (trivially) translated into a finite automaton that reads the base $b$
-representation of the free variables (that are indices of the sequence). It is folklore that one can decide if an \kl{automatic sequence} is \kl{ultimately uniformly recurrent}. A proof can be found in the appendix at \cref{automatic-uur:lem}. Based on this, we now prove:
+representation of the free variables (that are indices of the sequence). It is
+folklore that one can decide if an \kl{automatic sequence} is \kl{ultimately
+uniformly recurrent}. A proof can be found in the appendix at
+\cref{automatic-uur:lem}. Based on this, we now prove:
 
 
 \begin{theorem}
