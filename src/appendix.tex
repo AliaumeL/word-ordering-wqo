@@ -755,21 +755,27 @@ to $\mathcal{C}$.
   \begin{enumerate}
     \item $L$ has bounded \kl{factor complexity},
       \label{dwclosed-wqo-complexity-width-finite:item1}
-    \item $L$ has finite \kl{ordinal width}.
+    \item $L$ has finite \kl{ordinal width},
       \label{dwclosed-wqo-complexity-width-finite:item2}
+    \item $L$ is a finite union of \kl{chains},
+      \label{dwclosed-wqo-complexity-width-finite:item4}
     \item $L$ is a finite union 
       of languages of the form
       $\infset{w}$ where $w$
-      is an \kl{ultimately periodic} word.
+      is an ultimately periodic word.
       \label{dwclosed-wqo-complexity-width-finite:item3}
   \end{enumerate}
 \end{lemma}
 \begin{proof}
-  \cref{dwclosed-wqo-complexity-width-finite:item3} $\Rightarrow$
-  \cref{dwclosed-wqo-complexity-width-finite:item1} is clear because
-  \kl{ultimately periodic} words have bounded \kl{factor complexity}.
+  First, \cref{dwclosed-wqo-complexity-width-finite:item4} $\iff$
+  \cref{dwclosed-wqo-complexity-width-finite:item2} is a standard
+  fact regarding \kl{ordinal width}.
 
-  \cref{dwclosed-wqo-complexity-width-finite:item1} $\Rightarrow$
+  Then, \cref{dwclosed-wqo-complexity-width-finite:item3} $\Rightarrow$
+  \cref{dwclosed-wqo-complexity-width-finite:item1} is clear because
+  ultimately periodic words have bounded \kl{factor complexity}.
+
+  In turn, \cref{dwclosed-wqo-complexity-width-finite:item1} $\Rightarrow$
   \cref{dwclosed-wqo-complexity-width-finite:item2} is also clear because
   unbounded \kl{factor complexity} implies the existence of arbitrarily
   large \kl{antichains}.
