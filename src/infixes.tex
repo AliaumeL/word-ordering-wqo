@@ -315,11 +315,15 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     \kl{decreasing sequence} of words in $\LMorse$ of length $n$, for instance by
     considering the first $n$ prefixes of the \kl{Thue-Morse sequence} by
     decreasing size.
-    Let us now prove that $\oWidth{\LMorse} = \omegaOrd$. Assume by contradiction that
-    $\oWidth{\LMorse}$ is finite. Then, $\LMorse$ can be written as a finite union of
-    \kl{chains} for the \kl{infix relation}, and in particular, $\LMorse$ is
-    \kl(language){bounded},\todo{This is false! there are chains that are unbounded languages?} 
-    which is absurd by \cref{thue-morse:lemma}.
+    Let us now prove that $\oWidth{\LMorse} = \omegaOrd$. 
+    To that end, we can leverage the fact that 
+    the number of infixes of size $n$ in $\LMorse$ is bounded below by
+    a non-constant affine function in $n$
+    \cite{TRSHA95}, and that two words of length $n$ are comparable
+    for the \kl{infix relation}
+    if and only if they are equal. Hence, there cannot be a bound
+    on the size of an \kl{antichain} in $\LMorse$, and we conclude
+    that $\oWidth{\LMorse} = \omegaOrd$.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order
     type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omegaOrd$.
 \end{proof}
