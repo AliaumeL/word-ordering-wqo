@@ -127,7 +127,7 @@ def generate_figure(size = 4, relation = subword):
     # We create a "triangle-like" 
     # figure with the empty word ε at the bottom
     # and each layer containing all the words of size k
-    # on top of eachother, and centered based on their size
+    # on top of each other, and centered based on their size
 
     layers = []
     for k in range(size):
