@@ -125,24 +125,6 @@
     Hence, that $L$ is finite union of \kl{chains}.
 \end{proofof}
 
-\begin{proofof}{prefix-wqo-reg-decidable:cor}
-    If $L$ is regular, then it is $\MSO$-definable, and there 
-    exists a formula $\varphi(x)$ in $\MSO$ that selects nodes 
-    of the \kl{tree of prefixes} that belong to $L$. Now, to decide whether there
-    exists an \kl{antichain branch} for $L$, we can simply check whether
-    the following formula is satisfied:
-    \begin{equation*}
-        \exists B. 
-        B \text{ is a branch } \land
-        \forall x \in B, \exists y. y \text{ is a child of } x \land \varphi(y) \land y \not\in B
-        \quad .
-    \end{equation*}
-    Because the above formula is an $\MSO$-formula over the infinite
-    $\Sigma$-branching tree, whether it is satisfied is decidable
-    as an easy consequence of the decidability of $\MSO$ over infinite binary
-    trees
-    \cite[Theorem 1.1]{RAB69}.
-\end{proofof}
 
 \clearpage
 \section{Proofs for Section~\ref{infixes-bounded:sec}}
@@ -330,9 +312,6 @@
 \begin{proofof}{bi-infinite:lem}
     Let us assume that $L$ is infinite. The case when it is finite 
     is similar, but will result in a finite word.
-    \todo{aliaume: do we need wqo here? the proof
-      should go through without it: the sequence 
-      $u_i$ is already increasing for infix}
 
     Because the alphabet $\Sigma$ is finite, we can enumerate the words of $L$
     as $\seqof{w_i}[i \in \Nat]$. From $\seqof{w_i}[i \in \Nat]$, we construct a sequence $\seqof{u_i}[i \in \Nat]$ by induction
@@ -439,6 +418,41 @@ that the two share the letter at position $0$.
 
 \end{proofof}
 
+\begin{proofof}{small-ordinal-invariants:lem}
+	Let $N_0$ be a bound such that $w_{\geq N_0}$ is \kl{uniformly recurrent}.
+	Let us write $\infset{w}$ the set of finite infixes of $w$.
+	We prove that $\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
+	Let $u_1 \infleq w$ be a finite word. 
+	
+	If $u_1$ is an \kl{infix} of $w_{\geq N_0}$, then there exists $k \geq 1$
+	such that $u_1$ is an \kl{infix} of every word of size at least $k$. In
+	particular, there is finite bound on the length of every sequence of
+	incomparable elements starting with $u_1$. We conclude in particular that
+	$\infset{w} \setminus \upset{u_1}$ has a finite \kl{ordinal width}.
+	
+	Otherwise, $u_1$ can only be found \emph{before} $N_0$. In this case, we
+	consider a second element of a \kl{bad sequence} $u_2 \infleq w$, which is
+	incomparable with $u_1$ for the \kl{infix relation}. If $u_2$ is an
+	\kl{infix} of $w_{\geq N_0}$, then we can conclude as before. Otherwise,
+	notice that $u_1$ and $u_2$ cannot start at the same position in $w$
+	(because they are incomparable). Continuing this argument, we conclude that
+	there are at most $N_0$ elements starting before $N_0$
+	at the start of any sequence of
+	incomparable elements in $\infset{w}$. We conclude that
+	$\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
+	
+	Let us now justify that this bound is tight.
+	The \kl{Thue-Morse sequence} over a binary
+	alphabet $\set{a,b}$ has \kl{ordinal width} $\omegaOrd$
+	from \cref{thue-morse-ordinal:lemma}.
+	Given a number $N_0
+	\in \Nat$, one can construct an arbitrarily long \kl{antichain} of words for
+	the \kl{infix relation} by using a new letter $c$. When concatenating this
+	(finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
+	new (infinite) word $w$. It is clear that the \kl{ordinal width} of
+	$\infset{w}$ is now at least $\omegaOrd + N_0$.
+\end{proofof}
+
 
 \begin{proofof}{from-bi-to-single:lem}
   Given a bi-infinite word $w \in \Sigma^{\Rel}$, recall that we can consider $w_+ \in
@@ -496,40 +510,6 @@ that the two share the letter at position $0$.
 \end{proofof}
 
 
-\begin{proofof}{small-ordinal-invariants:lem}
-	Let $N_0$ be a bound such that $w_{\geq N_0}$ is \kl{uniformly recurrent}.
-	Let us write $\infset{w}$ the set of finite infixes of $w$.
-	We prove that $\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
-	Let $u_1 \infleq w$ be a finite word. 
-	
-	If $u_1$ is an \kl{infix} of $w_{\geq N_0}$, then there exists $k \geq 1$
-	such that $u_1$ is an \kl{infix} of every word of size at least $k$. In
-	particular, there is finite bound on the length of every sequence of
-	incomparable elements starting with $u_1$. We conclude in particular that
-	$\infset{w} \setminus \upset{u_1}$ has a finite \kl{ordinal width}.
-	
-	Otherwise, $u_1$ can only be found \emph{before} $N_0$. In this case, we
-	consider a second element of a \kl{bad sequence} $u_2 \infleq w$, which is
-	incomparable with $u_1$ for the \kl{infix relation}. If $u_2$ is an
-	\kl{infix} of $w_{\geq N_0}$, then we can conclude as before. Otherwise,
-	notice that $u_1$ and $u_2$ cannot start at the same position in $w$
-	(because they are incomparable). Continuing this argument, we conclude that
-	there are at most $N_0$ elements starting before $N_0$
-	at the start of any sequence of
-	incomparable elements in $\infset{w}$. We conclude that
-	$\oWidth{\infset{w}} \leq \omegaOrd + N_0$.
-	
-	Let us now justify that this bound is tight.
-	The \kl{Thue-Morse sequence} over a binary
-	alphabet $\set{a,b}$ has \kl{ordinal width} $\omegaOrd$
-	from \cref{thue-morse-ordinal:lemma}.
-	Given a number $N_0
-	\in \Nat$, one can construct an arbitrarily long \kl{antichain} of words for
-	the \kl{infix relation} by using a new letter $c$. When concatenating this
-	(finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
-	new (infinite) word $w$. It is clear that the \kl{ordinal width} of
-	$\infset{w}$ is now at least $\omegaOrd + N_0$.
-\end{proofof}
 
 
 \begin{proofof}{small-ordinal-invariants:thm}
@@ -668,6 +648,19 @@ state automaton can be understood as an \kl{amalgamation system}.
 \end{proofof}
 
 
+\begin{proofof}{infix-amalgamation:thm}
+    Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
+    and obtained by an \kl{amalgamation system}
+    $(\Sigma, R, E, \canrun)$.
+
+    Let us consider the set $M$ of minimal runs for the relation $\leq_E$,
+    which is finite because the latter is a \kl{well-quasi-ordering}. 
+    By \cref{gap-words-prefix-ordered:lem}, we know that for each minimal run $\rho \in M$,
+    each gap language $\GapLanguage{\rho}{i}$ of $\rho$ is totally ordered by $\infleq$.
+    Adapting the proof of language boundedness from \cite[Section 4.2]{ASZZ24}, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
+    As $\InfPeriodChain{w}$ is language bounded and this property is stable under subsets, concatenation and finite union,
+    we can conclude that $L$ is bounded as well.
+\end{proofof}
 
 \begin{proofof}{dwclosed-infixes-wqo:lem}
     It is clear that \cref{dwci-reg:item} $\Rightarrow$ \cref{dwci-aml:item}
@@ -697,19 +690,6 @@ state automaton can be understood as an \kl{amalgamation system}.
 \end{proofof}
 
 
-\begin{proofof}{infix-amalgamation:thm}
-    Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
-    and obtained by an \kl{amalgamation system}
-    $(\Sigma, R, E, \canrun)$.
-
-    Let us consider the set $M$ of minimal runs for the relation $\leq_E$,
-    which is finite because the latter is a \kl{well-quasi-ordering}. 
-    By \cref{gap-words-prefix-ordered:lem}, we know that for each minimal run $\rho \in M$,
-    each gap language $\GapLanguage{\rho}{i}$ of $\rho$ is totally ordered by $\infleq$.
-    Adapting the proof of language boundedness from \cite[Section 4.2]{ASZZ24}, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
-    As $\InfPeriodChain{w}$ is language bounded and this property is stable under subsets, concatenation and finite union,
-    we can conclude that $L$ is bounded as well.
-\end{proofof}
 
 
 \AP Let us briefly recall that a \intro{rational transduction} is a relation $R
@@ -763,3 +743,40 @@ to $\mathcal{C}$.
     the image of $L$ through $R$ is \kl{well-quasi-ordered}
     by \kl{prefix} if and only if $L$ is empty.
 \end{proofof}
+
+
+\section{Proofs for Section~\ref{conclusion:sec}}
+
+\begin{lemma}
+  \label{dwclosed-wqo-complexity-width-finite:lem}
+  Let $L$ be a \kl{downwards closed} language that is
+  \kl{well-quasi-ordered} by the \kl{infix relation}.
+  Then, the following are equivalent:
+  \begin{enumerate}
+    \item $L$ has bounded \kl{factor complexity},
+      \label{dwclosed-wqo-complexity-width-finite:item1}
+    \item $L$ has finite \kl{ordinal width}.
+      \label{dwclosed-wqo-complexity-width-finite:item2}
+    \item $L$ is a finite union 
+      of languages of the form
+      $\infset{w}$ where $w$
+      is an \kl{ultimately periodic} word.
+      \label{dwclosed-wqo-complexity-width-finite:item3}
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \cref{dwclosed-wqo-complexity-width-finite:item3} $\Rightarrow$
+  \cref{dwclosed-wqo-complexity-width-finite:item1} is clear because
+  \kl{ultimately periodic} words have bounded \kl{factor complexity}.
+
+  \cref{dwclosed-wqo-complexity-width-finite:item1} $\Rightarrow$
+  \cref{dwclosed-wqo-complexity-width-finite:item2} is also clear because
+  unbounded \kl{factor complexity} implies the existence of arbitrarily
+  large \kl{antichains}.
+
+  Finally, \cref{dwclosed-wqo-complexity-width-finite:item2} $\Rightarrow$
+  \cref{dwclosed-wqo-complexity-width-finite:item3} is a direct consequence
+  of \cref{dw-closed-wqo-charac:thm} and the fact that bounded \kl{factor
+  complexity} implies that the (bi)infinite words describing the language
+  are \kl{ultimately periodic}.
+\end{proof}
