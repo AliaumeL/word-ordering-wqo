@@ -1,3 +1,5 @@
+% LTeX: language=en-GB 
+% !TeX root=../wqo-on-words.lncs.tex
 \section{Infixes and Amalgamation Systems}
 \label{infixes-amalgamation:sec}
 
@@ -39,6 +41,7 @@ model.
 
 \begin{theorem}
 	\label{infix-wqo-is-emptiness:thm}
+  \proofref{infix-wqo-is-emptiness:thm}
 	Let $\mathcal{C}$ be an \kl{effective amalgamative class} of languages.
     Then the following are equivalent:
 	\begin{enumerate}
@@ -47,13 +50,6 @@ model.
         \item\label{emptiness-decidable} Emptiness is decidable for languages in $\mathcal{C}$.
 	\end{enumerate}
 \end{theorem}
-
-%\AP We say that a \kl{strongly effective amalgamative class} is an
-%\kl{effective amalgamative class} for which the emptiness problem is decidable.
-%Let us immediately remark that the class of \kl{regular languages} is
-%\kl(amalg){strongly effective}, and so is the class of context-free languages.
-%Therefore, \cref{infix-wqo-is-emptiness:thm} provides a concrete decision
-%procedure for these classes.
 
 \subsection{Amalgamation Systems}
 \label{amalgamation-systems:subsec}
@@ -163,10 +159,8 @@ proof, and our \cref{infix-amalgamation:thm} follows from it.
 	For any $0 \leq \ell \leq n$, we have $\GapWord{f}{\ell} \infleq \GapWord{g}{\ell}$ or vice versa.
 \end{lemma}
 
-
-
-If we additionally assume that such a language is closed under infixes, we
-obtain an even stronger structure: All such languages are regular!
+If we additionally assume that such a language is closed under taking infixes,
+we obtain an even stronger structure: All such languages are regular!
 
 \begin{lemma}
     \label{dwclosed-infixes-wqo:lem}
@@ -196,38 +190,21 @@ recognized by \emph{any} \kl{amalgamation system}.
 %\label{infixes-amalgamation-effective:subsec}
 
 \AP To construct a decision procedure for well-quasi-orderedness under
-$\infleq$, we our \kl{amalgamation systems} to satisfy certain
+$\infleq$, we need our \kl{amalgamation systems} to satisfy certain
 \intro(amalgamation){effectiveness assumptions}. We require that for an
 \kl{amalgamation system} $(\Sigma, R, E, \canrun)$, $R$ is recursively
 enumerable, the function $\canrun(\cdot)$ is computable, and for any two runs
 $\rho, \sigma \in R$, the set $E(\rho,\sigma)$ is computable. Additionally, we
 require the class to be effectively closed under rational transductions
-\cite[Chapter 5, page 64]{BERST79}.
+\cite[Chapter 5, page 64]{BERST79}. 
 
-%\AP We say that a class $\mathcal{C}$ of languages is an \intro{effective
-%amalgamative class} whenever for every $L \in \mathcal{C}$, there exists an
-%effective \kl{amalgamation system} recognizing $L$, and such that $\mathcal{C}$
-%is \kl{effectively closed under rational transductions}. Recall that a
-%\intro{rational transduction} is a \emph{relation} $R \subseteq \Sigma^* \times
-%\Gamma^*$ that can be defined by a (nondeterministic) finite automaton with
-%output \cite[Chapter 5, page 64]{BERST79}. A class of languages $\mathcal{C}$
-%is \intro{effectively closed under rational transductions} when, for every
-%language $L \in \mathcal{C}$, and every rational transduction $R \subseteq
-%\Sigma^* \times \Gamma^*$, the image of $L$ through $R$ --- that is, $\setof{v
-%\in \Gamma^*}{\exists u \in L. (u,v) \in R}$ --- is in $\mathcal{C}$ and
-%effectively computable. In particular, it implies that the class contains
-%languages over arbitrary (finite) alphabets.
-
-%\AP A class $\mathcal{C}$ of languages is \intro(amalg){strongly effective}
-%whenever the emptiness problem for languages in $\mathcal{C}$ is decidable.
-%This notion is interesting because usual language problems such as boundedness
-%or simultaneous boundedness are decidable for \kl{strongly effective
-%amalgamative classes}~\cite{ASZZ24}. 
-
-
-The class $\mathcal{C}_\text{aut}$ of \kl{regular languages} and the class
+Under these assumptions, one can transform the inclusion test of
+\cref{bounded-language:eq} of \cref{bounded-language:thm} into an effective
+procedure, using pumping arguments from \cite[Section 4.2]{ASZZ24}, which, in
+turn, allows us to prove \cref{infix-wqo-is-emptiness:thm}. Since the class
+$\mathcal{C}_\text{aut}$ of \kl{regular languages} and the class
 $\mathcal{C}_{\text{cfg}}$ of context-free languages are examples of
-\kl{effective amalgamative classes}, hence the following corollary.
+\kl{effective amalgamative classes}, the following corollary is immediate.
 
 \begin{corollary}
     \label{aut-cfg-infix:cor}

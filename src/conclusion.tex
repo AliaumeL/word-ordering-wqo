@@ -3,18 +3,28 @@
 \section{Conclusion}
 \label{conclusion:sec}
 
-We provided concretes statements that justify why the \kl{subword relation}
-is used when defining \kl{well-quasi-orders} on finite words. Even if
-\kl{prefix}, \kl{suffix} or \kl{infix} relations are meaningful, they are
-\kl{well-quasi-ordered} if and only if they behave similarly to disjoint copies
-of $\Nat$ or $\Nat^2$. However, our approach suffers some limitations 
-and opens the road to natural continuation of this line of work.
+We have described the landscapes of \kl{well-quasi-ordered} languages for the
+natural orderings on finite words: \kl{prefix}, \kl{suffix}, and \kl{infix}
+relations. While the prefix and suffix relation exhibit very simple behaviours,
+the infix relation can encode many complex quasi-orders (and even simulate the
+\kl{subword ordering}). In the case of languages that are described by simple
+computational models, or languages that are ``structurally simple''
+(\kl{bounded languages}, \kl{downwards closed} languages), we showed that only
+very simple \kl{well-quasi-orders} can be obtained: they are essentially
+isomorphic to disjoint unions of copies of finite sets, $(\Nat, \leq)$, and
+$(\Nat^2, \leq)$. Finally, under effectiveness assumptions on the language
+(such as being recognized by an \kl{amalgamation system}, or being the set of
+infixes of an \kl{automatic sequence}), we proved the decidability of being
+\kl{well-quasi-ordered} for the \kl{infix relation}. We believe that these very
+encouraging results pave the way for further research on deciding which sets
+are \kl{well-quasi-ordered} for other orderings. Let us now discuss
+some possible research directions and remarks.
 
 \paragraph*{Towards infinite alphabets} In this paper, we restricted our
 attention to \emph{finite} alphabets, having in mind the application to
 \kl{regular languages}. However, the conclusions of
 \cref{bounded-language:thm}, \cref{small-ordinal-invariants:thm}, and
-\cref{prefixes:thm} could be conjecture to hold in the case of infinite
+\cref{prefixes:thm} could be conjectured to hold in the case of infinite
 alphabets (themselves equipped with a \kl{well-quasi-ordering}). This would
 require new techniques, as the finiteness of the alphabet is crucial to all of
 our positive results.
@@ -24,15 +34,7 @@ monoids $M$ recognize languages that are \kl{well-quasi-ordered} by the
 \kl{infix}, \kl{prefix} or \kl{suffix} relations. This research direction is
 connected to finding which classes of graphs of \emph{bounded clique-width} are
 \kl{well-quasi-ordered} with respect to the \emph{induced subgraph relation},
-as shown in \cite{DRT10}, and recently revisited by one of the authors in
-\cite{L24:arxiv:v2}.
-
-\paragraph*{Complexity} We have chosen to disregard complexity considerations
-when proving decidability results, as we do not believe that a fined grained
-complexity analysis would be particularly enlightening. However, we conjecture
-that for regular languages, the complexity should be polynomial in the size of
-the minimal automaton recognizing the language.
-
+as shown in \cite{DRT10}, and recently revisited in \cite{lopez25}. 
 
 \paragraph*{Lexicographic orderings} There is another natural ordering on
 words, the \emph{lexicographic ordering}, which does not fit well in our
@@ -43,69 +45,39 @@ it would be interesting to see if one can extend these results to decide
 whether such an ordering is \kl{well-founded} for languages recognized by
 \kl{amalgamation systems}.
 
+\paragraph*{Factor Complexity} \AP Let us conclude this section with a few
+remarks on the notion of \kl{factor complexity} of languages. Recall that the
+\intro{factor complexity} of a language $L \subseteq \Sigma^*$ is the function
+$f_L: \Nat \to \Nat$ such that $f_L(n)$ is the number of distinct words of size
+$n$ in $L$. We extend the notion of \kl{factor complexity} to finite, infinite,
+and bi-infinite words as the \kl{factor complexity} of their set of finite
+\kl{infixes}. For the \kl{prefix relation} and the \kl{suffix relation}, all
+\kl{well-quasi-ordered} languages have a bounded \kl{factor complexity}, since
+they are finite unions of \kl{chains}.
 
-\subsubsection{Factor Complexity}
+While there clearly are languages with low \kl{factor complexity} that are not
+\kl{well-quasi-ordered} for the \kl{infix relation}, such as the language $L
+\defined \dwset{ a b^* a }$; one would expect that languages that are
+\kl{well-quasi-ordered} for the \kl{infix relation} would have a low \kl{factor
+complexity}.
 
-\AP Let us conclude this section with a few remarks on the notion of \kl{factor
-complexity} of languages. Recall that the \intro{factor complexity} of a
-language $L \subseteq \Sigma^*$ is the function $f_L: \Nat \to \Nat$ such that
-$f_L(n)$ is the number of distinct words of size $n$ in $L$. A language $L$ has
-\intro{exponential factor complexity} if there exists a constant $C > 1$ such
-that $f_L(n) \geq C^n$ for infinitely many $n \in \Nat$. A language $L$ has
-\intro{subaffine factor complexity} if $f_L(n) \leq C \cdot n + K$ for some
-constants $C, K > 0$ and all $n \in \Nat$.
-We extend the notion of \kl{factor complexity} to infinite and bi-infinite words
-as the \kl{factor complexity} of their set of finite \kl{infixes}.
+In some sense, our results confirm this intuition in the case of languages
+described by a simple computational model. For languages recognized by
+\kl{amalgamation systems}, being \kl{well-quasi-ordered} implies being a
+\kl{bounded language}, and therefore being  included in some finite union of
+languages of the form $w_1^* w_2 w_3^*$. Hence, these languages have at most a
+quadratic \kl{factor complexity}. This is also the case for languages described
+as the infixes of a finite set of pairs of \kl{morphic sequences}. Indeed, the
+factor complexity of a \kl{morphic sequence} that is \kl{uniformly recurrent}
+is linear \cite[Theorem 24]{NIPR09}, therefore the \kl{factor complexity} of a
+language given by \kl{sequence representation} using \kl{morphic sequences} is
+at most quadratic.
 
-While there clearly are languages with \kl{subaffine factor complexity} that are
-not \kl{well-quasi-ordered} for the \kl{infix relation}, such as 
-the language $L \defined \dwset{ a b^* a }$;
-one would expect that languages that are \kl{well-quasi-ordered} for the
-\kl{infix relation} would have a low \kl{factor complexity}.
-
-\AP It is the case that \kl{bounded languages}, studied in
-\cref{infixes-bounded:sec}, have a polynomial factor complexity: such a
-language is by definition included in $w_1^* \cdots w_n^*$ for some words $w_1,
-\dots, w_n$, and an infix is a choice of the number of occurrences of each
-$w_i$ in the infix, plus a choice of beginning and ending of the infix in the
-leftmost and rightmost $w_i$. We showed in \cref{bounded-language:thm} and
-particularly in \cref{bounded-language:lem}, that \kl{bounded languages} that
-are \kl{well-quasi-ordered} for the \kl{infix relation} are in fact included in
-some finite union of languages of the form $w_1^* w_2 w_3^*$, hence have
-actually a quadratic factor complexity. However,
-\cref{exponential-factor-complexity:lem} shows that there are
-\kl{downwards closed} languages that are \kl{well-quasi-ordered} for the
-\kl{infix relation} but have an \kl{exponential factor complexity}.
-
-
-\begin{lemma}
-  \label{exponential-factor-complexity:lem}
-  There exists a language $L$ with \kl{exponential factor complexity}
-  that is \kl{well-quasi-ordered} for the \kl{infix relation}.
-\end{lemma}
-\begin{proof}
-  We leverage results from \cite{CAKA97} on Toeplitz words.
-  Namely, the 
-  $(5, 3)$-Toeplitz word is \kl{uniformly recurrent} 
-  \cite[p. 499]{CAKA97},
-  but has an exponential factor complexity 
-  \cite[Theorem 5]{CAKA97}.
-\end{proof}
-
-
-Our understanding of the situation is that whenever a computational model is
-fixed to represent languages that are \kl{well-quasi-ordered} for the \kl{infix
-relation}, the \kl{factor complexity} of the represented languages drops to a
-quadratic one. This is the case for languages recognized by \kl{amalgamation
-systems} \cref{amalgamation-systems:subsec}, that are \kl{bounded languages}
-when they are \kl{well-quasi-ordered} (\cref{infix-amalgamation:thm}). This is
-also the case for languages described as the infixes of a finite set of pairs
-of \kl{morphic sequences}. Indeed, the factor complexity of a \kl{morphic
-sequence} that is \kl{uniformly recurrent} is linear \cite[Theorem 24]{NIPR09},
-therefore the \kl{factor complexity} of a language given by \kl{sequence
-representation} using \kl{morphic sequences} is at most quadratic.
-
-
-\todo{nat: might be worth noting that factor complexity is O(1)}
-\todo{aliaume: I would put it in the section "factor complexity" in the concluding
-sections}
+However, there are \kl{downwards closed} languages that are
+\kl{well-quasi-ordered} for the \kl{infix relation} but have an \kl{exponential
+factor complexity}: the $(5, 3)$-Toeplitz word is \kl{uniformly recurrent}
+\cite[p. 499]{CAKA97}, but has an exponential factor complexity \cite[Theorem
+5]{CAKA97}. This shows that our computational models somehow fail to capture
+vast classes of \kl{well-quasi-ordered} languages with a high \kl{factor
+complexity}. It would be interesting to understand which new proof techniques
+would be required to obtain decidability for these languages.

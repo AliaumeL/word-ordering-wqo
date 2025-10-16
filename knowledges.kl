@@ -58,6 +58,7 @@
  | embedded
 \knowledge{notion}
  | subword relation
+ | subword ordering
  | scattered subword
  | scattered subword relation
  | subword
