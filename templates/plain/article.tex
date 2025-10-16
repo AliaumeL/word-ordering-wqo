@@ -141,7 +141,7 @@ $endfor$
 }
 
 % For the date, we first check if the user has provided a date,
-% and otherwise use the git meta inforamtion (if available).
+% and otherwise use the git meta information (if available).
 $if(date)$
 \date{$date$$if(git-meta)$ --- $git-meta.commit$$endif$}
 $else$
