@@ -148,7 +148,7 @@ systems}, e.g., regular languages \cite[Theorem 5.3]{ASZZ24}, reachability and
 coverability languages of VASS \cite[Theorem 5.5]{ASZZ24}, and context-free
 languages \cite[Theorem 5.10]{ASZZ24}. 
 
-\subsection{$\infleq$-Well-Quasi-Ordered Amalgamation Systems}
+%\subsection{$\infleq$-Well-Quasi-Ordered Amalgamation Systems}
 
 We can now show a simple lemma that illuminates much of the structure of
 amalgamation systems whose language is well-quasi-ordered by $\infleq$. Note
@@ -164,19 +164,6 @@ proof, and our \cref{infix-amalgamation:thm} follows from it.
 \end{lemma}
 
 
-\begin{proofof}{infix-amalgamation:thm}
-    Assume that $L$ is \kl{well-quasi-ordered} by the \kl{infix relation},
-    and obtained by an \kl{amalgamation system}
-    $(\Sigma, R, E, \canrun)$.
-
-    Let us consider the set $M$ of minimal runs for the relation $\leq_E$,
-    which is finite because the latter is a \kl{well-quasi-ordering}. 
-    By \cref{gap-words-prefix-ordered:lem}, we know that for each minimal run $\rho \in M$,
-    each gap language $\GapLanguage{\rho}{i}$ of $\rho$ is totally ordered by $\infleq$.
-    Adapting the proof of language boundedness from \cite[Section 4.2]{ASZZ24}, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
-    As $\InfPeriodChain{w}$ is language bounded and this property is stable under subsets, concatenation and finite union,
-    we can conclude that $L$ is bounded as well.
-\end{proofof}
 
 If we additionally assume that such a language is closed under infixes, we
 obtain an even stronger structure: All such languages are regular!
@@ -205,8 +192,8 @@ that the collection of \kl{infixes} of the \kl{Thue-Morse sequence} cannot be
 recognized by \emph{any} \kl{amalgamation system}. 
 
 
-\subsection{Effective Decision Procedures}
-\label{infixes-amalgamation-effective:subsec}
+%\subsection{Effective Decision Procedures}
+%\label{infixes-amalgamation-effective:subsec}
 
 \AP To construct a decision procedure for well-quasi-orderedness under
 $\infleq$, we our \kl{amalgamation systems} to satisfy certain
@@ -237,48 +224,6 @@ require the class to be effectively closed under rational transductions
 %or simultaneous boundedness are decidable for \kl{strongly effective
 %amalgamative classes}~\cite{ASZZ24}. 
 
-\begin{proofof}{infix-wqo-is-emptiness:thm}
-	We first show \cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} of \cref{bounded-language:thm} effective. 
-	Let $R(n,m,N_0) \defined \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in
-    \Sigma^{\leq m \times N_0}} \InfPeriodChain{x} u \InfPeriodChain{y} \cup
-    \InfPeriodChain{x}u \cup u\InfPeriodChain{x}$. For any concrete values of
-    the bounds $n$, $m$, and $N_0$, this language is regular. The map $L
-    \mapsto L \cap \Sigma^* \setminus R(n,m,N_0)$  is a \kl{rational
-    transduction} because $\Sigma^* \setminus R(n,m,N_0)$ is regular. Since
-    $\mathcal{C}$ is \kl{closed under rational transductions}, we can therefore
-    reduce the inclusion to emptiness of this language. However, we need to
-    find these bounds first.
-	
-    To determine values for $n$ and $m$, we first test if $L$ is
-    \kl(language){bounded}. Since emptiness is decidable, we can apply the
-    algorithm in~\cite[Section 4.2]{ASZZ24} to decide if $L$ is
-    \kl(language){bounded}. If $L$ is \kl(language){bounded}, this algorithm
-    yields words $w_1, \ldots w_n$ such that $L \subseteq w_1^* \cdots w_n^*$
-    and therefore yields also the bounds in questions: $n$ is the number of
-    words, and $m$ is the maximal length of a word $w_i$ where $1 \leq i \leq
-    n$. If $L$ is not bounded, then $L$ cannot be \kl{well-quasi-ordered} by
-    the \kl{infix relation} because of \cref{infix-amalgamation:thm} and we
-    immediately return false.
-	
-    To determine the value for $N_0$, we then compute the downward closure (with respect to subwords) of $L$. 
-    This is effective and yields a finite-state automaton. 
-    Recall that $N_0$ is the maximum number of repetitions of a word $w_i$ that can not be iterated arbitrarily often. 
-    This value is therefore bounded above by the length of the longest simple path in this automaton.
-    
-    \cref{wqo-infix-decidable} $\Rightarrow$
-    \cref{wqo-prefix-decidable}. We just consider the transduction $f$
-    that maps every word $w$ to $\# w$ where $\# $ is a fresh symbol. Then, for
-    any language $L \in \mathcal C$, $L$ is \kl{well-quasi-ordered} by
-    \kl{prefix} if and only if $f(L)$ is \kl{well-quasi-ordered} by \kl{infix}.
-	
-    \cref{wqo-prefix-decidable} $\Rightarrow$
-    \cref{emptiness-decidable}. 
-	We 
-	consider the transduction $R \defined \Sigma^* \times \set{a, b}^*$. Then 
-	for any language $L \in \mathcal C$,
-    the image of $L$ through $R$ is \kl{well-quasi-ordered}
-    by \kl{prefix} if and only if $L$ is empty.
-\end{proofof}
 
 The class $\mathcal{C}_\text{aut}$ of \kl{regular languages} and the class
 $\mathcal{C}_{\text{cfg}}$ of context-free languages are examples of

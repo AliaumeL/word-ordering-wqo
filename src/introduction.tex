@@ -13,8 +13,7 @@ well-quasi-orderings is that they are closed under many operations, such as
 taking products, finite unions, and finite powerset
 constructions~\cite{SCSC12}. Perhaps more surprisingly, the class of
 well-quasi-ordered sets is also stable under the operation of taking finite
-words and finite trees labelled by elements of a well-quasi-ordered set
-\cite{HIG52,KRU72}.
+words and finite trees labelled by elements of a well-quasi-ordered set~\cite{HIG52,KRU72}.
 
 \AP Note that in the case of finite words and finite trees, the precise choice
 of ordering is crucial to ensure that the resulting structure is
@@ -100,12 +99,16 @@ summary of these results can be found in \cref{prefixes-summary:fig}.
 
 \begin{figure}[h]
     \centering
-    \begin{tabular}{c|c|c|c}
+    \setlength{\tabcolsep}{6pt}
+    \begin{tabular}{c|p{6cm}|c|c}
         \toprule
         $L$ & \textbf{Characterisation} & $\oWidth{L}$ & $\oType{L}$ \\
         \midrule
-        arbitrary & Finite unions of \kl{chains} \cref{prefixes:thm} & $< \omegaOrd$ & $< \omegaOrd^2$ \\
-        regular   & Finite unions of \kl(language){regular} \kl{chains} \cref{prefix-wqo-reg-decidable:cor} & $< \omegaOrd$ & $< \omegaOrd^2$ \\
+        arbitrary & \cref{prefixes:thm}: finite unions of \kl{chains}
+                  & $< \omegaOrd$ & $< \omegaOrd^2$ \\
+        \addlinespace
+        regular   & \cref{prefix-wqo-reg-decidable:cor}: finite unions of \kl(language){regular} \kl{chains} 
+                  & $< \omegaOrd$ & $< \omegaOrd^2$ \\
         \bottomrule
     \end{tabular}
     \caption{Summary of results for the \kl{prefix relation} (and symmetrically, for the \kl{suffix relation}).}
