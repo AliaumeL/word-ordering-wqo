@@ -15,8 +15,8 @@ abstract: |
   More specifically, we are interested in characterizing
   *languages* of words that are well-quasi-ordered under
   these orderings, and explore their properties and connections
-  with other language theoretic notions. We furthermore give decition
-  procedures when the languages are given by various comupational
+  with other language theoretic notions. We furthermore give decision
+  procedures when the languages are given by various computational 
   models such as automata, context-free grammars, and
   automatic structures.
 author:
