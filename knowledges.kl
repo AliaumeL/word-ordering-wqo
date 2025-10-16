@@ -11,6 +11,8 @@
  | totally ordered
  | total order
 \knowledge{notion}
+ | finite initial segments
+\knowledge{notion}
  | well-quasi-ordered
  | well-quasi-ordering
  | well-quasi-orderings
@@ -144,6 +146,10 @@
  | effectiveness assumptions@amalgamation
  | effective amalgamation system
  | effective amalgamation systems
+ | effective@amalg
+ | effective amalgamative class
+ | effective amalgamative classes
+
 
 \knowledge{notion}
  | amalgamation language
@@ -167,15 +173,6 @@
  | bounded@language
  | bounded languages
 
-\knowledge{notion}
- | effective@amalg
- | effective amalgamative class
- | effective amalgamative classes
-
-\knowledge{notion}
- | strongly effective@amalg
- | strongly effective amalgamative class
- | strongly effective amalgamative classes
 
 
 \knowledge{notion}
@@ -214,6 +211,7 @@
 
 \knowledge{notion}
  | ultimately uniformly recurrent
+ | ultimately uniformly recurrent words
  | ultimate uniform recurrence
 
 
@@ -236,9 +234,6 @@
  | sequence@morphic
  | morphic@sequence
 
-\knowledge{notion}
- | pure morphic sequences
- | pure morphic sequence
 
 \knowledge{notion}
  | factor complexity
@@ -251,7 +246,6 @@
 \knowledge{notion}
  | sequence representation
  | sequence representations
-
 
 % Graph theory
 

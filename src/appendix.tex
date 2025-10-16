@@ -711,6 +711,16 @@ state automaton can be understood as an \kl{amalgamation system}.
     we can conclude that $L$ is bounded as well.
 \end{proofof}
 
+
+\AP Let us briefly recall that a \intro{rational transduction} is a relation $R
+\subseteq \Sigma^* \times \Gamma^*$ such that there exists a finite state
+automaton that reads pairs of letters $(a,b) \in (\Sigma \cup \set{\epsilon})
+\times (\Gamma \cup \set{\epsilon})$ and recognizes $R$. A class of languages
+$\mathcal{C}$ is \intro{closed under rational transductions} if for every $L
+\in \mathcal{C}$ and every rational transduction $R$, the language $R(L)
+\defined \set{v \in \Gamma^* \mid \exists u \in L, (u,v) \in R}$ also belongs
+to $\mathcal{C}$.
+
 \begin{proofof}{infix-wqo-is-emptiness:thm}
 	We first show \cref{emptiness-decidable} $\Rightarrow$ \cref{wqo-infix-decidable}. We aim to make the inclusion test of \cref{bounded-language:eq} of \cref{bounded-language:thm} effective. 
 	Let $R(n,m,N_0) \defined \bigcup_{x,y \in \Sigma^{\leq n}} \bigcup_{u \in
