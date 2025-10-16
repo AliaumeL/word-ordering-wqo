@@ -43,17 +43,41 @@
 
 
 
+% Helper to sanitize labels: remove : and - characters
+% Uses expl3 regex features
+\ExplSyntaxOn
+\tl_new:N \l__proofof_label_tl
+\cs_new_protected:Npn \__proofof_sanitize:n #1
+  {
+    \tl_set:Nn \l__proofof_label_tl { #1 }
+    \regex_replace_all:nnN { \- } { } \l__proofof_label_tl
+    \regex_replace_all:nnN { \: } { } \l__proofof_label_tl
+  }
+% Helper to check and call restatable command
+\cs_new_protected:Npn \__proofof_maybe_restate:n #1
+  {
+    \__proofof_sanitize:n { #1 }
+    \exp_args:NV \cs_if_exist:cT \l__proofof_label_tl
+      {
+        \cs_set_eq:NN \isInsideRestatedTheorem \c_one_int
+        \exp_args:NV \use:c \l__proofof_label_tl *
+      }
+  }
+% Document-level command that can be called from regular LaTeX
+\cs_new_protected:Npn \ProofOfMaybeRestate #1
+  {
+    \__proofof_maybe_restate:n { #1 }
+  }
+\ExplSyntaxOff
+
 % Create a new macro proofof
 % taking as input a label of a theorem
 % and creating a proof with a reference to that
 % label
 \NewDocumentEnvironment{proofof}{ m O{appendix} }{
-    % if the command \#1 exists, then 
-    % call \#1* to restate the theorem
-    \ifcsname #1\endcsname
-        \def\isInsideRestatedTheorem{1}
-        \csname #1\endcsname*
-    \fi
+    % Convert label to command name by removing : and -
+    % For example: antichain-branches-prefix:lem -> antichainbranchesprefixlem
+    \ProofOfMaybeRestate{#1}%
     \begin{proof}[Proof of {\cref{#1}} as stated on page {\pageref{#1}}]
         \phantomsection
         \label{#1:proof}
