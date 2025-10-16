@@ -2,7 +2,6 @@
 % !TeX root=../wqo-on-words.lncs.tex
 
 \clearpage
-
 \section{Proofs for Section~\ref{introduction:sec}}
 
 \begin{figure}
@@ -37,6 +36,7 @@
 \end{figure}
 
 
+\clearpage
 \section{Proofs for Section~\ref{prefixes:sec}}
 
 \begin{figure}
@@ -144,6 +144,7 @@
     \cite[Theorem 1.1]{RAB69}.
 \end{proofof}
 
+\clearpage
 \section{Proofs for Section~\ref{infixes-bounded:sec}}
 
 \begin{figure}
@@ -386,8 +387,8 @@
 \end{proofof}
 
 
+\clearpage
 \section{Proofs for Section~\ref{infixes-dwclosed:sec}}
-
 
 \begin{proofof}{bi-infinite:lem}
     Let us assume that $L$ is infinite. The case when it is finite 
@@ -507,7 +508,7 @@ that the two share the letter at position $0$.
 follows: for all $i \in \Nat$, $(w_+)_i = w(i)$ and $(w_-)_i = w(-i)$. Note
 that the two share the letter at position $0$.
 
-    To obtain the upper bound of $3 \cdot \omegaOrd$, we can consider the same
+    To obtain the upper bound of $\omegaOrd\cdot 3$, we can consider the same
     argument as for \cref{small-ordinal-invariants:lem}. We let $N_0$ be such
     that $w_{\geq N_0}$ and $(w_-)_{\geq N_0}$ are \kl{uniformly recurrent}
     words. In any sequence of incomparable elements of $\infset{w}$, there are
@@ -517,14 +518,14 @@ that the two share the letter at position $0$.
     incomparable elements of these two infinite words has length bounded based
     on the choice of the first element of that sequence. This means that the
     \kl{ordinal width} of $\infset{w}$ is at most $\omegaOrd + \omegaOrd +
-    N_0^2$. We conclude that $\oWidth{\infset{w}} < 3 \cdot \omegaOrd$.
+    N_0^2$. We conclude that $\oWidth{\infset{w}} < \omegaOrd \cdot 3$.
 
   Let us briefly argue that the bound is tight. Indeed, one can
   construct a bi-infinite word $w$ by concatenating a reversed \kl{Thue-Morse
   sequence} on a binary alphabet $\set{a,b}$, a finite antichain of arbitrarily
   large size over a distinct alphabet $\set{c,d}$, and then a \kl{Thue-Morse
   sequence} on a binary alphabet $\set{e,f}$. The \kl{ordinal width} of the set
-  of \kl{infixes} of $w$ is then at least $2 \cdot \omegaOrd + K$, where $K$ is the
+  of \kl{infixes} of $w$ is then at least $\omegaOrd \cdot 2 + K$, where $K$ is the
   size of the chosen antichain, following the same argument as in the proof of
   \cref{small-ordinal-invariants:lem}, using \cref{thue-morse-ordinal:lemma}.
 \end{proofof}
@@ -539,13 +540,13 @@ that the two share the letter at position $0$.
     bi-infinite \kl{ultimately uniformly recurrent} word $w_i$.
    We can then
     directly conclude that $\oWidth{L_i}$ less than $\omegaOrd$ (in the case of
-    a finite word), less than $2 \cdot \omegaOrd$ (in the case of an infinite
+    a finite word), less than $\omegaOrd \cdot 2$ (in the case of an infinite
     word thanks to \cref{small-ordinal-invariants:lem}), or less than $3 \cdot
     \omegaOrd$ (in the case of a bi-infinite word, thanks to
     \cref{from-bi-to-single:lem}). In any case,
-    we have the bound $\oWidth{L_i} < 3 \cdot \omegaOrd$.
+    we have the bound $\oWidth{L_i} < \omegaOrd \cdot 3$.
 
-    Now, $\oWidth{L} \leq \sum_{i = 1}^n \oWidth{L_i} < 3 \cdot \omegaOrd <
+    Now, $\oWidth{L} \leq \sum_{i = 1}^n \oWidth{L_i} < \omegaOrd \cdot 3 <
     \omegaOrd^2$. Finally, the inequality $\oType{L} \leq \oWidth{L} \oComProd
     \oHeight{L} < \omega \oComProd \omega^2 = \omegaOrd^3$ allows us to
     conclude.
@@ -557,6 +558,7 @@ that the two share the letter at position $0$.
 \end{proofof}
 
 
+\clearpage
 \section{Proofs for Section~\ref{infixes-amalgamation:sec}}
 
 \begin{figure}

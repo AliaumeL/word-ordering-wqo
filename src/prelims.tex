@@ -22,8 +22,9 @@ where any two elements are comparable. Let now us introduce some notations for
 \intro(sequence){bad} otherwise. Therefore, a \kl{well-quasi-ordered} set is a
 set where every infinite sequence is \kl(sequence){good}. A \intro{decreasing
 sequence} is a sequence $\seqof{x_i}$ such that $x_{i+1} < x_i$ for all $i$,
-and an \intro{antichain} is a set of pairwise incomparable elements. An
-equivalent definition of a \kl{well-quasi-ordered} set is that it contains no
+a \intro{chain} is a sequence such that $x_i \leq x_{i+1}$ for all $i$, and
+an \intro{antichain} is a set of pairwise incomparable elements.
+An equivalent definition of a \kl{well-quasi-ordered} set is that it contains no
 infinite \kl{decreasing sequences}, nor infinite \kl{antichains}. We refer to
 \cite{SCSC12} for a detailed survey on well-quasi-orders.
 
@@ -32,6 +33,16 @@ relation}) on $\Sigma^*$ are always \intro{well-founded}, i.e., there are no
 infinite \kl{decreasing sequences} for this ordering. In particular, for a
 language $L \subseteq \Sigma^*$ to be \kl{well-quasi-ordered}, it suffices to
 prove that it contains no infinite \kl{antichain}. 
+
+A useful operation on quasi-ordered sets is to compute the \intro{upwards
+closure} of a set $S$ for a relation $\preceq$, which is defined as
+$\upset[\preceq]{S} \defined \setof{y \in \Sigma^*}{ \exists x \in S. x \preceq
+y}$. In this paper, we will also use the symmetric notion of \intro{downwards
+closure}: $\dwset[\preceq]{S} \defined \setof{y \in \Sigma^*}{ \exists x \in S.
+y \preceq x}$. Abusing notations, we will write $\upset{w}$ and $\dwset{w}$ for
+the upwards and downwards closure of a single element $w$, omitting the
+ordering relation when it is clear from the context. A set $S$ is called
+\intro{downwards closed} if $\dwset{S} = S$.
 
 \paragraph*{Ordinal Invariants.} \label{ordinal-invariants:subsec}
 \AP
@@ -47,21 +58,21 @@ Given a tree $T$
 whose branches are all finite we can define an \kl{ordinal} $\alpha_T$ inductively
 as follows: if $T$ is a leaf then $\alpha_T = 0$, if $T$ has children
 $\seqof{T_i}$ then $\alpha_T = \sup \setof{\alpha_{T_i} + 1}{i \in \Nat}$. We
-say that $\alpha_T$ is the \intro{rank} of $T$. 
+say that $\alpha_T$ is the \intro(ordinal){rank} of $T$. 
 
 \AP Let $(X, \leq)$ be a \kl{well-quasi-ordered} set. One can define three
 well-founded trees from $X$: the tree of \kl{bad sequences}, the tree of
-decreasing sequences, and the tree of \kl{antichains}. The \kl{rank} of these
-respective trees are called respectively the \intro{maximal order type} of $X$
+decreasing sequences, and the tree of \kl{antichains}. The \kl(ordinal){rank}
+of these trees are called respectively the \intro{maximal order type} of $X$
 written $\intro*{\oType{X}}$ \cite{dejongh77}, the \intro{ordinal height} of
 $X$ written $\intro*{\oHeight{X}}$ \cite{schmidt81}, and the \intro{ordinal
 width} of $X$ written $\intro*{\oWidth{X}}$ \cite{kriz90b}. These three
 parameters are called the \intro{ordinal invariants} of a
 \kl{well-quasi-ordered} set $X$. As an example, for $(\Nat, \leq)$, all bad
-sequences are descending and antichains have size at most $1$. In fact, $(\Nat,
-\leq)$ is itself an \kl{ordinal}, namely $\omegaOrd$. Hence it is its own
-\kl{maximal order type} and \kl{ordinal height}, and its \kl{ordinal width} is
-$1$ since it contains no antichain of size $2$. We refer to the survey of
+sequences are \kl[decreasing sequence]{descending} and \kl{antichains} have
+size at most $1$. In fact, $(\Nat, \leq)$ is itself an \kl{ordinal}, namely
+$\omegaOrd$. Hence it is its own \kl{maximal order type} and \kl{ordinal
+height}, and its \kl{ordinal width} is $1$. We refer to the survey of
 \cite{DZSCSC20} for a detail discussion on these concepts and their computation
 on specific classes of well-quasi-ordered sets.
 

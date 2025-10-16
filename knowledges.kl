@@ -82,6 +82,14 @@
  | suffix ordering 
  | suffix 
  | suffixes
+
+
+% ordinals
+
+\knowledge{notion}
+  | ordinal rank
+  | rank@ordinal
+
 \knowledge{notion}
  | ordinal invariants
 \knowledge{notion}

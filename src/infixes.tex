@@ -33,13 +33,13 @@ for the \kl{subword relation} in \cref{infix-embedding:fig} page \pageref{infix-
     \end{enumerate}
 \end{lemma}
 
-\AP As a consequence of \cref{infix-embedding:thm}, we cannot replay
-proofs of \cref{prefixes:sec}, and will
-actually need to leverage some regularity of the languages to obtain a
-characterization of \kl{well-quasi-ordered} languages under the \kl{infix
-relation}. This regularity will be imposed through the notion of \intro{bounded
-languages}, i.e., languages $L \subseteq \Sigma^*$ such that there exists words
-$w_1, \dots, w_n$ satisfying $L \subseteq w_1^* \cdots w_n^*$.
+\AP As a consequence of \cref{infix-embedding:thm}, we cannot replay proofs of
+\cref{prefixes:sec}, and will actually need to leverage some regularity of the
+languages to obtain a characterization of \kl{well-quasi-ordered} languages
+under the \kl{infix relation}. This regularity will be imposed through the
+notion of \intro{bounded languages}, i.e., languages $L \subseteq \Sigma^*$
+such that there exists words $w_1, \dots, w_n$ satisfying $L \subseteq w_1^*
+\cdots w_n^*$. Let us now state the main theorem of this section.
 
 \begin{theorem}
     \label{bounded-language:thm}
@@ -76,7 +76,7 @@ the chains generated using periodic words, the \kl{downwards closure}
 $\dwset[\infleq]{\setof{x^p}{p \in \Nat}}$ is a \emph{finite union} of
 \kl{chains}. Because this set will appear in bigger equations, we introduce the
 shorter notation $\intro*\InfPeriodChain{x}$ for the set of \kl{infixes} of
-words of the form $x^p$, where $p$ ranges over $\Nat$.
+words of the form $x^p$, where $p \in \Nat$.
 
 
 \begin{remark}
@@ -134,7 +134,7 @@ we recall here for the sake of completeness.
     for arbitrarily large values of $\vec{n} \in \Nat^k$.
     Then, 
     there exists $x,y \in \Sigma^+$ of size 
-    at most $\min \setof{\card{v_i}}{1 \leq i \leq k}$
+    at most $\max \setof{\card{v_i}}{1 \leq i \leq k}$
     such that
     for all
     $\vec{n} \in \Nat^{k}$
@@ -188,7 +188,8 @@ we recall here for the sake of completeness.
   that are \kl{bounded languages} of $\set{a,b}^*$,
   \kl{well-quasi-ordered} by the \kl{infix relation},
   and have \kl{ordinal width}, \kl{ordinal height} and
-  \kl{maximal order type} respectively equal to $k \cdot \omega$, $\omega$ and $k \cdot \omega^2$.
+  \kl{maximal order type} respectively equal to $\omega \cdot k$, $\omega$ and
+  $\omega^2 \cdot k$.
 \end{proof}
 
 \section{Infixes and Downwards Closed Languages}
@@ -435,7 +436,7 @@ proof is in \cref{small-ordinal-invariants:thm:proof} page
     \proofref{small-ordinal-invariants:lem}
     Let $w \in \Sigma^\Nat$ be an \kl{ultimately uniformly recurrent} word.
     Then, the set of finite infixes of $w$ has \kl{ordinal width}
-    less than $2 \cdot \omegaOrd$.
+    less than $\omegaOrd \cdot 2$.
     Furthermore, this bound is tight. 
 \end{lemma}
 
@@ -446,7 +447,7 @@ proof is in \cref{small-ordinal-invariants:thm:proof} page
     infixes of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation} if
     and only if $w_+$ and $w_-$ are two \kl{ultimately uniformly recurrent}
     words. In this case, the \kl{ordinal width}
-    of the set of finite infixes of $w$ is less than $3 \cdot \omegaOrd$,
+    of the set of finite infixes of $w$ is less than $\omegaOrd \cdot 3$,
     and this bound is tight.
 \end{lemma}
 
