@@ -47,12 +47,12 @@ such that there exists words $w_1, \dots, w_n$ satisfying $L \subseteq w_1^*
     \proofref{bounded-language:thm}
     Let $L$ be a \kl{bounded language} of $\Sigma^*$. Then,
     $L$ is a \kl{well-quasi-order} when endowed with the 
-    \kl{infix relation} if and only if it included in a finite union of 
+    \kl{infix relation} if and only if it is included in a finite union of 
     products $S_i \cdot P_i$ where 
     $S_i$ is a \kl{chain} for the \kl{suffix relation}, and 
     $P_i$ is a \kl{chain} for the \kl{prefix relation},
     for all $1 \leq i \leq n$.
-\end{theorem}
+\end{theorem>
 
 Let us first remark that if $S$ is a \kl{chain} for the \kl{suffix relation}
 and $P$ is a \kl{chain} for the \kl{prefix relation}, then $SP$ is
@@ -176,9 +176,9 @@ we recall here for the sake of completeness.
     \proofref{ordinal-invariants-bounded:cor}
     Let $L$ be a \kl{bounded language} of $\Sigma^*$
     that is \kl{well-quasi-ordered} by the \kl{infix relation}.
-    Then, the \kl{ordinal width} of $L$ less than $\omega^2$,
+    Then, the \kl{ordinal width} of $L$ is less than $\omega^2$,
     its \kl{ordinal height} is at most $\omega$,
-    and its \kl{maximal order type} less than $\omega^3$.
+    and its \kl{maximal order type} is less than $\omega^3$.
     Furthermore, those three bounds are tight.
 \end{corollary}
 \begin{proof}
@@ -363,6 +363,7 @@ we conclude that the \kl{ordinal invariants} of a \kl{well-quasi-ordered}
 \begin{corollary}
   \label{small-ordinal-invariants:thm}
   \proofref{small-ordinal-invariants:thm}
+    Let $L$ be a \kl{well-quasi-ordered} \kl{downwards closed} language for the \kl{infix relation}.
     Then, the \kl{maximal order type} of $L$ is strictly less than $\omegaOrd^3$,
     its \kl{ordinal height} is at most $\omegaOrd$,
     and its \kl{ordinal width} is at most $\omegaOrd^2$.
@@ -485,7 +486,7 @@ algorithmic properties of \kl{automatic sequences} come from the fact that a
 Presburger definable property that uses letters of the sequence can be
 (trivially) translated into a finite automaton that reads the base $b$
 representation of the free variables (that are indices of the sequence). In
-particular, it follows than one can decide one can decide if an \kl{automatic
+particular, it follows that one can decide if an \kl{automatic
 sequence} is \kl{ultimately uniformly recurrent}, a proof of this folklore
 result can be found in the appendix at \cref{automatic-uur:lem}. Based on this,
 we now prove:
