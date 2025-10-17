@@ -1,1 +1,0 @@
-templates/lipics/CHANGELOG.md
