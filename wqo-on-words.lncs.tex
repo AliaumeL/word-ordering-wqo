@@ -23,11 +23,62 @@
 \usepackage[english]{babel}
 
 % microtype for better typography
-\usepackage{microtype}
+%\usepackage{microtype} % Disabled due to font expansion issues
 
 
 % math packages
 \usepackage{amssymb,amsmath,stmaryrd,thmtools,thm-restate,upgreek}
+
+% Redefine theorem environments to be compatible with thmtools restatable
+% llncs.cls already defines these using \spnewtheorem, but we need them to work with thmtools
+% We need to undefine both the environments and the counters
+\makeatletter
+\let\theorem\relax
+\let\endtheorem\relax
+\let\c@theorem\relax
+\let\thetheorem\relax
+\let\p@theorem\relax
+\let\lemma\relax
+\let\endlemma\relax
+\let\c@lemma\relax
+\let\thelemma\relax
+\let\p@lemma\relax
+\let\corollary\relax
+\let\endcorollary\relax
+\let\c@corollary\relax
+\let\thecorollary\relax
+\let\p@corollary\relax
+\let\proposition\relax
+\let\endproposition\relax
+\let\c@proposition\relax
+\let\theproposition\relax
+\let\p@proposition\relax
+\let\definition\relax
+\let\enddefinition\relax
+\let\c@definition\relax
+\let\thedefinition\relax
+\let\p@definition\relax
+\let\example\relax
+\let\endexample\relax
+\let\c@example\relax
+\let\theexample\relax
+\let\p@example\relax
+\let\remark\relax
+\let\endremark\relax
+\let\c@remark\relax
+\let\theremark\relax
+\let\p@remark\relax
+\makeatother
+
+% Now redeclare them using thmtools for restatable support
+% Using llncs-like formatting: bold for theorem names, italic for body
+\declaretheorem[style=plain,numberwithin=section,name=Theorem]{theorem}
+\declaretheorem[style=plain,sibling=theorem,name=Lemma]{lemma}
+\declaretheorem[style=plain,sibling=theorem,name=Corollary]{corollary}
+\declaretheorem[style=plain,sibling=theorem,name=Proposition]{proposition}
+\declaretheorem[style=definition,sibling=theorem,name=Definition]{definition}
+\declaretheorem[style=definition,sibling=theorem,name=Example]{example}
+\declaretheorem[style=remark,sibling=theorem,name=Remark]{remark}
 
 
 % graphics packages
