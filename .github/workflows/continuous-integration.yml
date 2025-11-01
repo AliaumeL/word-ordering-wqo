@@ -11,12 +11,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install gnu stow
-        run: sudo apt-get install stow
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y stow pandoc
       - name: Setup compilation environment
         run: |
           make setup-lipics
           make setup-lncs
+      - name: Generate lipics tex file
+        run: make wqo-on-words.lipics.tex
       - name: Compile Latex Document
         uses: xu-cheng/latex-action@v3
         with:
