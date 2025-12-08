@@ -57,41 +57,37 @@ These figures are quite large, and scaling them down would make them less readab
 We will try moving them to the main text by compressing the prefix/suffix section 
 that is less central to the main results.
 
+
 Reviewer 3
 ----------
 - Wouldn't it be more concise to characterise (in Thms 8 and 20) 
 IDEALS of languages well quasi ordered by the infix ordering, 
 instead of the wqo languages themselves?
-Response:
+Response: For Theorem 20, the characterization of the corresponding order ideals is present in the supporting lemmas, though we consider the phrasing of Theorem 20 a matter of taste. For Theorem 8, TODO
 
 - How much the characterisation of Lemma 22 can be generalised
 beyond well quasi orders, namely for ideals in the infix order?
-Response:
+Response: The proof can in fact be generalized to all order ideals 
+of the infix order, and we thank the Reviewer for pointing this out.
+We will adjust the statement and the proof.
 
 - Why Corollary 34 does not include VASS languages?
-Response: 
+Response: Corollary 34 is meant to emphasize a subpart of our results
+that we think might be of interest to a broader audience. The fully general
+version of this statement is Theorem 30, which of course includes VASS and 
+also PVASS languages.
 
 - There is no a really long and complex proof in the paper, rather a series of
 short arguments. As a reader I had an impressions of seeing a series
 of small fragmental results, while I'd probably prefer one big result
 instead of 20 small ones. 
-Response:
-
-- There are numerous forward references (e.g. L.325,425,585,606), please avoid them!
-Response:
+Response: As the space of infix well-quasi-orders was not well explored so far, we onsider this as a classification paper, which naturally lends itself to a large range of smaller statements rather than singular large ones.
 
 - The section on prefix/suffix could be probably completely removed from the
 paper, with the extra space devoted to the most important arguments that are
 now in the appendix.
-Response:
-
-- In Sect.6 it would be worth it to explain better how the lemmas 
-are used in the proofs of Thms 29,.30.
-Response:
-
-- In the appendix, as a good practise it is worth repeating the statements
-of the proved theorems/lemmas.
-Response:
+Response: We agree and will condense the section significantly to free up space,
+especially to reintroduce the diagrams to the main text as requested by Reviewer 2.
 
 - L.197-199: unclear what is the tree relation here.
 Response: The trees are formed as follows: The root node is the empty sequence, ε. Each node has (potentially infinitely many)
@@ -109,6 +105,7 @@ language is a chain by the prefix relation, and by the infix relation, and by th
 Response: By "for abritrarily large values of n", we formally mean: ∀k ∃n≥k such that the property holds.
 
 - Lemma 12: point 2 seems to be subsumed by 3, isn't it?
+Response: Correct, both point 1 and point 2 can be subsumed by point 3. The phrasing was left over from a previous version of the proof. We will adjust this.
 
 - L.605: what it means "we may fix"?
 Response: The concatenative property of amalgamation systems simply requires that each gap word is the concatenation of its 
@@ -119,5 +116,3 @@ the reverse order.
 
 - Lemma 32: "or vice versa" not clear.
 Response: By "vice versa" we mean that either G_f ≤ G_g or G_g ≤ G_f
-
-
