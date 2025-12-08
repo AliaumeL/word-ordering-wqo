@@ -1,0 +1,88 @@
+We thank the reviewers for their time and their feedback. Of course we aim to remedy all unclear sections. Here we'd 
+like to respond to some of the points that have been raised in more detail:
+
+Reviewer 1
+----------
+- Can you expand a bit on the applications you envision your results can have that cannot be solved with existing tools?
+Response: 
+
+
+Reviewer 2
+----------
+- You should give a proof for the measures of the languages Lk in the proof of Corollary 14.
+Response:
+
+- You could corollary 21 at the end of section 5.1, since its proof call for lemmas 25 and 26. Or move these lemmas to appendix.
+Response:
+
+- Part of the claim of Lemma 26 seems redundant with Lemma 24.
+Response:
+
+- Unfortunately space is limited, but it would have been nice to have Figures 6 and 7 in the core of the paper.
+Response:
+
+
+Reviewer 3
+----------
+- Wouldn't it be more concise to characterise (in Thms 8 and 20) 
+IDEALS of languages well quasi ordered by the infix ordering, 
+instead of the wqo languages themselves?
+Response:
+
+- How much the characterisation of Lemma 22 can be generalised
+beyond well quasi orders, namely for ideals in the infix order?
+Response:
+
+- Why Corollary 34 does not include VASS languages?
+Response: 
+
+- There is no a really long and complex proof in the paper, rather a series of
+short arguments. As a reader I had an impressions of seeing a series
+of small fragmental results, while I'd probably prefer one big result
+instead of 20 small ones. 
+Response:
+
+- There are numerous forward references (e.g. L.325,425,585,606), please avoid them!
+Response:
+
+- The section on prefix/suffix could be probably completely removed from the
+paper, with the extra space devoted to the most important arguments that are
+now in the appendix.
+Response:
+
+- In Sect.6 it would be worth it to explain better how the lemmas 
+are used in the proofs of Thms 29,.30.
+Response:
+
+- In the appendix, as a good practise it is worth repeating the statements
+of the proved theorems/lemmas.
+Response:
+
+- L.197-199: unclear what is the tree relation here.
+Response: The trees are formed as follows: The root node is the empty sequence, ε. Each node has (potentially infinitely many)
+children from the wqoset (X, ≤) such that the sequence of elements from the root to this child satisfy the property expressed
+by the tree (i.e., being bad, decreasing or an antichain respectively).
+
+- Thm 8: what are "products"?
+Response: By the "product" of two languages L and R we mean the usual pairwise concatenation of words from L and R.
+
+- Lemma 10: what does it mean "simultaneously" here?
+Response: By "simulatenously" we mean that we can find a finite set of languages such that their union is P↓(x), and each
+language is a chain by the prefix relation, and by the infix relation, and by the suffix relation.
+
+- Lemma 12: what is the meaning of "for arbitrarily large values of n" here?
+Response: By "for abritrarily large values of n", we formally mean: ∀k ∃n≥k such that the property holds.
+
+- Lemma 12: point 2 seems to be subsumed by 3, isn't it?
+
+- L.605: what it means "we may fix"?
+Response: The concatenative property of amalgamation systems simply requires that each gap word is the concatenation of its 
+constituent gap words from the smaller runs, but not in which order. We may pick any gap and pick the ordering in that gap,
+but the ordering in the other gaps may then be imposed on us by the structure of the system. For example, when amalgamating
+derivation trees of CFGs, each gap has a sibling gap on the intuitive "other side" of the tree that must be concatenated in
+the reverse order.
+
+- Lemma 32: "or vice versa" not clear.
+Response: By "vice versa" we mean that either G_f ≤ G_g or G_g ≤ G_f
+
+
