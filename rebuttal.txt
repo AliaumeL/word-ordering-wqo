@@ -1,11 +1,16 @@
 We thank the reviewers for their time and their feedback. Of course we aim to
-remedy all unclear sections. Here we'd like to respond to some of the points
+remedy all unclear sections. 
+
+Here we'd like to respond to some of the points
 that have been raised in more detail:
 
 Reviewer 1
 ----------
 - Can you expand a bit on the applications you envision your results can have that cannot be solved with existing tools?
 Response: 
+
+Ours is a theoretical paper, and as such will mostly have theoretical
+applications.
 
 Applications of well-quasi-orderings are numerous in verification, ranging from
 termination proofs to decidability of inclusion problems. For the sake of the
