@@ -1,26 +1,61 @@
-We thank the reviewers for their time and their feedback. Of course we aim to remedy all unclear sections. Here we'd 
-like to respond to some of the points that have been raised in more detail:
+We thank the reviewers for their time and their feedback. Of course we aim to
+remedy all unclear sections. Here we'd like to respond to some of the points
+that have been raised in more detail:
 
 Reviewer 1
 ----------
 - Can you expand a bit on the applications you envision your results can have that cannot be solved with existing tools?
 Response: 
 
+Applications of well-quasi-orderings are numerous in verification, ranging from
+termination proofs to decidability of inclusion problems. For the sake of the
+argument, let us pick one example (among many)  is the use of wqos in so-called
+"well-structured transition systems" (WSTS), where the decidability of certain
+verification problems (e.g., coverability) is guaranteed by the presence of a
+wqo on the state space that is compatible with the transition relation. In some
+cases (like lossy channel systems), the subword ordering appears naturally to
+order the configurations, but in most cases the natural ordering on words are
+the prefix, suffix, and infix orderings. 
+
+To apply the WSTS theory in these cases, one way is to ensure that the set of
+reachable configurations (which is often a language) is wqo under the relevant
+ordering. Our results provide a complete characterization of such languages,
+along with effective decision procedures for languages described in a vast
+variety of formalisms. This completely solves the question of whether a WSTS
+with configurations ordered by prefix, suffix, or infix ordering can be used
+for verification. From our characterizations, one can understand that whenever
+  one could use infix, prefix, or suffix orderings to obtain a wqo, the set of
+  reachable configurations must be "simple" in a precise sense, which we
+  interpret as a formal limitation to the expressiveness of such systems.
+
 
 Reviewer 2
 ----------
 - You should give a proof for the measures of the languages Lk in the proof of Corollary 14.
 Response:
+We will add a detailed proof in the final version. Here is a sketch of the argument:
+The ordinal height of (infinite) languages is always ω,
+the ordinal width of a*b* is ω (since it is isomorphic to N^2 with the product order),
+hence disjoint copies of a*b* have width ω + .... + ω, hence the width of L_k is ω·k.
+Finally, the maximal order type of a disjoint sum is the natural sum (Hessenberg sum) of the maximal order types of the summands, which here is $ω^2$ added k times, hence $ω^2 \cdot k$.
+We are using classical results on ordinal invariants of wqos that we will take from 
+[15].
+
 
 - You could corollary 21 at the end of section 5.1, since its proof call for lemmas 25 and 26. Or move these lemmas to appendix.
 Response:
+Yes, this was made to improve the flow of the paper by stating important results first,
+but in this case it is counterproductive.
 
 - Part of the claim of Lemma 26 seems redundant with Lemma 24.
 Response:
+Yes, the first part is the same and will be removed.
 
 - Unfortunately space is limited, but it would have been nice to have Figures 6 and 7 in the core of the paper.
 Response:
-
+These figures are quite large, and scaling them down would make them less readable.
+We will try moving them to the main text by compressing the prefix/suffix section 
+that is less central to the main results.
 
 Reviewer 3
 ----------
