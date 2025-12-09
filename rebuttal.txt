@@ -63,7 +63,7 @@ Reviewer 3
 - Wouldn't it be more concise to characterise (in Thms 8 and 20) 
 IDEALS of languages well quasi ordered by the infix ordering, 
 instead of the wqo languages themselves?
-Response: For Theorem 20, the characterization of the corresponding order ideals is present in the supporting lemmas, though we consider the phrasing of Theorem 20 a matter of taste. For Theorem 8, TODO
+Response: For Theorem 20, the characterization of the corresponding order ideals is present in the supporting lemmas, though we consider the phrasing of Theorem 20 a matter of taste. For Theorem 8, we don't think ideals are the right lens as the chains for the suffix and prefix relation aren't necessarily downward closed.
 
 - How much the characterisation of Lemma 22 can be generalised
 beyond well quasi orders, namely for ideals in the infix order?
