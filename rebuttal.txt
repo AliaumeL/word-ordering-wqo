@@ -1,8 +1,42 @@
-We thank the reviewers for their time and their feedback. Of course we aim to
-remedy all unclear sections. 
+We thank the reviewers for their time and their feedback, and will remedy
+all unclear sections in the final version of the paper.
+
+There are points that were raised by multiple reviewers regarding the
+applications of our results and the seemingly fragmented nature of the paper.
+We strongly disagree with both points. Ours is a theoretical paper, but the use
+of well-quasi-orderings are numerous in verification, ranging from termination
+proofs to decidability of inclusion problems. For the sake of the argument, let
+us pick one example (among many) as the use of wqos in so-called
+"well-structured transition systems" (WSTS), where the decidability of certain
+verification problems (e.g., coverability) is guaranteed by the presence of a
+wqo on the state space that is compatible with the transition relation. In some
+cases (like lossy channel systems), the subword ordering appears naturally to
+order the configurations, but in most cases the natural ordering on words are
+the prefix, suffix, and infix orderings. 
+
+To apply the WSTS theory in these cases, one way is to ensure that the set of
+reachable configurations is wqo under the relevant ordering.  Our results
+completely solves the question of whether a WSTS
+with configurations ordered by prefix, suffix, or infix ordering can be used
+for verification purposes. Furthermore, we prove that whenever
+one could use infix, prefix, or suffix orderings to obtain a wqo, the set of
+reachable configurations must be "simple" in a precise sense, which we
+interpret as a formal limitation to the expressiveness of such systems.
+
+In any case, this paper takes an approach significantly different from the
+classical wqo literature, in the sense that it finely classifies objects that
+are wqo inside a non-wqo, instead of exhibiting new ways to compositionally
+build wqos. As the space of infix well-quasi-orders was not well explored so
+far, we consider this as a classification paper, which naturally lends itself
+to a large range of smaller statements rather than singular large ones, without
+diminishing the importance of these results.
+
 
 Here we'd like to respond to some of the points
 that have been raised in more detail:
+
+
+----------- MATERIAL USED TO ANSWER THE REVIEWS --------------
 
 Reviewer 1
 ----------
@@ -42,7 +76,7 @@ We will add a detailed proof in the final version. Here is a sketch of the argum
 The ordinal height of (infinite) languages is always ω,
 the ordinal width of a*b* is ω (since it is isomorphic to N^2 with the product order),
 hence disjoint copies of a*b* have width ω + .... + ω, hence the width of L_k is ω·k.
-Finally, the maximal order type of a disjoint sum is the natural sum (Hessenberg sum) of the maximal order types of the summands, which here is $ω^2$ added k times, hence $ω^2 \cdot k$.
+Finally, the maximal order type of a disjoint sum is the natural sum (Hessenberg sum) of the maximal order types of the summands, which here is ω^2 added k times, hence ω^2 · k.
 We are using classical results on ordinal invariants of wqos that we will take from 
 [15].
 
