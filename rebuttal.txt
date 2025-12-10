@@ -11,7 +11,7 @@ We thank R1 for their positive and useful feedback.
 Question of R1: Can you expand a bit on the applications you envision your
 results can have that cannot be solved with existing tools?
 
-Answer: Almost all wqo results have some form of algorithmic application. For
+Answer: Almost always, wqo results have some form of algorithmic application. For
 example, our results can be used as an (effective!) regularity check for trace
 languages and safety properties in amalgamation systems.
 
