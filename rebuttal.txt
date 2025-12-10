@@ -1,15 +1,13 @@
-We thank the reviewers for their time and their insightful feedback and would 
-like to take some time responding to some points in more detail.
+We thank the reviewers for their time and their insightful feedback. 
+The reviewers made relevant comments and suggestions that will be
+implemented in the final version of the article. 
+
+We now answer the questions of R1 and R3:
 
 Regarding the potential applications: Almost all wqo results have some form
-of algorithmic application. For example, our results can be used as a
-regularity check for trace languages: Consider the trace language of an 
-amalgamation system that is being formally verified. As a trace language 
-is naturally prefix closed, our results mean that we can decide whether
-it is well-quasi-ordered by the prefix relation (Theorem 30). From Lemma 33
-we can conclude that this is the case iff it is regular. Furthermore,
-a closer analysis of our proof even yields an effective procedure for 
-constructing a regular representation.
+of algorithmic application. For example, our results can be used as an 
+(effective!) regularity check for trace languages and safety properties 
+in amalgamation systems.
 
 Regarding the lack of a singular large result: This paper takes a somewhat
 unusual approach in wqo theory by not constructing new wqos, but
@@ -17,6 +15,9 @@ classifying subsets that are wqo inside a non-wqo, and providing effective
 decision procedures whenever possible. As this is a classification paper, it
 naturally lends itself to a large range of smaller statements rather than one
 big one, without diminishing the importance of these results. 
+
+
+--- cut
 
 
 R2 on Corollary 14. We will add a detailed proof in the final version. A sketch
