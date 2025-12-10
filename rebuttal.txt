@@ -1,61 +1,58 @@
 We thank the reviewers for their time and their feedback.
+We thank the reviewers for their time and their insightful feedback and would 
+like to take some time responding to some points in more detail.
 
-We are puzzled by few of the questions. Ours is a paper that fits a
-well-established domain of research in theoretical computer science.
-Furthermore, this paper takes a new approach by not constructing new wqos, but
+Regarding the lack of a singular large result: This paper takes a somewhat
+unusual approach in wqo theory by not constructing new wqos, but
 classifying subsets that are wqo inside a non-wqo, and providing effective
 decision procedures whenever possible. As this is a classification paper, it
 naturally lends itself to a large range of smaller statements rather than one
 big one, without diminishing the importance of these results. 
 
-Here we'd like to respond to some of the points
-that have been raised in more detail:
 
-r2 on corollary 14. We will add a detailed proof in the final version. A sketch
+R2 on Corollary 14. We will add a detailed proof in the final version. A sketch
 of the argument is that L_k is isomorphic to k copies of N^2, and one can
 easily compute its ordinal invariants [see 15].
 
-
-r2 on corollary 21, r3 on forward references. We preferred stating early on the
+R2 on Corollary 21, R3 on forward references. We preferred stating early on the
 theorems of interest, and then explain which lemmas will be used and how they
 fit together in a general proof scheme. This naturally introduces forward
 references. As this was found confusing, we will update the paper to be more
 linear.
 
-r2 on lemma 26 and 24. We will remove the redundant part, thank you for pointing 
+R2 on Lemmata 26 and 24. We will remove the redundant part, thank you for pointing 
 it out.
 
-r2 on figures 6 and 7, r3 on prefix/suffix section. We will try to be more succinct in the prefix/suffix section
-to free up space for these figures in the main text.
+R2 on Figures 6 and 7, R3 on prefix/suffix section. We will be more succinct in the prefix/suffix section to free up space for these figures in the main text.
 
 
-r3 on Lemma 12 point 2 and 3. Correct, both point 1 and point 2 imply point 3,
+R3 on Lemma 12 point 2 and 3. Correct, both point 1 and point 2 imply point 3,
 and we will adjust the statement accordingly.
 
-r3 on lemma 22. The proof can in fact be generalized to all order ideals of the
+R3 on Lemma 22. The proof can in fact be generalized to all order ideals of the
 infix order, and we thank the Reviewer for pointing this out. We will adjust
 the statement and the proof.
 
-r3 on theorems 8 and 20. For Theorem 8, we think that phrasing it in terms of
+R3 on Theorems 8 and 20. For Theorem 8, we think that phrasing it in terms of
 ideals would needlessly complicate the statement. For Theorem 20, we are happy
 to rephrase it in terms of ideals.
 
-r3 on corollary 34. Corollary 34 is clearly meant to emphasize a subpart of our
+R3 on Corollary 34. Corollary 34 is meant to emphasize a subpart of our
 results that we think might be of interest to a broader audience. The fully
 general version of this statement is Theorem 30, which of course includes VASS
 and also PVASS languages.
 
-r3 on L.605.  The concatenative property of amalgamation systems simply
+R3 on L.605.  The concatenative property of amalgamation systems simply
 requires that each gap word is the concatenation of its constituent gap words
 from the smaller runs, but not in which order. We may pick any gap and pick the
 ordering in that gap, but the ordering in the other gaps may then be imposed on
 us by the structure of the system. 
 
-r3 on L.197-199. The tree is obtained by considering bad sequences (resp. antichains, decreasing sequences) as nodes, and the ancestor relation is "having common prefix".
+R3 on L.197-199. The tree is obtained by considering bad sequences (resp. antichains, decreasing sequences) as nodes, and the ancestor relation is "having common prefix".
 
-r3.
+R3.
 - The product of two languages L and R is the pairwise concatenation of words from L and R.
- "U satisfies P for x, y, and z simulatenously" means that U satisfies P(x), P(y), and P(z).
+"U satisfies P for x, y, and z simulatenously" means that U satisfies P(x), P(y), and P(z).
 - "P(n) holds for abritrarily large values of n" means ∀k ∃n≥k P(n).
 - "x≤y or vice versa" means "x≤y or y≤x".
 
@@ -87,9 +84,9 @@ along with effective decision procedures for languages described in a vast
 variety of formalisms. This completely solves the question of whether a WSTS
 with configurations ordered by prefix, suffix, or infix ordering can be used
 for verification. From our characterizations, one can understand that whenever
-  one could use infix, prefix, or suffix orderings to obtain a wqo, the set of
-  reachable configurations must be "simple" in a precise sense, which we
-  interpret as a formal limitation to the expressiveness of such systems.
+one could use infix, prefix, or suffix orderings to obtain a wqo, the set of
+reachable configurations must be "simple" in a precise sense, which we
+interpret as a formal limitation to the expressiveness of such systems.
 
 
 Reviewer 2
@@ -176,6 +173,9 @@ constituent gap words from the smaller runs, but not in which order. We may pick
 but the ordering in the other gaps may then be imposed on us by the structure of the system. For example, when amalgamating
 derivation trees of CFGs, each gap has a sibling gap on the intuitive "other side" of the tree that must be concatenated in
 the reverse order.
+
+- Lemma 32: "or vice versa" not clear.
+Response: By "vice versa" we mean that either G_f ≤ G_g or G_g ≤ G_f
 
 - Lemma 32: "or vice versa" not clear.
 Response: By "vice versa" we mean that either G_f ≤ G_g or G_g ≤ G_f
