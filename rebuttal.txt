@@ -1,6 +1,15 @@
-We thank the reviewers for their time and their feedback.
 We thank the reviewers for their time and their insightful feedback and would 
 like to take some time responding to some points in more detail.
+
+Regarding the potential applications: Almost all wqo results have some form
+of algorithmic application. For example, our results can be used as a
+regularity check for trace languages: Consider the trace language of an 
+amalgamation system that is being formally verified. As a trace language 
+is naturally prefix closed, our results mean that we can decide whether
+it is well-quasi-ordered by the prefix relation (Theorem 30). From Lemma 33
+we can conclude that this is the case iff it is regular. Furthermore,
+a closer analysis of our proof even yields an effective procedure for 
+constructing a regular representation.
 
 Regarding the lack of a singular large result: This paper takes a somewhat
 unusual approach in wqo theory by not constructing new wqos, but
