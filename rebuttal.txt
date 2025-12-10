@@ -1,23 +1,49 @@
 We thank the reviewers for their time and their insightful feedback. 
-The reviewers made relevant comments and suggestions that will be
-implemented in the final version of the article. 
+The reviewers made relevant comments and suggestions that will be implemented in the final version of the article.
 
-We now answer the questions of R1 and R3:
-
-Regarding the potential applications: Almost all wqo results have some form
-of algorithmic application. For example, our results can be used as an 
-(effective!) regularity check for trace languages and safety properties 
-in amalgamation systems.
-
-Regarding the lack of a singular large result: This paper takes a somewhat
-unusual approach in wqo theory by not constructing new wqos, but
-classifying subsets that are wqo inside a non-wqo, and providing effective
-decision procedures whenever possible. As this is a classification paper, it
-naturally lends itself to a large range of smaller statements rather than one
-big one, without diminishing the importance of these results. 
+We first answer the main comments and questions of R1 and R3 and give below a more detailed response to other comments/questions.
 
 
---- cut
+---MAIN QUESTIONS
+
+
+--R1
+Comments: We thank R1 for their positive and useful feedback.
+
+Question of R1: Can you expand a bit on the applications you envision your results can have that cannot be solved with existing tools?
+
+Answer: Almost all wqo results have some form of algorithmic application. For example, our results can be used as an 
+(effective!) regularity check for trace languages and safety properties in amalgamation systems.
+
+--R3
+Comments: We thank R3 for their appreciation of the quality of the technical level of the paper.
+Their main concern is the lack of a single large and complex technical contribution.
+Our answer regarding this is twofold: 1) we've put a lot of effort into breaking down the technical difficulties noticed by the reviewer into manageable parts, in order to make the proofs as accessible as possible. 2) The nature of the article is more of a classification paper rather than a solution to a known hard to solve problem. Indeed, while we are happy that the technical contributions have been appriciated by the reviewer, we believe that the main contribution of the article lies in its originality and not in solving a particularly tough problem.
+
+
+Question 1: Wouldn't it be more concise to characterise (in Thms 8 and 20) 
+IDEALS of languages well quasi ordered by the infix ordering, 
+instead of the wqo languages themselves?
+
+Answer: Thank you for this suggestion. Concerning Theorem 8, we think that phrasing it in terms of
+ideals would needlessly complicate the statement. For Theorem 20, we are happy
+to rephrase it in terms of ideals.
+
+Question 2: How much the characterisation of Lemma 22 can be generalised
+beyond well quasi orders, namely for ideals in the infix order?
+
+Answer: The proof can in fact be generalized to all order ideals of the
+infix order, and we thank Reviewer 3 for pointing this out. We will adjust
+the statement and the proof.
+
+Question 3: Why Corollary 34 does not include VASS languages?
+Corollary 34 is meant to emphasize a subpart of our
+results that we think might be of interest to a broader audience. The fully
+general version of this statement is Theorem 30, which of course includes VASS
+and also PVASS languages.
+
+
+---DETAILED ANSWER TO OTHER COMMENTS
 
 
 R2 on Corollary 14. We will add a detailed proof in the final version. A sketch
@@ -35,17 +61,8 @@ it out.
 
 R2 on Figures 6 and 7, R3 on prefix/suffix section. We will be more succinct in the prefix/suffix section to free up space for these figures in the main text.
 
-
 R3 on Lemma 12 point 2 and 3. Correct, both point 1 and point 2 imply point 3,
 and we will adjust the statement accordingly.
-
-R3 on Lemma 22. The proof can in fact be generalized to all order ideals of the
-infix order, and we thank the Reviewer for pointing this out. We will adjust
-the statement and the proof.
-
-R3 on Theorems 8 and 20. For Theorem 8, we think that phrasing it in terms of
-ideals would needlessly complicate the statement. For Theorem 20, we are happy
-to rephrase it in terms of ideals.
 
 R3 on Corollary 34. Corollary 34 is meant to emphasize a subpart of our
 results that we think might be of interest to a broader audience. The fully
