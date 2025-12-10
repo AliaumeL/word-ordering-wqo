@@ -1,65 +1,34 @@
-We thank the reviewers for their time and their feedback, and will remedy
-all unclear sections in the final version of the paper.
+We thank the reviewers for their time and their feedback.
 
-There are points that were raised by multiple reviewers regarding the
-applications of our results and the seemingly fragmented nature of the paper.
-We strongly disagree with both points. Ours is a theoretical paper that fits a
-long line of results on well-quasi-order results. Furthermore, the use of
-well-quasi-orderings are numerous in verification, ranging from termination
-proofs to decidability of inclusion problems. For the sake of the argument, let
-us pick one example (among many) as the use of wqos in so-called
-"well-structured transition systems" (WSTS), where the decidability of certain
-verification problems (e.g., coverability) is guaranteed by the presence of a
-wqo on the state space that is compatible with the transition relation. In some
-cases (like lossy channel systems), the subword ordering appears naturally to
-order the configurations, but in most cases the natural ordering on words are
-the prefix, suffix, and infix orderings. 
-
-To apply the WSTS theory in these cases, one way is to ensure that the set of
-reachable configurations is wqo under the relevant ordering.  Our results
-completely solves the question of whether a WSTS
-with configurations ordered by prefix, suffix, or infix ordering can be used
-for verification purposes. Furthermore, we prove that whenever
-one could use infix, prefix, or suffix orderings to obtain a wqo, the set of
-reachable configurations must be "simple" in a precise sense, which we
-interpret as a formal limitation to the expressiveness of such systems.
-
-In any case, this paper takes an approach significantly different from the
-classical wqo literature, in the sense that it finely classifies objects that
-are wqo inside a non-wqo, instead of exhibiting new ways to compositionally
-build wqos. As the space of infix well-quasi-orders was not well explored so
-far, we consider this as a classification paper, which naturally lends itself
-to a large range of smaller statements rather than singular large ones, without
-diminishing the importance of these results.
-
-
+We are puzzled by few of the questions. Ours is a paper that fits a
+well-established domain of research in theoretical computer science.
+Furthermore, this paper takes a new approach by not constructing new wqos, but
+classifying subsets that are wqo inside a non-wqo, and providing effective
+decision procedures whenever possible. As this is a classification paper, it
+naturally lends itself to a large range of smaller statements rather than one
+big one, without diminishing the importance of these results. If having one big
+statement with a hard proof was a requirement for publication, we did not see
+it written on the call for paper and profoundly apologize for missing it.
 
 Here we'd like to respond to some of the points
 that have been raised in more detail:
 
 r2 on corollary 14. We will add a detailed proof in the final version. A sketch
-of the argument is that a*b* is isomorphic to N^2 with the product order, for
-which ordinal invariants are well-known. The language L_k is now isomorphic to
-k disjoint copies of a*b* (using a coding of an alphabet of size 2k into a
-binary alphabet). Finally, the ordinal invariants of disjoint sums are computed
-compositionally using known formulas, yielding the desired result [15].
+of the argument is that L_k is isomorphic to k copies of N^2, and one can
+easily compute its ordinal invariants [see 15].
+
 
 r2 on corollary 21, r3 on forward references. We preferred stating early on the
 theorems of interest, and then explain which lemmas will be used and how they
-fit together in a general proof scheme, which naturally introduces forward
+fit together in a general proof scheme. This naturally introduces forward
 references. As this was found confusing, we will update the paper to be more
 linear.
 
 r2 on lemma 26 and 24. We will remove the redundant part, thank you for pointing 
 it out.
 
-r2 on figures 6 and 7. We will try to be more succinct in the prefix/suffix section
+r2 on figures 6 and 7, r3 on prefix/suffix section. We will try to be more succinct in the prefix/suffix section
 to free up space for these figures in the main text.
-
-
-r3 on prefix/suffix section. We agree and will condense the section
-significantly to free up space, especially to reintroduce the diagrams to the
-main text as requested by Reviewer 2.
 
 
 r3 on Lemma 12 point 2 and 3. Correct, both point 1 and point 2 imply point 3,
@@ -82,25 +51,15 @@ r3 on L.605.  The concatenative property of amalgamation systems simply
 requires that each gap word is the concatenation of its constituent gap words
 from the smaller runs, but not in which order. We may pick any gap and pick the
 ordering in that gap, but the ordering in the other gaps may then be imposed on
-us by the structure of the system. For example, when amalgamating derivation
-trees of CFGs, each gap has a sibling gap on the intuitive "other side" of the
-tree that must be concatenated in the reverse order.
+us by the structure of the system. 
 
-r3 on L.197-199. The trees are formed as follows: The root node is the empty
-sequence, ε. Each node has (potentially infinitely many) children from the
-wqoset (X, ≤) such that the sequence of elements from the root to this child
-satisfy the property expressed by the tree (i.e., being bad, decreasing or an
-antichain respectively).
+r3 on L.197-199. The tree is obtained by considering bad sequences (resp. antichains, decreasing sequences) as nodes, and the ancestor relation is "having common prefix".
 
-r3 on Thm 8. The product of two languages L and R is the pairwise concatenation of words from L and R.
-
-r3 on Lemma 10: "U satisfies P for x, y, and z simulatenously" means that U satisfies P(x), P(y), and P(z).
-
-r3 on Lemma 12: "P(n) holds for abritrarily large values of n" means ∀k ∃n≥k P(n).
-
-r3 on Lemma 32: "x≤y or vice versa" means "x≤y or y≤x".
-
-
+r3.
+- The product of two languages L and R is the pairwise concatenation of words from L and R.
+ "U satisfies P for x, y, and z simulatenously" means that U satisfies P(x), P(y), and P(z).
+- "P(n) holds for abritrarily large values of n" means ∀k ∃n≥k P(n).
+- "x≤y or vice versa" means "x≤y or y≤x".
 
 
 ----------- MATERIAL USED TO ANSWER THE REVIEWS --------------
