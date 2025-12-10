@@ -22,7 +22,7 @@ big one, without diminishing the importance of these results.
 
 R2 on Corollary 14. We will add a detailed proof in the final version. A sketch
 of the argument is that L_k is isomorphic to k copies of N^2, and one can
-easily compute its ordinal invariants [see 15].
+easily compute its ordinal invariants using standard methods [15].
 
 R2 on Corollary 21, R3 on forward references. We preferred stating early on the
 theorems of interest, and then explain which lemmas will be used and how they
@@ -62,8 +62,8 @@ R3 on L.197-199. The tree is obtained by considering bad sequences (resp. antich
 
 R3.
 - The product of two languages L and R is the pairwise concatenation of words from L and R.
-"U satisfies P for x, y, and z simulatenously" means that U satisfies P(x), P(y), and P(z).
-- "P(n) holds for abritrarily large values of n" means ∀k ∃n≥k P(n).
+- "U satisfies P for x, y, and z simultaneously" means that U satisfies P(x), P(y), and P(z).
+- "P(n) holds for arbitrarily large values of n" means ∀k ∃n≥k P(n).
 - "x≤y or vice versa" means "x≤y or y≤x".
 
 
