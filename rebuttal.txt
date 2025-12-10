@@ -6,9 +6,7 @@ Furthermore, this paper takes a new approach by not constructing new wqos, but
 classifying subsets that are wqo inside a non-wqo, and providing effective
 decision procedures whenever possible. As this is a classification paper, it
 naturally lends itself to a large range of smaller statements rather than one
-big one, without diminishing the importance of these results. If having one big
-statement with a hard proof was a requirement for publication, we did not see
-it written on the call for paper and profoundly apologize for missing it.
+big one, without diminishing the importance of these results. 
 
 Here we'd like to respond to some of the points
 that have been raised in more detail:
