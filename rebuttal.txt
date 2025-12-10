@@ -1,24 +1,32 @@
-We thank the reviewers for their time and their insightful feedback. 
-The reviewers made relevant comments and suggestions that will be implemented in the final version of the article.
+We thank the reviewers for their time and their insightful feedback. The
+reviewers made relevant comments and suggestions that will be implemented in
+the final version of the article.
 
-We first answer the main comments and questions of R1 and R3 and give below a more detailed response to other comments/questions.
-
-
----MAIN QUESTIONS
-
+We first answer the main comments and questions of R1 and R3 and give below a
+more detailed response to other comments/questions.
 
 --R1
 Comments: We thank R1 for their positive and useful feedback.
 
-Question of R1: Can you expand a bit on the applications you envision your results can have that cannot be solved with existing tools?
+Question of R1: Can you expand a bit on the applications you envision your
+results can have that cannot be solved with existing tools?
 
-Answer: Almost all wqo results have some form of algorithmic application. For example, our results can be used as an 
-(effective!) regularity check for trace languages and safety properties in amalgamation systems.
+Answer: Almost all wqo results have some form of algorithmic application. For
+example, our results can be used as an (effective!) regularity check for trace
+languages and safety properties in amalgamation systems.
 
 --R3
 Comments: We thank R3 for their appreciation of the quality of the technical level of the paper.
 Their main concern is the lack of a single large and complex technical contribution.
-Our answer regarding this is twofold: 1) we've put a lot of effort into breaking down the technical difficulties noticed by the reviewer into manageable parts, in order to make the proofs as accessible as possible. 2) The nature of the article is more of a classification paper rather than a solution to a known hard to solve problem. Indeed, while we are happy that the technical contributions have been appriciated by the reviewer, we believe that the main contribution of the article lies in its originality and not in solving a particularly tough problem.
+
+Our answer regarding this is twofold: 1) we've put a lot of effort into
+breaking down the technical difficulties noticed by the reviewer into
+manageable parts, in order to make the proofs as accessible as possible. 2) The
+nature of the article is more of a classification paper rather than a solution
+to a known hard to solve problem. Indeed, while we are happy that the technical
+contributions have been appreciated by the reviewer, we believe that the main
+contribution of the article lies in its originality and not in solving a
+particularly tough problem.
 
 
 Question 1: Wouldn't it be more concise to characterise (in Thms 8 and 20) 
