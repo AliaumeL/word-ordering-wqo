@@ -192,14 +192,14 @@ we recall here for the sake of completeness.
 
 Let us now discuss another classical restriction that can be imposed on 
 languages when studying \kl{well-quasi-orders}, that of being
-\kl{downwards closed}. Indeed, \cref{infix-embedding:thm}
+\kl{downward closed}. Indeed, \cref{infix-embedding:thm}
 crucially relies on constructing languages that are \emph{not}
-\kl{downwards closed}, and we have shown 
+\kl{downward closed}, and we have shown 
 in \cref{dw-closure-not-wqo:rem} that the \kl{downwards closure}
 of a \kl{well-quasi-ordered} language is not necessarily
 \kl{well-quasi-ordered}.
 
-\subsection{Characterization of Well-Quasi-Ordered Downwards Closed Languages}
+\subsection{Characterization of Well-Quasi-Ordered Downward Closed Languages}
 
 An immediate consequence of \cref{bounded-language:thm} is that   if $L$ is a
 \kl{bounded language}, then considering $L$ or its \kl{downwards closure}
@@ -226,7 +226,7 @@ will now illustrate with the following example.
 \begin{example}
     \label{dwclosed-wqo-not-finite-excl:ex}
     Let $L \defined a^* b^* \cup b^* a^*$. This language is 
-    \kl(language){bounded}, is \kl{downwards
+    \kl(language){bounded}, is \kl{downward
     closed} for the \kl{infix relation}, is \kl{well-quasi-ordered} for the
     \kl{infix relation}, but is characterized by an \emph{infinite} number 
     of excluded infixes, respectively of the form $ab^ka$ and $ba^kb$ where $k \geq 1$.
@@ -264,19 +264,19 @@ and will be using $\Sigma^\Rel$ for the set of bi-infinite words over $\Sigma$.
 \begin{lemma}
     \label{thue-morse:lemma}
     The language $\intro*\LMorse$ of \kl{infixes} of the \kl{Thue-Morse sequence}
-    is \kl{downwards closed} for the \kl{infix
+    is \kl{downward closed} for the \kl{infix
     relation}, \kl{well-quasi-ordered} for the \kl{infix relation}, but is not
     \kl(language){bounded}.
 \end{lemma}
 \begin{proof}
     By construction $\LMorse$ is
-    \kl{downwards closed} for the \kl{infix relation},
+    \kl{downward closed} for the \kl{infix relation},
     and by \cref{uniformly-recurrent:lem}, it is
     \kl{well-quasi-ordered}.
 
     Assume by contradiction that $\LMorse$ is \kl(language){bounded}. In this case, there exist
     words $w_1, \dots, w_k \in \Sigma^*$ such that $\LMorse \subseteq w_1^* \cdots
-    w_k^*$. Since $\LMorse$ is infinite and \kl{downwards closed}, there exists a
+    w_k^*$. Since $\LMorse$ is infinite and \kl{downward closed}, there exists a
     word $u \in \LMorse$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is a contradiction,
     because $u \infleq \ThueMorse$, which is \kl{cube-free}.\qedhere
 \end{proof}

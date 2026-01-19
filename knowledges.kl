@@ -38,8 +38,8 @@
  | downwards closure
  | downwards closures
 \knowledge{notion}
- | downwards closed
- | Downwards Closed
+ | downward closed
+ | Downward Closed
 \knowledge{notion}
  | upwards closure
 \knowledge{notion}

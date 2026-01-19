@@ -18,6 +18,7 @@
 \usepackage{lineno}
 \nolinenumbers
 
+\usepackage{todonotes}
 
 % babel for language settings
 \usepackage[english]{babel}
@@ -52,7 +53,7 @@
 \usepackage[capitalise,noabbrev,nameinlink]{cleveref}
 \Crefname{assumption}{Assumption}{Assumptions}
 \Crefname{conjecture}{Conjecture}{Conjectures}
-\usepackage[electronic,hyperref,xcolor,cleveref]{knowledge}
+\usepackage[composition,hyperref,xcolor,cleveref]{knowledge}
 \knowledgeconfigure{notion}
 
 
@@ -78,6 +79,9 @@
 
 % Colors 
 \usepackage{ensps-colorscheme}
+
+\knowledge{notion}
+ | kl-usage
 \knowledgestyle{intro notion}{color={A4}, emphasize}
 \knowledgestyle{notion}{color={B1}}
 
@@ -99,7 +103,10 @@
 
 \begin{document}
 %
-\title{Well-quasi-orderings on word languages}
+\title{Well-quasi-orderings on word languages \\
+       main 441fa3699dc1ea59452651b68ebfc72b6ce70f0f \\
+       2026-01-19 11:36:38 +0100
+}
 \titlerunning{WQO on Words}
 
 \author{

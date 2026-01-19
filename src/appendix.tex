@@ -331,7 +331,7 @@
     $u_i$ for a large enough $I$, one concludes that $L$ is contained in the
     set of finite infixes of $w$. Conversely, every finite infix of $w$ is 
     an infix of some $u_i$ by definition of the limit construction, hence
-    belongs to $L$ since $u_i \in L$ and $L$ is \kl{downwards closed}.
+    belongs to $L$ since $u_i \in L$ and $L$ is \kl{downward closed}.
     \qedhere
 \end{proofof}
 
@@ -356,7 +356,7 @@
     \kl{well-quasi-ordered}. Let us write $\mathsf{Rec}(w)$ the set of finite
     \kl{infixes} of $w$ that appear infinitely often. We can similarly define
     $\mathsf{Rec}(w_{\geq i})$ for any (infinite) suffix of $w$. The sequence
-    $R_i \defined \mathsf{Rec}(w_{\geq i})$ is a descending sequence of \kl{downwards
+    $R_i \defined \mathsf{Rec}(w_{\geq i})$ is a descending sequence of \kl{downward
     closed} sets of finite words, included in the set of finite infixes of $w$
     by definition. Because the latter is \kl{well-quasi-ordered}, there exists
     an $N_0 \in \Nat$, such that $\bigcap_{i \in \Nat} R_i = R_{N_0}$.
@@ -536,7 +536,7 @@ that the two share the letter at position $0$.
 \begin{proofof}{small-ordinal-invariants:thm}
     It is always true that the \kl{ordinal height} of a language over a finite
     alphabet is at most $\omegaOrd$ for the \kl{infix ordering}. Let us now consider a
-    \kl{well-quasi-ordered} language $L$ that is \kl{downwards closed} for the
+    \kl{well-quasi-ordered} language $L$ that is \kl{downward closed} for the
     \kl{infix relation}. Applying 
     \cref{dw-closed-wqo-charac:thm}, we can write $L = \bigcup_{i = 1}^n L_i$ where
     each $L_i$ is the set of finite \kl{infixes} of a finite, infinite or
@@ -679,11 +679,11 @@ state automaton can be understood as an \kl{amalgamation system}.
     The implication \cref{dwci-bod:item} $\Rightarrow$ \cref{dwci-uoc:item}
     is \cref{bounded-language:lem}.
     Finally, the implication \cref{dwci-uoc:item} $\Rightarrow$ \cref{dwci-reg:item}
-    is simply because a \kl{downwards closed} language 
+    is simply because a \kl{downward closed} language 
     that is a finite union of products of \kl{chains} is a regular language.
 
     Indeed, assume that
-    $L$ is \kl{downwards closed} and included in a finite union of sets of the form
+    $L$ is \kl{downward closed} and included in a finite union of sets of the form
     $\InfPeriodChain{x} u \InfPeriodChain{y}$ where $x,y,u$ are possibly empty words.
     We can assume without loss of generality that
     for every $n$, $x^n u y^n$ is in $L$, otherwise, we have a bound on the maximal $n$ such that
@@ -692,7 +692,7 @@ state automaton can be understood as an \kl{amalgamation system}.
     Let us write $L' \defined \bigcup_{i = 1}^k x_i^* u_i y_i^*$. Then, $L'
     \subseteq L$ by construction. Furthermore, $L \subseteq \dwset{L'}$, also
     by construction. Finally, we conclude that $L = \dwset{L'}$ because $L$ is
-    \kl{downwards closed}. Now, because $L'$ is a \kl{regular language}, and 
+    \kl{downward closed}. Now, because $L'$ is a \kl{regular language}, and 
     \kl{regular languages} are closed under \kl{downwards closure}, we conclude
     that $L$ is a \kl{regular language}.
     \qedhere
@@ -759,7 +759,7 @@ to $\mathcal{C}$.
 
 \begin{lemma}
   \label{dwclosed-wqo-complexity-width-finite:lem}
-  Let $L$ be a \kl{downwards closed} language that is
+  Let $L$ be a \kl{downward closed} language that is
   \kl{well-quasi-ordered} by the \kl{infix relation}.
   Then, the following are equivalent:
   \begin{enumerate}
