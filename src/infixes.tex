@@ -16,8 +16,10 @@ X \to Y$ such that for all $x, y \in X$, $x \preceq y$ if and only if $f(x)
 into} $Y$. Recall that a quasi-ordered set $(X, \preceq)$ is a \kl{partial
 ordering} whenever the relation $\preceq$ is antisymmetric, that is $x \preceq
 y$ and $y \preceq x$ implies $x = y$. 
+\ifappendix
 A simplified version of the embedding defined in \cref{infix-embedding:thm} is illustrated
 for the \kl{subword relation} in \cref{infix-embedding:fig} page \pageref{infix-embedding:fig}.
+\fi
 \begin{lemma}{\cite[Lemma 5.1]{DBLP:journals/ita/Kuske06}}
     \label{infix-embedding:thm}
     Let $(X, \preceq)$ be a \kl{partially ordered} set,
@@ -87,7 +89,7 @@ words of the form $x^p$, where $p \in \Nat$.
     $(\dwset{L}, \preceq)$ is \kl{well-quasi-ordered}. In the case of $(\Sigma^*,
     \infleq)$ a typical example is to start from an infinite \kl{antichain} $A$,
     together with an enumeration $\seqof{w_i}[i \in \Nat]$ of $A$, and build the language $L
-    \defined \setof{ \prod_{i = 0}^n w_i }{ i \in \Nat }$. By definition, $L$ is a
+    \defined \setof{ \prod_{i = 0}^n w_i }{ n \in \Nat }$. By definition, $L$ is a
     \kl{chain} for the \kl{infix} ordering, hence \kl{well-quasi-ordered}. However,
     $\dwset[\infleq]{L}$ contains $A$, and is therefore not
     \kl{well-quasi-ordered}. 
@@ -98,8 +100,7 @@ words of the form $x^p$, where $p \in \Nat$.
     \proofref{inf-period-chain:lem}
     Let $x \in \Sigma^+$ be a word.
     Then $\InfPeriodChain{x}$ is a finite union of \kl{chains}
-    for the \kl{infix}, \kl{prefix} and \kl{suffix} relations 
-    simultaneously.
+    for the \kl{infix}, \kl{prefix} and \kl{suffix} relations.
 \end{lemma}
 
 
@@ -107,7 +108,7 @@ words of the form $x^p$, where $p \in \Nat$.
 The following combinatorial \cref{pumping-periods:lem} connects the property of
 being \kl{well-quasi-ordered} to a property of the \kl{periodic lengths} of
 words in a language, based on the assumption that some factors can be iterated.
-It is the core result that powers the analysis done in the upcoming
+It is the core result that powers the analysis done in
 \cref{bounded-language:thm,infix-amalgamation:thm}. It is fundamentally based
 on a classical result of combinatorics on words (\cref{periodic-gcd:lem}) that
 we recall here for the sake of completeness.
@@ -132,21 +133,16 @@ we recall here for the sake of completeness.
     be such that
     $w[\vec{n}] \defined (\prod_{i = 1}^k u_i v_i^{n_i}) u_{k+1}$
     belongs to $L$
-    for arbitrarily large values of $\vec{n} \in \Nat^k$.
+    for vectors $\vec{n} \in \Nat^k$ with all coordinates arbitrarily large.
     Then, 
-    there exists $x,y \in \Sigma^+$ of size 
+    there exist $x,y \in \Sigma^+$ of size 
     at most $\max \setof{\card{v_i}}{1 \leq i \leq k}$
     such that
     for all
     $\vec{n} \in \Nat^{k}$
     one of the following holds:
-    \begin{enumerate}
-        \item $w[\vec{n}] \in u_1 \InfPeriodChain{x}$,
-        \item $w[\vec{n}] \in \InfPeriodChain{x} u_{k+1}$,
-        \item $w[\vec{n}] \in \InfPeriodChain{x} u_i \InfPeriodChain{y}$
-            for some $1 \leq i \leq k + 1$.
-
-    \end{enumerate}
+    $w[\vec{n}] \in \InfPeriodChain{x} u_i \InfPeriodChain{y}$
+    for some $1 \leq i \leq k + 1$.
 \end{lemma}
 
 \begin{lemma}
@@ -182,15 +178,13 @@ we recall here for the sake of completeness.
     Furthermore, those three bounds are tight.
 \end{corollary}
 \begin{proof}
-  Upper bounds are a direct consequence of \cref{bounded-language:thm},
-  and the tightness is witnessed by the 
-  languages: 
-  $L_k \defined \bigcup_{i = 2}^{k+1} (a b^i a)^* (b a^i b)^*$,
-  that are \kl{bounded languages} of $\set{a,b}^*$,
-  \kl{well-quasi-ordered} by the \kl{infix relation},
-  and have \kl{ordinal width}, \kl{ordinal height} and
-  \kl{maximal order type} respectively equal to $\omega \cdot k$, $\omega$ and
-  $\omega^2 \cdot k$.
+  Upper bounds are a direct consequence of \cref{bounded-language:thm}.
+  For the tightness, remark that the \kl{ordinal width}, \kl{ordinal height}
+  and \kl{maximal order type} of the language $a*b*$ are respectively 
+  $\omega$, $\omega$ and $\omega^2$. Thus, by using finite unions of languages
+  of the form $a_i*b_i*$, one can reach the desired bounds
+  $\omega \cdot k$, $\omega$ and
+  $\omega^2 \cdot k$.\footnote{Note that one can encode these languages using a binary alphabet.}
 \end{proof}
 
 \section{Infixes and Downwards Closed Languages}
@@ -198,7 +192,7 @@ we recall here for the sake of completeness.
 
 Let us now discuss another classical restriction that can be imposed on 
 languages when studying \kl{well-quasi-orders}, that of being
-\kl{downwards closed}. Indeed, the \cref{infix-embedding:thm}
+\kl{downwards closed}. Indeed, \cref{infix-embedding:thm}
 crucially relies on constructing languages that are \emph{not}
 \kl{downwards closed}, and we have shown 
 in \cref{dw-closure-not-wqo:rem} that the \kl{downwards closure}
@@ -222,8 +216,7 @@ the general case illustrated in \cref{dw-closure-not-wqo:rem}.
 \end{corollary}
 
 
-
-The \cref{bounded-wqo-dwclosed:cor} is reminiscent of a similar result for the
+\cref{bounded-wqo-dwclosed:cor} is reminiscent of a similar result for the
 \kl{subword embedding},  stipulating that for any language $L \subseteq
 \Sigma^*$, the \kl{downwards closure} $\dwset[\higleq]{L}$ is described using
 finitely many excluded \kl{subwords}, hence is regular. However, this is not
@@ -248,7 +241,9 @@ characteristics: it is \kl{cube-free} and \kl{uniformly recurrent}. Being
 for every word $u$ that is an \kl{infix} of $\ThueMorse$, there exists $k \geq
 1$ such that $u$ occurs as an \kl{infix} of every $k$-sized infix $v \infleq \ThueMorse$. 
 We refer the reader to a nice survey of Allouche and Shallit for more information
-on this sequence and its properties \cite{ALSHA99}.
+on this sequence and its properties \cite{ALSHA99}. We are using 
+the notations $\Sigma^\Nat$ for the set of infinite words over the alphabet $\Sigma$,
+and will be using $\Sigma^\Rel$ for the set of bi-infinite words over $\Sigma$.
 
 \begin{theorem}
     \label{uniformly-recurrent:lem}
@@ -297,7 +292,7 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     the \kl{ordinal width} of $\LMorse$ is $\omegaOrd$.
 \end{lemma}
 \begin{proof}
-	We first show that $\omegaOrd$ is an upper bound for each of these measure, 
+	We first show that $\omegaOrd$ is an upper bound for each of these measures,
 	before showing that the bounds are tight.
 	
     Let us prove that these are upper bounds for the \kl{ordinal invariants} of
@@ -323,7 +318,7 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     a non-constant affine function in $n$
     \cite{TRSHA95}, and that two words of length $n$ are comparable
     for the \kl{infix relation}
-    if and only if they are equal. Hence, there cannot be a bound
+    if and only if they are equal. Hence, there cannot be a finite bound
     on the size of an \kl{antichain} in $\LMorse$, and we conclude
     that $\oWidth{\LMorse} = \omegaOrd$.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order
@@ -331,7 +326,7 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
 \end{proof}
 
 \AP We prove in the upcoming \cref{dw-closed-wqo-charac:thm} that the status of
-the \kl{Thue-Morse sequence} is actually representative of \kl{downwards
+the \kl{Thue-Morse sequence} is actually representative of \kl{downward
 closed} languages for the \kl{infix relation}. To that end, let us introduce
 the notation $\intro*\infset{w}$ for the set of finite \kl{infixes} of a
 (possibly infinite or bi-infinite) word $w \in \Sigma^* \cup \Sigma^\Nat \cup
@@ -347,46 +342,30 @@ right-infinite parts are.
     \label{dw-closed-wqo-charac:thm}
     \proofref{dw-closed-wqo-charac:thm}
     Let $L$ be a \kl{well-quasi-ordered} language for the \kl{infix relation}
-    that is \kl{downwards closed}.
+    that is \kl{downward closed}.
     Then, there exist finitely many \kl{ultimately uniformly recurrent words} 
     $w_1, \dots, w_n \in \Sigma^* \cup 
     \Sigma^\Nat \cup \Sigma^\Rel$ such that
     $L = \bigcup_{i = 1}^n \infset{w_i}$.
 \end{theorem}
 
-Thanks to \cref{dw-closed-wqo-charac:thm}, and by analysing 
-the \kl{ordinal invariants} of \kl{infixes} of an \kl{ultimately uniformly recurrent}
-infinite word $w$ (\cref{ultimately-uniformly-recurrent:lem}),
-we conclude that the \kl{ordinal invariants} of a \kl{well-quasi-ordered}
-\kl{downwards closed} language are relatively small.
 
-\begin{corollary}
-  \label{small-ordinal-invariants:thm}
-  \proofref{small-ordinal-invariants:thm}
-    Let $L$ be a \kl{well-quasi-ordered} \kl{downwards closed} language for the \kl{infix relation}.
-    Then, the \kl{maximal order type} of $L$ is strictly less than $\omegaOrd^3$,
-    its \kl{ordinal height} is at most $\omegaOrd$,
-    and its \kl{ordinal width} is at most $\omegaOrd^2$.
-
-    Furthermore, those bounds are tight.
-\end{corollary}
-
-\AP To connect infixes of a (bi)-infinite word to \kl{downwards closed}
+\AP To connect infixes of a (bi)-infinite word to \kl{downward closed}
 languages, a useful notion is that of \kl(subset){directed} sets. A subset $I
 \subseteq X$ is \intro(subset){directed} if, for every $x,y \in I$, there
 exists $z \in I$ such that $x \leq z$ and $y \leq z$. Given a
 \kl{well-quasi-order} $(X, \leq)$, one can always decompose $X$ into a finite
 union of \intro{order ideals}, that is, non-empty sets $I \subseteq X$ that are
-\kl{downwards closed} and \kl(subset){directed} for the relation $\leq$. In our
+\kl{downward closed} and \kl(subset){directed} for the relation $\leq$. In our
 case, a \kl{well-quasi-ordered} \kl{order ideal} for the \kl{infix relation} is
-the set of finite \kl{infixes} of a finite, infinite, or bi-infinte word $w \in
+the set of finite \kl{infixes} of a finite, infinite, or bi-infinite word $w \in
 \Sigma^* \cup \Sigma^\Nat \cup \Sigma^\Rel $ (\cref{bi-infinite:lem}). 
 
 \begin{lemma}
     \label{bi-infinite:lem}
     \proofref{bi-infinite:lem}
     Let $L \subseteq \Sigma^*$ be an \kl{order ideal} 
-    for a \kl{well-quasi-ordered} 
+    for the 
     \kl{infix relation}. Then $L$ is the set of finite \kl{infixes}
     of a finite, infinite or bi-infinite word $w$.
 \end{lemma}
@@ -415,7 +394,7 @@ We are now ready to conclude the proof of \cref{dw-closed-wqo-charac:thm}.
   for the \kl{infix relation} thanks to \cref{ultimately-uniformly-recurrent:lem}.
 
   Conversely, let us consider a \kl{well-quasi-ordered} language $L$ that is
-  \kl{downwards closed} for the \kl{infix relation}. Because it is a
+  \kl{downward closed} for the \kl{infix relation}. Because it is a
   \kl{well-quasi-ordered} set, it can be written as a finite union of \kl{order
   ideals} $L = \bigcup_{i = 1}^n L_i$.
 
@@ -429,9 +408,15 @@ We are now ready to conclude the proof of \cref{dw-closed-wqo-charac:thm}.
 
 Finally, we comment on the \kl{ordinal invariants} of the set of finite
 \kl{infixes} of an \kl{ultimately uniformly recurrent} infinite word, from
-which the bounds of \cref{small-ordinal-invariants:thm} naturally follow (the
-proof is in \cref{small-ordinal-invariants:thm:proof} page
+which the bounds of
+\cref{small-ordinal-invariants:thm}
+\ifappendix 
+naturally follow
+(the proof is in \cref{small-ordinal-invariants:thm:proof} page
 \pageref{small-ordinal-invariants:thm:proof}).
+\else
+naturally follow.
+\fi
 
 \begin{lemma}
     \label{small-ordinal-invariants:lem}
@@ -445,13 +430,30 @@ proof is in \cref{small-ordinal-invariants:thm:proof} page
 \begin{lemma}
     \label{from-bi-to-single:lem}
     \proofref{from-bi-to-single:lem}
-    Let $w \in \Sigma^\Rel$ be a bi-infinite word. Then, the set of finite
-    infixes of $w$ is \kl{well-quasi-ordered} for the \kl{infix relation} if
-    and only if $w_+$ and $w_-$ are two \kl{ultimately uniformly recurrent}
-    words. In this case, the \kl{ordinal width}
+    Let $w \in \Sigma^\Rel$ be an \kl{ultimately uniformly recurrent} bi-infinite word. 
+    Then, the \kl{ordinal width}
     of the set of finite infixes of $w$ is less than $\omegaOrd \cdot 3$,
     and this bound is tight.
 \end{lemma}
+
+
+Thanks to \cref{dw-closed-wqo-charac:thm}, and by analysing 
+the \kl{ordinal invariants} of \kl{infixes} of an \kl{ultimately uniformly recurrent}
+infinite word $w$ (\cref{ultimately-uniformly-recurrent:lem}),
+we conclude that the \kl{ordinal invariants} of a \kl{well-quasi-ordered}
+\kl{downward closed} language are relatively small.
+
+\begin{corollary}
+  \label{small-ordinal-invariants:thm}
+  \proofref{small-ordinal-invariants:thm}
+    Let $L$ be a \kl{well-quasi-ordered} \kl{downward closed} language for the \kl{infix relation}.
+    Then, the \kl{maximal order type} of $L$ is strictly less than $\omegaOrd^3$,
+    its \kl{ordinal height} is at most $\omegaOrd$,
+    and its \kl{ordinal width} is at most $\omegaOrd^2$.
+
+    Furthermore, those bounds are tight.
+\end{corollary}
+
 
 \subsection{Decision Procedures}
 \label{decision-procedures:sec}
@@ -486,9 +488,17 @@ algorithmic properties of \kl{automatic sequences} come from the fact that a
 Presburger definable property that uses letters of the sequence can be
 (trivially) translated into a finite automaton that reads the base $b$
 representation of the free variables (that are indices of the sequence). In
-particular, it follows that one can decide if an \kl{automatic
-sequence} is \kl{ultimately uniformly recurrent}, a proof of this folklore
-result can be found in the appendix at \cref{automatic-uur:lem}. Based on this,
+particular,
+\ifappendix
+it follows that one can decide if an \kl{automatic
+sequence} is \kl{ultimately uniformly recurrent}, 
+a proof of this folklore
+result can be found in the appendix at \cref{automatic-uur:lem}. 
+\else
+it follows that one can decide if an \kl{automatic
+sequence} is \kl{ultimately uniformly recurrent}.
+\fi
+Based on this,
 we now prove:
 
 
@@ -498,17 +508,6 @@ we now prove:
     \Sigma^*$ where all infinite words are \kl{automatic sequences}, one can
     decide whether $L$ is \kl{well-quasi-ordered} for the \kl{infix relation}.
 \end{theorem}
-\begin{proof}
-    It is easy to see that $L$ is \kl{well-quasi-ordered} for the \kl{infix
-    relation} if and only if for every triple $(w_i^-, a_i, w_i^+)$ in the
-    \kl{sequence representation} of $L$, the (potentially bi-infinite) word
-    $\mathsf{reversed}(w_i^-) a_i w_i^+$ defines a \kl{well-quasi-ordered}
-    language. By \cref{from-bi-to-single:lem}, this is the case if and only if
-    both $w_i^-$ and $w_i^+$ are \kl{ultimately uniformly recurrent}. 
-    Since one can decide whether an \kl{automatic sequence} is
-    \kl{ultimately uniformly recurrent} using \cref{automatic-uur:lem},
-    we conclude the proof.
-\end{proof}
 
 
 \AP In fact, \kl{automatic sequences} are part of a larger family of sequences

@@ -3,6 +3,25 @@
 \section{Infixes and Amalgamation Systems}
 \label{infixes-amalgamation:sec}
 
+\begin{figure}
+    \centering
+    \includestandalone[width=\linewidth]{fig/gap-word-embedding-standalone}
+    \caption{The \kl{gap words} resulting from a \kl{subword embedding} between two 
+    finite words.}
+    \label{gap-word-embedding:fig}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includestandalone[width=\linewidth]{fig/run-amalgamation-standalone}
+    \caption{We illustrate how 
+        embeddings $f$ and $g$ between runs of an
+        \kl{amalgamation system} can be glued
+        together, seen on their canonical decomposition.
+    }
+    \label{amalgamation-runs:fig}
+\end{figure}
+
 \AP In the previous section, we have represented languages that are
 \kl{downwards closed} by the \kl{infix relation} as \kl{infixes} of infinite
 words. However, there are many other natural ways to represent languages, such
@@ -31,7 +50,7 @@ procedure for being \kl{well-quasi-ordered}. This will require us to introduce
 \emph{effectiveness assumptions} on the \kl{amalgamation systems}. While most
 of them will be innocuous, an important consequence is that we have to consider
 \emph{classes of languages} rather than individual ones, for instance: the
-class of all regular language, or the class of all context-free languages. Such
+class of all regular languages, or the class of all context-free languages. Such
 classes will be called \kl(amalgamation)[effectiveness assumptions]{effective
 amalgamative classes} (\kcref{effective amalgamation system}). In the
 following theorem, we prove that under such assumptions, testing
@@ -69,7 +88,7 @@ obtained by ``gluing'' loops to minimal runs. Generalizing this notion yields th
 notion of \kl{amalgamation systems}.
 
 \AP Let us recall that over an alphabet $(\Sigma, =)$ a \kl{subword embedding}
-between two words $u \in \Sigma^*$ and $v \in \Sigma^*$ is a function $\rho
+between two words $u \in \Sigma^*$ and $v \in \Sigma^*$ is an order-preserving function $\rho
 \colon \range{\card{u}} \to \range{\card{v}}$ such that $u_i = v_{\rho(i)}$ for
 all $i \in \range{\card{u}}$. We write $\intro*\HigEmb(u,v)$ the set of all
 \kl{subword embeddings} between $u$ and $v$. It may be useful to notice that
@@ -79,7 +98,7 @@ $\mathrm{id} \in \HigEmb(u,u)$ and that $f \circ g \in \HigEmb(u,w)$ whenever
 $g \in \HigEmb(u,v)$ and $f \in \HigEmb(v,w)$, for any choice of words
 $u,v,w \in \Sigma^*$.
 
-\AP Given a \kl{subword embedding} $f \colon u \to v$ between two words $u$ and
+\AP Given a \kl{subword embedding} $f \colon u \to v$ between two words $u = u_1 \cdots u_k$ and
 $v$, there exists a unique decomposition $v = \GapWord{f}{0} u_1 \GapWord{f}{1}
 \cdots \GapWord{f}{k-1} u_k \GapWord{f}{k}$ where $\GapWord{f}{i} =
 v_{f(i)+1} \cdots v_{f(i+1)-1}$ for all $1 \leq i \leq k-1$, $\GapWord{f}{k} =
@@ -131,7 +150,10 @@ reader to look at \cref{gap-word-embedding:fig} to see an example of the
             of this property.
     \end{enumerate}
 
-	The \emph{yield} of a run is obtained by projecting away the separator symbol \cansep~from the canonical decomposition, i.e. $\intro*\yieldrun(\rho) = \project_\Sigma( \canrun[\rho])$. The language recognized by an \kl{amalgamation system} is $\yieldrun(R)$.
+	The \emph{yield} of a run is obtained by projecting away the separator symbol 
+    \cansep~from the canonical decomposition, i.e. 
+    $\intro*\yieldrun(\rho) = \project_\Sigma( \canrun[\rho])$. 
+    The language recognized by an \kl{amalgamation system} is $\yieldrun(R)$.
     
     We say a language $L$ is an \intro{amalgamation language} 
     if there exists an \kl{amalgamation system} recognizing it. 
@@ -154,7 +176,10 @@ proof, and our \cref{infix-amalgamation:thm} follows from it.
 \begin{lemma}
 	\label{gap-words-prefix-ordered:lem}
   \proofref{gap-words-prefix-ordered:lem}
-	Let $L$ by an \kl{amalgamation language} recognized by $(\Sigma, R, E, \canrun)$ that is well-quasi-ordered by $\infleq$. Let $\rho$ be a run with $\canrun[\rho] = a_1 \cdots a_n$, and let $\sigma, \tau$ be runs with $\rho \runleq_f \sigma$ and $\rho \runleq_g \sigma$. 
+	Let $L$ by an \kl{amalgamation language} recognized by $(\Sigma, R, E, \canrun)$
+    that is well-quasi-ordered by $\infleq$. Let $\rho$ be a run with
+    $\canrun[\rho] = a_1 \cdots a_n$, and let $\sigma, \tau$
+    be runs with $\rho \runleq_f \sigma$ and $\rho \runleq_g \tau$. 
 	
 	For any $0 \leq \ell \leq n$, we have $\GapWord{f}{\ell} \infleq \GapWord{g}{\ell}$ or vice versa.
 \end{lemma}
@@ -198,8 +223,7 @@ $\rho, \sigma \in R$, the set $E(\rho,\sigma)$ is computable. Additionally, we
 require the class to be effectively closed under \kl{rational transductions}
 \cite[Chapter 5, page 64]{BERST79}. 
 
-Under these assumptions, one can transform the inclusion test of
-\cref{bounded-language:eq} of \cref{bounded-language:thm} into an effective
+Under these assumptions, one can improve on \cref{bounded-language:thm} into an effective
 procedure, using pumping arguments from \cite[Section 4.2]{ASZZ24}, which, in
 turn, allows us to prove \cref{infix-wqo-is-emptiness:thm}. Since the class
 $\mathcal{C}_\text{aut}$ of \kl{regular languages} and the class

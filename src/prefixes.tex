@@ -43,7 +43,7 @@ for a given language $L$, namely by introducing \kl{antichain branches}.
 Let us illustrate the notion of \kl{antichain branch} over the alphabet $\Sigma
 = \set{a,b}$, and the language $L = a^* b$. In this case, the set $a^*$ (which
 is a branch of the \kl{tree of prefixes}) is an \kl{antichain branch} for $L$.
-This holds because for any $a^k$, the word $a^k \prefleq a^kb$ belongs to $L
+This holds because for any $a^k$, the word $a^kb$ belongs to $L
 \setminus a^*$. In general, the existence of an \kl{antichain branch} for a
 language $L$ implies that $L$ contains an infinite \kl{antichain}, and because
 the alphabet $\Sigma$ is assumed to be finite, one can leverage the fact that
@@ -94,7 +94,7 @@ decidability of $L$ itself.
     \label{prefixes:thm}
     \proofref{prefixes:thm}
     A language $L \subseteq \Sigma^*$ is \kl{well-quasi-ordered} by the
-    \kl{prefix relation} if and only if $L$ is a union of \kl{chains}.
+    \kl{prefix relation} if and only if $L$ is a finite union of \kl{chains}.
 \end{theorem}
 
 As an immediate consequence, we have a very fine-grained understanding of the

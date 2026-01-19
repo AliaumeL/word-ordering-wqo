@@ -16,7 +16,7 @@
 
 
 \usepackage{lineno}
-\linenumbers
+\nolinenumbers
 
 
 % babel for language settings
@@ -78,7 +78,7 @@
 
 % Colors 
 \usepackage{ensps-colorscheme}
-\knowledgestyle{intro notion}{color={A2}, emphasize}
+\knowledgestyle{intro notion}{color={A4}, emphasize}
 \knowledgestyle{notion}{color={B1}}
 
 % we include whatever the user wants to include in the header
@@ -88,7 +88,13 @@
 \input{lib/maths}
 \input{knowledges.kl}
 
-\newcommand{\repositoryUrl}{Undefined Anonymous Repository}
+\newcommand{\repositoryUrl}{\url{https://github.com/AliaumeL/word-ordering-wqo}}
+
+
+% new if for appendix
+\newif\ifappendix
+\appendixfalse
+
 
 \begin{document}
 %
@@ -96,10 +102,17 @@
 \titlerunning{WQO on Words}
 
 \author{
-    Anonymized for review
+        Nathan Lhote\inst{1}\orcidID{0000-0003-3303-5368} \and
+        Aliaume Lopez\inst{3}\orcidID{0000-0002-4205-327X} \and
+        Lia Schütze\inst{2}\orcidID{0000-0003-4002-5491}}
+\authorrunning{N. Lhote and A. Lopez and L. Schütze}
+\institute{
+Aix-Marseille University
+ \and
+Max Planck Institute for Software Systems
+ \and
+INP Bordeaux, LaBRI, CNRS
 }
-\authorrunning{Anonymized for review}
-\institute{Anonymized for review}
 
 \date{\today}
 
@@ -109,6 +122,10 @@
 \begin{abstract}
     The set of finite words over a well-quasi-ordered set is itself well-quasi-ordered. This seminal result by Higman is a cornerstone of the theory of well-quasi-orderings and has found numerous applications in computer science. However, this result is based on a specific choice of ordering on words, the (scattered) subword ordering. In this paper, we describe to what extent other natural orderings (prefix, suffix, and infix) on words can be used to derive Higman-like theorems. More specifically, we are interested in characterizing \emph{languages} of words that are well-quasi-ordered under these orderings, and explore their properties and connections with other language theoretic notions. We furthermore give decision procedures when the languages are given by various computational models such as automata, context-free grammars, and automatic structures.
 \end{abstract}
+
+\noindent
+\klogo\ This document uses \href{https://ctan.org/pkg/knowledge}{knowledge}:
+a \kl[kl-usage]{notion} points to its \intro[kl-usage]{definition}.
 
 % Include the content of the paper
 \input{src/introduction}
@@ -125,8 +142,6 @@
 \bibliography{papers.bib}
 
 % If there are any appendices, we include them here.
-\appendix
-\input{src/appendix.tex}
 
 
 \end{document}

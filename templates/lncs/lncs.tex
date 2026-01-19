@@ -85,7 +85,7 @@ $endif$
 
 % Colors 
 \usepackage{ensps-colorscheme}
-\knowledgestyle{intro notion}{color={A2}, emphasize}
+\knowledgestyle{intro notion}{color={A4}, emphasize}
 \knowledgestyle{notion}{color={B1}}
 
 % we include whatever the user wants to include in the header
@@ -102,6 +102,15 @@ $if(anonymous)$
 \newcommand{\repositoryUrl}{$if(repository.anonymous)$$repository.anonymous$$else$Undefined Anonymous Repository$endif$}
 $else$
 \newcommand{\repositoryUrl}{\url{$if(repository.url)$$repository.url$$else$$repository$$endif$}}
+$endif$
+
+
+% new if for appendix
+\newif\ifappendix
+$if(appendix)$
+\appendixtrue
+$else$
+\appendixfalse
 $endif$
 
 \begin{document}
@@ -151,6 +160,10 @@ $else$
     Please write an abstract in the \texttt{paper-meta.yaml} file.
 $endif$
 \end{abstract}
+
+\noindent
+\klogo\ This document uses \href{https://ctan.org/pkg/knowledge}{knowledge}:
+a \kl[kl-usage]{notion} points to its \intro[kl-usage]{definition}.
 
 % Include the content of the paper
 $body$

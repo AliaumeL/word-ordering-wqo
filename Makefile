@@ -6,7 +6,8 @@ SRC=src/*.tex             \
 	papers.bib            \
 	knowledges.kl         \
 	ensps-colorscheme.sty \
-	plainurl.bst		  
+	plainurl.bst		  \
+	wqo-on-words.md 
 
 FIGURES=fig/subword-embedding-standalone.tex \
 		fig/infix-embedding-standalone.tex   \

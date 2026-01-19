@@ -102,7 +102,7 @@
     relation}. Let us define $S_{\mathrm{split}}$ the set of words $w \in \Sigma^*$ 
     such that there exists
     two words $wu$ and $wv$ both in $L$ that are not comparable for the
-    \kl{prefix relation}. Let $S = S_{\mathrm{split}}~\cup~\min_{\prefleq} L$
+    \kl{prefix relation}. Let $S = S_{\mathrm{split}}~\cup~\min_{\prefleq} L$.
     Assume by contradiction that $S$ is infinite.
     Then, $S$ equipped with the \kl{prefix relation} is an infinite
     tree with finite branching, and therefore contains an infinite
@@ -183,7 +183,7 @@
     that $w[\vec{n_0}]$ belongs to $L$. Then, we inductively define
     $\vec{n_{i+1}}$  as the smallest vector of numbers greater than
     $\vec{n_i}$, such that $w[\vec{n_{i+1}}]$ belongs to $L$, and with
-    $\vec{n_i}$ having all components greater than $2\card{w[\vec{n_i}]}$.
+    $\vec{n_{i+1}}$ having all components greater than $2\card{w[\vec{n_i}]}$.
 
     Let us assume that $k \geq 2$ in the following proof for symmetry purposes,
     and argue later on that when $k = 1$ the same argument goes through.
@@ -358,7 +358,7 @@
     every finite infix of $v$ 
     appears infinitely often in $v$. 
     Given
-    some finite infix $u \infleq v$, we 
+    some finite infix $u \infleq v$,
     there exists a bound $N_u$
     on the distance
     between two consecutive occurrences of $u$ in $v$.
@@ -425,7 +425,8 @@ that the two share the letter at position $0$.
 	Let $u_1 \infleq w$ be a finite word. 
 	
 	If $u_1$ is an \kl{infix} of $w_{\geq N_0}$, then there exists $k \geq 1$
-	such that $u_1$ is an \kl{infix} of every word of size at least $k$. In
+	such that $u_1$ is an \kl{infix} of every word of size at least $k$ in 
+    $\infset{w}$. In
 	particular, there is finite bound on the length of every sequence of
 	incomparable elements starting with $u_1$. We conclude in particular that
 	$\infset{w} \setminus \upset{u_1}$ has a finite \kl{ordinal width}.
@@ -488,7 +489,6 @@ that the two share the letter at position $0$.
 	Given an \kl{automatic sequence} $w \in \Sigma^{\Nat}$, one can decide
 	whether it is \kl{ultimately uniformly recurrent}.
 \end{lemma}
-
 \begin{proofof}{automatic-uur:lem}
 	We can rewrite this as a question on the \kl{automatic sequence} $w$
 	as follows:
@@ -509,12 +509,22 @@ that the two share the letter at position $0$.
 	is decidable.
 \end{proofof}
 
-
+\begin{proofof}{automatic-wqo:thm}
+    It is easy to see that $L$ is \kl{well-quasi-ordered} for the \kl{infix
+    relation} if and only if for every triple $(w_i^-, a_i, w_i^+)$ in the
+    \kl{sequence representation} of $L$, the (potentially bi-infinite) word
+    $\mathsf{reversed}(w_i^-) a_i w_i^+$ defines a \kl{well-quasi-ordered}
+    language. By \cref{from-bi-to-single:lem}, this is the case if and only if
+    both $w_i^-$ and $w_i^+$ are \kl{ultimately uniformly recurrent}. 
+    Since one can decide whether an \kl{automatic sequence} is
+    \kl{ultimately uniformly recurrent} using \cref{automatic-uur:lem},
+    we conclude the proof.
+\end{proofof}
 
 
 \begin{proofof}{small-ordinal-invariants:thm}
     It is always true that the \kl{ordinal height} of a language over a finite
-    alphabet is at most $\omegaOrd$. Let us now consider a
+    alphabet is at most $\omegaOrd$ for the \kl{infix ordering}. Let us now consider a
     \kl{well-quasi-ordered} language $L$ that is \kl{downwards closed} for the
     \kl{infix relation}. Applying 
     \cref{dw-closed-wqo-charac:thm}, we can write $L = \bigcup_{i = 1}^n L_i$ where
@@ -523,8 +533,8 @@ that the two share the letter at position $0$.
    We can then
     directly conclude that $\oWidth{L_i}$ is less than $\omegaOrd$ (in the case of
     a finite word), less than $\omegaOrd \cdot 2$ (in the case of an infinite
-    word thanks to \cref{small-ordinal-invariants:lem}), or less than $3 \cdot
-    \omegaOrd$ (in the case of a bi-infinite word, thanks to
+    word thanks to \cref{small-ordinal-invariants:lem}), or less than $
+    \omegaOrd \cdot 3$ (in the case of a bi-infinite word, thanks to
     \cref{from-bi-to-single:lem}). In any case,
     we have the bound $\oWidth{L_i} < \omegaOrd \cdot 3$.
 
@@ -543,24 +553,7 @@ that the two share the letter at position $0$.
 \clearpage
 \section{Proofs for Section~\ref{infixes-amalgamation:sec}}
 
-\begin{figure}
-    \centering
-    \includestandalone[width=\linewidth]{fig/gap-word-embedding-standalone}
-    \caption{The \kl{gap words} resulting from a \kl{subword embedding} between two 
-    finite words.}
-    \label{gap-word-embedding:fig}
-\end{figure}
 
-\begin{figure}
-    \centering
-    \includestandalone[width=\linewidth]{fig/run-amalgamation-standalone}
-    \caption{We illustrate how 
-        embeddings $f$ and $g$ between runs of an
-        \kl{amalgamation system} can be glued
-        together, seen on their canonical decomposition.
-    }
-    \label{amalgamation-runs:fig}
-\end{figure}
 
 
 For this paper to be self-contained, we will also recall how runs of a finite
@@ -658,7 +651,7 @@ state automaton can be understood as an \kl{amalgamation system}.
     By \cref{gap-words-prefix-ordered:lem}, we know that for each minimal run $\rho \in M$,
     each gap language $\GapLanguage{\rho}{i}$ of $\rho$ is totally ordered by $\infleq$.
     Adapting the proof of language boundedness from \cite[Section 4.2]{ASZZ24}, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
-    As $\InfPeriodChain{w}$ is language bounded and this property is stable under subsets, concatenation and finite union,
+    As $\InfPeriodChain{w}$ is a \kl{bounded language} and this property is stable under subsets, concatenation and finite union,
     we can conclude that $L$ is bounded as well.
 \end{proofof}
 
