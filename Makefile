@@ -148,7 +148,7 @@ $(PAPER).lncs.tar.gz: $(PAPER).lncs.pdf
 	@cp $(PAPER).lncs.flat.tex            lncs-arxiv/main.tex
 	@cp ensps-colorscheme.sty             lncs-arxiv/
 	@cp templates/lncs/splncs04.bst       lncs-arxiv/
-	@cp templates/lncs/lncs.cls           lncs-arxiv/
+	@cp templates/lncs/llncs.cls          lncs-arxiv/
 	@cp papers.bib                        lncs-arxiv/
 	@cp knowledges.kl                     lncs-arxiv/
 	@cp -r lib                            lncs-arxiv/lib
