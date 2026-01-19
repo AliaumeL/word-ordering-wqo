@@ -68,7 +68,7 @@
     construct an \kl{antichain branch}. Let us consider the subtree of the
     \kl{tree of prefixes} that consists in words that are \kl{prefixes} of
     words in $A$. This subtree is infinite, and by König's lemma, it contains
-    an infinite branch. By definition this is an \kl{antichain branch}.
+    an infinite branch. By definition this is an \kl{antichain branch}.\qedhere
 \end{proofof}
 
 
@@ -88,7 +88,7 @@
 	$\Sigma$-branching tree, whether it is satisfied is decidable
 	as an easy consequence of the decidability of $\MSO$ over infinite binary
 	trees
-	\cite[Theorem 1.1]{RAB69}.
+	\cite[Theorem 1.1]{RAB69}.\qedhere
 \end{proofof}
 
 
@@ -123,6 +123,7 @@
         \quad .
     \end{equation*}
     Hence, $L$ is a finite union of \kl{chains}.
+    \qedhere
 \end{proofof}
 
 
@@ -164,6 +165,7 @@
     v$, and \emph{a fortiori}, $u x^\ell v \infleq u x^k v$. 
     Similarly, because $u \suffleq x$,  there exists $w$ such that $wu  = x$, 
     and we conclude that $u x^{\ell} v \suffleq w u x^\ell v = x^{\ell + 1} v \suffleq u x^k v$.
+    \qedhere
 \end{proofof}
 
 
@@ -225,6 +227,7 @@
     When $k = 1$, the situation is a bit more specific since we only have two
     cases: either $w_i \infleq u_1 v_1^{n_j}$ or $w_i \infleq v_1^{n_j} u_2$,
     and we conclude with an identical reasoning.
+    \qedhere
 \end{proofof}
 
 \begin{proofof}{bounded-language:lem}
@@ -268,6 +271,7 @@
           \cup
           u \InfPeriodChain{x}
           \quad .
+          \qedhere
       \end{equation}
   \end{proofof}
 
@@ -305,6 +309,7 @@
     Hence, it is \kl{well-quasi-ordered} by the \kl{infix relation} 
     via
     \cref{bounded-language:thm}.
+    \qedhere
 \end{proofof}
 
 
@@ -327,6 +332,7 @@
     set of finite infixes of $w$. Conversely, every finite infix of $w$ is 
     an infix of some $u_i$ by definition of the limit construction, hence
     belongs to $L$ since $u_i \in L$ and $L$ is \kl{downwards closed}.
+    \qedhere
 \end{proofof}
 
 \begin{proofof}{ultimately-uniformly-recurrent:lem}
@@ -379,6 +385,7 @@
     of $v$ of size at least $M_u$ contains $u$. We have proven that
     $v$ is \kl{uniformly recurrent}, hence that $w$ is \kl{ultimately uniformly
     recurrent}.
+    \qedhere 
 \end{proofof}
 
 
@@ -415,7 +422,7 @@ that the two share the letter at position $0$.
     relation} is compatible with mirroring. Applying
     \cref{ultimately-uniformly-recurrent:lem}, we conclude that both are
     \kl{ultimately uniformly recurrent} words.
-
+    \qedhere
 \end{proofof}
 
 \begin{proofof}{small-ordinal-invariants:lem}
@@ -452,6 +459,7 @@ that the two share the letter at position $0$.
 	(finite) antichain as a prefix of the \kl{Thue-Morse sequence}, one obtains a
 	new (infinite) word $w$. It is clear that the \kl{ordinal width} of
 	$\infset{w}$ is now at least $\omegaOrd + N_0$.
+    \qedhere
 \end{proofof}
 
 
@@ -481,6 +489,7 @@ that the two share the letter at position $0$.
   of \kl{infixes} of $w$ is then at least $\omegaOrd \cdot 2 + K$, where $K$ is the
   size of the chosen antichain, following the same argument as in the proof of
   \cref{small-ordinal-invariants:lem}, using \cref{thue-morse-ordinal:lemma}.
+  \qedhere
 \end{proofof}
 
 \begin{lemma}
@@ -507,6 +516,7 @@ that the two share the letter at position $0$.
 	Because $w$ is computable by a finite automaton, one can reduce the above
 	formula to a regular language, for which it suffices to check emptiness, which
 	is decidable.
+    \qedhere
 \end{proofof}
 
 \begin{proofof}{automatic-wqo:thm}
@@ -519,6 +529,7 @@ that the two share the letter at position $0$.
     Since one can decide whether an \kl{automatic sequence} is
     \kl{ultimately uniformly recurrent} using \cref{automatic-uur:lem},
     we conclude the proof.
+    \qedhere
 \end{proofof}
 
 
@@ -547,6 +558,7 @@ that the two share the letter at position $0$.
     \cref{from-bi-to-single:lem}, and by considering a finite union of 
     these examples over disjoint alphabets (or even, by considering a binary 
     alphabet and using unambiguous codes to separate the different components).
+    \qedhere
 \end{proofof}
 
 
@@ -608,6 +620,7 @@ state automaton can be understood as an \kl{amalgamation system}.
     the set of $\yieldrun(R)$, 
     because $R$ is the set of valid runs of the automaton,
     and $\yieldrun(\rho)$ is the word read along a run $\rho$.
+    \qedhere
 \end{proof}
 
 
@@ -638,6 +651,7 @@ state automaton can be understood as an \kl{amalgamation system}.
 	ergo $ps = y$.
 	In other words, we can write $u^m = (sp)^{m'}, u^n = (sp)^{n'}$. As $u^mv \in \InfPeriodChain{y}$, it 
 	follows that $v$ is a prefix of some word in $(sp)^*$. Hence either $v$ is a prefix of $u$ or $u$ vice versa.
+    \qedhere
 \end{proofof}
 
 
@@ -653,6 +667,7 @@ state automaton can be understood as an \kl{amalgamation system}.
     Adapting the proof of language boundedness from \cite[Section 4.2]{ASZZ24}, we may conclude that $\GapLanguage{\rho}{i} \subseteq \InfPeriodChain{w}$ for some $w \in \GapLanguage{\rho}{i}$.
     As $\InfPeriodChain{w}$ is a \kl{bounded language} and this property is stable under subsets, concatenation and finite union,
     we can conclude that $L$ is bounded as well.
+    \qedhere
 \end{proofof}
 
 \begin{proofof}{dwclosed-infixes-wqo:lem}
@@ -680,6 +695,7 @@ state automaton can be understood as an \kl{amalgamation system}.
     \kl{downwards closed}. Now, because $L'$ is a \kl{regular language}, and 
     \kl{regular languages} are closed under \kl{downwards closure}, we conclude
     that $L$ is a \kl{regular language}.
+    \qedhere
 \end{proofof}
 
 
@@ -735,6 +751,7 @@ to $\mathcal{C}$.
 	for any language $L \in \mathcal C$,
     the image of $L$ through $R$ is \kl{well-quasi-ordered}
     by \kl{prefix} if and only if $L$ is empty.
+    \qedhere
 \end{proofof}
 
 
@@ -778,4 +795,5 @@ to $\mathcal{C}$.
   of \cref{dw-closed-wqo-charac:thm} and the fact that bounded \kl{factor
   complexity} implies that the (bi)infinite words describing the language
   are \kl{ultimately periodic}.
+  \qedhere
 \end{proof}

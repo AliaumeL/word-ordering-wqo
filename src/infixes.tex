@@ -163,7 +163,7 @@ we recall here for the sake of completeness.
     We apply \cref{bounded-language:lem}, and conclude
     because $\InfPeriodChain{x}$ is a finite union of \kl{chains}
     for the \kl{prefix}, \kl{suffix} and \kl{infix} relations
-    (\cref{inf-period-chain:lem}).
+    (\cref{inf-period-chain:lem}).\qedhere
 \end{proofof}
 
 
@@ -184,7 +184,7 @@ we recall here for the sake of completeness.
   $\omega$, $\omega$ and $\omega^2$. Thus, by using finite unions of languages
   of the form $a_i*b_i*$, one can reach the desired bounds
   $\omega \cdot k$, $\omega$ and
-  $\omega^2 \cdot k$.\footnote{Note that one can encode these languages using a binary alphabet.}
+  $\omega^2 \cdot k$.\footnote{Note that one can encode these languages using a binary alphabet.}\qedhere
 \end{proof}
 
 \section{Infixes and Downwards Closed Languages}
@@ -257,7 +257,7 @@ and will be using $\Sigma^\Rel$ for the set of bi-infinite words over $\Sigma$.
     \card{u_{i+1}}$ for all $i \in \Nat$. Because $\ThueMorse$ is \kl{uniformly
     recurrent}, there exists $k \geq 1$ such that $u_1$ is an \kl{infix} of
     every word $v$ of size at least $k$. In particular, $u_1$ is an \kl{infix}
-    of $u_k$, hence the sequence $\seqof{u_i}[i \in \Nat]$ is \kl(sequence){good}.
+    of $u_k$, hence the sequence $\seqof{u_i}[i \in \Nat]$ is \kl(sequence){good}.\qedhere
 \end{proof}
 
 
@@ -278,7 +278,7 @@ and will be using $\Sigma^\Rel$ for the set of bi-infinite words over $\Sigma$.
     words $w_1, \dots, w_k \in \Sigma^*$ such that $\LMorse \subseteq w_1^* \cdots
     w_k^*$. Since $\LMorse$ is infinite and \kl{downwards closed}, there exists a
     word $u \in \LMorse$ such that $u = w_i^3$ for some $1 \leq i \leq k$. This is a contradiction,
-    because $u \infleq \ThueMorse$, which is \kl{cube-free}.
+    because $u \infleq \ThueMorse$, which is \kl{cube-free}.\qedhere
 \end{proof}
 
 One may refine our analysis of the \kl{Thue-Morse sequence} to obtain 
@@ -322,7 +322,7 @@ precise bounds on the \kl{ordinal invariants} of its language of \kl{infixes}.
     on the size of an \kl{antichain} in $\LMorse$, and we conclude
     that $\oWidth{\LMorse} = \omegaOrd$.
     Finally, because the \kl{ordinal width} is at most the \kl{maximal order
-    type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omegaOrd$.
+    type}, we conclude that the \kl{maximal order type} of $\LMorse$ is also $\omegaOrd$.\qedhere
 \end{proof}
 
 \AP We prove in the upcoming \cref{dw-closed-wqo-charac:thm} that the status of
@@ -403,7 +403,7 @@ We are now ready to conclude the proof of \cref{dw-closed-wqo-charac:thm}.
   \kl{infixes} of a finite, infinite or bi-infinite word $w_i$. 
   Because the languages $L_i$ are \kl{well-quasi-ordered}, we can apply
   \cref{ultimately-uniformly-recurrent:lem}, and conclude that $w_i$ is
-  \kl{ultimately uniformly recurrent}.
+  \kl{ultimately uniformly recurrent}.\qedhere
 \end{proofof}
 
 Finally, we comment on the \kl{ordinal invariants} of the set of finite
