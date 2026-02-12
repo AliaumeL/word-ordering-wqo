@@ -317,3 +317,12 @@ fig/*.pdf
 *.lipics.tex
 *.flat.tex
 *.lipics.pdf
+
+# Symlinks created by make setup-lipics
+/lipics-v2021.cls
+/lipics.tex
+/cc-by.pdf
+/orcid.pdf
+/lipics-logo-bw.pdf
+/lipics-v2021-authors-guidelines.pdf
+/CHANGELOG.md
